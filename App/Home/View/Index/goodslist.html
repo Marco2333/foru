@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/script/shoppingcart.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<link href="__PUBLIC__/css/style-y.css" rel="stylesheet"/>
+		<title>For优</title>
+		<style>
+			body{
+				background-color: #fff;
+			}
+		</style>
+	</head>
+<body>
+
+		<include file='App/Home/View/Common/commonhead.html'/>
+		<div id="index-header" >
+			<include file='App/Home/View/Common/commonsearch.html'/>
+
+			<include file='App/Home/View/Common/commonnav.html'/>
+
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index')}">首页</a></li>
+					<li class="active"><a href="#">{$categoryName}</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wrapper clearfix">
+			<div class="goods-list-side">
+				<ul>
+				   <foreach name="classes" item="vo">
+				       <li>
+						  <a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vo['category_id']))}">{$vo.category}</a>	
+					   </li>
+				   </foreach>					
+				</ul>	
+			</div>
+			<div class="goods-list-info clearfix fl">
+			    <foreach name="goods" item="v">
+			    	<div class="goods-info-item">
+						<dl>
+							<dt>
+								<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$v['food_id'],'campusId'=>$v['campus_id']))}"><img src="{$v.img_url}" alt=""></a>
+							</dt>
+							<dd>
+								<p><a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$v['food_id'],'campusId'=>$v['campus_id']))}">{$v.name}</a></p>
+								<p><?php if(strlen($v['message'])>84)
+									       echo substr($v['message'], 0,78)."....";
+									       else echo $v['message'];
+								?>
+									</p>
+								<p>  <if condition="$v['is_discount'] eq 1">
+										<span>￥{$v.discount_price|number_format=###,1}</span>
+									    <span>原价:{$v.price|number_format=###,1}元</span>
+									    <else/><span>￥{$v.price|number_format=###,1}</span><span></span>
+								     </if>
+									
+									<span>销量:{$v.sale_number}</span>
+								</p>
+							</dd>
+						</dl>
+				   </div>
+			    </foreach>
+			    	
+			</div>
+				<div class="msg-page">
+			    		<div class="page">{$page}</div>
+		            </div>
+		</div>
+	
+		<include file='App/Home/View/Common/commontail.html'/>
+	</body>
+</html>

@@ -1,0 +1,127 @@
+  /* ===============
+ * 重新定义Html元素
+ * =============== */
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form,hr,p, blockquote, fieldset, input { 
+	padding: 0; margin: 0;
+}
+h1, h2, h3, h4, h5, h6, pre, code, address, caption, cite, code, em, strong, table, th, td { 
+	font-size: 1em; 
+	font-style: normal; 
+	font-weight: normal;
+}
+strong { 
+	font-weight: bold;
+}
+ul, ol { 
+	list-style: none outside none;
+}
+fieldset, img { 
+	border: medium none;
+}
+caption, th { 
+	 text-align: left;
+}
+table { 
+	border-collapse: collapse; border-spacing: 0;
+}
+
+body { 
+	font: 12px/150% Arial,Verdana,"宋体"; 
+	color: #666;
+	background: #fff none repeat scroll 0 0;
+	margin: 0; padding: 0;
+}
+a { 
+	color: #555; 
+	outline: medium none;
+}
+a:link, a:visited, a:active { 
+	text-decoration: none;
+}
+a:hover { 
+	color: #E4393C; 
+	text-decoration: underline;
+}
+i, cite, em { 
+	font-style: normal;
+}
+
+/* ==========================
+ * 常用宽度、高度、边距、边框属性
+ * ========================== */
+.w {
+	 width: 100%
+}
+/*页面整体宽度控制*/
+.wrapper { 
+	width: 1100px; 
+	margin:0 auto;
+}
+.fl { 
+	float: left;
+}
+.fr { 
+	float: right;
+}
+.block { 
+	display: block;
+	zoom: 1;
+}
+.inline-block{
+	display: inline-block;
+	zoom: 1;
+}
+.none { 
+	display: none;
+}
+
+.inline-block{
+	display: inline-block;
+	zoom: 1;
+}
+.text-left{
+	text-align: left;
+}
+.text-center{
+	text-align: center;
+}
+.text-right{
+	text-align: right;
+}
+.b{
+	font-weight: bold;
+}
+.cl{
+	clear: left;
+}
+.cr{
+	clear: right;
+}
+.cb{
+	clear: both;
+}
+.text-white{
+	color: #fff;
+}
+.text-black{
+	color:#000;
+}
+.text-special{
+	color:#24dfc2;
+}
+.bground-special {
+	background-color: #24dfc2;
+}
+.spliter {
+	border-left:1px solid #aaa;
+}
+.bold {
+	font-weight: bold;
+}
+.clearfix:after { 
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden; 
+} 

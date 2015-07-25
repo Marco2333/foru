@@ -1,0 +1,3 @@
+<?php
+//000000000000a:7:{i:0;a:2:{s:9:"campus_id";s:1:"1";s:11:"campus_name";s:27:"苏州大学独墅湖校区";}i:1;a:2:{s:9:"campus_id";s:1:"2";s:11:"campus_name";s:28:" 南京大学雨花台校区";}i:2;a:2:{s:9:"campus_id";s:1:"3";s:11:"campus_name";s:24:"复旦大学吴中校区";}i:3;a:2:{s:9:"campus_id";s:1:"4";s:11:"campus_name";s:18:"浙江大学本部";}i:4;a:2:{s:9:"campus_id";s:1:"5";s:11:"campus_name";s:18:"苏州大学本部";}i:5;a:2:{s:9:"campus_id";s:1:"6";s:11:"campus_name";s:21:"西交利物浦大学";}i:6;a:2:{s:9:"campus_id";s:1:"7";s:11:"campus_name";s:12:"清华大学";}}
+?>

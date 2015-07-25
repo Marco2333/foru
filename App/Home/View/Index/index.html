@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="__PUBLIC__/css/campus_li.css" />
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/fly.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/index.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/script/campus_li.js"></script>
+		
+		
+		<title>For U</title>
+		<style>
+			body {
+				background-color: rgb(249,249,249);
+			}
+		</style>
+	</head>
+	<body data-spy="scroll" data-target="#nav-side">
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" >
+
+			<include file='App/Home/View/Common/commonsearch.html'/>
+
+			<include file='App/Home/View/Common/commonnav.html'/>
+			
+			<div id="list-slide" class="wrapper clearfix">
+				<div class="side-nav">
+					<ul class="primary_nav_list">
+						<foreach name="category" item="vo">
+							<li class="primary_nav_li">
+								<a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vo['category_id']))}">{$vo.category}</a>
+							</li>				
+						</foreach>
+						
+					</ul>
+				</div>
+				<div id="slide-wrapper" class="carousel slide">
+					<!-- 轮播（Carousel）指标 -->
+					<ol class="carousel-indicators">
+						<foreach name="main_image" item="v">
+							<li data-target="#slide-wrapper" data-slide-to="{$key}" <?php if(key==0) echo 'class="active"';?>></li>
+						</foreach>
+					</ol>
+					<!-- 轮播（Carousel）项目 -->
+					<div class="carousel-inner">
+						<foreach name="main_image" item="v">
+					        <if condition="$key eq 0">
+						        <div class="item active">
+						    <else/><div class="item">
+						    </if>
+							<img src="{$v.img_url}" alt="{$key} slide">
+							</div>
+						</foreach>
+					</div>
+					<!-- 轮播（Carousel）导航 -->
+					<a class="carousel-control left" href="#slide-wrapper"data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"> </span> <span class="sr-only">Previous</span> </a>
+					<a class="carousel-control right" href="#slide-wrapper"data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"> </span> <span class="sr-only">Previous</span> </a>
+				</div>
+			</div>
+		</div>
+			
+		<div id="index-body" class="clearfix">
+			<div id="nav-side" class="fl">
+				<ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="800">
+				<foreach name="category" item="vo">
+				     <if condition="$key eq 0">
+				        <li class="active">
+				     <else/><li>
+				     </if>
+				     <a href="#class-{$key+1}-top">{$key+1}F</a></li>
+				</foreach>
+				</ul>
+			</div>
+			<div class="wrapper">
+				<div id="medium-part" class="clearfix">
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium1.png" alt=""></dt>
+							<dd>小优推荐</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium2.png" alt=""></dt>
+							<dd>最新体验</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium3.png" alt=""></dt>
+							<dd>特惠秒杀</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium4.png" alt=""></dt>
+							<dd>早餐上门</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium5.png" alt=""></dt>
+							<dd>家政服务</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium6.png" alt=""></dt>
+							<dd>水果上门</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium7.png" alt=""></dt>
+							<dd>快递代取</dd>
+						</dl>
+					</div>
+					<div>
+						<dl>
+							<dt><img src="__PUBLIC__/img/medium8.png" alt=""></dt>
+							<dd>更多</dd>
+						</dl>
+					</div>
+					<!-- <div id="medium-part-1" class=" fl">
+						<span>ForYou<span class="text-black">校园超市</span></span>
+						<span class="text-white" style="font-size: 22px">最精美的商品
+							<br>
+							最周到的服务
+							<br>
+							欢迎您的光临 </span>
+						<div>
+							<button name="enter-theme" onclick="">
+								体验主题市场
+							</button>
+						</div>
+					</div>
+					<div id="medium-part-2" class=" fl">
+						<span class="text-white"><span class="text-black">SALE</span> UP TO 35% </span>
+						<span class="text-black"> OFF</span>
+						<span class="text-white" style="font-size: 16px">SUMMER COLLECTION 2013</span>
+					</div>
+					<div id="medium-part-3" class=" fl">
+						<span class="text-white">FREE <span class="text-special">SHIPPING</span></span>
+						<span class="text-white">ON ODER OVER $2,000</span>
+					</div>
+				 -->
+				</div>
+				<foreach name="category" item="cate">
+					<div id="class-{$key+1}-top" class="class-n-top w clearfix fr">
+						<span class="spliter fl"></span>
+						<span class="class-n-f fl">{$key+1}F</span>
+						<span class="class-header fl">{$cate.category}</span>
+						<span class="fr"><a href="{:U('/Home/Index/goodslist',array('categoryId'=>$cate['category_id'],'campusId'=>cookie('campusId')))}">更多&gt;&gt;</a></span>
+				    </div>
+				    <div id="class-{$key+1}" class="class-n">
+				    	<div class="goods-row">
+							<foreach name="goodlist[$key]" item="good">
+								<div class="goods-show">
+									<dl>
+										<dd>
+											<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$good['food_id'],'campusId'=>cookie('campusId')))}"><img src="{$good.img_url}"/></a>
+										</dd>
+										<dt>
+											<div class="goods-info ">
+												<div class="goods-price clearfix">
+												   <if condition="$good.is_discount eq 1">
+												   		<span class="present-price">￥{$good.discount_price|number_format=###,1}</span>
+													    <span class="before-price">原价：{$good.price|number_format=###,1}元</span>
+												   <else/><span class="present-price">￥{$good.price|number_format=###,1}</span>
+												   </if>
+													
+													<!-- <span class="googs-volume">销量(1306)</span> -->
+												</div>
+												<div  class="goods-name">
+													<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$good['food_id'],'campusId'=>cookie('campusId')))}">{$good.name}</a>
+												</div>
+										    </div>
+										</dt>
+									</dl>
+							   </div>
+							</foreach>
+						</div>
+					</div>
+				  </foreach>
+				</div>
+			</div>		
+			
+			<!-- </div>
+					</div> -->
+	<!-- 	<div class="shopping-msg">
+			已成功加入购物车！
+		</div> -->
+		<!-- <div class="shopping-cart">
+			<span> 购物车 </span>
+			<span id="price-count"> ￥0 </span>
+			<span id="goods-count" class="badge"> 8 </span>
+			<span class="glyphicon glyphicon-eject"> </span>
+		</div> -->
+	<!-- 	<footer>
+			<div id="foot-part1" class="clearfix wrapper">
+				<ul>
+					<li>
+						<dl>
+							<dd><img src="__PUBLIC__/img/footer/footer1.png" alt=""></dd>
+							<dt>
+								<div>正品保障</div>
+								<div>全场正品，行货保障</div>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd><img src="__PUBLIC__/img/footer/footer2.png" alt=""></dd>
+							<dt>
+								<div>新手指南</div>
+								<div>快速登录，无需注册</div>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd><img src="__PUBLIC__/img/footer/footer3.png" alt=""></dd>
+							<dt>
+								<div>货到付款</div>
+								<div>货到付款，安心便捷</div>
+							</dt>
+						
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd><img src="__PUBLIC__/img/footer/footer4.png" alt=""></dd>
+							<dt>
+								<div>维修保障</div>
+								<div>服务保证，全国联保</div>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd><img src="__PUBLIC__/img/footer/footer5.png" alt=""></dd>
+							<dt>
+								<div>无忧退货</div>
+								<div>无忧退货，7日尊享</div>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd><img src="__PUBLIC__/img/footer/footer6.png" alt=""></dd>
+							<dt>
+								<div>会员权益</div>
+								<div>会员升级，尊贵特权</div>
+							</dt>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<div id="foot-part2" class="clearfix wrapper">
+				<ul>
+					<li>
+						<dl>
+							<dd>常用服务</dd>
+							<dt>
+								<ul>
+									<li><a>问题咨询</a></li>
+									<li><a>催办订单</a></li>
+									<li><a>报修退换货</a></li>
+									<li><a>上门安装</a></li>
+								</ul>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd>购物</dd>
+							<dt>
+								<ul>
+									<li><a>怎样购物</a></li>
+									<li><a>积分优惠券介绍</a></li>
+									<li><a>订单状态说明</a></li>
+									<li><a>易迅礼品卡介绍</a></li>
+								</ul>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd>付款</dd>
+							<dt>
+								<ul>
+									<li><a>货到付款</a></li>
+									<li><a>在线支付</a></li>
+									<li><a>其他支付方式</a></li>
+									<li><a>发票说明</a></li>
+								</ul>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd>配送</dd>
+							<dt>
+								<ul>
+									<li><a>配送服务说明</a></li>
+									<li><a>价格保护</a></li>
+								</ul>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd>售后</dd>
+							<dt>
+								<ul>
+									<li><a>售后服务政策</a></li>
+									<li><a>退换货服务流程</a></li>
+									<li><a>优质售后服务</a></li>
+									<li><a>特色服务指南</a></li>
+									<li><a>服务时效承诺</a></li>
+								</ul>
+							</dt>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd>商家合作</dd>
+							<dt>
+								<ul>
+									<li><a>企业采购</a></li>
+								</ul>
+							</dt>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<!-- <div id="foot-part3" class="clearfix wrapper">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div> -->
+			<!-- <div id="foot-part4" class="clearfix">
+				<a>易迅简介</a>|<a>易迅公告</a>|招贤纳士<a>|<a>联系我们</a>|客服热线: 00-828-1878
+			</div>
+		</footer> -->
+		<include file='App/Home/View/Common/commontail.html'/>
+		<!--li_change-campus-->
+		<include file='App/Home/View/Campus/campus.html'/>
+	</body>
+</html>

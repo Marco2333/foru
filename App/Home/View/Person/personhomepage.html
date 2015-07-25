@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<title>我的For优</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" >
+			<include file='App/Home/View/Common/commonsearch.html'/>
+			<include file='App/Home/View/Common/commonnav.html'/>
+
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index')}">首页</a></li>
+					<li class="active"><a href="#">我的For优</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper clearfix" >
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a>全部</a></li>
+					<li><a>待付款</a></li>
+					<li><a>待确认</a></li>
+					<li><a>配送中</a></a></li>
+					<li><a>已完成</a></li>
+				</ul>
+				<ul>
+					<span>资料管理</span>
+					<li><a>个人信息</a></li>
+					<li><a>地址管理</a></li>
+					<li><a>账户安全</a></li>
+				</ul>
+				<ul>
+					<span>服务中心</span>
+					<li><a>联系客服</a></li>
+					<li><a>关于我们</a></li>
+					<li><a>意见反馈</a></li>
+				</ul>
+			</div>
+			<div id="person-info-body">
+				<span>尊敬的</span><span>追糖浆的阿豹</span>，<span>您好！欢迎来到For优</span>
+				<div id="personhome-info" class="clearfix">
+					<img class="fl" src="__PUBLIC__/img/headimage.png" alt="">
+					<div class="fl">
+						<span>追糖浆的阿豹</span><p>
+						性别：<span>男</span><p>
+						手机号:<span>14790080240</span><p>
+						QQ号:<span>1234678</span><p>
+						收货地址:<span>苏州大学独墅湖校区男生公寓10栋402室</span>
+					</div>		
+				</div>
+				<div class="info-title">
+						近期订单
+						<span class="fr"><a href="{:U('Person/ordermanage')}">查看所有订单</a></span>
+				</div>
+				<div class="personhome-order-info">
+					<table>
+						<colgroup>
+							<col width="450">
+							<col width="150">
+							<col width="160">
+							<col width="140">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>订单商品</th>
+								<th>订单状态</th>
+								<th>总金额</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>				
+							<tr class="order-info-head">
+								<td colspan="2">
+									订单编号：<span>1234567</span>
+									提交时间：<span>2015-2-15 12:00</span>	
+								</td>
+								<td colspan="2">
+									
+								</td>	
+							</tr>
+							<tr class="order-info-detailed">
+								<td>
+									<img class="fl" src="__PUBLIC__/img/goods.png" alt="">
+									<div class="fl">
+										<p class='b'>Homee LED百变耳机台灯创意可以做耳机的台灯</p>
+										<p>设计师原创，纯手工打造</p>
+										<p>共1件商品</p>
+									</div>		
+								</td>
+								<td class='b'>已完成</td>
+								<td class='b'>
+									￥79
+								</td >
+								<td><a>订单详情</a></td>		
+							</tr>			
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<include file='App/Home/View/Common/commontail.html'/>
+
+	</body>
+</html>

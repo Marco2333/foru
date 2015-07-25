@@ -1,0 +1,516 @@
+[ 2015-07-22T11:04:35+08:00 ] 127.0.0.1 /foryou/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000703s ]
+ERR: SQLSTATE[HY000] [1129] Host '221.224.209.88' is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts'
+
+[ 2015-07-22T11:08:13+08:00 ] 127.0.0.1 /foryou/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000632s ]
+
+[ 2015-07-22T11:08:18+08:00 ] 127.0.0.1 /foryou/index.php/Home/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000589s ]
+
+[ 2015-07-22T11:08:18+08:00 ] 127.0.0.1 /foryou/index.php/Home/Login/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+
+[ 2015-07-22T11:08:25+08:00 ] 127.0.0.1 /foryou/index.php/Home/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000500s ]
+
+[ 2015-07-22T11:08:25+08:00 ] 127.0.0.1 /foryou/index.php/Home/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000578s ]
+
+[ 2015-07-22T11:08:34+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000625s ]
+
+[ 2015-07-22T11:09:29+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000569s ]
+
+[ 2015-07-22T11:10:00+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000561s ]
+
+[ 2015-07-22T11:10:30+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000901s ]
+
+[ 2015-07-22T11:10:45+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+
+[ 2015-07-22T11:10:45+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000566s ]
+
+[ 2015-07-22T11:10:57+08:00 ] 127.0.0.1 /foryou/index.php/Home/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000583s ]
+
+[ 2015-07-22T11:10:57+08:00 ] 127.0.0.1 /foryou/index.php/Home/Login/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000741s ]
+
+[ 2015-07-22T11:11:04+08:00 ] 127.0.0.1 /foryou/index.php/Home/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000566s ]
+
+[ 2015-07-22T11:11:05+08:00 ] 127.0.0.1 /foryou/index.php/Home/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000629s ]
+
+[ 2015-07-22T11:11:11+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000868s ]
+
+[ 2015-07-22T11:11:12+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+
+[ 2015-07-22T11:11:20+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000724s ]
+
+[ 2015-07-22T11:24:03+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000566s ]
+
+[ 2015-07-22T11:24:03+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000839s ]
+
+[ 2015-07-22T11:24:07+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000611s ]
+
+[ 2015-07-22T11:24:53+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000693s ]
+
+[ 2015-07-22T11:24:53+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000081s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001769s ]
+
+[ 2015-07-22T11:24:56+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000762s ]
+
+[ 2015-07-22T11:25:03+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001037s ]
+
+[ 2015-07-22T11:25:10+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000582s ]
+
+[ 2015-07-22T11:25:10+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000995s ]
+
+[ 2015-07-22T11:25:13+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+
+[ 2015-07-22T11:25:15+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000502s ]
+
+[ 2015-07-22T11:25:34+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001122s ]
+
+[ 2015-07-22T11:25:34+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+
+[ 2015-07-22T11:25:35+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000545s ]
+
+[ 2015-07-22T11:25:35+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000974s ]
+
+[ 2015-07-22T11:25:37+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001457s ]
+
+[ 2015-07-22T11:25:57+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000500s ]
+
+[ 2015-07-22T11:25:57+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000837s ]
+
+[ 2015-07-22T11:25:58+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000701s ]
+
+[ 2015-07-22T11:25:58+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000804s ]
+
+[ 2015-07-22T11:26:00+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000599s ]
+
+[ 2015-07-22T11:26:05+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+
+[ 2015-07-22T11:28:18+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000606s ]
+
+[ 2015-07-22T11:28:19+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000545s ]
+
+[ 2015-07-22T11:28:19+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000603s ]
+
+[ 2015-07-22T11:28:19+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000849s ]
+
+[ 2015-07-22T11:28:22+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+
+[ 2015-07-22T11:28:26+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000538s ]
+
+[ 2015-07-22T11:28:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000838s ]
+
+[ 2015-07-22T11:28:31+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000611s ]
+
+[ 2015-07-22T11:28:59+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000564s ]
+
+[ 2015-07-22T11:28:59+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000515s ]
+
+[ 2015-07-22T11:29:03+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000581s ]
+
+[ 2015-07-22T11:29:09+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000558s ]
+
+[ 2015-07-22T11:29:15+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000486s ]
+
+[ 2015-07-22T11:30:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000559s ]
+
+[ 2015-07-22T11:30:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000600s ]
+
+[ 2015-07-22T11:30:29+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000628s ]
+
+[ 2015-07-22T11:30:32+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000504s ]
+
+[ 2015-07-22T12:09:24+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000537s ]
+
+[ 2015-07-22T12:09:24+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000871s ]
+
+[ 2015-07-22T12:09:29+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000570s ]
+
+[ 2015-07-22T12:09:34+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.1309931562282145
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000615s ]
+
+[ 2015-07-22T12:09:43+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000584s ]
+
+[ 2015-07-22T12:10:08+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000603s ]
+
+[ 2015-07-22T12:10:09+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001088s ]
+
+[ 2015-07-22T12:10:16+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000665s ]
+
+[ 2015-07-22T12:10:16+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.26067425846122205
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000536s ]
+
+[ 2015-07-22T12:10:16+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.9769285866059363
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000545s ]
+
+[ 2015-07-22T12:10:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.8212444866076112
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000775s ]
+
+[ 2015-07-22T12:10:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.28520309925079346
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000550s ]
+
+[ 2015-07-22T12:10:23+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000493s ]
+
+[ 2015-07-22T12:13:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000928s ]
+
+[ 2015-07-22T12:13:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000869s ]
+
+[ 2015-07-22T12:13:30+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000768s ]
+
+[ 2015-07-22T12:13:31+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.9581885829102248
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000151s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001064s ]
+
+[ 2015-07-22T12:13:33+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.11644992348738015
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000507s ]
+
+[ 2015-07-22T12:13:34+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.6735659753903747
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000512s ]
+
+[ 2015-07-22T12:13:38+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000577s ]
+
+[ 2015-07-22T12:13:49+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/changePWord
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000562s ]
+
+[ 2015-07-22T12:15:08+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000501s ]
+
+[ 2015-07-22T12:15:08+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000910s ]
+
+[ 2015-07-22T12:15:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000544s ]
+
+[ 2015-07-22T12:15:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.2063263829331845
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+
+[ 2015-07-22T12:15:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.0027205876540392637
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000851s ]
+
+[ 2015-07-22T12:15:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.027408866677433252
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000715s ]
+
+[ 2015-07-22T12:15:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.10903744981624186
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000691s ]
+
+[ 2015-07-22T12:15:17+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.7111272590700537
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+
+[ 2015-07-22T12:15:19+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.5345129889901727
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000631s ]
+
+[ 2015-07-22T12:15:19+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.23283728561364114
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000504s ]
+
+[ 2015-07-22T12:15:23+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+
+[ 2015-07-22T12:15:32+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/changePWord
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000945s ]
+
+[ 2015-07-22T12:15:36+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/changePWord
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000542s ]
+
+[ 2015-07-22T12:17:15+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/changePWord
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000592s ]
+
+[ 2015-07-22T12:18:03+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000542s ]
+
+[ 2015-07-22T12:18:03+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000859s ]
+
+[ 2015-07-22T12:18:05+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000067s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002190s ]
+
+[ 2015-07-22T12:18:11+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000566s ]
+
+[ 2015-07-22T12:18:21+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/changePWord
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000581s ]
+
+[ 2015-07-22T12:27:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/person/forgetpword
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000619s ]
+
+[ 2015-07-22T12:27:27+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000548s ]
+
+[ 2015-07-22T12:27:31+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/phone
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000625s ]
+
+[ 2015-07-22T12:27:31+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/verify/id/0.13366690860129893
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000780s ]
+
+[ 2015-07-22T12:27:36+08:00 ] 127.0.0.1 /foryou/index.php/Home/Person/check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000531s ]
+

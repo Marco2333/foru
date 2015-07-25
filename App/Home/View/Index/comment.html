@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/script/shoppingcart.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<link href="__PUBLIC__/css/style_li.css" rel="stylesheet" />
+		<script type="text/javascript" src="__PUBLIC__/script/comment_li.js"></script>
+	</head>
+	<body>
+		<header>
+			<include file='App/Home/View/Common/commonhead.html'/>
+			<include file='App/Home/View/Common/commonsearch.html'/>
+			<include file='App/Home/View/Common/commonnav.html'/>
+		</header>
+		<div class="wrapper">
+			<div id="nav-breadcrumb" class="wrapper nav-comment">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index')}">首页</a></li>
+					<li><a href="{:U('Index/index')}">我的订单</a></li>
+					<li><a href="{:U('Index/index')}">待评价</a></li>
+					<li class="active"><a href="#">评价订单</a></li>
+				</ul>
+			</div>
+			
+			<div class="wrapper inner-wrapper">
+				<div class="comment-banner">
+					<span>订单号：</span>
+					<span id="order_id">{$order_id}</span>
+					<span>订单日期：</span>
+					<span>{$create_time}</span>
+					<span>待评论的商品如下：</span>
+				</div>
+				<div class="comment-body">
+					<div class="body-thing">
+						<div class="thing-left">
+							<img src="{$img_url}" id="thing_img"/>
+						</div>
+						<div class="thing-right">
+							<h3>{$name}</h3>
+							<p>{$message}</p>
+							<span class="">
+								<span class="">评价：</span>
+								<span class="height-star">
+									<span class="glyphicon glyphicon-star star"></span>
+									<span class="glyphicon glyphicon-star star"></span>
+									<span class="glyphicon glyphicon-star star"></span>
+									<span class="glyphicon glyphicon-star star"></span>
+									<span class="glyphicon glyphicon-star star"></span>
+								</span>
+								<span class="height-span-1" id="thing_grade">{$grade}</span>分
+							</span>
+							<br />
+							<span>数量：<span>{$order_count}</span></span>
+							<span id="campus_id" style="display: none;">{$campus_id}</span><span id="thing_tag" style="display: none;">{$tag}</span>
+							<span id="food_id" style="display: none;">{$food_id}</span>
+						</div>
+					</div>
+					<div class="hr"></div>
+					<div class="body-icon">
+						<span>
+							<span class="text">商品评价：</span>
+							<span class="star-2">
+								<span class="glyphicon glyphicon-star red-star"></span>
+								<span class="glyphicon glyphicon-star red-star"></span>
+								<span class="glyphicon glyphicon-star red-star"></span>
+								<span class="glyphicon glyphicon-star red-star"></span>
+								<span class="glyphicon glyphicon-star red-star"></span>
+							</span>
+							<span class="text" id="span-thing">0</span><span class="text">分</span>
+						</span>
+					</div>
+					<div class="body-comment">
+						<textarea placeholder="请输入评价"></textarea>
+					</div>
+				</div>
+				<div class="comment-footer">
+					<input type="button" value="提交评价" id="comment-submit" onclick="submitComment()"/>
+				</div>
+			</div>
+		</div>
+		</div>
+		<footer>
+			<include file='App/Home/View/Common/commontail.html'/>
+		</footer>
+	</body>
+</html>

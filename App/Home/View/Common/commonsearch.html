@@ -1,0 +1,113 @@
+<div class="container header-bottom">
+	<div id="header-botton-wrapper">
+		<div id="log-wrapper" class="fl">
+			<div id="header-logo" class="fl">
+				<a href="{:U('/Home/Index')}"><img src="__PUBLIC__/img/logo.png" class="fl"></a>
+				<span class="text-special fl"><p>For优<br><span class="bold inline-block">为你更好的生活</span></span>
+			</div>
+			<div id="header-search" class="fl">
+				<input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
+
+				<datalist id="search-record">
+				 <!--   <option value="牛奶">
+				   <option value="水乃">
+				   <option value="阿尔及利亚">
+				   <option value="安道尔共和国">
+				   <option value="安哥拉">
+				   <option class="rm-record" value="清空搜索记录"> -->
+				</datalist>
+					
+				<button id="search">搜索</button>
+				<ul>
+					<volist name="category" id="vi" offset='1' length="6">
+						<li>
+							<a href="">{$vi.category}</a>
+						</li>				
+					</volist>
+				</ul>
+			</div>
+
+			<div id="shopping-cart" class="drop-down" >
+				<div class="drop-down-left">
+					<img src="__PUBLIC__/img/icon/shopping-cart.png" alt="">	
+					<a target="_blank" href="">购物车 &gt;&gt;</a>
+				</div>
+				<div class="drop-down-layer ">
+					<div class="no-goods none">
+						 购物车中还没有商品，赶紧选购吧！
+					</div>
+					<div class="index-shopping-cart clearfix">							<!-- -->
+						<ul class="clearfix">
+							<li>
+								<div>
+									<img src="__PUBLIC__/img/goods.png" alt="">
+									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
+									<span class="goods-cost fl">
+										￥3.5×3
+									</span>
+									<span class="fr">
+										<a>删除</a>
+									</span>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="__PUBLIC__/img/goods.png" alt="">
+									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
+									<span class="goods-cost fl">
+										￥3.5×3
+									</span>
+									<span class="fr">
+										<a>删除</a>
+									</span>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="__PUBLIC__/img/goods.png" alt="">
+									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
+									<span class="goods-cost fl">
+										￥3.5×3
+									</span>
+									<span class="fr">
+										<a>删除</a>
+									</span>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="__PUBLIC__/img/goods.png" alt="">
+									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
+									<span class="goods-cost fl">
+										￥3.5×3
+									</span>
+									<span class="fr">
+										<a>删除</a>
+									</span>
+								</div>
+							</li>		
+						</ul>
+						<div class="shopping-cart-bottom">
+							<span class="block ">合计: 
+								<span class="total-cost">￥169.5</span>
+							</span>
+							<span class="block">
+								原价: 
+								<span class="pre-total-cost">￥269.5</span>
+							</span>
+							<span class="block clearfix">
+								<a href="{:U('Person/shoppingcart')}" class="fl">
+									查看全部<span class="goods-count">9</span>件商品
+								</a>
+								<a href="{:U('Person/shoppingcart')}" id="go-shopping-cart" class="fr">去购物车结算</a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- 	<div id="qr-code" class="fr" >
+				<img src="__PUBLIC__/img/qrcode.png" alt="二维码">
+			</div> -->
+		</div>
+	</div>
+</div>

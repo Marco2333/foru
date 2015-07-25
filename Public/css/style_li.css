@@ -1,0 +1,164 @@
+/*input{ background-color: black;}*/
+
+#person-info-body{ font-family: "微软雅黑";}
+.person-info-body-main{margin-left: 120px;}
+.span-inline-block{display: inline-block;}
+.person-info-body-page-margin{ margin-left: 2px; margin-right: 2px;}
+.person-info-body-page-eletop{margin-top:20px;}
+.person-info-body-page-text{ font-size: 9px; vertical-align: 9px;}
+.person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
+.person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
+.glyphicon{ font-size: 24px; vertical-align: 5px;}
+.person-info-body{ margin-left: 48px;}
+form{ padding-left: 127px;}
+
+/*process*/
+#person-info-body .person-info-body-progress{padding-left: 110px; margin-bottom: 80px; margin-top: 40px;}
+#person-info-body .person-info-body-progress dl{ position: relative; width: 180px; border-top: 8px solid gainsboro; display: inline-block; margin-left: -6px; border-radius: 3px;}
+#person-info-body .person-info-body-progress .round{ width:30px; height: 30px; border-radius: 50px; left: 65px; background-color: gainsboro; z-index: 99;}
+#person-info-body .person-info-body-progress dt{ position: absolute; top: -18px; left: 75px; font-size: 20px; z-index: 999; color: white;}
+#person-info-body .person-info-body-progress dd{ position: absolute; top:19px; left: 54px;}
+#person-info-body .person-info-body-progress dd.finish{ left: 70px;}
+#person-info-body .person-info-body-progress dd.self{left: 58px;}
+#person-info-body .person-info-body-progress dd.password{left: 48px;}
+#person-info-body .person-info-body-progress dd.phone{left: 50px;}
+
+#person-info-body .person-info-body-progress dl.active{border-top-color:#24dfc2;}
+#person-info-body .person-info-body-progress dl.active dt.round{background-color:#24dfc2;}
+#person-info-body .person-info-body-progress dl.active dd{ color: #24dfc2;}
+/*1*/
+#person-info-body .person-info-body-page-text a{color: red;}
+#person-info-body .person-info-body-header{padding-top: 15px;}
+#person-info-body .spliter{border-width:3px; border-color: #24dfc2; height: 40px; display: inline-block;}
+#person-info-body h4{display: inline-block; font-size: 27px; font-weight: bold; margin-left: 10px; margin-bottom: 3px; vertical-align: 10px;}
+#person-info-body .person-info-body-page1-imgverification{ width: 60px; height: 30px;}
+
+/*2*/
+#person-info-body .person-info-body-2{ margin-left: 36px;}
+
+/*3*/
+#person-info-body .person-info-body-3{ margin-left: 23px;}
+#person-info-body .person-info-body-page-text-long{ width:190px; vertical-align: -1px;}
+
+/*4*/
+#person-info-body .person-info-body-page4{margin-left: 136px;}
+#person-info-body .person-info-body-page4-container{ width:58px; height: 58px; display: inline-block; border-radius: 50px; background-color: #24dfc2;}
+#person-info-body span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
+#person-info-body .person-info-body-page4-text{font-size: 30px; vertical-align: -11px;}
+
+
+/*验证码*/
+#check-image{width: 150px; height: 30px;}
+
+
+
+/*.person-info-body-page1{display: none;}
+ 初始化让第一界面显示，二三四界面不显示
+ * */
+.person-info-body-page2{display: none;}
+.person-info-body-page3{display: none;}
+.person-info-body-page4{display: none;}
+
+
+/*pay*/
+
+.main-wrapper{font-family: "微软雅黑";}
+.main-wrapper-1{font-weight: bolder;}
+.main-wrapper-1 table{ border:1px solid #aaaaaa;}
+.main-wrapper-1 thead{border-bottom: 1px solid #aaaaaa;}
+.main-wrapper-1 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
+.main-wrapper-1 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
+.main-wrapper-1 .main-wrapper-1-radio{ vertical-align: -7px;}
+.main-wrapper-1 .main-wrapper-1-btn{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
+
+.main-wrapper-2-1{ margin-top: 25px;}
+.main-wrapper-2-1 input{ background-color: #ff573a; color: white; border: 0px; padding: 10px; padding-left: 20px; padding-right: 20px; font-size: 17px; font-weight: bold;}
+
+.main-wrapper-2{padding: 30px; background-color: #f0f0f0; margin-top:25px;}
+.main-wrapper-2 form{margin: 0px; padding: 0px;}
+.main-wrapper-2 form div{ padding: 5px; margin-left: -30px;}
+.main-wrapper-2 input,.main-wrapper-2 select{ height: 31px; border:2px solid #7a7a7a;}
+.main-wrapper-2 label{ width: 100px; font-size: 14px; text-align: end; letter-spacing: 3px;}
+.main-wrapper-2 .person{ width: 262px;}
+.main-wrapper-2 select{ width: 154px;}
+.main-wrapper-2 .address{ width: 500px;}
+.main-wrapper-2 .phone{ width: 262px;}
+.main-wrapper-2 .div_but{padding-left:87px ;}
+.main-wrapper-2 .but{  padding-left: 10px; padding-right: 10px; width:120px; border:0px; margin-left: 20px; color: white;}
+.main-wrapper-2 .but-submit{ background-color: #ff573a;}
+.main-wrapper-2 .but-reset{background-color: #aaaaaa;}
+
+
+.main-wrapper-3 table{border: 1px solid #aaaaaa; margin-top:25px;}
+.main-wrapper-3 thead{ border-bottom: 1px solid #aaaaaa;}
+.main-wrapper-3 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-3 tbody tr{ height: 30px;}
+.main-wrapper-3 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
+
+
+.main-wrapper-4{margin-top:25px;}
+.main-wrapper-4 table{margin: 0 auto;}
+.main-wrapper-4 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-4 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
+.main-wrapper-4 span.red_price{ color: red;}
+.main-wrapper-4 span.gray{ color: #aaaaaa;}
+.main-wrapper-4 td.b span.move{ margin-left: -10px;}
+
+
+.main-wrapper-5 table{border: 1px solid #aaaaaa; margin-top:25px;}
+.main-wrapper-5 thead{ border-bottom: 1px solid #aaaaaa;}
+.main-wrapper-5 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-5 tbody tr{ height: 30px;}
+.main-wrapper-5 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
+
+
+.main-wrapper-6 table{ margin-top:25px;}
+.main-wrapper-6 thead{border:1px solid #aaaaaa;}
+.main-wrapper-6 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-6 tbody textarea{ width: 100%; border-left: 1px solid #aaaaaa; border-right: 1px solid #aaaaaa;border-bottom: 1px solid #aaaaaa;}
+
+
+.main-wrapper-7{margin-top:25px; overflow: hidden; margin-bottom: 170px;}
+.main-wrapper-7-main{float:right;  text-align: end;}
+.main-wrapper-7 span.zhe{ font-size: 20px;}
+.main-wrapper-7 span.zhe span.price{color: red;}
+.main-wrapper-7 span.zhe span{ font-size: 20px; font-weight: bold;}
+.main-wrapper-7 span.yuan{}
+.main-wrapper-7 input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px;}
+
+
+
+/*comment*/
+.nav-comment{background-color: transparent;}
+#nav-breadcrumb .breadcrumb{background-color: transparent;}
+.inner-wrapper{border: 1px solid #aaaaaa; height:auto; font-family: "黑体"; margin-bottom: 120px;}
+.comment-banner{ margin-left: 25px;}
+.body-thing{vertical-align: top; margin-top: 20px;}
+.thing-left{ display: inline-block; max-width: 20%; vertical-align: 10px;}
+.thing-left img{ width: 200px; height: 200px;padding: 20px;}
+.thing-right{ display: inline-block; max-width: 78%;}
+.thing-right h3{ font-size: 20px; font-weight: bold;}
+.thing-right p{ max-width: 100%; color: #aaaaaa; padding:5px 0;}
+.thing-right span{ font-size: 13px;}
+.thing-right .star{ font-size: 20px;}
+.height-star{vertical-align: -9px;}
+.body-icon{ margin-left: 25px; margin-top: 20px;}
+.body-icon .text{ font-size: 17px;}
+.star-2{ vertical-align: -9px;}
+.comment-body .hr{ width:1050px; margin: 0 auto; height: 2px; margin-top: 10px; background-color: #aaaaaa;  }
+.body-comment{width:1050px;margin: 0 auto; margin-top: 20px;}
+.body-comment textarea{ width: 1050px; height: 200px; font-size: 20px;}
+.comment-footer{ width: 1050px; margin: 0 auto; margin-top: 25px; margin-bottom: 40px;}
+.comment-footer input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px; font-size: 15px; font-weight: bold;}
+
+
+/*改变bootstrap中因为优先级而不能改变颜色所定义的class*/
+span.height-star span.show-color:before{ color:#ff573a;}
+span.red-star:before,span.star:before{ color: #aaaaaa;}
+span.star-2 .special-red:before {color:#ff573a;}
+span.star-2 .special-click:before{color:#ff573a;}
+
+
+
+
+
