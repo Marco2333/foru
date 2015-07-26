@@ -129,10 +129,6 @@ $(function(){
               
                 recordList = newrecord.split(",");
                 if(recordList.length > 6){                  
-                    // newrecord = "";
-                    // for(var i=1;i<recordList.length;i++){
-
-                    // }
                     newrecord = newrecord.substr(newrecord.indexOf(",")+1);
                 }
                 // record[record.length] = $search;
@@ -142,6 +138,17 @@ $(function(){
           }
         }
      });
+
+      $("#location").bind("click",function(){
+          $("#campus-background").show(300);
+      });
+
+      $("#campus-close").bind("click",function(){
+          $("#campus-background").hide(300);
+      });
+
+
+
 })
 String.prototype.trim = function() {
 	   return this.replace(/(^\s*)|(\s*$)/g, '');

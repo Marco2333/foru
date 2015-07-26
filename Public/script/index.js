@@ -5,11 +5,7 @@ $(function(){
         $(".drop-down-layer").hide();  
     })
     
-   /* $("ul.primary_nav_list li").on('click',function(){
-    	//var categoryId=$(this).val();
-    	window.location.href="/foryou/index.php/Home/index/goodslist/categoryId/"+categoryId;
-    });*/
-})
+});
 
 // $(document).ready(function() {
 
