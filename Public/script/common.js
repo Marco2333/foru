@@ -44,7 +44,7 @@ $(function(){
               $.cookie("record", newrecord);    
           } 
         }
-    		window.location.href="/foryou/index.php/Home/Index/goodslist?search="+$search;
+    		window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search;
     });
     
     $("#search-record li").click(function(){
@@ -134,7 +134,7 @@ $(function(){
                 // record[record.length] = $search;
                 $.cookie("record", newrecord);  
             } 
-            window.location.href="/foryou/index.php/Home/Index/goodslist?search="+$search;
+            window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search;
           }
         }
      });
