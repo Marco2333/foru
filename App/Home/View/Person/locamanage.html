@@ -151,10 +151,10 @@
 							<foreach name="data" item="v">				
 								<tr>
 									<td>
-										收货人："{$v.name}"<p>
-										联系电话："{$v.phone_id}"
+										收货人：{$v['name']}<p>
+										联系电话：{$v['phone_id']}
 									</td>
-									<td>"{$v.address}"</td>
+									<td>{$v['address']}</td>
 									<td>
 										<!-- <form action="{:U('Person/deleteAddress')}" method=post> -->
 										
@@ -235,6 +235,7 @@
 							<div class="location-info-div clearfix">
 								<span class="locationinfo-before"></span>
 								<div class="fl">
+									<input type="text" id="page" name="page" value="0" class="none"/>
 									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button" class="" />
 									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button_revise" class="none" />
 									<!-- <input id="phone-none" class="phone-none none" value=""> 
