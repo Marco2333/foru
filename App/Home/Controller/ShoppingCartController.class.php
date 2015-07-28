@@ -32,7 +32,7 @@ class ShoppingCartController extends Controller {
             orders.food_id as food_id,img_url,discount_price,
             food.price,is_discount,food.message,name')
         ->join('food on food.food_id=orders.food_id and food.campus_id=orders.campus_id')
-        ->where('orders.campus_id=%d and phone=%s',$campusId,$phone)   //orders.tag =1 and orders.status = 0 and 
+        ->where('orders.status = 0 and orders.campus_id=%d and phone=%s',$campusId,$phone) 
         ->select();
 
         $this->assign('campus',$campus)
