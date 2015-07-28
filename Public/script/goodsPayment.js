@@ -105,7 +105,7 @@ function saveReviseLocation(phone,rank){
         detailedLoc:$('#detailedLoc').val(),
         phoneNum:$('#phoneNum').val()
     };
-
+    alert("iamheere");
     $.ajax({
         type:"POST",
         url:"../Person/reviseLocation",
