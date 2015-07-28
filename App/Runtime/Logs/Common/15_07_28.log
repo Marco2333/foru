@@ -1,0 +1,318 @@
+[ 2015-07-28T16:44:31+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000469s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:36+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000619s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:37+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000460s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:37+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000442s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:37+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000724s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:37+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000554s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:37+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000500s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:37+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000573s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:38+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:38+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:38+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000541s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:38+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:39+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000597s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:39+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000497s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:39+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000490s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:40+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000552s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:40+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000516s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:40+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000480s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:40+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:40+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:41+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:41+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:41+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:41+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000567s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:41+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:42+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000553s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:42+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000699s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:42+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000599s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:42+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:42+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:42+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:43+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000523s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:43+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000531s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:43+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000483s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:43+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000525s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:43+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000547s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000689s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000671s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002548s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000739s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000725s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000769s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000963s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:47+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000576s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:53+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001091s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:53+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000493s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:53+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000484s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:44:53+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000496s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:46:03+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000792s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:46:03+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000471s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:46:04+08:00 ] ::1 /foru/index.php/Login/tologin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000648s ]
+ERR: 无法加载模块:Login
+
+[ 2015-07-28T16:46:50+08:00 ] ::1 /foru/index.php/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+ERR: 无法加载模块:Index
+
+[ 2015-07-28T16:47:21+08:00 ] ::1 /foru/index.php/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000849s ]
+ERR: 无法加载模块:Index
+

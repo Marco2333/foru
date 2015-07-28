@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="/foryou/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/foryou/Public/css/commonstyle.css" rel="stylesheet" />
-		<link href="/foryou/Public/css/style.css" rel="stylesheet"/>
-		<script type="text/javascript" src="/foryou/Public/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="/foryou/Public/script/personinfo.js"></script>
-		<script src="/foryou/Public/bootstrap/js/bootstrap.min.js"></script>
+		<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
+		<link href="/foru/Public/css/style.css" rel="stylesheet"/>
+		<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/locamanage.js"></script>
+		<script src="/foru/Public/bootstrap/js/bootstrap.min.js"></script>
 		<title>For U</title>
 	</head>
 	<body data-spy="scroll" data-target="#nav-side">
@@ -33,7 +33,7 @@
 				<div id="header-botton-wrapper">
 					<div id="log-wrapper" class="fl">
 						<div id="header-logo" class="fl">
-							<img src="/foryou/Public/img/logo.png" class="fl">
+							<img src="/foru/Public/img/logo.png" class="fl">
 							<span class="text-special fl"><p>For优<br><span class="bold inline-block">为你更好的生活</span></span>
 						</div>
 						<div id="header-search" class="fl">
@@ -53,7 +53,7 @@
 
 						<div id="shopping-cart" class="drop-down" >
 							<div class="drop-down-left">
-								<img src="/foryou/Public/img/icon/shopping-cart.png" alt="">	
+								<img src="/foru/Public/img/icon/shopping-cart.png" alt="">	
 								<a target="_blank" href="">购物车 &gt;&gt;</a>
 							</div>
 							<div class="drop-down-layer">
@@ -86,7 +86,7 @@
 							<a href="">个人中心</a>
 						</li>
 						<li>
-							<img src="/foryou/Public/img/icon/location.png" alt="">
+							<img src="/foru/Public/img/icon/location.png" alt="">
 							<select id="location" >
 							  	<option value ="volvo">苏州大学独墅湖校区</option>
 							  	<option value ="saab">苏州大学阳澄湖校区</option>
@@ -150,10 +150,10 @@
 						<tbody>
 							<?php if(is_array($data)): foreach($data as $key=>$v): ?><tr>
 									<td>
-										收货人："<?php echo ($v["name"]); ?>"<p>
-										联系电话："<?php echo ($v["phone_id"]); ?>"
+										收货人：<?php echo ($v['name']); ?><p>
+										联系电话：<?php echo ($v['phone_id']); ?>
 									</td>
-									<td>"<?php echo ($v["address"]); ?>"</td>
+									<td><?php echo ($v['address']); ?></td>
 									<td>
 										<!-- <form action="<?php echo U('Person/deleteAddress');?>" method=post> -->
 										
@@ -185,7 +185,7 @@
 						</button>
 					<!-- </form> -->
 				</div>
-				<!-- <form id="receiver_form" action="<?php echo U('Person/addOrReviseSave');?>" method='post'> -->
+				<form id="receiver_form" action="<?php echo U('Person/addOrReviseSave');?>" method='post'>
 					<div id="change-location" class="none">
 						<div id="change-location-info">
 							<div class="location-info-div clearfix" >
@@ -229,16 +229,24 @@
 									<input type="text" id="phoneNum" name="phone-number" />
 								</div>
 							</div>
+
 							<div class="location-info-div clearfix">
 								<span class="locationinfo-before"></span>
 								<div class="fl">
-									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button" />
-									<button onclick="cancel();" >取消</button>
+									<input type="text" id="page" name="page" value="0" class="none"/>
+									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button" class="" />
+									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button_revise" class="none" />
+									<!-- <input id="phone-none" class="phone-none none" value=""> 
+									<input id="rank-none" class="rank-none none"  value="">  -->
+									<!-- <input id="userName-none" class="userName-none none" value=""> 
+									<input id="location-none" class="location-none none" value="">
+									<input id="phoneNum-none" class="phoneNum-none none" value=""> -->
+									<input type="button" onclick="cancel();" value="取消" />
 								</div>
 							</div>
 						</div>
 					</div>
-				<!-- </form> -->
+				</form>
 			</div>
 		</div>
 		<footer>
@@ -246,7 +254,7 @@
 				<ul>
 					<li>
 						<dl>
-							<dd><img src="/foryou/Public/img/footer/footer1.png" alt=""></dd>
+							<dd><img src="/foru/Public/img/footer/footer1.png" alt=""></dd>
 							<dt>
 								<div>正品保障</div>
 								<div>全场正品，行货保障</div>
@@ -255,7 +263,7 @@
 					</li>
 					<li>
 						<dl>
-							<dd><img src="/foryou/Public/img/footer/footer2.png" alt=""></dd>
+							<dd><img src="/foru/Public/img/footer/footer2.png" alt=""></dd>
 							<dt>
 								<div>新手指南</div>
 								<div>快速登录，无需注册</div>
@@ -264,7 +272,7 @@
 					</li>
 					<li>
 						<dl>
-							<dd><img src="/foryou/Public/img/footer/footer3.png" alt=""></dd>
+							<dd><img src="/foru/Public/img/footer/footer3.png" alt=""></dd>
 							<dt>
 								<div>货到付款</div>
 								<div>货到付款，安心便捷</div>
@@ -274,7 +282,7 @@
 					</li>
 					<li>
 						<dl>
-							<dd><img src="/foryou/Public/img/footer/footer4.png" alt=""></dd>
+							<dd><img src="/foru/Public/img/footer/footer4.png" alt=""></dd>
 							<dt>
 								<div>维修保障</div>
 								<div>服务保证，全国联保</div>
@@ -283,7 +291,7 @@
 					</li>
 					<li>
 						<dl>
-							<dd><img src="/foryou/Public/img/footer/footer5.png" alt=""></dd>
+							<dd><img src="/foru/Public/img/footer/footer5.png" alt=""></dd>
 							<dt>
 								<div>无忧退货</div>
 								<div>无忧退货，7日尊享</div>
@@ -292,7 +300,7 @@
 					</li>
 					<li>
 						<dl>
-							<dd><img src="/foryou/Public/img/footer/footer6.png" alt=""></dd>
+							<dd><img src="/foru/Public/img/footer/footer6.png" alt=""></dd>
 							<dt>
 								<div>会员权益</div>
 								<div>会员升级，尊贵特权</div>
