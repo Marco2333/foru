@@ -90,15 +90,16 @@ form{ padding-left: 127px;}
 .main-wrapper-2 .but-reset{background-color: #aaaaaa;}
 
 
-.main-wrapper-3 table{border: 1px solid #aaaaaa; margin-top:25px;}
+.main-wrapper-3 table{border: 1px solid #aaaaaa; margin-top:25px; margin-left: -63px;}
 .main-wrapper-3 thead{ border-bottom: 1px solid #aaaaaa;}
 .main-wrapper-3 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-3 tbody tr{ height: 30px;}
 .main-wrapper-3 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
 
+
 .main-wrapper-4{margin-top:25px;}
-.main-wrapper-4 table{margin: 0 auto;}
+.main-wrapper-4 table{margin: 0 auto; margin-left: -63px;}
 .main-wrapper-4 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-4 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-4 span.red_price{ color: red;}
@@ -106,14 +107,14 @@ form{ padding-left: 127px;}
 .main-wrapper-4 td.b span.move{ margin-left: -10px;}
 
 
-.main-wrapper-5 table{border: 1px solid #aaaaaa; margin-top:25px;}
+.main-wrapper-5 table{border: 1px solid #aaaaaa; margin-top:25px; margin-left: -63px}
 .main-wrapper-5 thead{ border-bottom: 1px solid #aaaaaa;}
 .main-wrapper-5 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-5 tbody tr{ height: 30px;}
 .main-wrapper-5 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
 
-.main-wrapper-6 table{ margin-top:25px;}
+.main-wrapper-6 table{ margin-top:25px; margin-left: -63px}
 .main-wrapper-6 thead{border:1px solid #aaaaaa;}
 .main-wrapper-6 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-6 tbody textarea{ width: 100%; border-left: 1px solid #aaaaaa; border-right: 1px solid #aaaaaa;border-bottom: 1px solid #aaaaaa;}
