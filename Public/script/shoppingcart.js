@@ -74,7 +74,48 @@ $(document).ready(function(){
   // $("table").mouseleave(function(){
   //   $(this).css("background-color","white");
   // });
-  
+  $('a.sub-goods').on('click',function(){
+      var $orderCount=$('input.goods-count').val();
+      var $orderId=$('a.sub-goods').attr('data-orderId');
+      var $phone=$.cookie('username');
+
+      $.post(
+        '../../Home/ShoppingCart/saveOrderCount',
+        {orderCount:$orderCount,orderId:$orderId,phone:$phone},
+        function(data){
+           console.log(data.status);
+        }
+      );
+  });
+   $('a.add-goods').on('click',function(){
+      var $orderCount=$('input.goods-count').val();
+      var $orderId=$('a.add-goods').attr('data-orderId');
+      var $phone=$.cookie('username');
+
+      $.post(
+        '../../Home/ShoppingCart/saveOrderCount',
+        {orderCount:$orderCount,orderId:$orderId,phone:$phone},
+        function(data){
+           console.log(data.status);
+        }
+      );
+  });
+
+   $(".buttonright").on('click',function(){
+      var arrChk=$("input[name='isChecked']:checkbox");
+      var orderIds="";
+      $(arrChk).each(function(){
+        if($(this).prop('checked')==true){
+          var smallOrderId=$(this).parent().parent().attr('data-orderId');
+          if(orderIds==""){
+            orderIds=smallOrderId;
+          }else{
+            orderIds=orderIds+","+smallOrderId;
+          }
+        }                       
+      });
+      $(this).attr('href',"../../../Home/Person/pay_li/orderIds/"+orderIds);
+    });
 });
 
 function caltotalCost(){
@@ -134,5 +175,7 @@ function plus(){
 //             input[i].checked = b;
 //     }
 // }
+
+
 
 
