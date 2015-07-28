@@ -4,8 +4,9 @@ use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
 class IndexController extends Controller {
+
     public function index(){
-        $campusId=cookie('campusId');        //获取校区id
+        $campusId=I('campusId');        //获取校区id
         if($campusId==null){
             $campusId=1;
         }
@@ -50,7 +51,7 @@ class IndexController extends Controller {
     }
 
      public function goodslist($categoryId='',$search=''){
-         $campusId=cookie('campusId');        //获取校区id
+         $campusId=I('campusId');        //获取校区id
         if($campusId==null){
             $campusId=1;
         }
