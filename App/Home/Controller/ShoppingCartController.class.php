@@ -52,12 +52,32 @@ class ShoppingCartController extends Controller {
         $phone=I('phone');
 
         $orders=M('orders');
-        $data['phone']=$phone;
-        $data['order_id']=$orderId;
-        $map['order_count']=$orderCount;
+        $data['phone']=$phone;             //手机号
+        $data['order_id']=$orderId;        //订单号
+        $map['order_count']=$orderCount;          
         $result=$orders->where($data)->save($map);
 
         $message['status']=$result;
         $this->ajaxReturn($message);
+    }
+
+    public function deleteOrders(){
+        $orderId=I('orderIds');
+        $smallOrders=split(',',$orderId);                 //拆分订单id,获取单笔订单id
+
+        $order=M('orders');
+        $data["phone"]=cookie('username');
+        foreach ($smallOrders as $key => $value) {
+            $data["order_id"]=$value;
+            $status=$order->where($data)->delete();    //删除订单
+        }
+
+        if($status){
+            $result['status']="success";
+        }else{
+            $result['status']='failure';
+        }
+
+        $this->ajaxReturn($result);
     }
 }
