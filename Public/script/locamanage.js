@@ -188,6 +188,9 @@ function saveReviseLocation(phone,rank){
 
 function addAddress(){
     addOrRevise();
+
+    document.getElementById("recevier_submit_button").className="";
+    document.getElementById("recevier_submit_button_revise").className="none";
 }
 
 function reviseAddress(phone,rank){

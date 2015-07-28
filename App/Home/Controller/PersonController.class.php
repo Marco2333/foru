@@ -18,23 +18,43 @@ class PersonController extends Controller {
     // }
 
     public function personInfo($active = "0"){
-        $Users  = M("users");
-        $where = "phone=".$_SESSION['username'];
+        $user = $_SESSION['username'];
+        // dump($where);
         // $where  = "phone='13040101273'";
-        $field  = "nickname,sex,academy,qq,weixin,img_url";
-        $data   = $Users->where($where)->field($field)->find();
 
-        if ($data !== false)
+        if ($user != null)
         {
-            // dump($data);
-            $this->assign("data",$data);
-            $this->assign("active",$active);
-            $this->display("personInfo");
+            $Users  = M("users");
+            $where  = array(
+                'phone' => $user
+                );
+            $field  = array(
+                'nickname',
+                'sex',
+                'academy',
+                'qq,weixin',
+                'img_url'
+                );
+            $data   = $Users->where($where)
+                            ->field($field)
+                            ->find();
+
+            if ($data !== false)
+            {
+                // dump($data);
+                $this->assign("data",$data);
+                $this->assign("active",$active);
+                $this->display("personInfo");
+            }
+            else
+            {
+                $this->assign("active",$active);
+                $this->display("personInfo");
+            }
         }
         else
         {
-            $this->assign("active",$active);
-            $this->display("personInfo");
+            $this->redirect('/Home/Login/index');
         }
 
     }
@@ -60,8 +80,11 @@ class PersonController extends Controller {
         session('academy',$data['academy']);
 
         $Users = M('users');
-        $where = "phone=".$user;
-        $result = $Users->where($where)->save($data);     
+        $where = array(
+            'phone' => $user
+            );
+        $result = $Users->where($where)
+                        ->save($data);     
 
         if ($result !== false)
         {
@@ -80,68 +103,99 @@ class PersonController extends Controller {
     }
 
     public function submit(){
-        $nickname   = I('nick-name');
-        $usersex    = I('user-sex');
-        $academy    = I('academy');
-        $qqnum      = I('qq-num');
-        $weixinnum  = I('weixin-num');
-  
-        $_SESSION['nickname']   = $nickname;
-        $_SESSION['academy']    = $academy;
+        $user = $_SESSION['username'];
 
-        // echo $User->username;
-
-        $Users = M("users");
-        $where = "phone=".$_SESSION['username'];
-        // $where = "phone='13040101273'";
-
-        $data['nickname']   = $nickname;
-        $data['sex']        = $usersex;
-        $data['academy']    = $academy;
-        $data['qq']         = $qqnum;
-        $data['weixin']     = $weixinnum;
-        $Users->where($where)->save($data);
-
-        // $this->assign("active","0");
-        $this->personInfo("0");
-    }
-
-    public function savePortrait(){
-        $upload             = new \Think\Upload();
-        $upload->maxSize    = 4194304;
-        $upload->exts       = array('jpg','gif','jpeg','bmp');
-        $upload->rootPath   = './Public/';
-        $upload->savePath   = '/Uploads/';
-        
-        $info = $upload->uploadOne($_FILES['img']);
-
-        if ($info)
+        if ($username != null)
         {
-            $data['img_url'] = '/foryou/Public'.$info['savepath'].$info['savename'];
+            $nickname   = I('nick-name');
+            $usersex    = I('user-sex');
+            $academy    = I('academy');
+            $qqnum      = I('qq-num');
+            $weixinnum  = I('weixin-num');
+      
+            $_SESSION['nickname']   = $nickname;
+            $_SESSION['academy']    = $academy;
 
-            $Users      = M("users");
-            $where = "phone=".$_SESSION['username'];
-            // $where      = "phone='13040101273'";
-            $img_url    = $Users->where($where)->field("img_url")->find();
-            // unlink($img_url);
-            $result = $Users->where($where)->save($data);
+            // echo $User->username;
 
-            if ($result !== false)
-            {
-                $this->personInfo("1");
-                // $this->redirect('/Home/Person/personInfo');
-            }
-            else
-            {
-                // 数据库操作失败
-            }
+            $Users = M("users");
+            $where = array(
+                'phone'  => $user
+                );
+            // $where = "phone='13040101273'";
+
+            $data = array(
+                'nickname'   => $nickname,
+                'sex'        => $usersex,
+                'academy'    => $academy,
+                'qq'         => $qqnum,
+                'weixin'     => $weixinnum
+                );
+
+            $Users->where($where)
+                  ->save($data);
+
+            // $this->assign("active","0");
+            $this->personInfo("0");
         }
         else
         {
-            // $info = $upload->uploadOne($_FILES['img'])操作失败
+            $this->redirect('/Home/Login/index');
         }
-        
-         // $this->assign("url",$img_url);
+    }
+
+    public function savePortrait(){
+        $user = $_SESSION['username'];
+
+        if ($user != null)
+        {
+            $upload             = new \Think\Upload();
+            $upload->maxSize    = 4194304;
+            $upload->exts       = array('jpg','gif','jpeg','bmp');
+            $upload->rootPath   = './Public/';
+            $upload->savePath   = '/Uploads/';
+            
+            $info = $upload->uploadOne($_FILES['img']);
+
+            if ($info)
+            {
+                $data['img_url'] = '/foryou/Public'
+                                  .$info['savepath']
+                                  .$info['savename'];
+
+                $Users  = M("users");
+                $where  = array(
+                    'phone'  => $user
+                    );
+                // $where      = "phone='13040101273'";
+                $img_url = $Users->where($where)
+                                 ->field("img_url")
+                                 ->find();
+                // unlink($img_url);
+                $result = $Users->where($where)
+                                ->save($data);
+
+                if ($result !== false)
+                {
+                    $this->personInfo("1");
+                    // $this->redirect('/Home/Person/personInfo');
+                }
+                else
+                {
+                    // 数据库操作失败
+                }
+            }
+            else
+            {
+                // $info = $upload->uploadOne($_FILES['img'])操作失败
+            }
+            
+             // $this->assign("url",$img_url);
+        }
+        else
+        {
+            $this->redirect('/Home/Login/index');
+        }
         
     }
 
@@ -149,21 +203,34 @@ class PersonController extends Controller {
         $user = $_SESSION['username'];
         // $user   = "13040101273";
 
-        $Receiver = M("receiver");
-        $where  = "phone=".$user." and "."is_out="."0";
-        $data   = $Receiver->where($where)->select();
-
-        // dump($data);
-
-        if ($data !== false)
+        if ($user != null)
         {
-            $this->assign("data",$data);
-            $this->display("locamanage");
+            $Receiver = M("receiver");
+            $where  = array(
+                'phone'  => $user,
+                'is_out' => 0,
+                '_logic'  => 'and'
+                );
+            $data   = $Receiver->where($where)
+                               ->select();
+
+            // dump($data);
+
+            if ($data !== false)
+            {
+                $this->assign("data",$data);
+                $this->display("locamanage");
+            }
+            else
+            {
+                $this->display("locaManage");
+            }
         }
         else
         {
-            $this->display("locaManage");
+            $this->redirect('/Home/Login/index');
         }
+
     }
 
     // public function addOrReviseButton(){
@@ -197,13 +264,18 @@ class PersonController extends Controller {
             'is_out'     =>     0
             );
 
-        $Receiver   =   M('receiver');
-        $where      =   'phone='.$user.' and '.'rank='.$rank;
+        $Receiver    =   M('receiver');
+        $where       =   array(
+            'phone'  => $user,
+            'rank'   => $rank,
+            '_logic' => 'and'
+            );
         
         // echo $where;
         // dump($data);
 
-        $result     =   $Receiver->data($data)->add();
+        $result     =   $Receiver->data($data)
+                                 ->add();
 
         // $this->locaManage();
 
@@ -226,9 +298,14 @@ class PersonController extends Controller {
     }
 
     public function getPhoneRank($phone,$rank){
-        $where = "phone=".$phone." and "."rank=".$rank;
         $Receiver = M('receiver');
-        $result = $Receiver->where($where)->find();
+        $where = array(
+            'phone'  => $phone,
+            'rank'   => $rank,
+            '_logic' => 'and'
+            );
+        $result = $Receiver->where($where)
+                           ->find();
         
         if ($result !== false)
         {
@@ -270,25 +347,50 @@ class PersonController extends Controller {
             );
 
         $Receiver = M('receiver');
-        $where  = 'phone='.$phone.' and '.'rank='.$rank;
-        $result = $Receiver->where($where)->save($data);
+        $where  = array(
+            'phone'  => $phone,
+            'rank'   => $rank,
+            '_logic' => 'and'
+            );
+        $result = $Receiver->where($where)
+                           ->save($data);
 
-        $this->locaManage();
-
+        exit(0);
         // if ($result !== false)
         // {
-        //     $res = array(
-        //         'result' => 1
-        //         );
-        //     $this->ajaxReturn($res);
+        //     $page = I('page');
+
+        //     if ($page != '0')
+        //     {
+        //         // echo $page;
+        //         $this->redirect('/Home/Person/goodsPayment');
+        //     }
+        //     else
+        //     {
+        //         // echo $page;
+        //         $this->redirect('/Home/Person/locaManage');
+        //     }
         // }
         // else
         // {
-        //     $res = array(
-        //         'result' => 0
-        //         );
-        //     $this->ajaxReturn($res);
+        //     // echo "fail";
+        //     // 数据库操作失败
         // }
+
+        if ($result !== false)
+        {
+            $res = array(
+                'result' => 1
+                );
+            $this->ajaxReturn($res);
+        }
+        else
+        {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
     }
 
     public function addOrReviseSave(){
@@ -314,14 +416,27 @@ class PersonController extends Controller {
         //     ($data['address']   != null)        ){
             
             $Receiver = M("receiver");
-            $result = $Receiver->data($data)->add();
+            $result = $Receiver->data($data)
+                               ->add();
 
             if ($result !== false)
             {
-                $this->redirect('/Home/Person/locaManage');
+                $page = I('page');
+
+                if ($page != '0')
+                {
+                    // echo $page;
+                    $this->redirect('/Home/Person/goodsPayment');
+                }
+                else
+                {
+                    // echo $page;
+                    $this->redirect('/Home/Person/locaManage');
+                }
             }
             else
             {
+                // echo "fail";
                 // 数据库操作失败
             }
             // if ($Receiver->data($data)->add() == false){
@@ -340,8 +455,13 @@ class PersonController extends Controller {
             );
 
         $Receiver = M('receiver');
-        $where  = "phone=".$phone." and "."rank=".$rank;
-        $result = $Receiver->where($where)->save($data);
+        $where  = array(
+            'phone'  => $phone,
+            'rank'   => $rank,
+            '_logic' => 'and'
+            );
+        $result = $Receiver->where($where)
+                           ->save($data);
 
         if ($result !== false)
         {
@@ -360,77 +480,180 @@ class PersonController extends Controller {
 
         $this->locaManage();
     }
-	
-	
-	function check_verify($code, $id = ''){
-    	$verify = new \Think\Verify();
-    	return $verify->check($code, $id);
-	}
-	public function verify(){
+
+    function check_verify($code, $id = ''){
+        $verify = new \Think\Verify();
+
+        return $verify->check($code, $id);
+    }
+    public function verify(){
         // 行为验证码
 
         $Verify = new \Think\Verify();
         $Verify->fontSize = 23;
         $Verify->length   = 4;
         $Verify->useNoise = false;
-        $Verify->codeSet = '0123456789';
+        $Verify->codeSet  = '0123456789';
         /*$Verify->imageW = 130;
         $Verify->imageH = 50;*/
         $Verify->entry();
     }
-		
-	public function forgetPword(){
-      	$this->display("forgetpword");
+        
+    public function forgetPword(){
+        $user = $_SESSION['username'];
+
+        if ($user != null)
+        {
+            $this->display("forgetpword");
+        }
+        else
+        {
+            $this->redirect('Home/Login/index');
+        }
      }
 
-	public function check(){
-		$check=$_POST['check'];
-		$flag=$this->check_verify($check);
-		if($flag){
-			$state['value']='success';
-			$this->ajaxReturn($state);
-		}
-		else{
-			$state['value']='error';
-			$this->ajaxReturn($state);
-		}
-	}
-	
-	
-	public function phone(){
-		$db=M('users');
-		$user = $_SESSION['username'];
-		$phone=$_POST["phone"];
-		$where['phone']=$user;
-		$data=$db->where($where)->field('phone')->find();
-		if($data['phone']==$phone){
-			$state['value']='success';
-			$this->ajaxReturn($state);
-		}
-		else{
-			$state['value']='error';
-			$this->ajaxReturn($state);
-		}
-		
-	}
-	
-	public function changePWord(){
-		$db=M('users');
-		$user = $_SESSION['username'];
-		$pword=$_POST["pword"];
-		$where['phone']=$user;
-		$save['password']=md5($pword);
-		$data=$db->where($where)->save($save);
-		if($data>0){
-			$state['value']='success';
-			$this->ajaxReturn($state);
-		}else{
-			$state['value']='error';
-			$this->ajaxReturn($state);
-		}
-	}
-	
-		/*li*/
+    public function check(){
+        $check  = $_POST['check'];
+        $flag   = $this->check_verify($check);
+
+        if($flag)
+        {
+            $state = array(
+                'value' => 'success'
+                );
+            $this->ajaxReturn($state);
+        }
+        else
+        {
+            $state = array(
+                'value' => 'error'
+                );
+            $this->ajaxReturn($state);
+        }
+    }
+    
+    public function phone(){
+        $db=M('users');
+
+        $user  = $_SESSION['username'];
+        $phone = $_POST["phone"];
+
+        $where = array(
+            'phone' => $user
+            );
+        $data=$db->where($where)
+                 ->field('phone')
+                 ->find();
+
+        if($data['phone'] == $phone)
+        {
+            $state = array(
+                'value' => 'success'
+                );
+            $this->ajaxReturn($state);
+        }
+        else
+        {
+            $state = array(
+                'value' => 'error'
+                );
+            $this->ajaxReturn($state);
+        }
+        
+    }
+    
+    public function changePWord(){
+        $db = M('users');
+
+        $user = $_SESSION['username'];
+        $pword=$_POST["pword"];
+
+        $where = array(
+            'phone' => $user
+            );
+        $save  = array(
+            'password' => md5($pword)
+            );
+        $data=$db->where($where)
+                 ->save($save);
+
+        if($data>0)
+        {
+            $state = array(
+                'value' => 'success'
+                );
+            $this->ajaxReturn($state);
+        }
+        else
+        {
+            $state = array(
+                'value' => 'error'
+                );
+            $this->ajaxReturn($state);
+        }
+    }
+
+    public function goodsPayment(){
+        // $this->show();
+        $user = $_SESSION['username'];
+
+        if ($user != null)
+        {
+            $together_id = "188965548801430758379331";
+
+            // $Person = D('Home\Model\Person');
+            $Person = D('Person');
+            $data = $Person->getPayData($together_id);
+            // dump($data);
+
+            $address   = $Person->getAddress($data);
+            $orderInfo = $Person->getOrderInfo($data);
+            $goodsInfo = $Person->getGoodsInfo($data);
+            $price     = $Person->getTotalPrice($together_id);
+
+            // dump($address);
+            // dump ($goodsInfo);
+            // dump ($orderInfo);
+            // dump($price);
+
+            $this->assign('address',$address);
+            $this->assign('orderInfo',$orderInfo);
+            $this->assign('goodsInfo',$goodsInfo);
+            $this->assign('price',$price);
+            $this->display("goodsPayment");
+        }
+        else
+        {
+            $this->redirect('Home/Login/index');
+        }
+    }
+
+    public function payAtOnce(){
+        $user = $_SESSION['username'];
+
+        if ($user != null)
+        {
+            $together_id = "188965548801430758379331";
+
+            $Person = D('Person');
+            $price  = $Person->getTotalPrice($together_id);
+
+            $pay = array(
+                'address'     => I('information'),
+                'payMethod'   => I('pay_way'),
+                'reversetime' => I('time'),
+                'message'     => I('message'),
+                'totalPrice'  => $price['discountPrice']
+                );
+
+            dump($pay);
+        }
+        else
+        {
+            $this->redirect('Home/Login/index');
+        }
+    }
 }
+
 
 ?>
