@@ -6,12 +6,11 @@ header("Content-type:text/html;charset=utf-8");
 class ShoppingCartController extends Controller {
 
     public function _initialize() {
-        if (!isset($_SESSION['username'])) {
+        if (!isset($_COOKIE['username']) && !isset($_SESSION['username'])) {
             $this->redirect('/Home/Login');
         }
     }
 
-    
     //购物车
 	public function shoppingcart(){
    		$shoppingcart=M('Orders');
@@ -20,14 +19,14 @@ class ShoppingCartController extends Controller {
         if($campusId==null){
             $campusId=1;
         }
-   
+
         $campus=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
         ->cache(true)
         ->select();       //获取校区列表
 
-        $phone=session('username');
+        $phone=cookie('username');
         $shoppingData=$shoppingcart
         ->field('order_id,orders.campus_id,phone,order_count,
             orders.food_id as food_id,img_url,discount_price,
