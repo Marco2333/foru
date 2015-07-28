@@ -140,7 +140,8 @@ class PersonModel extends ViewModel {
         $Receiver = M('receiver');
         $where    = array(
             'phone'  => $_SESSION['username'],
-            'is_out' => 0
+            'is_out' => 0,
+            '_logic'=> 'and'
             );
         $field    = array(
             'phone',
@@ -150,6 +151,7 @@ class PersonModel extends ViewModel {
             'address'
             );
         $addressData = $Receiver->where($where)
+                                ->order('tag asc')
                                 ->select();
         for ($i = 0;$i < count($addressData);$i++)
         {
@@ -267,6 +269,72 @@ class PersonModel extends ViewModel {
         // dump($orderInfo);
 
         return $orderInfo;
+    }
+
+    public function addressIsEmpty(){
+        $Receiver = M('receiver');
+        $where    = array(
+            'phone' => $_SESSION['username'],
+            'tag'   => 0,
+            'is_out'=> 0,
+            '_logic'=> 'and'
+            );
+        $address  = $Receiver->where($where)
+                             ->field()
+                             ->select();
+
+        if (count($address) != 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public function deleteAddress($rank){
+        $Receiver = M('receiver');
+        $whereTag = array(
+            'phone' => $_SESSION['username'],
+            'rank'  => $rank,
+            '_logic'=> 'and'
+            );
+        $field = array(
+            'tag'
+            );
+        $res = $Receiver->where($whereTag)
+                        ->field($field)
+                        ->find();
+
+        if ($res['tag'] != '0')
+        {
+            return;
+        }
+        else
+        {
+            $where    = array(
+                'phone' => $_SESSION['username'],
+                'is_out'=> 0,
+                '_logic'=> 'and'
+                );
+            $address  = $Receiver->where($where)
+                                 ->field()
+                                 ->select();
+
+            if (count($address) != 0)
+            {
+                $address[0]['tag'] = 0;
+                $whereSave  = array(
+                    'phone' => $address[0]['phone'],
+                    'rank'  => $address[0]['rank'],
+                    '_logic'=> 'and'
+                    );
+                $Receiver->where($whereSave)
+                         ->save($address[0]);
+            }
+        }
+
     }
 
 };

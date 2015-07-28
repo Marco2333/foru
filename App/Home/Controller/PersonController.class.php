@@ -355,7 +355,6 @@ class PersonController extends Controller {
         $result = $Receiver->where($where)
                            ->save($data);
 
-        exit(0);
         // if ($result !== false)
         // {
         //     $page = I('page');
@@ -394,11 +393,22 @@ class PersonController extends Controller {
     }
 
     public function addOrReviseSave(){
+        $Person = D('Person');
+
         $user    = $_SESSION['username'];
         // $tag     = session('tag');
         // $user = "13040101273";
         $rank = Time();
-        $tag  = 0;
+
+        if ($Person->addressIsEmpty())
+        {
+            $tag = 0;
+        }
+        else
+        {
+            $tag = 1;
+        }
+
         $data = array(
             'phone'         =>  $user,
             'phone_id'      =>  I('phone-number'),
@@ -465,6 +475,9 @@ class PersonController extends Controller {
 
         if ($result !== false)
         {
+            $Person = D('Person');
+            $Person->deleteAddress($rank);
+
             $res = array(
                 'result' => 1
                 );
@@ -637,7 +650,7 @@ class PersonController extends Controller {
 
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id);
-
+            
             $pay = array(
                 'address'     => I('information'),
                 'payMethod'   => I('pay_way'),
