@@ -155,10 +155,6 @@ $('a[name="deleteSmallOrder"]').on('click',function(){
           }
           caltotalCost();
           console.log("删除成功!");
-
-
-
-
         }else{
           console.log("删除失败");
         }
@@ -195,8 +191,8 @@ function caltotalCost(){
     // console.log($(trList[i]).children("td.good-price").children().first().text());
 
   }
-  $(".pricefin").text(totalCost+"元");
-  $(".orgin-price").text(totalCostBef+"元");
+  $(".pricefin").text(totalCost.toFixed(1)+"元");
+  $(".orgin-price").text(totalCostBef.toFixed(1)+"元");
 }
 
 /*增加和减少商品数量*/

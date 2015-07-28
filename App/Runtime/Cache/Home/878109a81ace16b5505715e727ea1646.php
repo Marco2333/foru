@@ -1,18 +1,25 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
-		<link href="/foru/Public/css/style.css" rel="stylesheet"/>
-		<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="/foru/Public/script/plugins/jquery.cookie.js"></script>
-		<script src="/foru/Public/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/foru/Public/script/common.js"></script>
-		<title>我的For优</title>
-	</head>
-	<body>
-		<div class="public-top-layout" style="background-color: #fff">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
+	<link href="/foru/Public/css/style.css" rel="stylesheet"/>
+	<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="/foru/Public/script/plugins/jquery.cookie.js"></script>
+	<script src="/foru/Public/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/foru/Public/script/shoppingcart.js"></script>
+	<script type="text/javascript" src="/foru/Public/script/common.js"></script>
+	<link href="/foru/Public/css/style-y.css" rel="stylesheet"/>
+	<title>For优 购物车</title>
+	<style>
+		body{
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="public-top-layout" style="background-color: #fff">
 	<div class="topbar">
 		<div class="user-entry">
 			<!-- <span class="glyphicon glyphicon-headphones"> </span>
@@ -38,9 +45,8 @@
 			</div><?php endif; ?> 
 	</div>
 </div>
-
-		<div id="index-header" >
-			<div class="container header-bottom">
+	<div id="index-header" >
+		<div class="container header-bottom">
 	<div id="header-botton-wrapper">
 		<div id="log-wrapper" class="fl">
 			<div id="header-logo" class="fl">
@@ -151,7 +157,8 @@
 		</div>
 	</div>
 </div>
-			<div class="w bground-special">
+
+		<div class="w bground-special">
 	<div id="nav-bar" class="wrapper nav-wrapper">
 	    <?php if($categoryHidden != 1): ?><div class="fl">
 			   商品分类
@@ -184,100 +191,77 @@
 	</div>
 </div>
 
-			<div id="nav-breadcrumb" class="wrapper">
-				<ul class="breadcrumb">
-					<li><a href="<?php echo U('Index/index');?>">首页</a></li>
-					<li class="active"><a href="#">我的For优</a></li>
-				</ul>
-			</div>
+		<div id="nav-breadcrumb" class="wrapper">
+			<ul class="breadcrumb">
+				<li><a href="<?php echo U('Index/index');?>">首页</a></li>
+				<li class="active"><a href="/foru/index.php/Home/ShoppingCart/shoppingcart.html">购物车</a></li>
+			</ul>
 		</div>
-		<div class="wrapper clearfix" >
-			<div id="person-nav-side">
-				<ul>
-					<span>我的订单</span>
-					<li><a>全部</a></li>
-					<li><a>待付款</a></li>
-					<li><a>待确认</a></li>
-					<li><a>配送中</a></a></li>
-					<li><a>已完成</a></li>
-				</ul>
-				<ul>
-					<span>资料管理</span>
-					<li><a>个人信息</a></li>
-					<li><a>地址管理</a></li>
-					<li><a>账户安全</a></li>
-				</ul>
-				<ul>
-					<span>服务中心</span>
-					<li><a>联系客服</a></li>
-					<li><a>关于我们</a></li>
-					<li><a>意见反馈</a></li>
-				</ul>
-			</div>
-			<div id="person-info-body">
-				<span>尊敬的</span><span>追糖浆的阿豹</span>，<span>您好！欢迎来到For优</span>
-				<div id="personhome-info" class="clearfix">
-					<img class="fl" src="/foru/Public/img/headimage.png" alt="">
-					<div class="fl">
-						<span>追糖浆的阿豹</span><p>
-						性别：<span>男</span><p>
-						手机号:<span>14790080240</span><p>
-						QQ号:<span>1234678</span><p>
-						收货地址:<span>苏州大学独墅湖校区男生公寓10栋402室</span>
-					</div>		
-				</div>
-				<div class="info-title">
-						近期订单
-						<span class="fr"><a href="<?php echo U('Person/ordermanage');?>">查看所有订单</a></span>
-				</div>
-				<div class="personhome-order-info">
-					<table>
-						<colgroup>
-							<col width="450">
-							<col width="150">
-							<col width="160">
-							<col width="140">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>订单商品</th>
-								<th>订单状态</th>
-								<th>总金额</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody>				
-							<tr class="order-info-head">
-								<td colspan="2">
-									订单编号：<span>1234567</span>
-									提交时间：<span>2015-2-15 12:00</span>	
-								</td>
-								<td colspan="2">
-									
-								</td>	
-							</tr>
-							<tr class="order-info-detailed">
-								<td>
-									<img class="fl" src="/foru/Public/img/goods.png" alt="">
-									<div class="fl">
-										<p class='b'>Homee LED百变耳机台灯创意可以做耳机的台灯</p>
-										<p>设计师原创，纯手工打造</p>
-										<p>共1件商品</p>
-									</div>		
-								</td>
-								<td class='b'>已完成</td>
-								<td class='b'>
-									￥79
-								</td >
-								<td><a>订单详情</a></td>		
-							</tr>			
-						</tbody>
-					</table>
-				</div>
-			</div>
+	</div><!--.index-header-->
+
+	<div class="wrapper">
+		<div id="checkall">
+			<input id="checkall-input" type="checkbox" class="checkbox-f">
+			<label for="checkall-input">全选</label>
 		</div>
 
-		<footer>
+		<div class="wrapper">
+			<div class="sep-row"></div>
+			<table>
+				<colgroup>
+				<col width="20">
+				<col width="400">
+				<col width="100">
+				<col width="260">
+				<col width="215">
+				<col width="110">
+			</colgroup>
+
+			<?php if(is_array($shoppingcart)): foreach($shoppingcart as $key=>$shopping): ?><tr class="order-info-detailed" data-orderId="<?php echo ($shopping["order_id"]); ?>">
+					<td>
+						<input type="checkbox" name="isChecked" class="check-good">
+
+					</td>
+					<td>
+						<img class="fl" src="<?php echo ($shopping["img_url"]); ?>" alt="">
+						<div class="fl">
+							<p class='b'><?php echo ($shopping["name"]); ?></p>
+							<p><?php echo ($shopping["message"]); ?></p>
+							<p>共<?php echo ($shopping["order_count"]); ?>件商品</p>
+						</div>		
+					</td>
+					<td><!-- <span>颜色分类:</span><span>黄色</span> --></td>
+					<td class="good-price" style="padding-left:-10px">
+						<?php if($shopping["is_discount"] == 1): ?><span>￥<?php echo (number_format($shopping["discount_price"],1)); ?></span><span>原价:￥<?php echo (number_format($shopping["price"],1)); ?></span>
+							<?php else: ?><span>￥<?php echo (number_format($shopping["price"],1)); ?></span><span style="visibility:hidden">原价:￥<?php echo (number_format($shopping["price"],1)); ?></span><?php endif; ?>	
+					</td >
+					<td>
+						<a class="sub-goods" data-orderId="<?php echo ($shopping["order_id"]); ?>">-</a>
+						<input class="goods-count" type="text" value="<?php echo ($shopping["order_count"]); ?>" disabled="true">
+						<a class="add-goods" data-orderId="<?php echo ($shopping["order_id"]); ?>">+</a>
+					</td>
+					<td>					
+						<a name="deleteSmallOrder">删除</a></p>				
+					</td>							
+				</tr><?php endforeach; endif; ?>
+		</table>
+	</div><!-- /good1-->	
+
+	<div>
+		<a class="deletegoods">
+			<span class="glyphicon glyphicon-trash"></span>
+			删除
+		</a>
+	</div>
+	<div class="checknow">
+		<span class="pricefin-b">合计：</span><span class="pricefin">0.0元</span></br>
+		<span class="orgin-price-l">原价：</span><span class="orgin-price">0.0元</span>
+		<br>
+	<a class="buttonright btn">立即结算</a>
+</div>
+</div>
+
+<footer>
 	<div id="foot-part1" class="clearfix wrapper">
 		<ul>
 			<li>
@@ -425,6 +409,5 @@
 		<a>易迅简介</a>|<a>易迅公告</a>|招贤纳士<a>|<a>联系我们</a>|客服热线: 00-828-1878
 	</div>
 </footer>
-
-	</body>
+</body>
 </html>
