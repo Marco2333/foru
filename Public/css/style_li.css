@@ -10,7 +10,7 @@
 .person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
 .glyphicon{ font-size: 24px; vertical-align: 5px;}
 .person-info-body{ margin-left: 48px;}
-form{ padding-left: 127px;}
+
 
 /*process*/
 #person-info-body .person-info-body-progress{padding-left: 110px; margin-bottom: 80px; margin-top: 40px;}
@@ -67,7 +67,7 @@ form{ padding-left: 127px;}
 .main-wrapper-1 table{ border:1px solid #aaaaaa;}
 .main-wrapper-1 thead{border-bottom: 1px solid #aaaaaa;}
 .main-wrapper-1 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
-.main-wrapper-1 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
+.main-wrapper-1 tbody tr td{ padding-left: 35px;padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-1 .main-wrapper-1-radio{ vertical-align: -7px;}
 .main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
 .main-wrapper-1 .main-wrapper-1-btn-delete{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
@@ -126,3 +126,8 @@ form{ padding-left: 127px;}
 .main-wrapper-7 span.zhe span{ font-size: 20px; font-weight: bold;}
 .main-wrapper-7 span.yuan{}
 .main-wrapper-7 input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px;}
+
+
+
+.special-paddright{ padding-right: 10px}
+.special-paddingleft{padding-left: 10px}

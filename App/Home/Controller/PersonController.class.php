@@ -184,8 +184,8 @@ class PersonController extends Controller {
 
                 if ($result !== false)
                 {
-                    $this->personInfo("1");
-                    // $this->redirect('/Home/Person/personInfo');
+                    // $this->personInfo("1");
+                    $this->redirect('/Home/Person/personInfo',array('active'=>1));
                 }
                 else
                 {
@@ -195,6 +195,7 @@ class PersonController extends Controller {
             else
             {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
+                $this->redirect('/Home/Person/personInfo',array('active'=>1));
             }
             
              // $this->assign("url",$img_url);
