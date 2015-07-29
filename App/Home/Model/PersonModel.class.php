@@ -152,15 +152,15 @@ class PersonModel extends ViewModel {
         return $address;
     }
 
-    public function getGoodsInfo($together_id){
-        $orderIDstr = I('orderIds');
-        $orderID    = split(',',$orderIDstr);
+    public function getGoodsInfo(){
+        // $orderIDstr = I('orderIds');
+        $orderID    = split(',',$_SESSION['orderIDstr']);
         // dump($orderID);
 
         for ($i = 0;$i < count($orderID);$i++)
         {
             $where = array(
-                'together_id' => $together_id,
+                // 'together_id' => $together_id,
                 'order_id'    => $orderID[$i],
                 '_logic'      => 'and'  
                 );
@@ -197,8 +197,9 @@ class PersonModel extends ViewModel {
         return $foodInfo;
     }
 
-    public function getTotalPrice($together_id){
-        $foodInfo = $this->getGoodsInfo($together_id);
+    public function getTotalPrice(){
+        $foodInfo = $this->getGoodsInfo();
+        // dump($foodInfo);
 
         $price = array(
             'totalPrice'    => 0,

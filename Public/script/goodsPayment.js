@@ -68,7 +68,7 @@ function reviseAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../Person/getPhoneRank",
+        url:"../../Home/Person/getPhoneRank",
         data:info,
         success:function(data){
         	if (data['result'] != 0)
@@ -105,15 +105,15 @@ function saveReviseLocation(phone,rank){
         detailedLoc:$('#detailedLoc').val(),
         phoneNum:$('#phoneNum').val()
     };
-    alert("iamheere");
+
     $.ajax({
         type:"POST",
-        url:"../Person/reviseLocation",
+        url:"../../Home/Person/reviseLocation",
         data:info,
         success:function(data){
             if (data['result'] != 0)
             {
-                alert("修改收货地址成功！");
+                // alert("修改收货地址成功！");
 
                 return info;
             }
@@ -132,11 +132,15 @@ function deleteAddress(phone,rank){
         rank:rank
     };
 
+    // alert(phone);
+    // alert(rank);
+
     $.ajax({
         type:"POST",
-        url:"../Person/deleteLocation",
+        url:"../../Home/Person/deleteLocation",
         data:info,
         success:function(data){
+            // console.log(data);
         	if (data['result'] != 0)
         	{
         		// alert("收货地址删除成功！");
