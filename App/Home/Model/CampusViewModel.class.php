@@ -20,4 +20,8 @@ class CampusViewModel extends ViewModel {
        $campus=M('campus')->field('campus_id,campus_name')->where('city_id=%d',$cityId)->select();
        return $campus;
 	}
+
+	/*public function getModule($campusId){
+       $module=M('campus')->field('campus_id,campus_name')
+	}*/
 }
