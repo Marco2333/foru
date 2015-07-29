@@ -15,15 +15,7 @@ class PersonController extends Controller {
         // $this->show();
         $this->personInfo();
     }
-    // public function forgetPword(){
-    //     // $this->show();
-    //     $this->display("forgetpword");
-    // }
-    // public function orderManage(){
-    //     // $this->show();
-    //     $this->display("orderManage");
-    // }
-
+ 
     public function personInfo($active = "0"){
         $user = $_SESSION['username'];
         // dump($where);
@@ -184,8 +176,8 @@ class PersonController extends Controller {
 
                 if ($result !== false)
                 {
-                    $this->personInfo("1");
-                    // $this->redirect('/Home/Person/personInfo');
+                    // $this->personInfo("1");
+                    $this->redirect('/Home/Person/personInfo');
                 }
                 else
                 {
@@ -314,9 +306,8 @@ class PersonController extends Controller {
         
         if ($result !== false)
         {
-            $res = array(
-                'result' => 1
-                );
+            $result['result'] = 1;
+            
             $this->ajaxReturn($result);
         }
         else
