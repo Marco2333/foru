@@ -612,16 +612,15 @@ class PersonController extends Controller {
 
         if ($user != null)
         {
-            $together_id = "188965548801430758379331";
-
             // $Person = D('Home\Model\Person');
-            $Person = D('Person');
-            $data = $Person->getPayData($together_id);
+            $Person      = D('Person');
+            $together_id = $Person->setTogetherID();
+            // $data        = $Person->getPayData($together_id);
             // dump($data);
 
-            $address   = $Person->getAddress($data);
-            $orderInfo = $Person->getOrderInfo($data);
-            $goodsInfo = $Person->getGoodsInfo($data);
+            $address   = $Person->getAddress();
+            $orderInfo = $Person->getOrderInfo($together_id);
+            $goodsInfo = $Person->getGoodsInfo($together_id);
             $price     = $Person->getTotalPrice($together_id);
 
             // dump($address);

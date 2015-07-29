@@ -137,8 +137,8 @@
 											}
 										?>
 										/>
-										收货人:<span>{$v.receiverName}</span><br />
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：<span>{$v.customer_phone}</span>
+										收货人:<span>{$v.name}</span><br />
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：<span>{$v.phone_id}</span>
 									</td>
 									<td>
 										<span>{$v.address}</span>
@@ -259,8 +259,8 @@
 						<tbody>				
 							<tr class="order-info-head">
 								<td colspan="3">
-									订单编号：<span>{$orderInfo.order_id}</span>
-									提交时间：<span>{$orderInfo.order_time}</span>	
+									订单编号：<span>{$orderInfo.together_id}</span>
+									提交时间：<span>{$orderInfo.together_date}</span>	
 								</td>
 								<td colspan="2">
 									
@@ -270,16 +270,16 @@
 							<foreach name="goodsInfo" item="v">
 								<tr class="order-info-detailed">
 									<td>
-										<img class="fl" src="{$v.foodImg}" alt="">
+										<img class="fl" src="{$v.img_url}" alt="">
 										<div class="fl">
 											<span class='b'>{$v.foodName}</span><p>
 											<span>{$v.message}</span><p>
-											<span>共<span>{$v.number}</span>件商品</span><p>
+											<span>共<span>{$v.order_count}</span>件商品</span><p>
 										</div>		
 									</td>
 									<td class='b'><span class="gray move">颜色分类：黄色</span></td>
 									<td class='b'>
-										<span class="gray move"><span>￥{$v.d_price}</span><span><del>原价：{$v.price}</del></span></span>
+										<span class="gray move"><span>￥{$v.discount_price}</span><span><del>原价：{$v.price}</del></span></span>
 									</td >
 									<td>
 										<span>{$v.number}</span>				

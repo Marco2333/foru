@@ -132,8 +132,8 @@
 										<?php
  if ($v['tag'] == 0) { echo "checked='checked'"; } ?>
 										/>
-										收货人:<span><?php echo ($v["receiverName"]); ?></span><br />
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：<span><?php echo ($v["customer_phone"]); ?></span>
+										收货人:<span><?php echo ($v["name"]); ?></span><br />
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：<span><?php echo ($v["phone_id"]); ?></span>
 									</td>
 									<td>
 										<span><?php echo ($v["address"]); ?></span>
@@ -253,8 +253,8 @@
 						<tbody>				
 							<tr class="order-info-head">
 								<td colspan="3">
-									订单编号：<span><?php echo ($orderInfo["order_id"]); ?></span>
-									提交时间：<span><?php echo ($orderInfo["order_time"]); ?></span>	
+									订单编号：<span><?php echo ($orderInfo["together_id"]); ?></span>
+									提交时间：<span><?php echo ($orderInfo["together_date"]); ?></span>	
 								</td>
 								<td colspan="2">
 									
@@ -263,16 +263,16 @@
 							<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 							<?php if(is_array($goodsInfo)): foreach($goodsInfo as $key=>$v): ?><tr class="order-info-detailed">
 									<td>
-										<img class="fl" src="<?php echo ($v["foodImg"]); ?>" alt="">
+										<img class="fl" src="<?php echo ($v["img_url"]); ?>" alt="">
 										<div class="fl">
 											<span class='b'><?php echo ($v["foodName"]); ?></span><p>
 											<span><?php echo ($v["message"]); ?></span><p>
-											<span>共<span><?php echo ($v["number"]); ?></span>件商品</span><p>
+											<span>共<span><?php echo ($v["order_count"]); ?></span>件商品</span><p>
 										</div>		
 									</td>
 									<td class='b'><span class="gray move">颜色分类：黄色</span></td>
 									<td class='b'>
-										<span class="gray move"><span>￥<?php echo ($v["d_price"]); ?></span><span><del>原价：<?php echo ($v["price"]); ?></del></span></span>
+										<span class="gray move"><span>￥<?php echo ($v["discount_price"]); ?></span><span><del>原价：<?php echo ($v["price"]); ?></del></span></span>
 									</td >
 									<td>
 										<span><?php echo ($v["number"]); ?></span>				

@@ -7,8 +7,8 @@ class PersonModel extends ViewModel {
     // protected $tableName="orders"; 
     protected $viewFields=array(
          'orders'    =>array('phone','campus_id','together_id','order_count','food_id','rank','together_date','admin_phone','tag'),//,'_type'=>'LEFT'
-         'food'      =>array('name'=>'foodName','price','discount_price','img_url','status','is_discount','message','_on'=>'orders.food_id = food.food_id'),
-         'receiver'  =>array('phone_id'=>'customer_phone','name'=>'receiverName','address','is_out','_on'=>'orders.phone = receiver.phone')
+         'food'      =>array('name'=>'foodName','price','discount_price','img_url','status','is_discount','message','_on'=>'orders.food_id = food.food_id')//,
+         // 'receiver'  =>array('phone_id'=>'customer_phone','name'=>'receiverName','address','is_out','_on'=>'orders.phone = receiver.phone')
     );
 
     // protected $viewFields = array(
@@ -37,15 +37,46 @@ class PersonModel extends ViewModel {
     //         )
     //     );
 
+    public function setTogetherID(){
+        $user = $_SESSION['username'];
+
+        $together_id = $user.Time();
+        $time = date("Y-m-d H:m:s",time());
+        // echo $time."<br>";
+        // echo $together_id."<br>";
+        $orderIDstr = I('orderIds');
+        $orderID    = split(',',$orderIDstr);
+        // dump($orderID);
+
+        $Orders = M('orders');
+        $data = array(
+            'together_id'   => $together_id,
+            'together_date' => $time
+            );
+
+        for ($i = 0;$i < count($orderID);$i++)
+        {
+            $where = array(
+                'phone'    => $user,
+                'order_id' => $orderID[$i]
+                );
+
+            $Orders->where($where)
+                   ->save($data);
+        }
+
+        return $together_id;
+    }
+
     public function getPayData($together_id)
     {
         // $Orders         = M('orders');
         // $joinFood       = 'food On orders.food_id = food.food_id';
         // $joinReceiver   = 'receiver On orders.rank = receiver.rank';
         $where  = array(
-            'together_id'   => $together_id,
-            'is_out'        => 0,
-            '_logic'        => 'and'
+            'together_id'   => $together_id
+            // 'is_out'        => 0,
+            // '_logic'        => 'and'
             );
 
         // $field = array(
@@ -93,50 +124,12 @@ class PersonModel extends ViewModel {
                      ->field($field)
                      ->select();
 
+        // dump($data);
+
         return $data;
     }
 
-    public function getAddress($data){
-        $address = array();
-        $j = 0;
-        for ($i = 0;$i < count($data);$i++)
-        {
-            // echo "i=".$i."<br>";
-            $flag = 1;
-            for ($j = 0;$j < count($address);$j++)
-            {
-                if ($address[$j]['rank'] != $data[$i]['rank'])
-                {
-                    continue;
-                }
-                else
-                {
-                    $flag = 0;
-                    break;
-                }
-            }
-
-            if ($flag != 1)
-            {
-                continue;
-            }
-            else
-            {
-                // echo "j=".$j."<br>";
-                $address[$j] = array(
-                    'phone'           => $data[$i]['phone'],
-                    'rank'            => $data[$i]['rank'],
-                    'receiverName'    => $data[$i]['receivername'],
-                    'customer_phone'  => $data[$i]['customer_phone'],
-                    'address'         => $data[$i]['address']
-                    );
-            }
-        }
-
-        // dump($address);
-        // return $address;
-
-        //由于together_id写死，所以测试功能，所以有了下面测试代码
+    public function getAddress(){
         $Receiver = M('receiver');
         $where    = array(
             'phone'  => $_SESSION['username'],
@@ -150,93 +143,62 @@ class PersonModel extends ViewModel {
             'phone_id'  => 'customer_phone',
             'address'
             );
-        $addressData = $Receiver->where($where)
-                                ->order('tag asc')
-                                ->select();
-        for ($i = 0;$i < count($addressData);$i++)
-        {
-            $addressData[$i]['receiverName']   = $addressData[$i]['name'];
-            $addressData[$i]['customer_phone'] = $addressData[$i]['phone_id'];
-        }
+        $address = $Receiver->where($where)
+                            ->order('tag asc')
+                            ->select();
 
-        return $addressData;
+        // dump($address);
+
+        return $address;
     }
 
-    public function getGoodsInfo($data){
-        $goodsInfo = array();
-        for ($i = 0;$i < count($data);$i++)
+    public function getGoodsInfo($together_id){
+        $orderIDstr = I('orderIds');
+        $orderID    = split(',',$orderIDstr);
+        // dump($orderID);
+
+        for ($i = 0;$i < count($orderID);$i++)
         {
-            $goodsInfo[$i]  =  array(
-                'foodName'  => $data[$i]['foodname'],
-                'message'   => $data[$i]['message'],
-                'number'    => $data[$i]['order_count'],
-                'foodImg'   => $data[$i]['img_url'],
-                'price'     => $data[$i]['price'],
-                'd_price'   => $data[$i]['discount_price'],
-                'is_discount' => $data[$i]['is_discount']
+            $where = array(
+                'together_id' => $together_id,
+                'order_id'    => $orderID[$i],
+                '_logic'      => 'and'  
                 );
-        }
-
-        // dump ($goodsInfo);
-
-        // return $goodsInfo;
-
-        //由于together_id写死，所以测试功能，所以有了下面测试代码
-        $food  = M('food');
-        $where = array(
-            'food_id' => $data[0]['food_id']
-            ); 
-        $field = array(
-            'name',
-            'food_id',
-            'price',
-            'discount_price',
-            'img_url',
-            'status',
-            'is_discount',
-            'message',
-            );
-        $foodInfo = $food->where($where)
-                         ->field($field)
-                         ->select();
-
-        for ($i = 0;$i < count($foodInfo);$i++)
-        {
-            $foodInfo[$i]['foodname']   = $foodInfo[$i]['name'];
-            $foodInfo[$i]['d_price']    = $foodInfo[$i]['discount_price'];
-            $foodInfo[$i]['foodImg']    = $foodInfo[$i]['img_url'];
-
-            for ($j = 0;$j < count($data);$j++)
-            {
-                // echo $data[$j]['food_id']."<br>";
-                if ($foodInfo[$i]['food_id'] == $data[$j]['food_id'])
-                {
-                    $foodInfo[$i]['number'] = $data[$j]['order_count'];
-                }
-            }
+            $field = array(
+                'foodName',
+                'message',
+                'order_count',
+                'img_url',
+                'price',
+                'discount_price',
+                'is_discount'
+                );
+            $foodInfo[$i] = $this->where($where)
+                                 ->field($field)
+                                 ->find();
         }
 
         for ($i = 0;$i < count($foodInfo);$i++)
         {
-            $foodInfo[$i]['totalPrice'] =+ $foodInfo[$i]['price']*$foodInfo[$i]['number'];
+            $foodInfo[$i]['totalPrice'] =+ $foodInfo[$i]['price']*$foodInfo[$i]['order_count'];
 
             if ($foodInfo[$i]['is_discount'] != 0)
             {
-                $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['d_price']*$foodInfo[$i]['number'];
+                $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['discount_price']*$foodInfo[$i]['order_count'];
             }
             else
             {
-                $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['price']*$foodInfo[$i]['number'];
+                $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['price']*$foodInfo[$i]['order_count'];
             }
         }
 
         // dump($foodInfo);
+
         return $foodInfo;
     }
 
     public function getTotalPrice($together_id){
-        $data     = $this->getPayData($together_id);
-        $foodInfo = $this->getGoodsInfo($data);
+        $foodInfo = $this->getGoodsInfo($together_id);
 
         $price = array(
             'totalPrice'    => 0,
@@ -245,7 +207,7 @@ class PersonModel extends ViewModel {
 
         for ($i = 0;$i < count($foodInfo);$i++)
         {
-            $price['totalPrice'] =+ $foodInfo[$i]['price']*$foodInfo[$i]['number'];
+            $price['totalPrice'] += $foodInfo[$i]['totalPrice'];
 
             if ($foodInfo[$i]['is_discount'] != 0)
             {
@@ -257,14 +219,24 @@ class PersonModel extends ViewModel {
             }
         }
 
+        // dump($price);
+
         return $price;
     }
 
-    public function getOrderInfo($data){
-        $orderInfo = array(
-            'order_id'      => $data[0]['together_id'],
-            'order_time'    => $data[0]['together_date']
+    public function getOrderInfo($together_id){
+        $Orders = M('orders');
+
+        $where  = array(
+            'together_id' => $together_id
             );
+        $field  = array(
+            'together_date',
+            'together_id'
+            );
+        $orderInfo = $Orders->where($where)
+                            ->field($field)
+                            ->find();
 
         // dump($orderInfo);
 
