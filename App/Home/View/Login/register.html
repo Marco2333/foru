@@ -2,15 +2,12 @@
 <html>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>注册|ForU</title>
+		<title>注册|For优</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
-		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
-		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.validate.js"></script>
-		<script type="text/javascript" src="__PUBLIC__/script/register.js"></script>
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>	
+
 		<style>
 			body {
 				background-color: rgba(248,248,248,.9);
@@ -18,22 +15,8 @@
 		</style>
 	</head>
 	<body>
-		<div class="public-top-layout" style="background-color: #fff">
-			<div class="topbar">
-				<div class="user-entry">
-					<span class="glyphicon glyphicon-headphones"> </span>
-					<span>(86)18896551234</span>
-					<span>(Mon- Fri: 09.00 - 21.00)</span>
-				</div>
-				<div class="fr">
-					<a class="text-special" href="">手机For优</a>
-				</div>
-				<div class="quick-menu">
-					欢迎光临<span class="text-special"><a href="{:U('Index/index')}">For优</a></span>校园超市，请 <a class="text-special" href="login.html">登录</a><a class="text-special" href="register.html">注册</a>
-					<span> </span>
-				</div>		
-			</div>
-		</div>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
 		<div id="register-logo" class="wrapper clearfix">
 			<img src="__PUBLIC__/img/logo.png"/>
 			<span>欢迎注册</span>
@@ -52,15 +35,15 @@
 					<div class="user-info-div">
 						<span class="userinfo-before">设置密码:</span>
 						<div class="fl">
-							<input type="text" name="password" />
+							<input type="password" name="password" />
 							<span class="glyphicon glyphicon-lock userinfo-logo"> </span>
 						</div>
-						<span class="userinfo-behind">	6-12位字符，建议由数字，字母和符号两种以上组合。 </span>
+						<span class="userinfo-behind">	8-20位字符，建议由数字，字母和符号两种以上组合。 </span>
 					</div>
 					<div class="user-info-div">
 						<span class="userinfo-before">确认密码:</span>
 						<div class="fl">
-							<input type="text" name="confirm-password" />
+							<input type="password" name="confirm-password" />
 							<span class="glyphicon glyphicon-lock userinfo-logo"> </span>
 						</div>
 						<span class="userinfo-behind">请再次输入密码 </span>
@@ -95,5 +78,11 @@
 				<span><a href="login.html">已有账号，返回登录>></a></span>
 			</div>
 		</div>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.validate.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/register.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+
 	</body>
 </html>

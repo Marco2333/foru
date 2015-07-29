@@ -1032,9 +1032,10 @@ footer a:hover {
 }
 .error-info {
 	color: red;
+	font-family: "黑体";
 }
 #register-info form > div.user-info-div input{
-	height:35px;
+	height:34px;
 	width:250px;	
 	float: left;
 	border: none;
@@ -1104,6 +1105,7 @@ footer a:hover {
 }
 #register-info + div.fl a{
 	color: #24dfc2;
+	font-family: "黑体";
 }
 #register-info #user-protocol a {
 	color: #24dfc2;
@@ -1261,7 +1263,7 @@ footer a:hover {
 	background-color:rgb(246,246,246);
 	padding-left: 38px; 
 	font-family: "黑体";
-	height: 420px;
+	height: 440px;
 }
 #person-info-body {
 	width: 900px;
@@ -1289,6 +1291,7 @@ footer a:hover {
 }
 #person-nav-side li a {
 	cursor: context-menu;
+	vertical-align: -2px;
 }
 #person-nav-side li.active,
 #person-nav-side li.active a {
@@ -1422,7 +1425,7 @@ footer a:hover {
 }
 .tab-div button:hover {
 	background: #F49F86;
-	color: #eee;
+	color: rgb(248,248,248);
 }
 .tab-div button.active {
 	background-color: #EF7C5A;
@@ -1432,40 +1435,44 @@ footer a:hover {
 	margin-top: 5px;
 }
 #person-basic-info .person-info-div  input[type='radio'] {
-		vertical-align: text-bottom;
+		vertical-align: middle;
 }
 #person-basic-info .person-info-div  input[type='radio'] + label {
 	font-family: "黑体";
 	color: #777;
 	font-size: 7px;
 	font-weight: 200;
+	vertical-align: text-top;
 }
 #person-basic-info span.personinfo-before{
 	float: left;
 	display: inline-block;
-	width: 50px;
+	width: 65px;
 	height: 38px;
 	text-align: right;
-	padding: 1px 6px 0 0;
+	padding: 4px 6px 0 0;
 	font-family: "黑体";
 	font-weight: 200;
-	/*margin-top:6px; */
+	/* margin-top: 6px; */
+	font-size: 14px;
 }
-/*#person-basic-info .person-info-div input {
-
-}*/
 #person-basic-info .person-info-div input[type='text'] {
-	width: 135px;
-	height: 24px;
+	width: 170px;
+  	height: 32px;
+  	padding-left: 8px;
+  	outline: none;
+  	font-size: 14px
 }
 #person-basic-info .person-info-div input[type='submit'] {
-	width: 95px;
-	height: 27px;
+	width: 115px;
+	height: 32px;
 	background-color: #EF7C5A;
 	color: #fff;
 	font-family: "黑体";
-	border:none;
+	border: none;
 	outline: none;
+	font-size: 14px;
+	margin-top: 8px;
 }
 #change-image {
 	border-bottom: 1px solid rgba(215,215,215,.9);
@@ -1549,11 +1556,12 @@ footer a:hover {
 	font-size: 14px;
 }
 #personhome-info {
-	margin-top: 20px;
+	margin: 10px 0;
 }
 #personhome-info img {
 	width: 90px;
 	height: 90px;
+	margin-top: 10px;
 }
 #personhome-info > div.fl {
 	margin-left: 18px;
@@ -1563,9 +1571,13 @@ footer a:hover {
 	font-size: 13px;
 }
 #personhome-info > div.fl > span:first-child {
-	font-weight: 600;
 	display: inline-block;
 	margin: -1px 0 7px 0;
+	font-size: 15px;
+	color:#000;
+}
+#personhome-info > div.fl p {
+	font-family: "黑体";
 	font-size: 14px;
 }
 .info-title > span.fr {
@@ -1577,12 +1589,14 @@ footer a:hover {
 	height: 65px;
 	border: 1px solid #ccc;
 	margin-right:10px;
+	margin-top: 5px;
 }
 .order-info-detailed td:first-child > div.fl {
 	width: 280px;
 }
 .order-info-detailed td:first-child > div > p:last-child {
 	font-size: 13px;
+	margin-top: 1px;
 }
 .order-info-head {
 	height: 33px;	
@@ -1613,6 +1627,10 @@ footer a:hover {
 }
 .order-info-detailed td > div > p:first-child {
 	font-size: 14px;
+}
+.order-info-detailed td > div > p:nth-child(2) {
+	font-size: 13px;
+	color: #aaa;
 }
 .order-info-detailed td:last-child a:hover {
 	color: #EF7C5A;
@@ -1647,9 +1665,8 @@ footer a:hover {
 .goods-list-info {
 	width: 900px;
 }
-.goods-list-side > ul > li {
-	/*display: inline-block;*/
-	background: #eee;
+.goods-list-side  li {
+	background: rgb(246,246,246);
 	font-family: "黑体";
 	border-bottom: 1px solid rgba(246,246,246,.8);
 	width: 180px;
@@ -2004,13 +2021,11 @@ input.goods-count {
 }
 #goods-img-detailed img {
 	width: 100%;
-	height: 450px;
+	height: auto;
 	margin-bottom: 10px;
 }
 
-
 /*change-campus*/
-
 #campus-background { 
 	background-color: rgba(145,145,145,.5); 
 	position: fixed; 

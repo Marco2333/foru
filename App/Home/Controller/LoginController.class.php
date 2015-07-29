@@ -65,10 +65,11 @@ class LoginController extends Controller {
     {
        // $User = M("customer"); // 实例化User对象
         // $verify = I('param.verify','');  //获取验证码
-        $data["nickname"]=I("nickname");
-        $data["password"]=I("password",'','md5');
-        $data["phone"]=I("phone");
-        $data["type"]=2;
+        $data["nickname"] = I("nickname");
+        $data["password"] = I("password",'','md5');
+        $data["phone"] = I("phone");
+        $data["type"] = 2;
+        $data["create_time"] = date("Y-m-d");
         $status=M("users")->data($data)->add();
 
         if($status==false){

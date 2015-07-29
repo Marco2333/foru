@@ -8,8 +8,8 @@ $(document).ready(function(){
 			},
 			password:{
 				required:true,
-				minlength:6,
-				maxlength:12
+				minlength:8,
+				maxlength:20
 			},
 			"confirm-password": {
 				equalTo:".user-info-div input[name='password']"
@@ -31,8 +31,8 @@ $(document).ready(function(){
 			},
 			password:{
 				required:"密码不能为空",
-				minlength:"密码长度不能低于6位",
-				maxlength:"密码长度不能超过12位"
+				minlength:"密码长度不能低于8位",
+				maxlength:"密码长度不能超过20位"
 			},
 			"confirm-password": {
 				equalTo:"两次输入的密码不一致"
@@ -71,18 +71,6 @@ $(document).ready(function(){
 		checkUserExist();
 	})
 })
-
-// function  promptMessage(){
-// 	var promMesSpan = $(".userinfo-behind");
-// 	// alert(promMesSpan);
-// 	for(var i=0;i<promMesSpan.length;i++){
-// 		// alert(promMesSpan[i]);
-// 		if($(promMesSpan[i]).prev("div.fl").children("label")!=null){
-// 			alert(promMesSpan[i]).val($(promMesSpan[i]).prev("div.fl").children("label").val());
-// 		}
-// 	}
-// 	// $(".userinfo-behind").val($(this).prev("div.fl").children("label").val());
-// }
 
 function checkUserExist(){
 	var phone = $("#register-info input[name='phone']").val();

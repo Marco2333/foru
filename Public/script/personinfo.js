@@ -41,7 +41,7 @@ function savePersonInfo(){
 
     $.ajax({
         type:"POST",
-        url:"../Person/savePersonInfo",
+        url:"../../Home/Person/savePersonInfo",
         data:info,
         success:function(data){
             // alert(data['result']);//保存操作成功/失败信息返回，选择适当形式告知用户
