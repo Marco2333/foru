@@ -93,7 +93,7 @@ function saveNewLocation(){
 
     $.ajax({
         type:"POST",
-        url:"../Person/saveLocation",
+        url:"../../Home/Person/saveLocation",
         data:info,
         success:function(data){
             document.getElementById("userName").value="";
@@ -168,7 +168,7 @@ function saveReviseLocation(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../Person/reviseLocation",
+        url:"../../Home/Person/reviseLocation",
         data:info,
         success:function(data){
             if (data['result'] != 0)
@@ -206,7 +206,7 @@ function reviseAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../Person/getPhoneRank",
+        url:"../../Home/Person/getPhoneRank",
         data:info,
         success:function(data){
         	if (data['result'] != 0)
@@ -234,7 +234,7 @@ function deleteAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../Person/deleteLocation",
+        url:"../../Home/Person/deleteLocation",
         data:info,
         success:function(data){
         	if (data['result'] != 0)

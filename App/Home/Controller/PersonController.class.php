@@ -4,13 +4,6 @@ use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
 class PersonController extends Controller {
-
-    public function _initialize() {
-        if (!isset($_SESSION['username'])) {
-            $this->redirect('/Home/Login/Index');
-        }
-    }
-
     public function index(){
         // $this->show();
         $this->personInfo();
@@ -470,7 +463,8 @@ class PersonController extends Controller {
         $data = array(
             'is_out'    =>  1
             );
-
+      /*  echo $phone."<br>";
+        echo $rank;*/
         $Receiver = M('receiver');
         $where  = array(
             'phone'  => $phone,
@@ -497,8 +491,6 @@ class PersonController extends Controller {
                 );
             $this->ajaxReturn($res);
         }
-
-        $this->locaManage();
     }
 
     function check_verify($code, $id = ''){
@@ -619,6 +611,16 @@ class PersonController extends Controller {
 
         if ($user != null)
         {
+            $orderIDstr = I('orderIds');
+            if ($orderIDstr != '')
+            {
+                session('orderIDstr',$orderIDstr);
+            }
+            else
+            {
+                $orderIDstr = $_SESSION['orderIDstr'];
+            }            
+
             // $Person = D('Home\Model\Person');
             $Person      = D('Person');
             $together_id = $Person->setTogetherID();
@@ -627,14 +629,15 @@ class PersonController extends Controller {
 
             $address   = $Person->getAddress();
             $orderInfo = $Person->getOrderInfo($together_id);
-            $goodsInfo = $Person->getGoodsInfo($together_id);
-            $price     = $Person->getTotalPrice($together_id);
+            $goodsInfo = $Person->getGoodsInfo();
+            $price     = $Person->getTotalPrice();
 
             // dump($address);
             // dump ($goodsInfo);
             // dump ($orderInfo);
             // dump($price);
 
+            $this->assign('orderIDstr',$orderIDstr);
             $this->assign('address',$address);
             $this->assign('orderInfo',$orderInfo);
             $this->assign('goodsInfo',$goodsInfo);
@@ -652,14 +655,19 @@ class PersonController extends Controller {
 
         if ($user != null)
         {
-            $together_id = "188965548801430758379331";
+            $together_id = I('together-id');
+            echo $together_id."<br>";
 
+            $orderIDstr = I('orderIDstr');
+            echo "Iamhere"."<br>";
+            echo $orderIDstr;
             $Person = D('Person');
-            $price  = $Person->getTotalPrice($together_id);
+            $price  = $Person->getTotalPrice($together_id,$orderIDstr);
+            dump($price);
             
             $pay = array(
                 'address'     => I('information'),
-                'payMethod'   => I('pay_way'),
+                'payMethod'   => I('pay-way'),
                 'reversetime' => I('time'),
                 'message'     => I('message'),
                 'totalPrice'  => $price['discountPrice']
