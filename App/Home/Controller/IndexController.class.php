@@ -10,6 +10,12 @@ class IndexController extends Controller {
         if($campusId==null){
             $campusId=1;
         }
+
+        $cityId=I('cityId');           //获取城市id
+        if($cityId==null){
+            $cityId=1;
+        }
+
         $category=M("food_category");
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
@@ -17,11 +23,11 @@ class IndexController extends Controller {
         ->limit(8)
         ->select();          //获取分类
                
-        $campus=M('campus')
+       /* $campus=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
         ->cache(true)
-        ->select();       //获取校区列表
+        ->select();*/       //获取校区列表
 
         $newsImage=M('news')
         ->field('news_id,img_url')
@@ -37,14 +43,26 @@ class IndexController extends Controller {
 
             $goodList[$key]=$goods;
         }
+
+        $city=D('CampusView')->getAllCity();   //获取所有的城市
+        
+        $campus=D('CampusView')->getCampusByCity($cityId);
+
         $this->assign('goodlist',$goodList)
              ->assign('main_image',$newsImage)
              ->assign('campus',$campus)
-             ->assign("category",$classes);
+             ->assign("category",$classes)
+             ->assign('city',$cityId)
+             ->assign("cities",$city);
 
         $this->display();
     }
     
+    public function getCampusByCity($cityId){
+         $campus=D('CampusView')->getCampusByCity($cityId);
+         $data['campus']=$campus;
+         $this->ajaxReturn($data);
+    }
     public function logout(){
     	unset($_SESSION['username']);
     	$this->redirect("/Home/Index/index");
