@@ -1,27 +1,31 @@
 $(function(){
-	showPage1();
-});
-function showPage1(){
 	$("#person-info-body-form-phone").bind("blur",function(){
 		var $phone=$("#person-info-body-form-phone").val();
 		var $check=$("#check-image-input").val();
 		
+		if($phone.trim()==""){
+			$("#form-1-span-1").text("号码不能为空")
+			.addClass("text-alert")
+			.removeClass("text-ok");
+			return;
+		}
 		if(/^[1][2358][0-9]{9}$/.test($phone)){
+			$("#form-1-span-1").removeClass("text-alert");
+
 			$.ajax({
 				type:"post",
 				data:{"phone":$phone,"check":$check},
-				url:"../Person/phone",
+				url:"../../Home/Person/phone",
 				success:function(data){
 					if(data['value']=='success'){
-						$("#form-1-span-1").html("拥有此号码");
+						$("#form-1-span-1").text("√")
+						.addClass("text-ok")
+						.removeClass("text-alert");		
 						showPage2();
-					}else if(data['value']=='error'){
-						$("#form-1-span-1").html("没有这个号码");
-						
-					}
-					else{
-						alert('未知错误');
-						console.log(data);
+					}else{
+						$("#form-1-span-1").text("号码输入错误")
+						.addClass("text-alert")
+						.removeClass("text-ok");	
 					}
 				},
 				error:function(){
@@ -29,15 +33,18 @@ function showPage1(){
 				}
 			});
 		}else{
-			$("#form-1-span-1").html("号码不能为空");
+			$("#form-1-span-1").text("请输入规范的号码")
+			.addClass("text-alert")
+			.removeClass("text-ok");
 		}
 	});
-}
+});
+
 function showPage2(){
 	$("#body-form-1-button").bind("click",function(){
 		var $check=$("#check-image-input").val();
 		if($check==""){
-			alert("验证码为空，请输入！");
+			alert("验证码不能为空");
 			return;
 		}else{
 			$.ajax({
@@ -46,8 +53,8 @@ function showPage2(){
 				url:"../Person/check",
 				success:function(data){
 					if(data['value']=='success'){
-						$("#dl-1").attr('class','');
-						$("#dl-2").attr('class','active');
+						$("#dl-1").removeClass('active');
+						$("#dl-2").addClass('active');
 						$(".person-info-body-page1").css({'display':'none'});
 						$(".person-info-body-page2").css({'display':'block'});
 					}else if(data['value']=='error'){
@@ -59,7 +66,7 @@ function showPage2(){
 					}
 				},
 				error:function(){
-					alert("验证码验证失败，请重试！");
+					alert("验证失败，请重试！");
 				}
 			});
 		}
@@ -70,7 +77,6 @@ function showPage2(){
 				showPage3();
 			});
 	});
-	
 }
 
 function showPage3(){
@@ -114,8 +120,4 @@ function showPage4(){
 	$("#dl-4").attr('class','active');
 	$(".person-info-body-page3").css({'display':'none'});
 	$(".person-info-body-page4").css({'display':'block'});
-}
-
-function clickImage(){
-	$("#check-image").click();
 }

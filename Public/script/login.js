@@ -47,13 +47,12 @@ function login() {
             //token: token
 		},
 		success : function(data) {
-			 var json = eval(data);
-			//alert(data);
-			if (json.status==1) {
+			
+			if (data.status=='1') {
 			    window.location.href = "../Index/index";
 			    
                 //window.prompt(json.message);
-			} else if(json.status==2){
+			} else if(data.status=='2'){
 				alert("验证码错误！");
 			}else {
 				alert("用户名或密码错误！");

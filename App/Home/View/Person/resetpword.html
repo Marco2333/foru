@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="__PUBLIC__/css/style_li.css" />
+
+		<title>For优 修改密码</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" >
+			<include file='App/Home/View/Common/commonsearch.html'/>
+			<include file='App/Home/View/Common/commonnav.html'/>
+
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index')}">首页</a></li>
+					<li><a href="{:U('Person/personhomepage')}">我的For优</a></li>
+					<li class="active"><a href="#">账户安全</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper clearfix" >
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a>全部</a></li>
+					<li><a>待付款</a></li>
+					<li><a>待确认</a></li>
+					<li><a>配送中</a></a></li>
+					<li><a>已完成</a></li>
+				</ul>
+				<ul>
+					<span>资料管理</span>
+					<li><a>个人信息</a></li>
+					<li><a>地址管理</a></li>
+					<li class="active"><a>账户安全</a></li>
+				</ul>
+				<ul>
+					<span>服务中心</span>
+					<li><a>联系客服</a></li>
+					<li><a>关于我们</a></li>
+					<li><a>意见反馈</a></li>
+				</ul>
+			</div>
+			
+			<!--li-->
+
+			<div id="person-info-body">
+				<div class="person-info-body-header">
+					<span class="spliter bground-special"></span>
+					<h4>重置密码</h4>
+				</div>
+				
+				
+					<div class="person-info-body-progress">
+						<dl class="active" id="dl-1">
+							<dt class="text">1</dt>
+							<dt class="round"></dt>
+							<dd class="phone">填写手机号</dd>
+						</dl>
+						<dl  id="dl-2">
+							<dt class="text">2</dt>
+							<dt class="round"></dt>
+							<dd class="self">验证身份</dd>
+						</dl>
+						<dl id="dl-3">
+							<dt class="text">3</dt>
+							<dt class="round"></dt>
+							<dd class="password">设置新密码</dd>
+						</dl>
+						<dl id="dl-4">
+							<dt class="text">4</dt>
+							<dt class="round"></dt>
+							<dd class="finish">完成</dd>
+						</dl>
+					</div>
+				
+				<div class="person-info-body-main">
+					
+					
+					<div class="person-info-body-page1">
+						<div class="person-info-body">
+							<!--1-->
+							<span class="glyphicon glyphicon-phone text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin" >手机号:</span>
+							<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-1" id="person-info-body-form-phone"/>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin" id="form-1-span-1">请输入注册时使用的手机号</span>
+							<p><br /></p>
+							<!--2-->
+							<div class="person-info-body-page-eletop">
+								<span class="glyphicon glyphicon-th-large text-special span-inline-block person-info-body-page-margin"></span>
+								<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">验证码:</span>
+								<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="verification" form="person-info-body-form-1" id="check-image-input"/>
+								<!--<span class="span-inline-block person-info-body-page1-imgverification bground-special .person-info-body-page-margin" style="margin-left:14px"></span>-->
+								<span class="span-inline-block person-info-body-page-text person-info-body-page-margin"><img src=" __URL__/verify/id/'+Math.random()" onclick="this.src='__URL__/verify/id/'+Math.random()" id="check-image"/></span>
+							
+							</div>
+						</div>
+						<!--3-->
+						<form action="{:U('Person/phone')}" class="person-info-body-page-eletop" method="get" id="person-info-body-form-1">
+							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-1-button"/>
+							<input type="submit" style="display: none;" id="body-form-1-submit"/>
+						</form>
+					</div>
+					
+					
+					<div class="person-info-body-page2">
+						<div class="person-info-body person-info-body-2">
+							<!--1-->
+							<span class="glyphicon glyphicon-comment text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">短信验证:</span>
+							<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-2" id="person-info-body-form-message"/>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin">请输入收到的短信验证码</span>
+							<p><br /></p>
+						</div>
+						<!--3-->
+						<form action="#" class="person-info-body-page-eletop" method="get" id="person-info-body-form-2">
+							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-2-button"/>
+						</form>
+					</div>
+					
+					
+					<div class="person-info-body-page3">
+						<div class="person-info-body person-info-body-3">
+							<!--1-->
+							<span class="glyphicon glyphicon-lock text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">输入新密码:</span>
+							<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-3" id="person-info-body-form-paword-1"/>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin person-info-body-page-text-long">8-20位字符，建议由数字，字母和符号两种以上的组合</span>
+							<p><br /></p>
+							<!--2-->
+							<div class="person-info-body-page-eletop">
+								<span class="glyphicon glyphicon-lock text-special span-inline-block person-info-body-page-margin"></span>
+								<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">确认新密码:</span>
+								<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="verification" form="person-info-body-form-3" id="person-info-body-form-paword-2"/>
+								<span class="span-inline-block person-info-body-page-text person-info-body-page-margin">再次输入新密码</span>
+							
+							</div>
+						</div>
+						<!--3-->
+						<form action="#" class="person-info-body-page-eletop" method="get" id="person-info-body-form-3">
+							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-3-button"/>
+						</form>
+					</div>
+					
+					
+					<div class="person-info-body-page4">
+						<span class="person-info-body-page4-container">&nbsp;<span class="glyphicon glyphicon-ok" style="color:white"></span></span>
+						<span class="person-info-body-page4-text">恭喜你，重置密码成功！</span>
+					</div>
+				
+				</div>
+			</div>			
+		</div>
+
+		<include file='App/Home/View/Common/commontail.html'/>
+
+		<include file='App/Home/View/Common/commonlocation.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/script/resetpword.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/script/common.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+	</body>
+</html>

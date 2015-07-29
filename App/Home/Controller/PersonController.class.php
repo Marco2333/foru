@@ -196,8 +196,6 @@ class PersonController extends Controller {
             {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
             }
-            
-             // $this->assign("url",$img_url);
         }
         else
         {
@@ -518,19 +516,6 @@ class PersonController extends Controller {
         $Verify->imageH = 50;*/
         $Verify->entry();
     }
-        
-    public function forgetPword(){
-        $user = $_SESSION['username'];
-
-        if ($user != null)
-        {
-            $this->display("forgetpword");
-        }
-        else
-        {
-            $this->redirect('Home/Login/index');
-        }
-     }
 
     public function check(){
         $check  = $_POST['check'];
@@ -558,14 +543,7 @@ class PersonController extends Controller {
         $user  = $_SESSION['username'];
         $phone = $_POST["phone"];
 
-        $where = array(
-            'phone' => $user
-            );
-        $data=$db->where($where)
-                 ->field('phone')
-                 ->find();
-
-        if($data['phone'] == $phone)
+        if($user == $phone)
         {
             $state = array(
                 'value' => 'success'
@@ -578,8 +556,7 @@ class PersonController extends Controller {
                 'value' => 'error'
                 );
             $this->ajaxReturn($state);
-        }
-        
+        }    
     }
     
     public function changePWord(){

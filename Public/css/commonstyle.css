@@ -103,6 +103,12 @@ i, cite, em {
 .text-special{
 	color:#24dfc2;
 }
+.text-alert {
+	color: #ff0000;
+}
+.text-ok {
+	color: #00ff00;
+}
 .bground-special {
 	background-color: #24dfc2;
 }

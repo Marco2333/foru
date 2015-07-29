@@ -4,9 +4,9 @@
 .person-info-body-main{margin-left: 120px;}
 .span-inline-block{display: inline-block;}
 .person-info-body-page-margin{ margin-left: 2px; margin-right: 2px;}
-.person-info-body-page-eletop{margin-top:20px;}
+.person-info-body-page-eletop{margin-top:10px;}
 .person-info-body-page-text{ font-size: 9px; vertical-align: 9px;}
-.person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
+.person-info-body-page-input{ padding-left: 5px;width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
 .person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
 .glyphicon{ font-size: 24px; vertical-align: 5px;}
 .person-info-body{ margin-left: 48px;}
@@ -46,11 +46,8 @@ form{ padding-left: 127px;}
 #person-info-body span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 #person-info-body .person-info-body-page4-text{font-size: 30px; vertical-align: -11px;}
 
-
 /*验证码*/
-#check-image{width: 150px; height: 30px;}
-
-
+#check-image{width: 100px; height: 30px; vertical-align: -8px;}
 
 /*.person-info-body-page1{display: none;}
  初始化让第一界面显示，二三四界面不显示
@@ -58,7 +55,6 @@ form{ padding-left: 127px;}
 .person-info-body-page2{display: none;}
 .person-info-body-page3{display: none;}
 .person-info-body-page4{display: none;}
-
 
 /*pay*/
 
