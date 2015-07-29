@@ -11,18 +11,11 @@ $(function(){
         if($search != "" ) {
 
           record = $.cookie("record");
-          if(record == null) {
-             
+          if(record == null) {           
               var record = $search;
-              
-              // var recordString = JSON.stringify(record); //JSON 数据转化成字符串
-
               $.cookie("record", record);
           }
-          else {
-              // alert("not null");
-              // var newrecord = JSON.parse(myCookie); //字符串转化成JSON数据
-              
+          else {       
               var recordList = record.split(",");
               var newrecord = "";
               for(var i=0;i<recordList.length;i++){
@@ -34,22 +27,12 @@ $(function(){
             
               recordList = newrecord.split(",");
               if(recordList.length > 6){                  
-                  // newrecord = "";
-                  // for(var i=1;i<recordList.length;i++){
-
-                  // }
                   newrecord = newrecord.substr(newrecord.indexOf(",")+1);
               }
-              // record[record.length] = $search;
               $.cookie("record", newrecord);    
           } 
         }
     		window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search;
-    });
-    
-    $("#search-record li").click(function(){
-        alert("dd");
-        // $("#header-search input").val($(this).text());
     });
     
     $("#header-search input").focus(function(){
@@ -66,12 +49,6 @@ $(function(){
         }
 
     });
-
-    // $(".rm-record").click(function(){
-    //      alert("dd");
-    //      $.cookie("record", "",{ expires: -1});
-    //      $("#search-record option").remove();
-    // });
 
     // $("#search-record").focus(function(){
     //       $("#search-record").removeClass("height-none");
@@ -109,12 +86,8 @@ $(function(){
           if($search != null && $search != ""){
 
             record = $.cookie("record");
-            if(record == null) {
-               
-                var record = $search;
-                
-                // var recordString = JSON.stringify(record); //JSON 数据转化成字符串
-
+            if(record == null) {      
+                var record = $search;       
                 $.cookie("record", record);
             }
             else {
@@ -158,6 +131,7 @@ $(function(){
           $("#location").text($("#campus-content li.active").text());
       });
 })
+
 String.prototype.trim = function() {
 	   return this.replace(/(^\s*)|(\s*$)/g, '');
 }
