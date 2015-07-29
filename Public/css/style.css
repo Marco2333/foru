@@ -160,32 +160,28 @@
 #nav-bar .nav-pills li:last-child {
 	float: right;
 	width: 200px;
-	text-align: left;
+	text-align: right;
 	padding-top: 10px;
+	margin-right: 25px;
 }
-#nav-bar .nav-pills li:last-child select {
+select#location {
 	background-color: #24dfc2;
+	border: none;
+	outline: none;
+	outline: none;
+	border: none;
+}
+#location {
 	font-family: "黑体";
 	font-size: 14px;
-	border: none;
-	outline: none;
 	margin-top: 2px;
-	outline: none;
-	border: none;
-}
-/*#nav-bar .nav-pills li:last-child select option {
-	border-radius: 5px;
-}*/
-#nav-bar .nav-pills li:last-child a {
-	width: 200px;
-	text-align: left;
-	padding-left: 4px;
+	cursor: pointer;
 }
 .nav-wrapper {	
 	margin: 0 auto;
 }
 #shopping-cart {
-  	margin-left: 60px;
+  	margin-left: 120px;
     float: left;
     z-index: 11;
     width: 100px;
@@ -2087,11 +2083,11 @@ input.goods-count {
 	line-height: 40px; 
 	cursor: pointer;
 }
-#campus-item li:hover { 
+#campus-main li:hover { 
 	background-color: #ff573a; 
 	color: white;
 }
-#campus-item li.active { 
+#campus-main li.active { 
 	background-color: #FF573A; 
 	color: white;
 }
@@ -2110,10 +2106,7 @@ input.goods-count {
 	padding-left: 50px;
 	cursor: pointer;
 }
-#campus-content li:hover { 
-	background-color: #ff573a;
-	color: white;
-}
+
 
 
 

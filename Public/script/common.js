@@ -143,12 +143,20 @@ $(function(){
           $("#campus-background").show(300);
       });
 
-      $("#campus-close").bind("click",function(){
-          $("#campus-background").hide(300);
+      $("#campus-main li").click(function(){
+          $(this).siblings().removeClass("active");
+          $(this).addClass("active");
       });
 
-
-
+      $("#campus-content li").click(function(){
+           $("#location").text($(this).text());
+      });
+      $("#campus-close").bind("click",function(){
+          $("#campus-background").hide(300);
+          console.log($("campus-content li.active"));
+          // alert($("campus-content li.active").text());
+          $("#location").text($("#campus-content li.active").text());
+      });
 })
 String.prototype.trim = function() {
 	   return this.replace(/(^\s*)|(\s*$)/g, '');
