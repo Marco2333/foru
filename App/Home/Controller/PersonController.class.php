@@ -516,32 +516,22 @@ class PersonController extends Controller {
         $Verify->imageH = 50;*/
         $Verify->entry();
     }
-
-    public function check(){
-        $check  = $_POST['check'];
-        $flag   = $this->check_verify($check);
-
-        if($flag)
-        {
-            $state = array(
-                'value' => 'success'
-                );
-            $this->ajaxReturn($state);
-        }
-        else
-        {
-            $state = array(
-                'value' => 'error'
-                );
-            $this->ajaxReturn($state);
-        }
-    }
     
     public function phone(){
         $db=M('users');
 
         $user  = $_SESSION['username'];
         $phone = $_POST["phone"];
+        $check  = $_POST['check'];
+        $flag   = $this->check_verify($check);
+
+        if(!$flag)
+        {
+            $state = array(
+                'value' => 'checkerror'
+                );
+            $this->ajaxReturn($state);
+        }
 
         if($user == $phone)
         {
