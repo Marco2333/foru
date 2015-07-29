@@ -2,20 +2,11 @@ $(function(){
 	$("#person-location-info tbody .revise-button").on("click",function(){
         var phone   = $(this).nextAll(".phone-none").val();
         var rank    = $(this).nextAll(".rank-none").val();
-        // alert(phone);
-        // alert(rank);
-        // document.getElementById("phone-none").value=phone;
-        // document.getElementById("rank-none").value=rank;
-
+    
         reviseAddress(phone,rank);
 
         $("#recevier_submit_button_revise").on("click",function(){
             var info = saveReviseLocation(phone,rank);
-
-            // $(this).parent().parent().children().first().html("hello");
-            // document.getElementById("userName-none").value=info['userName'];
-            // // document.getElementById("location-none").value=info['location'];
-            // document.getElementById("phoneNum-none").value=info['phoneNum'];
         });
 
         // alert("I am here");
@@ -34,45 +25,7 @@ $(function(){
         $(this).parent().parent().remove();
         deleteAddress(phone,rank);
     });
-
-    // $("#recevier_submit_button").on('click',function(){
-    	// var phone   = $(this).nextAll(".phone-none").val();
-        // var rank    = $(this).nextAll(".rank-none").val();
-
-        // if (typeof(rank) != undefined)
-        // {
-        //     // $(this).parent().parent().remove();
-        //     // deleteAddress(phone,rank);
-
-        //     // saveNewLocation();
-        //     saveReviseLocation(phone,rank);
-        // }
-        // else
-        // {
-        //     saveNewLocation();
-        // }
-        
-        // saveNewLocation();              
-    // });
-
-    // $("#recevier_submit_button").on("click",function(){
-    //     var $phoneId=$("input[name=phone-number]").val();
-    //     console.log($phoneId);
-    //     if(!(/[0-9]{11}/.test($phoneId))){
-    //         alert("手机号不符合要求");
-    //         return;
-    //     }
-
-    //     var $form=document.getElementById("receiver_form");
-    //     $form.submit();
-    // })
-})
-
-function addOrRevise(){
-    document.getElementById("change-location").className="";
-    // document.getElementById("change-location").class  = "none";
-    // document.getElementById("change-location").setAttribute("calss","none");
-}
+});
 
 function cancel(){
     document.getElementById("change-location").className+=" none";
@@ -187,17 +140,19 @@ function saveReviseLocation(phone,rank){
 }
 
 function addAddress(){
-    addOrRevise();
 
-    document.getElementById("recevier_submit_button").className="";
-    document.getElementById("recevier_submit_button_revise").className="none";
+    $("#change-location").removeClass("none");
+
+    $("#recevier_submit_button").removeClass("none");
+    $("recevier_submit_button_revise").addClass("none");
 }
 
 function reviseAddress(phone,rank){
-    addOrRevise();
+    
+    $("#change-location").removeClass("none");
 
-    document.getElementById("recevier_submit_button").className="none";
-    document.getElementById("recevier_submit_button_revise").className="";
+    $("#recevier_submit_button").addClass("none");
+    $("recevier_submit_button_revise").removeClass("none");
 
     var info = {
         phone:phone,
