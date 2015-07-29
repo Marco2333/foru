@@ -167,7 +167,7 @@ class IndexController extends Controller {
 
     //
     public function discountGoods(){
-         $campusId=cookie('campusId');        //获取校区id
+         $campusId=I('campusId');        //获取校区id
         if($campusId==null){
             $campusId=1;
         }

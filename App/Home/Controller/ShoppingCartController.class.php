@@ -7,7 +7,7 @@ class ShoppingCartController extends Controller {
 
     public function _initialize() {
         if (!isset($_SESSION['username'])) {
-            $this->redirect('/Home/Login');
+            $this->redirect('/Home/Login/Index');
         }
     }
 
@@ -16,7 +16,7 @@ class ShoppingCartController extends Controller {
 	public function shoppingcart(){
    		$shoppingcart=M('Orders');
        
-         $campusId=cookie('campusId');        //获取校区id
+         $campusId=I('campusId');        //获取校区id
         if($campusId==null){
             $campusId=1;
         }
@@ -50,7 +50,7 @@ class ShoppingCartController extends Controller {
     public function saveOrderCount(){
         $orderCount=I('orderCount');
         $orderId=I('orderId');
-        $phone=I('phone');
+        $phone=session('username');
 
         $orders=M('orders');
         $data['phone']=$phone;             //手机号
@@ -67,7 +67,7 @@ class ShoppingCartController extends Controller {
         $smallOrders=split(',',$orderId);                 //拆分订单id,获取单笔订单id
 
         $order=M('orders');
-        $data["phone"]=cookie('username');
+        $data["phone"]=session('username');
         foreach ($smallOrders as $key => $value) {
             $data["order_id"]=$value;
             $status=$order->where($data)->delete();    //删除订单

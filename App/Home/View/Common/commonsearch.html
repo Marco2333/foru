@@ -9,12 +9,7 @@
 				<input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
 
 				<datalist id="search-record">
-				 <!--   <option value="牛奶">
-				   <option value="水乃">
-				   <option value="阿尔及利亚">
-				   <option value="安道尔共和国">
-				   <option value="安哥拉">
-				   <option class="rm-record" value="清空搜索记录"> -->
+				
 				</datalist>
 					
 				<button id="search">搜索</button>
@@ -30,7 +25,7 @@
 			<div id="shopping-cart" class="drop-down" >
 				<div class="drop-down-left">
 					<img src="__PUBLIC__/img/icon/shopping-cart.png" alt="">	
-					<a target="_blank" href="{:U('ShoppingCart/shoppingcart')}">购物车 &gt;&gt;</a>
+					<a target="_blank" href="{:U('ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
 					<div class="no-goods none">
