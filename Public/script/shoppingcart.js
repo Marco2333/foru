@@ -105,7 +105,7 @@ $(".buttonright").on('click',function(){
       }
     }                       
   });
-  $(this).attr('href',"../../../Home/Person/goodsPayment/orderIds/"+orderIds);
+  $(this).attr('href',"../../Home/Person/goodsPayment/orderIds/"+orderIds);
 });
 
 $('a[name="deleteSmallOrder"]').on('click',function(){
