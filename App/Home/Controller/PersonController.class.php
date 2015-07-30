@@ -15,11 +15,17 @@ class PersonController extends Controller {
         // $this->show();
         $this->personInfo();
     }
- 
+    // public function forgetPword(){
+    //     // $this->show();
+    //     $this->display("forgetpword");
+    // }
+    // public function orderManage(){
+    //     // $this->show();
+    //     $this->display("orderManage");
+    // }
+
     public function personInfo($active = "0"){
         $user = $_SESSION['username'];
-        // dump($where);
-        // $where  = "phone='13040101273'";
 
         if ($user != null)
         {
@@ -65,7 +71,6 @@ class PersonController extends Controller {
                                    $weixin      ){
 
         $user = $_SESSION['username'];
-        // $user = '13040101273';
 
         $data = array(
             'nickname'  =>  $nickname,
@@ -115,13 +120,10 @@ class PersonController extends Controller {
             $_SESSION['nickname']   = $nickname;
             $_SESSION['academy']    = $academy;
 
-            // echo $User->username;
-
             $Users = M("users");
             $where = array(
                 'phone'  => $user
                 );
-            // $where = "phone='13040101273'";
 
             $data = array(
                 'nickname'   => $nickname,
@@ -134,7 +136,6 @@ class PersonController extends Controller {
             $Users->where($where)
                   ->save($data);
 
-            // $this->assign("active","0");
             $this->personInfo("0");
         }
         else
@@ -166,7 +167,7 @@ class PersonController extends Controller {
                 $where  = array(
                     'phone'  => $user
                     );
-                // $where      = "phone='13040101273'";
+
                 $img_url = $Users->where($where)
                                  ->field("img_url")
                                  ->find();
@@ -176,8 +177,7 @@ class PersonController extends Controller {
 
                 if ($result !== false)
                 {
-                    // $this->personInfo("1");
-                    $this->redirect('/Home/Person/personInfo');
+                    $this->redirect('/Home/Person/personInfo',array('active'=>1));
                 }
                 else
                 {
@@ -187,7 +187,10 @@ class PersonController extends Controller {
             else
             {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
+                $this->redirect('/Home/Person/personInfo',array('active'=>1));
             }
+            
+             // $this->assign("url",$img_url);
         }
         else
         {
@@ -198,7 +201,6 @@ class PersonController extends Controller {
 
     public function locaManage(){
         $user = $_SESSION['username'];
-        // $user   = "13040101273";
 
         if ($user != null)
         {
@@ -210,8 +212,6 @@ class PersonController extends Controller {
                 );
             $data   = $Receiver->where($where)
                                ->select();
-
-            // dump($data);
 
             if ($data !== false)
             {
@@ -230,21 +230,12 @@ class PersonController extends Controller {
 
     }
 
-    // public function addOrReviseButton(){
-    //     // $abc['status']=1;
-    //     // $this->ajaxReturn($abc);
-    //     $this->locaManage("1");
-    // }
-
     public function saveLocation($userName,
                                  $location1,
                                  $location2,
-                                 $location3,
                                  $detailedLoc,
                                  $phoneNum      ){
         $user = $_SESSION['username'];
-        // $tag  = session('tag');
-        // $user = '13040101273';
         $tag  = 0;
         $rank = time();
 
@@ -252,12 +243,10 @@ class PersonController extends Controller {
             'phone'      =>     $user,
             'rank'       =>     $rank,
             'name'       =>     $userName,
-            'address'    =>     $location1."***".
-                                $location2."***".
-                                $location3."***".
+            'address'    =>     $location1."^".
+                                $location2."^".
                                 $detailedLoc,
             'phone_id'   =>     $phoneNum,
-            // 'tag'        =>     $tag,
             'is_out'     =>     0
             );
 
@@ -267,14 +256,9 @@ class PersonController extends Controller {
             'rank'   => $rank,
             '_logic' => 'and'
             );
-        
-        // echo $where;
-        // dump($data);
 
         $result     =   $Receiver->data($data)
                                  ->add();
-
-        // $this->locaManage();
 
         if ($result !== false)
         {
@@ -306,8 +290,20 @@ class PersonController extends Controller {
         
         if ($result !== false)
         {
-            $result['result'] = 1;
-            
+            $locations = explode('^',$result['address']);
+
+            $whereCity = array(
+                'city_name' => $locations[0]
+                );
+            $city = M('city')->where($whereCity)
+                                              ->find();
+
+            $result['city']        = $locations[0];
+            $result['campus']      = $locations[1];
+            $result['detailedLoc'] = $locations[2];
+            $result['city_id']     = $city['city_id'];
+            $result['result']      = 1;
+
             $this->ajaxReturn($result);
         }
         else
@@ -324,19 +320,8 @@ class PersonController extends Controller {
                                     $userName,
                                     $location1,
                                     $location2,
-                                    $location3,
                                     $detailedLoc,
                                     $phoneNum       ){
-        // echo $phone;
-        // $data = array(
-        //     'phone_id'      =>  $phoneNum,
-        //     'name'          =>  $userName,
-        //     'address'       =>  $location1."***".
-        //                         $location2."***".
-        //                         $location3."***".
-        //                         $detailedLoc
-        // );
-        // dump($data);
 
         $data = array(
             'is_out'    =>  1
@@ -350,27 +335,6 @@ class PersonController extends Controller {
             );
         $result = $Receiver->where($where)
                            ->save($data);
-
-        // if ($result !== false)
-        // {
-        //     $page = I('page');
-
-        //     if ($page != '0')
-        //     {
-        //         // echo $page;
-        //         $this->redirect('/Home/Person/goodsPayment');
-        //     }
-        //     else
-        //     {
-        //         // echo $page;
-        //         $this->redirect('/Home/Person/locaManage');
-        //     }
-        // }
-        // else
-        // {
-        //     // echo "fail";
-        //     // 数据库操作失败
-        // }
 
         if ($result !== false)
         {
@@ -388,13 +352,25 @@ class PersonController extends Controller {
         }
     }
 
+    public function selectCity(){
+        $Person = D('Person');
+        $cities = $Person->getCities();
+        /*dump($cities);*/
+        $this->ajaxReturn($cities);
+    }
+
+    public function selectCampus($cityID){
+        $Person = D('Person');
+        $campus = $Person->getCampus($cityID);
+
+        $this->ajaxReturn($campus);
+    }
+
     public function addOrReviseSave(){
         $Person = D('Person');
 
-        $user    = $_SESSION['username'];
-        // $tag     = session('tag');
-        // $user = "13040101273";
-        $rank = Time();
+        $user   = $_SESSION['username'];
+        $rank   = Time();
 
         if ($Person->addressIsEmpty())
         {
@@ -405,62 +381,50 @@ class PersonController extends Controller {
             $tag = 1;
         }
 
+        $campus_id = $Person->getCampusID(I('select-location-2'));
+
         $data = array(
             'phone'         =>  $user,
             'phone_id'      =>  I('phone-number'),
             'name'          =>  I('user-name'),
-            'address'       =>  I('select-location-1')."***".
-                                I('select-location-2')."***".
-                                I('select-location-3')."***".
+            'address'       =>  I('select-location-1')."^".
+                                I('select-location-2')."^".
                                 I('detailed-location'),
             'tag'           =>  $tag,
             'rank'          =>  $rank,
-            'is_out'        =>  0
+            'is_out'        =>  0,
+            'campus_id'     =>  $campus_id
         );
-        // if (($data['phone_id']  != null)    &&
-        //     ($data['name']      != null)    &&
-        //     ($data['address']   != null)        ){
             
-            $Receiver = M("receiver");
-            $result = $Receiver->data($data)
+        $Receiver = M("receiver");
+        $result = $Receiver->data($data)
                                ->add();
 
-            if ($result !== false)
-            {
-                $page = I('page');
+        if ($result !== false)
+        {
+            $page = I('page');
 
-                if ($page != '0')
-                {
-                    // echo $page;
-                    $this->redirect('/Home/Person/goodsPayment');
-                }
-                else
-                {
-                    // echo $page;
-                    $this->redirect('/Home/Person/locaManage');
-                }
+            if ($page != '0')
+            {
+                $this->redirect('/Home/Person/goodsPayment');
             }
             else
             {
-                // echo "fail";
-                // 数据库操作失败
+                $this->redirect('/Home/Person/locaManage');
             }
-            // if ($Receiver->data($data)->add() == false){
-            //     echo "添加失败";
-            // }
-            // else{
-            //     echo "添加失败添加成功";
-            // }
-            
-        // }
+        }
+        else
+        {
+            // 数据库操作失败
+        }
+
     }
 
     public function deleteLocation($phone,$rank){
         $data = array(
             'is_out'    =>  1
             );
-      /*  echo $phone."<br>";
-        echo $rank;*/
+
         $Receiver = M('receiver');
         $where  = array(
             'phone'  => $phone,
@@ -506,24 +470,25 @@ class PersonController extends Controller {
         $Verify->imageH = 50;*/
         $Verify->entry();
     }
-    
-    public function phone(){
-        $db=M('users');
+        
+    public function forgetPword(){
+        $user = $_SESSION['username'];
 
-        $user  = $_SESSION['username'];
-        $phone = $_POST["phone"];
+        if ($user != null)
+        {
+            $this->display("forgetpword");
+        }
+        else
+        {
+            $this->redirect('Home/Login/index');
+        }
+     }
+
+    public function check(){
         $check  = $_POST['check'];
         $flag   = $this->check_verify($check);
 
-        if(!$flag)
-        {
-            $state = array(
-                'value' => 'checkerror'
-                );
-            $this->ajaxReturn($state);
-        }
-
-        if($user == $phone)
+        if($flag)
         {
             $state = array(
                 'value' => 'success'
@@ -536,7 +501,37 @@ class PersonController extends Controller {
                 'value' => 'error'
                 );
             $this->ajaxReturn($state);
-        }    
+        }
+    }
+    
+    public function phone(){
+        $db=M('users');
+
+        $user  = $_SESSION['username'];
+        $phone = $_POST["phone"];
+
+        $where = array(
+            'phone' => $user
+            );
+        $data=$db->where($where)
+                 ->field('phone')
+                 ->find();
+
+        if($data['phone'] == $phone)
+        {
+            $state = array(
+                'value' => 'success'
+                );
+            $this->ajaxReturn($state);
+        }
+        else
+        {
+            $state = array(
+                'value' => 'error'
+                );
+            $this->ajaxReturn($state);
+        }
+        
     }
     
     public function changePWord(){
@@ -571,7 +566,6 @@ class PersonController extends Controller {
     }
 
     public function goodsPayment(){
-        // $this->show();
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -586,27 +580,23 @@ class PersonController extends Controller {
                 $orderIDstr = $_SESSION['orderIDstr'];
             }            
 
-            // $Person = D('Home\Model\Person');
             $Person      = D('Person');
             $together_id = $Person->setTogetherID();
-            // $data        = $Person->getPayData($together_id);
-            // dump($data);
 
             $address   = $Person->getAddress();
             $orderInfo = $Person->getOrderInfo($together_id);
             $goodsInfo = $Person->getGoodsInfo();
             $price     = $Person->getTotalPrice();
-
-            // dump($address);
-            // dump ($goodsInfo);
-            // dump ($orderInfo);
-            // dump($price);
+            // $cities    = $Person->getCities();
+            // $campus    = $Person->getCampus($cities[0]['city_id']);
 
             $this->assign('orderIDstr',$orderIDstr);
             $this->assign('address',$address);
             $this->assign('orderInfo',$orderInfo);
             $this->assign('goodsInfo',$goodsInfo);
             $this->assign('price',$price);
+            // $this->assign('cities',$cities);
+            // $this->assign('campus',$campus);
             $this->display("goodsPayment");
         }
         else

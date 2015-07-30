@@ -1,16 +1,18 @@
 $(function(){
+    cityChange('city-change','campus-change');
+
 	$(".main-wrapper-2").hide();
 	$(".main-wrapper-2-1").bind("click",function(){
 		$(".main-wrapper-2").show(300);
 		$(this).hide();
 
-		document.getElementById("save_submit").className="but but-submit";
-    	document.getElementById("revise_submit").className="but but-submit none";
+		$("#save_submit").removeClass("none");
+        $("#revise_submit").addClass("none");
 	});
 
 	$(".main-wrapper-1-btn-revise").bind("click",function(){
 		$(".main-wrapper-2").show(300);
-		// $(this).hide();
+        $(".main-wrapper-2-1").hide();
 
 		var phone   = $(this).nextAll(".phone-none").val();
         var rank    = $(this).nextAll(".rank-none").val();
@@ -26,20 +28,15 @@ $(function(){
 		$(".main-wrapper-2").hide(300);
 		$(".main-wrapper-2-1").show();
 
-		document.getElementById("save_submit").className="but but-submit";
-    	document.getElementById("revise_submit").className="but but-submit none";
+		$("#save_submit").removeClass("none");
+        $("#revise_submit").addClass("none");
+
+        document.getElementById("userName").value   ="";
+        document.getElementById("detailedLoc").value="";
+        // document.getElementById("city-change").selected();
+        // document.getElementById("campus-change").selected();
+        document.getElementById("phoneNum").value   ="";
 	});
-
-	// $("#addressColumn tbody .main-wrapper-1-btn").on("click",function(){
- //        var phone   = $(this).nextAll(".phone-none").val();
- //        var rank    = $(this).nextAll(".rank-none").val();
-
- //        reviseAddress(phone,rank);
-
- //        $("#revise_submit").on("click",function(){
- //            var info = saveReviseLocation(phone,rank);
- //        });
- //    });
 	
 	$(".main-wrapper-1-btn-delete").on("click",function(){
         var phone   = $(this).nextAll(".phone-none").val();
@@ -48,18 +45,11 @@ $(function(){
         deleteAddress(phone,rank);
     });
 
-
 });
 
-function addOrRevise(){
-    document.getElementById("change-location").className="";
-}
-
 function reviseAddress(phone,rank){
-    // addOrRevise();
-
-    document.getElementById("save_submit").className="but but-submit none";
-    document.getElementById("revise_submit").className="but but-submit";
+    $("#save_submit").addClass("none");
+    $("#revise_submit").removeClass("none");
 
     var info = {
         phone:phone,
@@ -71,14 +61,46 @@ function reviseAddress(phone,rank){
         url:"../../Home/Person/getPhoneRank",
         data:info,
         success:function(data){
+            var $city=$("#"+'city-change');
+            $.ajax({
+                type:"post",
+                data:{'':''},
+                url:"../../Home/Person/selectCity",
+                success:function(city){
+                    for(var i=0;i<city.length;i++){
+                        var op=document.createElement('option');
+                        if(city[i]['city_name']==data['city']){
+                                op.setAttribute("selected","selected");
+                        }
+                        op.innerHTML=city[i]['city_name'];
+                        $city.append(op);
+                    }
+                },
+            });
+            var $campus_rel=$('#'+'campus-change');
         	if (data['result'] != 0)
         	{
-            	document.getElementById("userName").value=data['name'];
-            	// document.getElementById("userName").value=data['name'];
-            	// document.getElementById("userName").value=data['name'];
-            	// document.getElementById("userName").value=data['name'];
-            	// document.getElementById("userName").value=data['name'];
-        		
+            	document.getElementById("userName").value    =data['name'];
+                var info = {
+                    cityID:data['city_id'],
+                };
+                $.ajax({
+                    type:"post",
+                    url:"../../Home/Person/selectCampus",
+                    data:info,
+                    success:function(campus){
+                        for(var i=0;i<campus.length;i++){
+                            var op=document.createElement('option');
+                            if(campus[i]['campus_name']==data['campus']){
+                                op.setAttribute("selected","selected");
+                            }
+                            op.innerHTML=campus[i]['campus_name'];
+                            $campus_rel.append(op);
+                        }
+                    },
+                });
+            	document.getElementById("detailedLoc").value =data['detailedLoc'];
+                document.getElementById("phoneNum").value    =data['phone_id'];      		
             }
             else
             {
@@ -89,19 +111,16 @@ function reviseAddress(phone,rank){
 }
 
 function saveReviseLocation(phone,rank){
-	// alert(phone);
-    // alert(rank);
 
-    document.getElementById("save_submit").className="but but-submit";
-    document.getElementById("revise_submit").className="but but-submit none";
+    $("#save_submit").removeClass("none");
+    $("#revise_submit").addClass("none");
 
     var info = {
         phone:phone,
         rank:rank,
         userName:$('#userName').val(),
-        location1:$('#location1').val(),
-        location2:$('#location2').val(),
-        location3:$('#location3').val(),
+        location1:$('#city-change').val(),
+        location2:$('#campus-change').val(),
         detailedLoc:$('#detailedLoc').val(),
         phoneNum:$('#phoneNum').val()
     };
@@ -132,15 +151,12 @@ function deleteAddress(phone,rank){
         rank:rank
     };
 
-    // alert(phone);
-    // alert(rank);
-
     $.ajax({
         type:"POST",
         url:"../../Home/Person/deleteLocation",
         data:info,
         success:function(data){
-            // console.log(data);
+            console.log(data);
         	if (data['result'] != 0)
         	{
         		// alert("收货地址删除成功！");
@@ -152,3 +168,70 @@ function deleteAddress(phone,rank){
         }
     })
 }
+
+function cityChange(city,campus){
+    var $city=$("#"+city);
+    var $campus=$('#'+campus);
+    var $value;
+    /*$city.find("option").remove();*/
+    $.ajax({
+        type:"post",
+        data:{'':''},
+        url:"../../Home/Person/selectCity",
+        success:function(data){
+            $value=data[0]['city_id'];
+            var $city=$("#"+city);
+            for(var i=0;i<data.length;i++){
+                var op=document.createElement('option');
+                op.innerHTML=data[i]['city_name'];
+                $city.append(op);
+            }
+            $campus.find("option").remove();
+
+            var info = {
+                cityID:$value,
+                };
+            $.ajax({
+                type:"post",
+                url:"../../Home/Person/selectCampus",
+                data:info,
+                success:function(data){
+                    for(var i=0;i<data.length;i++){
+                        var op=document.createElement('option');
+                        op.innerHTML=data[i]['campus_name'];
+                        $campus.append(op);
+                    }
+                },
+            });
+        },
+    });
+    $city.change(function(){
+        $campus.empty();
+        var $value=$(this).prop('selectedIndex')+1;
+        var info = {
+            cityID:$value,
+        };
+        $.ajax({
+            type:"post",
+            url:"../../Home/Person/selectCampus",
+            data:info,
+            success:function(data){
+                for(var i=0;i<data.length;i++){
+                    var op=document.createElement('option');
+                    op.innerHTML=data[i]['campus_name'];
+                    $campus.append(op);
+                }
+            },
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+

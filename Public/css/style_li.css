@@ -4,13 +4,13 @@
 .person-info-body-main{margin-left: 120px;}
 .span-inline-block{display: inline-block;}
 .person-info-body-page-margin{ margin-left: 2px; margin-right: 2px;}
-.person-info-body-page-eletop{margin-top:10px;}
+.person-info-body-page-eletop{margin-top:20px;}
 .person-info-body-page-text{ font-size: 9px; vertical-align: 9px;}
-.person-info-body-page-input{ padding-left: 5px;width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
+.person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
 .person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
 .glyphicon{ font-size: 24px; vertical-align: 5px;}
 .person-info-body{ margin-left: 48px;}
-form{ padding-left: 127px;}
+
 
 /*process*/
 #person-info-body .person-info-body-progress{padding-left: 110px; margin-bottom: 80px; margin-top: 40px;}
@@ -46,15 +46,28 @@ form{ padding-left: 127px;}
 #person-info-body span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 #person-info-body .person-info-body-page4-text{font-size: 30px; vertical-align: -11px;}
 
+
 /*验证码*/
-#check-image{width: 100px; height: 30px; vertical-align: -8px;}
+#check-image{width: 150px; height: 30px;}
+
+
+
+/*.person-info-body-page1{display: none;}
+ 初始化让第一界面显示，二三四界面不显示
+ * */
+.person-info-body-page2{display: none;}
+.person-info-body-page3{display: none;}
+.person-info-body-page4{display: none;}
+
+
+/*pay*/
 
 .main-wrapper{font-family: "微软雅黑";}
 .main-wrapper-1{font-weight: bolder;}
 .main-wrapper-1 table{ border:1px solid #aaaaaa;}
 .main-wrapper-1 thead{border-bottom: 1px solid #aaaaaa;}
 .main-wrapper-1 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
-.main-wrapper-1 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
+.main-wrapper-1 tbody tr td{ padding-left: 35px;padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-1 .main-wrapper-1-radio{ vertical-align: -7px;}
 .main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
 .main-wrapper-1 .main-wrapper-1-btn-delete{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
@@ -113,3 +126,8 @@ form{ padding-left: 127px;}
 .main-wrapper-7 span.zhe span{ font-size: 20px; font-weight: bold;}
 .main-wrapper-7 span.yuan{}
 .main-wrapper-7 input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px;}
+
+
+
+.special-paddright{ padding-right: 10px}
+.special-paddingleft{padding-left: 10px}
