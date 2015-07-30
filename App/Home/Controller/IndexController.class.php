@@ -331,9 +331,17 @@ public function comment(){
 
     public function searchCampus($name){
         $data['campus_name']=array('like',"%".$name."%");
-        $data['status']=1;
+        //$data['status']=1;
         $campus=M('campus')->field('campus_id,campus_name')->where($data)->select();
         
-        $this->ajaxReturn($campus);
+        if($campus){
+            $result['campus']=$campus;
+            $result['status']="success";
+        }else{
+            $result['status']="failure";
+            $result['cmapus']=null;
+        }
+
+        $this->ajaxReturn($result);
     }
 }
