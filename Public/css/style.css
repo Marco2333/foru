@@ -351,6 +351,7 @@ select#location {
 	width: 896px;
   	float: right;
   	margin-right: 23px;
+  	height: 397px;
 }
 #slide-wrapper > a > span{
 	font-size: 25px;
@@ -2089,12 +2090,12 @@ input.goods-count {
 	overflow: scroll;
 	width: 220px;
 	float: left;
+	background-color: #f5f5f5; 
 }
 #campus-item li { 
 	width: 200px; 
 	height: 40px; 
 	text-align: center; 
-	background-color: #f5f5f5; 
 	font-size: 17px; 
 	line-height: 40px; 
 	cursor: pointer;
