@@ -117,8 +117,8 @@
 					<table>
 						<colgroup>
 							<col style="width: 300px;"/>
-							<col style="width: 600px;"/>
-							<col style="width: 200px;"/>
+							<col style="width: 550px;"/>
+							<col style="width: 250px;"/>
 						</colgroup>
 						<thead>
 							<tr>
@@ -181,16 +181,18 @@
 							<input type="text" name="user-name" id="userName" class="person"/>
 						</div>
 						<div>
-							<label>选择地址：</label>
-							<select id="location1" name="select-location-1">
-								<option value=""></option>
+							<label>城市：</label>
+							<select  name="select-location-1" id="city-change">
+								<!-- <foreach name="cities" item="v">
+									<option value="{$v.city_id}">{$v.city_name}</option>
+								</foreach> -->
 							</select><!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
-							<select id="location2" name="select-location-2">
-								<option value=""></option>
+							<label>校区：</label>
+							<select  name="select-location-2" id="campus-change">
+								<!-- <foreach name="campus" item="v">
+									<option value="{$v.campus_id}">{$v.campus_name}</option>
+								</foreach> -->
 							</select><!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
-							<select id="location3" name="select-location-3">
-								<option value=""></option>
-							</select>
 						</div>
 						<div>
 							<label for="li_address">详细地址：</label>
