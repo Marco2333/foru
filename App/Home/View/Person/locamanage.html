@@ -182,7 +182,7 @@
 						</tbody>
 					</table>
 					<!-- <form action="{:U('Person/addOrReviseButton')}" method=post> -->
-						<button onclick="addAddress();" id="add-location">
+						<button id="add-location">
 							新增收货地址
 						</button>
 					<!-- </form> -->
@@ -201,17 +201,9 @@
 								<div class="fl" style="margin-bottom:10px">
 									<span style="padding-left:59px" class="inline-block">城市:</span>
 									<select id="location1" name="select-location-1">
-									  	<option value ="volvo">Volvo</option>
-									  	<option value ="saab">Saab</option>
-									  	<option value="opel">Opel</option>
-									  	<option value="audi">Audi</option>
 									</select>
 									<span style="margin-left:10px">校区:</span>
 									<select id="location2" name="select-location-2">
-									  	<option value ="volvo">Volvo</option>
-									  	<option value ="saab">Saab</option>
-									  	<option value="opel">Opel</option>
-									  	<option value="audi">Audi</option>
 									</select>
 								</div>
 							</div>
@@ -239,7 +231,7 @@
 									<!-- <input id="userName-none" class="userName-none none" value=""> 
 									<input id="location-none" class="location-none none" value="">
 									<input id="phoneNum-none" class="phoneNum-none none" value=""> -->
-									<input type="button" onclick="cancel();" value="取消" />
+									<input type="button" id="cancel-button" value="取消" />
 								</div>
 							</div>
 						</div>

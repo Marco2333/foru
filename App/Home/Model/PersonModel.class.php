@@ -310,6 +310,47 @@ class PersonModel extends ViewModel {
 
     }
 
+    public function getCities()
+    {
+        $City = M('city');
+        $cities = $City->select();
+
+        return $cities;
+    }
+
+    public function getCampus($cityID){
+        $Campus = M('campus');
+        $where = array(
+            'city_id' => $cityID
+            );
+        $field = array(
+            'campus_id',
+            'campus_name'
+            );
+        $campus = $Campus->where($where)
+                         ->field($field)
+                         ->select();
+
+        return $campus;
+
+    }
+
+    public function getCampusID($campusName)
+    {
+        $Campus = M('campus');
+        $where  = array(
+            'campus_name' => $campusName
+            ); 
+        $field  = array(
+            'campus_id'
+            );
+        $campus = $Campus->where($where)
+                         ->field($field)
+                         ->find();
+
+        return $campus['campus_id'];
+    }
+
 };
 
 
