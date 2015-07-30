@@ -28,42 +28,47 @@
 					<a target="_blank" href="{:U('ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
-					<div class="no-goods none">
+				   <empty name="cartGood">
+				   		<div class="no-goods">
 						 购物车中还没有商品，赶紧选购吧！
 					</div>
-					<div class="index-shopping-cart clearfix">							<!-- -->
-						<ul class="clearfix">
-						   <foreach name="cartGood" item="vo">
-							   	<li id="{$vo.order_id}">
-							   	    <div>
-										<img src="{$vo.img_url}" alt="{$vo.name}">
-										<div>{$vo.name}</div>
-										<span class="goods-cost fl">
-											￥{$vo.price|number_format=###,1}×{$vo.order_count}
-										</span>
-										<span class="fr">
-											<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
-										</span>
-									</div>
-								</li>
-						   </foreach>
-						</ul>
-						<div class="shopping-cart-bottom">
-							<span class="block ">合计: 
-								<span class="total-cost">￥169.5</span>
-							</span>
-							<span class="block">
-								原价: 
-								<span class="pre-total-cost">￥269.5</span>
-							</span>
-							<span class="block clearfix">
-								<a href="{:U('ShoppingCart/shoppingcart')}" class="fl">
-									查看全部<span class="goods-count">9</span>件商品
-								</a>
-								<a href="{:U('ShoppingCart/shoppingcart')}" id="go-shopping-cart" class="fr">去购物车结算</a>
-							</span>
-						</div>
-					</div>
+				    <else/>
+				    	<div class="index-shopping-cart clearfix">							<!-- -->
+				    		<ul class="clearfix">
+				    		   <foreach name="cartGood" item="vo">
+				    			   	<li id="{$vo.order_id}">
+				    			   	    <div>
+				    						<img src="{$vo.img_url}" alt="{$vo.name}">
+				    						<div>{$vo.name}</div>
+				    						<span class="goods-cost fl">
+				    							￥{$vo.price|number_format=###,1}×{$vo.order_count}
+				    						</span>
+				    						<span class="fr">
+				    							<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+				    						</span>
+				    					</div>
+				    				</li>
+				    		   </foreach>
+				    		</ul>
+				    		<div class="shopping-cart-bottom">
+				    			<span class="block ">合计: 
+				    				<span class="total-cost">￥169.5</span>
+				    			</span>
+				    			<span class="block">
+				    				原价: 
+				    				<span class="pre-total-cost">￥269.5</span>
+				    			</span>
+				    			<span class="block clearfix">
+				    				<a href="{:U('ShoppingCart/shoppingcart')}" class="fl">
+				    					查看全部<span class="goods-count">9</span>件商品
+				    				</a>
+				    				<a href="{:U('ShoppingCart/shoppingcart')}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    			</span>
+				    		</div>
+				    	</div>
+				   </empty>
+					
+				
 				</div>
 			</div>
 		<!-- 	<div id="qr-code" class="fr" >
