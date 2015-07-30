@@ -67,6 +67,7 @@ function reviseAddress(phone,rank){
                 data:{'':''},
                 url:"../../Home/Person/selectCity",
                 success:function(city){
+                    $city.find("option").remove();
                     for(var i=0;i<city.length;i++){
                         var op=document.createElement('option');
                         if(city[i]['city_name']==data['city']){
@@ -89,6 +90,7 @@ function reviseAddress(phone,rank){
                     url:"../../Home/Person/selectCampus",
                     data:info,
                     success:function(campus){
+                        $campus.find("option").remove();
                         for(var i=0;i<campus.length;i++){
                             var op=document.createElement('option');
                             if(campus[i]['campus_name']==data['campus']){
