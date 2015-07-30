@@ -49,11 +49,13 @@ class PersonController extends Controller {
                 // dump($data);
                 $this->assign("data",$data);
                 $this->assign("active",$active);
+                $this->assign("categoryHidden",1);
                 $this->display("personInfo");
             }
             else
             {
                 $this->assign("active",$active);
+                $this->assign("categoryHidden",1);
                 $this->display("personInfo");
             }
         }
@@ -216,10 +218,12 @@ class PersonController extends Controller {
             if ($data !== false)
             {
                 $this->assign("data",$data);
+                $this->assign("categoryHidden",1);
                 $this->display("locamanage");
             }
             else
             {
+                $this->assign("categoryHidden",1);
                 $this->display("locaManage");
             }
         }
@@ -597,6 +601,7 @@ class PersonController extends Controller {
             $this->assign('price',$price);
             // $this->assign('cities',$cities);
             // $this->assign('campus',$campus);
+            $this->assign("categoryHidden",1);
             $this->display("goodsPayment");
         }
         else
@@ -634,6 +639,12 @@ class PersonController extends Controller {
         {
             $this->redirect('Home/Login/index');
         }
+    }
+
+    public function personHomePage(){
+        
+        $this->assign("categoryHidden",1);
+        $this->display("personhomepage");
     }
 }
 
