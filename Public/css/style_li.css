@@ -62,7 +62,7 @@
 
 /*pay*/
 
-.main-wrapper{font-family: "微软雅黑";}
+.main-wrapper{font-family: "黑体";}
 .main-wrapper-1{font-weight: bolder;}
 .main-wrapper-1 table{ border:1px solid #aaaaaa;}
 .main-wrapper-1 thead{border-bottom: 1px solid #aaaaaa;}
@@ -74,6 +74,7 @@
 
 .main-wrapper-2-1{ margin-top: 25px;}
 .main-wrapper-2-1 input{ background-color: #ff573a; color: white; border: 0px; padding: 10px; padding-left: 20px; padding-right: 20px; font-size: 17px; font-weight: bold;}
+#new_address{font-weight: bold;}
 
 .main-wrapper-2{padding: 30px; background-color: #f0f0f0; margin-top:25px;}
 .main-wrapper-2 form{margin: 0px; padding: 0px;}
