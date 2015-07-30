@@ -1,3 +1,5 @@
+//  调用PersonController
+
 $(function(){
     $("#tab-1").click(function(){
         $("#tab-1").addClass("active");
@@ -16,6 +18,12 @@ $(function(){
 })
 
 function savePersonInfo(){
+    // var nickname = document.getElementById('nickname');
+    // // var usersex  = document.getElementById('');
+    // var academy  = document.getElementById('academy');
+    // var qq       = document.getElementById('qq');
+    // var winxin   = document.getElementById('weixin');
+
     var usersex = 0;
     var checkObj = document.getElementsByName("user-sex");
     if (checkObj[1].checked)
@@ -36,6 +44,9 @@ function savePersonInfo(){
         url:"../../Home/Person/savePersonInfo",
         data:info,
         success:function(data){
+            // alert(data['result']);//保存操作成功/失败信息返回，选择适当形式告知用户
+            // console.log("aaa");
+
             if (data['result'] != 0)
             {
                 alert("个人信息保存成功！");
