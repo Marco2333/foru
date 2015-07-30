@@ -48,11 +48,17 @@ class IndexController extends Controller {
         
         $campus=D('CampusView')->getCampusByCity($cityId);
 
+        $module=M('food_category')                 //获取首页八个某块的
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
+
         $this->assign('goodlist',$goodList)
              ->assign('main_image',$newsImage)
              ->assign('campus',$campus)
              ->assign("category",$classes)
              ->assign('city',$cityId)
+             ->assign('module',$module)
              ->assign("cities",$city);
 
         $this->display();
