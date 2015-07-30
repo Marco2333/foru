@@ -191,36 +191,42 @@ $(document).ready(function(){
 
         var searchValue = $("#campus-search").val();
 
-        if(searchValue==''){
-            return;
-        }
+        // if(searchValue == ""){
+        //     return;
+        // }
 
         $("#campus-location li").removeClass("active");
         $("#campus-content ul").empty();
 
         $.ajax({
             type:"POST",
-            url:"",
+            url:"/foru/index.php/Home/Index/searchCampus",
             data:{
-              searchValue:searchValue
+              name:searchValue
             },
             success:function(data){
-                var campusList = data.campus;
-                for(var i=0;i<campusList.length;i++){
-                    $("#campus-content ul").append('<li data-campusId="'+campusList[i].campus_id+'">'+campusList[i].campus_name+'</li>');
+                if(data.status=='failure') {
+                    return;
                 }
+                else {
+                  var campusList = data.campus;
+                  for(var i=0;i<campusList.length;i++){
+                      $("#campus-content ul").append('<li data-campusId="'+campusList[i].campus_id+'">'+campusList[i].campus_name+'</li>');
+                  }
 
-                $("#campus-content li").click(function(){
-                    $("#location").text($(this).text());
-                    var $campusId = $(this).attr('data-campusId');
-                    $.cookie("campusId", $campusId);
-                });
+                  $("#campus-content li").click(function(){
+                      $("#location").text($(this).text());
+                      $(this).siblings.removeClass("active");
+                      $(this).addClass("active");
+                      var $campusId = $(this).attr('data-campusId');
+                      $.cookie("campusId", $campusId);
+                  });
+               }  
             }
         });
     }); 
 
 });
-
 
 
 String.prototype.trim = function() {
