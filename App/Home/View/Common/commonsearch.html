@@ -33,54 +33,20 @@
 					</div>
 					<div class="index-shopping-cart clearfix">							<!-- -->
 						<ul class="clearfix">
-							<li>
-								<div>
-									<img src="__PUBLIC__/img/goods.png" alt="">
-									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
-									<span class="goods-cost fl">
-										￥3.5×3
-									</span>
-									<span class="fr">
-										<a>删除</a>
-									</span>
-								</div>
-							</li>
-							<li>
-								<div>
-									<img src="__PUBLIC__/img/goods.png" alt="">
-									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
-									<span class="goods-cost fl">
-										￥3.5×3
-									</span>
-									<span class="fr">
-										<a>删除</a>
-									</span>
-								</div>
-							</li>
-							<li>
-								<div>
-									<img src="__PUBLIC__/img/goods.png" alt="">
-									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
-									<span class="goods-cost fl">
-										￥3.5×3
-									</span>
-									<span class="fr">
-										<a>删除</a>
-									</span>
-								</div>
-							</li>
-							<li>
-								<div>
-									<img src="__PUBLIC__/img/goods.png" alt="">
-									<div>								 LED百变耳机台灯创意可以做耳机的台灯</div>
-									<span class="goods-cost fl">
-										￥3.5×3
-									</span>
-									<span class="fr">
-										<a>删除</a>
-									</span>
-								</div>
-							</li>		
+						   <foreach name="cartGood" item="vo">
+							   	<li id="{$vo.order_id}">
+							   	    <div>
+										<img src="{$vo.img_url}" alt="{$vo.name}">
+										<div>{$vo.name}</div>
+										<span class="goods-cost fl">
+											￥{$vo.price|number_format=###,1}×{$vo.order_count}
+										</span>
+										<span class="fr">
+											<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+										</span>
+									</div>
+								</li>
+						   </foreach>
 						</ul>
 						<div class="shopping-cart-bottom">
 							<span class="block ">合计: 

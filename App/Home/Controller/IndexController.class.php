@@ -15,8 +15,9 @@ class IndexController extends Controller {
         if($cityId==null){
             $cityId=1;
         }
-
-        $category=M("food_category");
+          
+        $phone=session('username');
+        $category=M("food_category");      //获取左侧导航栏的分类
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
         ->cache(true)
@@ -48,6 +49,8 @@ class IndexController extends Controller {
         
         $campus=D('CampusView')->getCampusByCity($cityId);
 
+        $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        //dump($cartGood);
         $module=M('food_category')                 //获取首页八个某块的
         ->where('campus_id=%d and serial is not null',$campusId)
         ->order('serial')
@@ -59,6 +62,7 @@ class IndexController extends Controller {
              ->assign("category",$classes)
              ->assign('city',$cityId)
              ->assign('module',$module)
+             ->assign('cartGood',$cartGood)
              ->assign("cities",$city);
 
         $this->display();
@@ -89,7 +93,12 @@ class IndexController extends Controller {
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
         ->select();          //获取分类
-               
+              
+         $module=M('food_category')                 //获取首页八个某块的
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
+
         $data= array(
             'tag' => 1 ,
             'status'=>1,
@@ -132,7 +141,8 @@ class IndexController extends Controller {
              ->assign('classes',$classes)
              ->assign('goods',$goods)// 赋值数据集
              ->assign('page',$show)// 赋值分页输出
-             ->assign('categoryHidden',1);
+             ->assign('categoryHidden',1)
+             ->assign('module',$module);
 
         $this->display();
     }

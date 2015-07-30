@@ -31,31 +31,26 @@ class LoginController extends Controller {
      public function tologin()
      {
         $verify = I('param.verify','');
-       // dump("afdafd");
+      
         if (check_verify($verify))
         {
-            //dump("afdafd");
-            $username = I('username');
+            $username = I('username');                        //获取用户手机号
             $pwd = I('password', '', 'md5');
             $user = M('users')->where(array('phone' => $username))->find();
             
-            // dump($user);
             if (!$user || $user['password'] != $pwd) 
             {
                 $result['status']=0;
                 $this->ajaxReturn($result);
-                // $this->error('用户名或密码错误');
             };
             session('username', $user['phone']);
             session('nickname', $user['nickname']);
             session('imgurl', $user['imgurl']);
 
-            //$this->redirect('/Home/Index');
             $result['status']=1;
             $this->ajaxReturn($result);
          } 
          else {
-            //$this->ajaxReturn($user);
             $result['status']=2;
             $this->ajaxReturn($result);
         }
