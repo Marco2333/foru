@@ -350,4 +350,5 @@ public function comment(){
 
         $this->ajaxReturn($result);
     }
+
 }

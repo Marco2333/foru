@@ -83,7 +83,8 @@ function checkUserExist(){
 		success: function(data){
 			var json = eval(data);
 			if(json.status==0){
-				alert("该手机号已被注册！");
+				//alert("该手机号已被注册！");
+				$(".userinfo-behind[name='message']").html("<label class='error-info'>该手机号已经被注册</label>");
 				// $("#register-info input[name='phone']").attr("value","");
 				 $("#register-info input[name='phone']").val("");
 			}
