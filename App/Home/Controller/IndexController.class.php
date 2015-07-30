@@ -5,6 +5,12 @@ header("Content-type:text/html;charset=utf-8");
 
 class IndexController extends Controller {
 
+    public function _initialize() {
+        if (!isset($_SESSION['username'])) {
+            $this->redirect('/Home/Login/Index');
+        }
+    }
+    
     public function index(){
         $campusId=I('campusId');        //获取校区id
 
