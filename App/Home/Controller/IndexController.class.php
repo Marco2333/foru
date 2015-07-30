@@ -69,7 +69,7 @@ class IndexController extends Controller {
              ->assign('city',$cityId)
              ->assign('module',$module)
              ->assign('cartGood',$cartGood)
-             ->assign("cities",$city);
+             ->assign("cities",$city)
              ->assign("campus_name",$campus_name[0]);
 
         $this->display();
