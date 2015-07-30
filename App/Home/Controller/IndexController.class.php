@@ -336,18 +336,25 @@ public function comment(){
 	}
 
     public function searchCampus($name){
-        $data['campus_name']=array('like',"%".$name."%");
-        //$data['status']=1;
-        $campus=M('campus')->field('campus_id,campus_name')->where($data)->select();
         
-        if($campus){
-            $result['campus']=$campus;
-            $result['status']="success";
-        }else{
+        if($name == "") {
             $result['status']="failure";
             $result['cmapus']=null;
         }
-
+        else {
+            $data['campus_name']=array('like',"%".$name."%");
+            //$data['status']=1;
+            $campus=M('campus')->field('campus_id,campus_name')->where($data)->select();
+            
+            if($campus){
+                $result['campus']=$campus;
+                $result['status']="success";
+            }else{
+                $result['status']="failure";
+                $result['cmapus']=null;
+            }
+        }
+       
         $this->ajaxReturn($result);
     }
 }

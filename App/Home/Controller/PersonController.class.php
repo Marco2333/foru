@@ -12,17 +12,8 @@ class PersonController extends Controller {
     }
 
     public function index(){
-        // $this->show();
         $this->personInfo();
     }
-    // public function forgetPword(){
-    //     // $this->show();
-    //     $this->display("forgetpword");
-    // }
-    // public function orderManage(){
-    //     // $this->show();
-    //     $this->display("orderManage");
-    // }
 
     public function personInfo($active = "0"){
         $user = $_SESSION['username'];
