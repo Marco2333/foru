@@ -328,4 +328,12 @@ public function comment(){
 			$this->ajaxReturn($state);
 		}
 	}
+
+    public function searchCampus($name){
+        $data['campus_name']=array('like',"%".$name."%");
+        $data['status']=1;
+        $campus=M('campus')->field('campus_id,campus_name')->where($data)->select();
+        
+        $this->ajaxReturn($campus);
+    }
 }
