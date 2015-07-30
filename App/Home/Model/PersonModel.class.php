@@ -37,16 +37,36 @@ class PersonModel extends ViewModel {
     //         )
     //     );
 
+    public function getUserInfo(){
+        $user = $_SESSION['username'];
+
+        $Users  = M("users");
+        $where  = array(
+            'phone' => $user
+            );
+        $field  = array(
+            'phone',
+            'nickname',
+            'sex',
+            'academy',
+            'qq,weixin',
+            'img_url'
+            );
+        $data   = $Users->where($where)
+                        ->field($field)
+                        ->find();
+
+        return $data;
+    }
+
     public function setTogetherID(){
         $user = $_SESSION['username'];
 
         $together_id = $user.Time();
         $time = date("Y-m-d H:m:s",time());
-        // echo $time."<br>";
-        // echo $together_id."<br>";
+
         $orderIDstr = I('orderIds');
         $orderID    = split(',',$orderIDstr);
-        // dump($orderID);
 
         $Orders = M('orders');
         $data = array(
@@ -124,18 +144,30 @@ class PersonModel extends ViewModel {
                      ->field($field)
                      ->select();
 
-        // dump($data);
-
         return $data;
     }
 
-    public function getAddress(){
+    public function getAddress($flag = 0){
         $Receiver = M('receiver');
-        $where    = array(
-            'phone'  => $_SESSION['username'],
-            'is_out' => 0,
-            '_logic'=> 'and'
-            );
+
+        if ($flag != 0)
+        {
+            $where    = array(
+                'phone'  => $_SESSION['username'],
+                'is_out' => 0,
+                'tag'    => 0,
+                '_logic'=> 'and'
+                );
+        }
+        else
+        {
+            $where    = array(
+                'phone'  => $_SESSION['username'],
+                'is_out' => 0,
+                '_logic'=> 'and'
+                );
+        }
+
         $field    = array(
             'phone',
             'rank',
@@ -143,39 +175,60 @@ class PersonModel extends ViewModel {
             'phone_id'  => 'customer_phone',
             'address'
             );
+        $order    = array(
+            'tag asc'
+            );
         $address = $Receiver->where($where)
-                            ->order('tag asc')
+                            ->order($order)
                             ->select();
 
-        // dump($address);
+        for ($i = 0;$i < count($address);$i++)
+        {
+            $subAddress = explode('^',$address[$i]['address']);
+            $address[$i]['address'] = $subAddress[0].
+                                      $subAddress[1].
+                                      $subAddress[2];
+        }
 
         return $address;
     }
 
-    public function getGoodsInfo(){
-        // $orderIDstr = I('orderIds');
-        $orderID    = split(',',$_SESSION['orderIDstr']);
-        // dump($orderID);
+    public function getGoodsInfo($orderIDstr = 0){
+
+        if ($orderIDstr != 0)
+        {
+            $orderID = explode(',',$orderIDstr);
+        }
+        else
+        {
+            $orderID = split(',',$_SESSION['orderIDstr']);
+        }
 
         for ($i = 0;$i < count($orderID);$i++)
         {
-            $where = array(
-                // 'together_id' => $together_id,
+            $Orders   = M('orders');
+            $joinFood = 'food On orders.food_id = food.food_id';
+            $where    = array(
                 'order_id'    => $orderID[$i],
                 '_logic'      => 'and'  
                 );
+
             $field = array(
-                'foodName',
-                'message',
-                'order_count',
-                'img_url',
-                'price',
-                'discount_price',
-                'is_discount'
+                'orders.order_count',
+                'orders.status',
+                'orders.together_id',
+                'food.name' => 'foodName',
+                'food.message',
+                'food.price',
+                'food.discount_price',
+                'food.is_discount',
+                'food.img_url'
                 );
-            $foodInfo[$i] = $this->where($where)
-                                 ->field($field)
-                                 ->find();
+
+            $foodInfo[$i] = $Orders->join($joinFood)
+                                   ->where($where)
+                                   ->field($field)
+                                   ->find();
         }
 
         for ($i = 0;$i < count($foodInfo);$i++)
@@ -192,14 +245,11 @@ class PersonModel extends ViewModel {
             }
         }
 
-        // dump($foodInfo);
-
         return $foodInfo;
     }
 
     public function getTotalPrice(){
         $foodInfo = $this->getGoodsInfo();
-        // dump($foodInfo);
 
         $price = array(
             'totalPrice'    => 0,
@@ -220,8 +270,6 @@ class PersonModel extends ViewModel {
             }
         }
 
-        // dump($price);
-
         return $price;
     }
 
@@ -238,8 +286,6 @@ class PersonModel extends ViewModel {
         $orderInfo = $Orders->where($where)
                             ->field($field)
                             ->find();
-
-        // dump($orderInfo);
 
         return $orderInfo;
     }
@@ -349,6 +395,72 @@ class PersonModel extends ViewModel {
                          ->find();
 
         return $campus['campus_id'];
+    }
+
+    public function getOrder($flag = 1){
+        $Orders = M('orders');
+        $where  = array(
+            'phone'  => $_SESSION['username']
+            );
+        $field  = array(
+            'together_id',
+            'together_date'
+            );
+        $order  = array(
+            'together_date desc'
+            );
+        $sortedOrder = $Orders->where($where)
+                              ->field($field)
+                              ->order($order)
+                              ->select();
+
+        if ($flag != 0)
+        {
+            for ($i = 0;$i < count($sortedOrder);$i++)
+            {
+                $orderIDstr    = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
+                $goodsInfo[$i] = $this->getGoodsInfo($orderIDstr);
+            }
+
+            return $goodsinfo;
+        }
+        else
+        {
+            $orderIDstr = $this->getOrderIDstr($sortedOrder[0]['together_id']);
+            $goodsInfo  = $this->getGoodsInfo($orderIDstr);
+
+            return $goodsInfo;
+        }
+    }
+
+    public function getOrderIDstr($together_id)
+    {
+        $Orders = M('orders');
+        $where  = array(
+            'phone'       => $_SESSION['username'],
+            'together_id' => $together_id
+            );
+        $field  = array(
+            'together_id',
+            'order_id'
+            );
+        $orderID = $Orders->where($where)
+                              ->field($field)
+                              ->select();
+
+        for($i = 0;$i < count($orderID);$i++)
+        {
+            if ($i < count($orderID)-1)
+            {
+                $orderIDstr .= $orderID[$i]['order_id'].',';
+            }
+            else
+            {
+                $orderIDstr .= $orderID[$i]['order_id'];
+            }
+        }
+
+        return $orderIDstr;
     }
 
 };
