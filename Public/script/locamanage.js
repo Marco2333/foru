@@ -170,8 +170,7 @@ function reviseAddress(phone,rank){
             	// document.getElementById("userName").value=data['name'];
             	// document.getElementById("userName").value=data['name'];
             	// document.getElementById("userName").value=data['name'];
-            	// document.getElementById("userName").value=data['name'];
-        		
+            	// document.getElementById("userName").value=data['name'];	
             }
             else
             {

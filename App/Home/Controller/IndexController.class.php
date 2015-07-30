@@ -7,9 +7,15 @@ class IndexController extends Controller {
 
     public function index(){
         $campusId=I('campusId');        //获取校区id
+
         if($campusId==null){
             $campusId=1;
         }
+
+        $campus_name=M("campus")
+        ->field('campus_name')
+        ->where('campus_id=%d',$campusId)
+        ->select();
 
         $cityId=I('cityId');           //获取城市id
         if($cityId==null){
@@ -59,7 +65,8 @@ class IndexController extends Controller {
              ->assign("category",$classes)
              ->assign('city',$cityId)
              ->assign('module',$module)
-             ->assign("cities",$city);
+             ->assign("cities",$city)
+             ->assign("campus_name",$campus_name[0]);
 
         $this->display();
     }
