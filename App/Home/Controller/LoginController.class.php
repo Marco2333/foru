@@ -60,20 +60,30 @@ class LoginController extends Controller {
     {
        // $User = M("customer"); // 实例化User对象
         // $verify = I('param.verify','');  //获取验证码
+        $status=I('status');
         $data["nickname"] = I("nickname");
         $data["password"] = I("password",'','md5');
         $data["phone"] = I("phone");
         $data["type"] = 2;
         $data["create_time"] = date("Y-m-d");
-        $status=M("users")->data($data)->add();
-
-        if($status==false){
-            // $this->ajaxReturn($User->getError());
-            $this->error("注册失败！");
+        $data["mail"]=I("mail");
+        if($status==1){
+            $status=M("users")->data($data)->add();
+            $data['password']=I("password");   //在验证时已经加密
+            if($status==false){
+                // $this->ajaxReturn($User->getError());
+                $this->error("注册失败！");
+            }
+            else{
+                $this->redirect("/Home/Login/index");
+            }
+        }else{
+             $r = think_send_mail($data['mail'],'','ForU邀请您激活账号',"<strong>小优邀请你点击以下链接完成注册验证</strong><a href='".U('/Home/Index/toRegister',
+                array('satus'=>1,'phone'=>$data['phone'],"nickname"=>$data['nickname'],
+                 "password"=>$data['password'],"mail"=>$data['mail'])))."'>点击这里</a>";
+             $this->success("请前往邮箱进行验证",U('/Home/Login/index'),5);
         }
-        else{
-            $this->redirect("/Home/Login/index");
-        }
+        
        // dump($User->getData());
        // if (check_verify($verify)) {       //校验验证码
        //      M("customer")->data($data)->add();
