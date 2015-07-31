@@ -20,31 +20,21 @@ class PersonController extends Controller {
 
         if ($user != null)
         {
-            $Users  = M("users");
-            $where  = array(
-                'phone' => $user
-                );
-            $field  = array(
-                'nickname',
-                'sex',
-                'academy',
-                'qq,weixin',
-                'img_url'
-                );
-            $data   = $Users->where($where)
-                            ->field($field)
-                            ->find();
+            $Person = D('Person');
+            $data   = $Person->getUserInfo();
 
             if ($data !== false)
             {
                 // dump($data);
                 $this->assign("data",$data);
                 $this->assign("active",$active);
+                $this->assign("categoryHidden",1);
                 $this->display("personInfo");
             }
             else
             {
                 $this->assign("active",$active);
+                $this->assign("categoryHidden",1);
                 $this->display("personInfo");
             }
         }
@@ -195,22 +185,18 @@ class PersonController extends Controller {
 
         if ($user != null)
         {
-            $Receiver = M("receiver");
-            $where  = array(
-                'phone'  => $user,
-                'is_out' => 0,
-                '_logic'  => 'and'
-                );
-            $data   = $Receiver->where($where)
-                               ->select();
+            $Person = D('Person');
+            $data = $Person->getAddress();
 
             if ($data !== false)
             {
                 $this->assign("data",$data);
+                $this->assign("categoryHidden",1);
                 $this->display("locamanage");
             }
             else
             {
+                $this->assign("categoryHidden",1);
                 $this->display("locaManage");
             }
         }
@@ -588,6 +574,7 @@ class PersonController extends Controller {
             $this->assign('price',$price);
             // $this->assign('cities',$cities);
             // $this->assign('campus',$campus);
+            $this->assign("categoryHidden",1);
             $this->display("goodsPayment");
         }
         else
@@ -625,6 +612,22 @@ class PersonController extends Controller {
         {
             $this->redirect('Home/Login/index');
         }
+    }
+
+    public function personHomePage(){
+        $Person      = D('Person');
+        $data        = $Person->getUserInfo();
+        $address     = $Person->getAddress(1);
+        $lastOrder   = $Person->getOrder(0);
+        $together_id = $lastOrder[0]['together_id'];
+        $orderInfo   = $Person->getOrderInfo($together_id);
+
+        $this->assign("data",$data);
+        $this->assign("defaultAddress",$address[0]['address']);
+        $this->assign("lastOrder",$lastOrder);
+        $this->assign('orderInfo',$orderInfo);
+        $this->assign("categoryHidden",1);
+        $this->display("personhomepage");
     }
 }
 
