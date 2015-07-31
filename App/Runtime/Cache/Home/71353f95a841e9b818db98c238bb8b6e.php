@@ -1,17 +1,15 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta charset="utf-8">
-		<title>For优 确认订单</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
 		<link href="/foru/Public/css/style.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="/foru/Public/css/style_li.css" />
 
+		<title>For优 修改密码</title>
 	</head>
 	<body>
-		
 		<div class="public-top-layout" style="background-color: #fff">
 	<div class="topbar">
 		<div class="user-entry">
@@ -38,8 +36,9 @@
 			</div><?php endif; ?> 
 	</div>
 </div>
-			<div id="index-header" >
-				<div class="container header-bottom">
+
+		<div id="index-header" >
+			<div class="container header-bottom">
 	<div id="header-botton-wrapper">
 		<div id="log-wrapper" class="fl">
 			<div id="header-logo" class="fl">
@@ -112,8 +111,7 @@
 		</div>
 	</div>
 </div>
-
-				<div class="w bground-special">
+			<div class="w bground-special">
 	<div id="nav-bar" class="wrapper nav-wrapper">
 	    <?php if($categoryHidden != 1): ?><div class="fl">
 			   商品分类
@@ -146,237 +144,148 @@
 	</div>
 </div>
 
-				<div id="nav-breadcrumb" class="wrapper">
-					<ul class="breadcrumb">
-						<li><a href="<?php echo U('Index/index');?>">首页</a></li>
-						<li><a href="<?php echo U('Shoppingcart/shoppingcart');?>">购物车</a></li>
-						<li class="active"><a href="/foru/index.php/Home/Person/goodspayment">确认订单</a></li>
-					</ul>
-				</div>
-			</div><!--.index-header-->
-
-			<div class="main-wrapper">
-
-				<div id="addressColumn" class="wrapper main-wrapper-1">
-					<table>
-						<colgroup>
-							<col style="width: 300px;"/>
-							<col style="width: 550px;"/>
-							<col style="width: 250px;"/>
-						</colgroup>
-						<thead>
-							<tr>
-								<th colspan="3">收货信息</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php if(is_array($address)): foreach($address as $key=>$v): ?><tr>
-									<td>
-										<input type="radio" name="information" value="<?php echo ($v["rank"]); ?>" class="main-wrapper-1-radio"
-										<?php
- if ($v['tag'] == 0) { echo "checked='checked'"; } ?>
-										/>
-										收货人:<span><?php echo ($v["name"]); ?></span><br />
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：<span><?php echo ($v["phone_id"]); ?></span>
-									</td>
-									<td>
-										<span><?php echo ($v["address"]); ?></span>
-									</td>
-									<td>
-										<input type="button" value="修改" class="main-wrapper-1-btn-revise"/>
-										<input type="button" value="删除路径" class="main-wrapper-1-btn-delete"/>
-										<input class="phone-none none" value="<?php echo ($v["phone"]); ?>"> 
-										<input class="rank-none none"  value="<?php echo ($v["rank"]); ?>">
-									</td>
-								</tr><?php endforeach; endif; ?>
-						</tbody>
-					</table>
-				</div>
-				
-				<div class="wrapper main-wrapper-2-1">
-						<input type="button" value="新增收货地址" id="new_address"/>
-				</div>
-				
-				<div class="wrapper main-wrapper-2">
-					<form action="<?php echo U('Person/addOrReviseSave');?>" method="POST">
-						<div>
-							<label for="li_person">收货人：</label>
-							<input type="text" name="user-name" id="userName" class="person"/>
-						</div>
-						<div>
-							<label>城市：</label>
-							<select  name="select-location-1" id="city-change">
-	
-							</select><!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
-							<label>校区：</label>
-							<select  name="select-location-2" id="campus-change">
-							</select><!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
-						</div>
-						<div>
-							<label for="li_address">详细地址：</label>
-							<input type="text" name="detailed-location" id="detailedLoc" class="address"/>
-						</div>
-						<div>
-							<label for="li_phone">手机号：</label>
-							<input type="text" name="phone-number" id="phoneNum" class="phone"/>
-						</div>
-						<div class="div_but">
-							<input type="text" id="page" name="page" value="1" class="none"/>
-							<input type="submit" id="save_submit" value="保存"   class="but but-submit"/>
-							<input type="submit" id="revise_submit" value="保存" class="but but-submit none" />
-							<input type="button" id="" value="取消"  class="but but-button"/>
-						</div>
-					</form>
-				</div>
-			<form action="<?php echo U('Person/payAtOnce');?>" method="POST">
-				<div class="wrapper main-wrapper-3">
-					<table class="wrapper">
-						<colgroup>
-							<col style="width: 400px;"/>
-						</colgroup>
-						<thead>
-							<tr>
-								<th>支付方式</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<input type="radio" name="pay-way" value="支付宝支付" checked="checked"/>
-									<img src="/foru/Public/img/zhifubao.png" alt="" />
-									支付宝支付
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="radio" name="pay-way" value="微信支付"/>&nbsp&nbsp&nbsp
-									<img src="/foru/Public/img/weixin.png" alt="" />
-									&nbsp&nbsp&nbsp&nbsp微信支付
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				<div class="personhome-order-info main-wrapper-4 wrapper">
-					<table class="wrapper">
-						<colgroup>
-							<col style="width:400px;">
-							<col style="width:230px;">
-							<col style="width:230px;">
-							<col style="width:240px;">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>商品名称</th>
-								<th>单价</th>
-								<th>数量</th>
-								<th>总价</th>
-							</tr>
-						</thead>
-						<tbody>				
-							<tr class="order-info-head">
-								<td colspan="3">
-									订单编号：<span><?php echo ($orderInfo["together_id"]); ?></span>
-									提交时间：<span><?php echo ($orderInfo["together_date"]); ?></span>
-									<input name="together-id" value="<?php echo ($orderInfo["together_id"]); ?>" class="none"/>
-									<input name="orderIDstr" value="<?php echo ($orderIDstr); ?>" class="none"/>
-								</td>
-								<td colspan="1">
-									
-								</td>	
-							</tr>
-							<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
-							<?php if(is_array($goodsInfo)): foreach($goodsInfo as $key=>$v): ?><tr class="order-info-detailed">
-									<td>
-										<img class="fl" src="<?php echo ($v["img_url"]); ?>" alt="">
-										<div class="fl">
-											<span class='b'><?php echo ($v["foodName"]); ?></span><p>
-											<span><?php echo ($v["message"]); ?></span><p>
-											<span>共<span><?php echo ($v["order_count"]); ?></span>件商品</span><p>
-										</div>		
-									</td>
-									<td class='b'>
-										<span class="gray move"><span>￥<?php echo ($v["discount_price"]); ?></span><span><del>原价：<?php echo ($v["price"]); ?></del></span></span>
-									</td >
-									<td>
-										<span><?php echo ($v["order_count"]); ?></span>				
-									</td>
-									<td class="b">
-										<span class="move"><span class="red_price">￥<?php echo ($v["discountPrice"]); ?></span><span class="gray"><del>原价：<?php echo ($v["totalPrice"]); ?></del></span></span>
-									</td>
-								</tr><?php endforeach; endif; ?>		
-						</tbody>
-					</table>
-				</div>
-				
-				<div class="wrapper main-wrapper-5">
-					<table class="wrapper">
-						<colgroup>
-							<col style="width: 400px;"/>
-						</colgroup>
-						<thead>
-							<tr>
-								<th>送达时间</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<input type="radio" name="time" value="周一至周五(工作日)" checked="checked"/>
-									周一至周五(工作日)
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="radio" name="time" value="周六周日(休息日)"/>
-									周六周日(休息日)
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="radio" name="time" value="周一至周日均可"/>
-									周一至周日均可
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				<div class="wrapper main-wrapper-6">
-					<table class="wrapper">
-						<colgroup>
-							<col style="width: 1100px;"/>
-						</colgroup>
-						<thead>
-							<tr>
-								<th>备注留言</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<textarea name="message" rows="4" cols="10" placeholder="输入备注信息"></textarea>
-								</td>
-								
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				
-				<div class="wrapper main-wrapper-7 ">
-					<div class="main-wrapper-7-main">
-						<span class="zhe"><span>合计：</span><span class="price">￥</span><span class="price"><?php echo ($price['discountPrice']); ?></span><span class="price">元</span><br /></span>
-						<span class="yuan"><del>原价：￥<span><?php echo ($price['totalPrice']); ?></span>元</del></span><br />
-						<input type="submit" value="立即支付"/>
-					</div>
-				</div>
-			</form>
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="<?php echo U('Index/index');?>">首页</a></li>
+					<li><a href="<?php echo U('Person/personhomepage');?>">我的For优</a></li>
+					<li class="active"><a href="#">账户安全</a></li>
+				</ul>
+			</div>
 		</div>
+		<div class="wrapper clearfix" >
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a>全部</a></li>
+					<li><a>待付款</a></li>
+					<li><a>待确认</a></li>
+					<li><a>配送中</a></a></li>
+					<li><a>已完成</a></li>
+				</ul>
+				<ul>
+					<span>资料管理</span>
+					<li><a href="<?php echo U('Person/personinfo');?>">个人信息</a></li>
+					<li><a href="<?php echo U('Person/locaManage');?>">地址管理</a></li>
+					<li class="active"><a href="#">账户安全</a></li>
+				</ul>
+				<ul>
+					<span>服务中心</span>
+					<li><a>联系客服</a></li>
+					<li><a>关于我们</a></li>
+					<li><a>意见反馈</a></li>
+				</ul>
+			</div>
+			
 			<!--li-->
-		
-		
+
+			<div id="person-info-body">
+				<div class="person-info-body-header">
+					<span class="spliter bground-special"></span>
+					<h4>重置密码</h4>
+				</div>
+				
+				
+					<div class="person-info-body-progress">
+						<dl class="active" id="dl-1">
+							<dt class="text">1</dt>
+							<dt class="round"></dt>
+							<dd class="phone">填写手机号</dd>
+						</dl>
+						<dl  id="dl-2">
+							<dt class="text">2</dt>
+							<dt class="round"></dt>
+							<dd class="self">验证身份</dd>
+						</dl>
+						<dl id="dl-3">
+							<dt class="text">3</dt>
+							<dt class="round"></dt>
+							<dd class="password">设置新密码</dd>
+						</dl>
+						<dl id="dl-4">
+							<dt class="text">4</dt>
+							<dt class="round"></dt>
+							<dd class="finish">完成</dd>
+						</dl>
+					</div>
+				
+				<div class="person-info-body-main">
+					
+					
+					<div class="person-info-body-page1">
+						<div class="person-info-body">
+							<!--1-->
+							<span class="glyphicon glyphicon-phone text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin" >手机号:</span>
+							<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-1" id="person-info-body-form-phone"/>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin" id="form-1-span-1">请输入注册时使用的手机号</span>
+							<p><br /></p>
+							<!--2-->
+							<div class="person-info-body-page-eletop">
+								<span class="glyphicon glyphicon-th-large text-special span-inline-block person-info-body-page-margin"></span>
+								<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">验证码:</span>
+								<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="verification" form="person-info-body-form-1" id="check-image-input"/>
+								<!--<span class="span-inline-block person-info-body-page1-imgverification bground-special .person-info-body-page-margin" style="margin-left:14px"></span>-->
+								<span class="span-inline-block person-info-body-page-text person-info-body-page-margin"><img src=" /foru/index.php/Home/Person/verify/id/'+Math.random()" onclick="this.src='/foru/index.php/Home/Person/verify/id/'+Math.random()" id="check-image"/></span>
+							
+							</div>
+						</div>
+						<!--3-->
+						<form action="<?php echo U('Person/phone');?>" class="person-info-body-page-eletop margin-form" method="get" id="person-info-body-form-1">
+							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-1-button"/>
+							<input type="submit" style="display: none;" id="body-form-1-submit"/>
+						</form>
+					</div>
+					
+					
+					<div class="person-info-body-page2 none">
+						<div class="person-info-body person-info-body-2">
+							<!--1-->
+							<span class="glyphicon glyphicon-comment text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">短信验证:</span>
+							<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-2" id="person-info-body-form-message"/>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin">请输入收到的短信验证码</span>
+							<p><br /></p>
+						</div>
+						<!--3-->
+						<form action="#" class="person-info-body-page-eletop margin-form" method="get" id="person-info-body-form-2">
+							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-2-button"/>
+						</form>
+					</div>
+					
+					
+					<div class="person-info-body-page3 none">
+						<div class="person-info-body person-info-body-3">
+							<!--1-->
+							<span class="glyphicon glyphicon-lock text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">输入新密码:</span>
+							<input type="password" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-3" id="person-info-body-form-paword-1"/>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin person-info-body-page-text-long">8-20位字符，建议由数字，字母和符号两种以上的组合</span>
+							<p><br /></p>
+							<!--2-->
+							<div class="person-info-body-page-eletop">
+								<span class="glyphicon glyphicon-lock text-special span-inline-block person-info-body-page-margin"></span>
+								<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">确认新密码:</span>
+								<input type="password" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="verification" form="person-info-body-form-3" id="person-info-body-form-paword-2"/>
+								<span class="span-inline-block person-info-body-page-text person-info-body-page-margin">再次输入新密码</span>
+							
+							</div>
+						</div>
+						<!--3-->
+						<form action="#" class="person-info-body-page-eletop margin-form" method="get" id="person-info-body-form-3">
+							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-3-button"/>
+						</form>
+					</div>
+					
+					
+					<div class="person-info-body-page4 none">
+						<span class="person-info-body-page4-container">&nbsp;<span class="glyphicon glyphicon-ok" style="color:white"></span></span>
+						<span class="person-info-body-page4-text">恭喜你，重置密码成功！</span>
+					</div>
+				
+				</div>
+			</div>			
+		</div>
+
 		<footer>
 	<div id="foot-part1" class="clearfix wrapper">
 		<ul>
@@ -557,7 +466,8 @@
 
 		<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
 		<script src="/foru/Public/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/foru/Public/script/common.js"></script>
-		<script type="text/javascript" src="/foru/Public/script/goodsPayment.js"></script>
+		<script src="/foru/Public/script/resetpword.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/foru/Public/script/common.js" type="text/javascript" charset="utf-8"></script>
+	</body>
 	</body>
 </html>

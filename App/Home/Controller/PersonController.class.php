@@ -15,29 +15,36 @@ class PersonController extends Controller {
         $this->personInfo();
     }
 
-    public function getCampusName(){
-        $campusId=I('campusId');        //获取校区id
+      public function getCampusName($campusId, $cityId){
+         
+          if($campusId==null){
+              $campusId=1;
+          }
 
-        if($campusId==null){
-            $campusId=1;
-        }
+          $campus_name=M("campus")
+          ->field('campus_name')
+          ->where('campus_id=%d',$campusId)
+          ->select();
 
-        $campus_name=M("campus")
-        ->field('campus_name')
-        ->where('campus_id=%d',$campusId)
-        ->select();
+          if($cityId==null){
+              $cityId=1;
+          }
 
-        $cityId=I('cityId');           //获取城市id
-        if($cityId==null){
-            $cityId=1;
-        }
+          $city=D('CampusView')->getAllCity();   //获取所有的城市 
+          $campus=D('CampusView')->getCampusByCity($cityId);
 
-        $this->assign("campus_name",$campus_name[0]);
-    }
+          $this->assign('campus',$campus)
+               ->assign('city',$cityId)
+               ->assign("cities",$city)
+               ->assign("campus_name",$campus_name[0]);
+      }
 
     public function personInfo($active = "0"){
 
-        $this->getCampusName();
+        $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this->getCampusName($campusId,$cityId);
+
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -200,7 +207,10 @@ class PersonController extends Controller {
     }
 
     public function locaManage(){
-        $this->getCampusName();
+        $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
+
 
         $user = $_SESSION['username'];
 
@@ -463,7 +473,10 @@ class PersonController extends Controller {
     }
         
     public function resetpword(){
-        $this->getCampusName();
+        $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
+
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -500,7 +513,7 @@ class PersonController extends Controller {
         $user  = $_SESSION['username'];
         $phone = $_POST["phone"];
 		$check  = $_POST['check'];
-        $flag   = $this->check_verify($check);
+        $flag   = check_verify($check);
         if($user==$phone && $flag)
         {
             $state = array(
@@ -560,7 +573,10 @@ class PersonController extends Controller {
     }
 
     public function goodsPayment(){
-        $this->getCampusName();
+        $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
+
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -633,7 +649,9 @@ class PersonController extends Controller {
     }
 
     public function personHomePage(){
-        $this->getCampusName();
+        $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
 
         $Person      = D('Person');
         $data        = $Person->getUserInfo();

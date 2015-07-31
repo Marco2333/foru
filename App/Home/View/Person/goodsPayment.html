@@ -13,20 +13,22 @@
 	<body>
 		
 		<include file='App/Home/View/Common/commonhead.html'/>
-				<div id="index-header" >
-					<include file='App/Home/View/Common/commonsearch.html'/>
+			<div id="index-header" >
+				<include file='App/Home/View/Common/commonsearch.html'/>
 
-					<include file='App/Home/View/Common/commonnav.html'/>
+				<include file='App/Home/View/Common/commonnav.html'/>
 
-					<div id="nav-breadcrumb" class="wrapper">
-						<ul class="breadcrumb">
-							<li><a href="{:U('Index/index')}">首页</a></li>
-							<li><a href="{:U('Shoppingcart/shoppingcart')}">购物车</a></li>
-							<li class="active"><a href="__SELF__">确认订单</a></li>
-						</ul>
-					</div>
-				</div><!--.index-header-->
-				
+				<div id="nav-breadcrumb" class="wrapper">
+					<ul class="breadcrumb">
+						<li><a href="{:U('Index/index')}">首页</a></li>
+						<li><a href="{:U('Shoppingcart/shoppingcart')}">购物车</a></li>
+						<li class="active"><a href="__SELF__">确认订单</a></li>
+					</ul>
+				</div>
+			</div><!--.index-header-->
+
+			<div class="main-wrapper">
+
 				<div id="addressColumn" class="wrapper main-wrapper-1">
 					<table>
 						<colgroup>
@@ -134,19 +136,17 @@
 					</table>
 				</div>
 				
-				<div class="personhome-order-info main-wrapper-4">
-					<table>
+				<div class="personhome-order-info main-wrapper-4 wrapper">
+					<table class="wrapper">
 						<colgroup>
-							<col style="width:420px;">
-							<col style="width:140px;">
-							<col style="width:140px;">
-							<col style="width:200px;">
-							<col style="width:200px;">
+							<col style="width:400px;">
+							<col style="width:230px;">
+							<col style="width:230px;">
+							<col style="width:240px;">
 						</colgroup>
 						<thead>
 							<tr>
 								<th>商品名称</th>
-								<th>分类</th>
 								<th>单价</th>
 								<th>数量</th>
 								<th>总价</th>
@@ -160,7 +160,7 @@
 									<input name="together-id" value="{$orderInfo.together_id}" class="none"/>
 									<input name="orderIDstr" value="{$orderIDstr}" class="none"/>
 								</td>
-								<td colspan="2">
+								<td colspan="1">
 									
 								</td>	
 							</tr>
@@ -175,7 +175,6 @@
 											<span>共<span>{$v.order_count}</span>件商品</span><p>
 										</div>		
 									</td>
-									<td class='b'><span class="gray move">颜色分类：黄色</span></td>
 									<td class='b'>
 										<span class="gray move"><span>￥{$v.discount_price}</span><span><del>原价：{$v.price}</del></span></span>
 									</td >
@@ -243,8 +242,7 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
-				
+				</div>		
 				
 				<div class="wrapper main-wrapper-7 ">
 					<div class="main-wrapper-7-main">
@@ -253,10 +251,9 @@
 						<input type="submit" value="立即支付"/>
 					</div>
 				</div>
-			</div>
 			</form>
-			<!--li-->
 		</div>
+			<!--li-->
 		
 		<include file='App/Home/View/Common/commontail.html'/>
 		<include file='App/Home/View/Common/commonlocation.html'/>

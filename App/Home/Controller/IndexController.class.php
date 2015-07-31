@@ -4,30 +4,20 @@ use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
 class IndexController extends Controller {
-
-  /*  public function _initialize() {
-        if (!isset($_SESSION['username'])) {
-            $this->redirect('/Home/Login/Index');
-        }
-    }*/
     
     public function index(){
+
         $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
 
         if($campusId==null){
             $campusId=1;
         }
-
-        $campus_name=M("campus")
-        ->field('campus_name')
-        ->where('campus_id=%d',$campusId)
-        ->select();
-
-        $cityId=I('cityId');           //获取城市id
         if($cityId==null){
             $cityId=1;
         }
-          
+
         $cartGood=array();
         if(isset($_SESSION['username'])){
             $phone=session('username');
@@ -73,17 +63,36 @@ class IndexController extends Controller {
 
         $this->assign('goodlist',$goodList)
              ->assign('main_image',$newsImage)
-             ->assign('campus',$campus)
-             ->assign("category",$classes)
-             ->assign('city',$cityId)
+             ->assign("category",$classes)  
              ->assign('module',$module)
-             ->assign('cartGood',$cartGood)
-             ->assign("cities",$city)
-             ->assign("campus_name",$campus_name[0]);
-
+             ->assign('cartGood',$cartGood);
         $this->display();
     }
     
+    public function getCampusName($campusId, $cityId){
+       
+        if($campusId==null){
+            $campusId=1;
+        }
+
+        $campus_name=M("campus")
+        ->field('campus_name')
+        ->where('campus_id=%d',$campusId)
+        ->select();
+
+        if($cityId==null){
+            $cityId=1;
+        }
+
+        $city=D('CampusView')->getAllCity();   //获取所有的城市 
+        $campus=D('CampusView')->getCampusByCity($cityId);
+
+        $this->assign('campus',$campus)
+             ->assign('city',$cityId)
+             ->assign("cities",$city)
+             ->assign("campus_name",$campus_name[0]);
+    }
+
     public function getCampusByCity($cityId){
          $campus=D('CampusView')->getCampusByCity($cityId);
          $data['campus']=$campus;
@@ -95,17 +104,24 @@ class IndexController extends Controller {
     }
 
      public function goodslist($categoryId='',$search=''){
-         $campusId=I('campusId');        //获取校区id
+        $campusId=I('campusId');        //获取校区id
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
+
         if($campusId==null){
             $campusId=1;
         }
-
+        if($cityId==null){
+            $cityId=1;
+        }
+        
         $campus=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
         ->select();       //获取校区列表
 
         $category=M("food_category");
+
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
         ->select();          //获取分类
