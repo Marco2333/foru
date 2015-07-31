@@ -40,31 +40,36 @@
 				</ul>	
 			</div>
 			<div class="goods-list-info clearfix fl">
-			    <foreach name="goods" item="v">
-			    	<div class="goods-info-item">
-						<dl>
-							<dt>
-								<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$v['food_id'],'campusId'=>$v['campus_id']))}"><img src="{$v.img_url}" alt=""></a>
-							</dt>
-							<dd>
-								<p><a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$v['food_id'],'campusId'=>$v['campus_id']))}">{$v.name}</a></p>
-								<p><?php if(strlen($v['message'])>84)
-									       echo substr($v['message'], 0,78)."....";
-									       else echo $v['message'];
-								?>
-									</p>
-								<p>  <if condition="$v['is_discount'] eq 1">
-										<span>￥{$v.discount_price|number_format=###,1}</span>
-									    <span>原价:{$v.price|number_format=###,1}元</span>
-									    <else/><span>￥{$v.price|number_format=###,1}</span><span></span>
-								     </if>
-									
-									<span>销量:{$v.sale_number}</span>
-								</p>
-							</dd>
-						</dl>
-				   </div>
-			    </foreach>
+			   <empty name="goods">
+			           <!-- 设置空样式 -->
+			      <else/>
+			          <foreach name="goods" item="v">
+			          	<div class="goods-info-item">
+			      			<dl>
+			      				<dt>
+			      					<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$v['food_id'],'campusId'=>$v['campus_id']))}"><img src="{$v.img_url}" alt=""></a>
+			      				</dt>
+			      				<dd>
+			      					<p><a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$v['food_id'],'campusId'=>$v['campus_id']))}">{$v.name}</a></p>
+			      					<p><?php if(strlen($v['message'])>84)
+			      						       echo substr($v['message'], 0,78)."....";
+			      						       else echo $v['message'];
+			      					?>
+			      						</p>
+			      					<p>  <if condition="$v['is_discount'] eq 1">
+			      							<span>￥{$v.discount_price|number_format=###,1}</span>
+			      						    <span>原价:{$v.price|number_format=###,1}元</span>
+			      						    <else/><span>￥{$v.price|number_format=###,1}</span><span></span>
+			      					     </if>
+			      						
+			      						<span>销量:{$v.sale_number}</span>
+			      					</p>
+			      				</dd>
+			      			</dl>
+			      	   </div>
+			          </foreach>
+			   </empty>
+			   
 			    	
 			</div>
 				<div class="msg-page">

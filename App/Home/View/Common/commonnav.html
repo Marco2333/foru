@@ -22,13 +22,15 @@
 			<li>
 				<a href="{:U('Person/personhomepage')}">个人中心</a>
 			</li>
-			<li>
-				<img src="__PUBLIC__/img/icon/location.png" alt="">
-				<span id="location" >
-				  	{$campus_name.campus_name}
-				</span>
-			<!-- 	<a href="">苏州大学独墅湖校区</a> -->
-			</li>
+			<if condition="$hiddenLocation neq 1">
+				<li>
+					<img src="__PUBLIC__/img/icon/location.png" alt="">
+					<span id="location" >
+					  	{$campus_name.campus_name}
+					</span>
+				</li>
+				<else/><li></li>
+			</if>
 		</ul>
 	</div>
 </div>

@@ -4,11 +4,12 @@ use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
 class PersonController extends Controller {
-    
     public function _initialize() {
         if (!isset($_SESSION['username'])) {
             $this->redirect('/Home/Login/Index');
         }
+        $this->hiddenLocation=1;
+        $this->categoryHidden=1;
     }
 
     public function index(){

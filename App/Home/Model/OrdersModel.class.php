@@ -21,6 +21,7 @@ class OrdersModel extends Model{
 		->field('name,food.price,discount_price,img_url,order_id,order_count')
 		->where('orders.status=0 and orders.tag=1 and food.tag=1 and food.status=1 and phone=%s and orders.campus_id=%d',$phone,$campusId)
 		->order('create_time desc')
+		->limit(5)
 		->select();
 
 		return $cartGood;
