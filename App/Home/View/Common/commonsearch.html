@@ -30,7 +30,7 @@
 				<div class="drop-down-layer ">
 				   <empty name="cartGood">
 				   		<div class="no-goods">
-						 购物车中还没有商品，赶紧选购吧！
+						 购物车中还没有商品，赶紧去选购吧！
 					</div>
 				    <else/>
 				    	<div class="index-shopping-cart clearfix">							<!-- -->
@@ -51,16 +51,16 @@
 				    		   </foreach>
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
-				    			<span class="block ">合计: 
+				    			<!-- <span class="block ">合计: 
 				    				<span class="total-cost">￥169.5</span>
 				    			</span>
 				    			<span class="block">
 				    				原价: 
 				    				<span class="pre-total-cost">￥269.5</span>
-				    			</span>
+				    			</span> -->
 				    			<span class="block clearfix">
 				    				<a href="{:U('ShoppingCart/shoppingcart')}" class="fl">
-				    					查看全部<span class="goods-count">9</span>件商品
+				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
 				    				<a href="{:U('ShoppingCart/shoppingcart')}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
