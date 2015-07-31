@@ -16,7 +16,29 @@ class PersonController extends Controller {
         $this->personInfo();
     }
 
+    public function getCampusName(){
+        $campusId=I('campusId');        //获取校区id
+
+        if($campusId==null){
+            $campusId=1;
+        }
+
+        $campus_name=M("campus")
+        ->field('campus_name')
+        ->where('campus_id=%d',$campusId)
+        ->select();
+
+        $cityId=I('cityId');           //获取城市id
+        if($cityId==null){
+            $cityId=1;
+        }
+
+        $this->assign("campus_name",$campus_name[0]);
+    }
+
     public function personInfo($active = "0"){
+
+        $this->getCampusName();
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -43,7 +65,6 @@ class PersonController extends Controller {
         {
             $this->redirect('/Home/Login/index');
         }
-
     }
 
     public function savePersonInfo($nickname,
@@ -171,8 +192,6 @@ class PersonController extends Controller {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
                 $this->redirect('/Home/Person/personInfo',array('active'=>1));
             }
-            
-             // $this->assign("url",$img_url);
         }
         else
         {
@@ -182,6 +201,8 @@ class PersonController extends Controller {
     }
 
     public function locaManage(){
+        $this->getCampusName();
+
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -395,7 +416,6 @@ class PersonController extends Controller {
         {
             // 数据库操作失败
         }
-
     }
 
     public function deleteLocation($phone,$rank){
@@ -431,14 +451,8 @@ class PersonController extends Controller {
         }
     }
 
-    function check_verify($code, $id = ''){
-        $verify = new \Think\Verify();
-
-        return $verify->check($code, $id);
-    }
     public function verify(){
         // 行为验证码
-
         $Verify = new \Think\Verify();
         $Verify->fontSize = 23;
         $Verify->length   = 4;
@@ -449,12 +463,13 @@ class PersonController extends Controller {
         $Verify->entry();
     }
         
-    public function forgetPword(){
+    public function resetpword(){
+        $this->getCampusName();
         $user = $_SESSION['username'];
 
         if ($user != null)
         {
-            $this->display("forgetpword");
+            $this->display("resetpword");
         }
         else
         {
@@ -483,23 +498,25 @@ class PersonController extends Controller {
     }
     
     public function phone(){
-        $db=M('users');
-
         $user  = $_SESSION['username'];
         $phone = $_POST["phone"];
-
-        $where = array(
-            'phone' => $user
-            );
-        $data=$db->where($where)
-                 ->field('phone')
-                 ->find();
-
-        if($data['phone'] == $phone)
+		$check  = $_POST['check'];
+        $flag   = $this->check_verify($check);
+        if($user==$phone && $flag)
         {
             $state = array(
                 'value' => 'success'
                 );
+            $this->ajaxReturn($state);
+        }else if(!$flag){
+        	$state = array(
+                'value' => 'checkerror'
+              );
+            $this->ajaxReturn($state);
+        }else if($user!=$phone){
+        	$state = array(
+                'value' => 'phoneerror'
+              );
             $this->ajaxReturn($state);
         }
         else
@@ -544,6 +561,7 @@ class PersonController extends Controller {
     }
 
     public function goodsPayment(){
+        $this->getCampusName();
         $user = $_SESSION['username'];
 
         if ($user != null)
@@ -616,6 +634,8 @@ class PersonController extends Controller {
     }
 
     public function personHomePage(){
+        $this->getCampusName();
+
         $Person      = D('Person');
         $data        = $Person->getUserInfo();
         $address     = $Person->getAddress(1);
