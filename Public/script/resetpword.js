@@ -26,13 +26,15 @@ $(function(){
 					$("#dl-2").addClass('active');
 					$(".person-info-body-page1").addClass("none");
 					$(".person-info-body-page2").removeClass("none");		
-				}else if(data['value']=='error'){
+				}else if(data['value']=='phoneerror'){
 					$("#form-1-span-1").text("号码输入错误")
 					.addClass("text-alert")
 					.removeClass("text-ok");	
+				}else if(data['value']=='checkerror'){
+					alert('验证码输入错误！');
 				}
 				else {
-					alert('验证码输入错误！');
+					alert('验证码和号码都不正确');
 				}
 			},
 			error:function(){
@@ -52,6 +54,7 @@ $(function(){
 		if(/^[1][2358][0-9]{9}$/.test($phone)){
 			$("#form-1-span-1").removeClass("text-alert")
 			.text("√").addClass("text-ok");
+			
 		}
 		else {
 			$("#form-1-span-1").text("请输入规范的号码")
@@ -87,7 +90,7 @@ $(function(){
 						$(".person-info-body-page3").addClass("none");
 						$(".person-info-body-page4").removeClass("none");
 					}else {
-						alert("修改密码失败，请重试！");
+						alert("修改密码失败，请重试！(不能输入和上次相同的密码)");
 					}
 				},
 				error:function(){

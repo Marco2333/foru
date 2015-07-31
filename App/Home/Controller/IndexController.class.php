@@ -5,11 +5,11 @@ header("Content-type:text/html;charset=utf-8");
 
 class IndexController extends Controller {
 
-    public function _initialize() {
+  /*  public function _initialize() {
         if (!isset($_SESSION['username'])) {
             $this->redirect('/Home/Login/Index');
         }
-    }
+    }*/
     
     public function index(){
         $campusId=I('campusId');        //获取校区id
@@ -28,7 +28,11 @@ class IndexController extends Controller {
             $cityId=1;
         }
           
-        $phone=session('username');
+        $cartGood=array();
+        if(isset($_SESSION['username'])){
+            $phone=session('username');
+           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        }
         $category=M("food_category");      //获取左侧导航栏的分类
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
@@ -61,8 +65,7 @@ class IndexController extends Controller {
         
         $campus=D('CampusView')->getCampusByCity($cityId);
 
-        $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
-        //dump($cartGood);
+      
         $module=M('food_category')                 //获取首页八个某块的
         ->where('campus_id=%d and serial is not null',$campusId)
         ->order('serial')

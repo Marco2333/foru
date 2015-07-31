@@ -65,23 +65,27 @@ class LoginController extends Controller {
         $data["password"] = I("password",'','md5');
         $data["phone"] = I("phone");
         $data["type"] = 2;
-        $data["create_time"] = date("Y-m-d");
+        $data["create_time"] = time();
         $data["mail"]=I("mail");
         if($status==1){
-            $status=M("users")->data($data)->add();
-            $data['password']=I("password");   //在验证时已经加密
-            if($status==false){
-                // $this->ajaxReturn($User->getError());
-                $this->error("注册失败！");
-            }
-            else{
-                $this->redirect("/Home/Login/index");
-            }
+            if(time()-(int)I('register_time')>20*60){                    //链接超过20分钟失效
+                $this->error("超过20分钟，该链接已经失效了哦，去重新注册吧。",U('/Home/Login/toRegister'),3);
+            }else{
+                $data['password']=I("password");   //在验证时已经加密
+                $data['create_time']=date('Y-m-d',I('register_time'));
+                $status=M("users")->data($data)->add();
+                
+                if($status==false){
+                    // $this->ajaxReturn($User->getError());
+                    $this->error("注册失败！");
+                }
+                else{
+                    $this->success("恭喜您，注册成功了哦！正在为你转向登陆页面",U('/Home/Login/index'),3);
+                }              
+            }   
         }else{
-             $r = think_send_mail($data['mail'],'','ForU邀请您激活账号',"<strong>小优邀请你点击以下链接完成注册验证</strong><a href='".U('/Home/Index/toRegister',
-                array('satus'=>1,'phone'=>$data['phone'],"nickname"=>$data['nickname'],
-                 "password"=>$data['password'],"mail"=>$data['mail'])))."'>点击这里</a>";
-             $this->success("请前往邮箱进行验证",U('/Home/Login/index'),5);
+             $r = think_send_mail($data['mail'],'','ForU邀请您激活账号',"<strong>小优邀请你点击以下链接完成注册验证</strong><a href='http://localhost/".U('/Home/Login/toRegister',array('status'=>1,'phone'=>$data['phone'],"nickname"=>$data['nickname'],"password"=>$data['password'],"mail"=>$data['mail'],"register_time"=>$data['create_time'],"isClick"=>0))."'>点击这里</a>");
+             $this->success("请前往邮箱进行验证,二十分钟内有效哦",U('/Home/Login/index'),5);
         }
         
        // dump($User->getData());
