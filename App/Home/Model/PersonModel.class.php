@@ -423,7 +423,7 @@ class PersonModel extends ViewModel {
 
         if ($flag != 0)
         {
-            for ($i = 0;$i < count($sortedOrder);$i++)
+            for ($i = 0;$i < count($sortedOrder) and $i < 3;$i++)
             {
                 $orderIDstr    = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
                 $goodsInfo[$i] = $this->getGoodsInfo($orderIDstr);

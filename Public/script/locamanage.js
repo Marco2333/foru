@@ -11,6 +11,9 @@ $(function(){
         reviseAddress(phone,rank);
 
         $("#recevier_submit_button_revise").on("click",function(){
+
+            alert("aaa");
+            alert("bbb");
             var info = saveReviseLocation(phone,rank);
         });
     });
@@ -166,6 +169,7 @@ function reviseAddress(phone,rank){
                 data:{'':''},
                 url:"../../Home/Person/selectCity",
                 success:function(city){
+                    $city.empty();
                     for(var i=0;i<city.length;i++){
                         var op=document.createElement('option');
                         if(city[i]['city_name']==data['city']){
