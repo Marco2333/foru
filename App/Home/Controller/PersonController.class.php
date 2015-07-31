@@ -482,23 +482,25 @@ class PersonController extends Controller {
     }
     
     public function phone(){
-        $db=M('users');
-
         $user  = $_SESSION['username'];
         $phone = $_POST["phone"];
-
-        $where = array(
-            'phone' => $user
-            );
-        $data=$db->where($where)
-                 ->field('phone')
-                 ->find();
-
-        if($data['phone'] == $phone)
+		$check  = $_POST['check'];
+        $flag   = $this->check_verify($check);
+        if($user==$phone && $flag)
         {
             $state = array(
                 'value' => 'success'
                 );
+            $this->ajaxReturn($state);
+        }else if(!$flag){
+        	$state = array(
+                'value' => 'checkerror'
+              );
+            $this->ajaxReturn($state);
+        }else if($user!=$phone){
+        	$state = array(
+                'value' => 'phoneerror'
+              );
             $this->ajaxReturn($state);
         }
         else
