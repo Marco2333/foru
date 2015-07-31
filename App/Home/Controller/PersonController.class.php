@@ -657,7 +657,7 @@ class PersonController extends Controller {
         $Person      = D('Person');
         $data        = $Person->getUserInfo();
         $address     = $Person->getAddress(1);
-        $lastOrder   = $Person->getOrder(0);
+        $lastOrder   = $Person->getOrders(0);
         $together_id = $lastOrder[0]['together_id'];
         $orderInfo   = $Person->getOrderInfo($together_id);
 
@@ -668,6 +668,20 @@ class PersonController extends Controller {
         $this->assign("categoryHidden",1);
         $this->display("personhomepage");
     }
+
+    public function orderManage(){
+        echo "样例中没有食品在购物车的样式"."<br>".
+             "数据库中没有待付款的标识"."<br>".
+             "感觉已付款和待确认是一个状态";
+        $Person    = D('Person');
+        $orderList = $Person->getOrders();
+        $orderList = $Person->addOrderInfo($orderList);
+// dump($orderList[0]);
+        $this->assign("orderList",$orderList);
+        $this->assign("categoryHidden",1);
+        $this->display("orderManage");
+    }
+
 }
 
 
