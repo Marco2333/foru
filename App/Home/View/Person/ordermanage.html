@@ -29,7 +29,7 @@
 			<div id="person-nav-side">
 				<span>我的订单</span>
 				<ul>	
-					<li class="active" href="{:U('Person/getOrderList')}"><a>全部</a></li>
+					<li class="active" href="{:U('Person/orderManage')}"><a>全部</a></li>
 					<li><a >待付款</a></li>
 					<li><a>待确认</a></li>
 					<li><a>配送中</a></li>
@@ -86,6 +86,109 @@
 								<th>操作</th>
 							</tr>
 						</thead>
+						<foreach name="orderList" item="page">
+							<tbody>				
+								<tr class="order-info-head">
+									<td colspan="2">
+										订单编号：<span>{$page[0].orderInfo.together_id}</span>
+										提交时间：<span>{$page[0].orderInfo.together_date}</span>	
+									</td>
+									<td colspan="2">
+										
+									</td>	
+								</tr>
+								<foreach name="page" item="v">
+								<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+									<tr class="order-info-detailed">
+										<td>
+											<img class="fl" src="{$v.img_url}" alt="">
+											<div class="fl">
+												<p>{$v.name}</p>
+												<p>{$v.message}</p>
+												<p>共{$v.order_count}件商品</p>
+											</div>		
+										</td>
+										<td>
+										<?php
+											switch($v['status'])
+											{
+												case 0:echo "宝贝在购物车中";break;
+												case 1:echo "已付款/待确认";break;
+												case 2:echo "配送中";break;
+												case 3:
+												{
+													if ($v['is_remarked'] != 0)
+													{
+														echo "已完成";break;
+													}
+													else
+													{
+														echo "待评价";
+													}
+													break;
+												}
+												default:echo "状态异常"; 
+											}
+										?>
+										</td>
+										<td class='b'>
+											￥{$v.discountPrice}
+										</td >
+										<td>
+										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+										<?php
+											switch($v['status'])
+											{
+												case 0:
+												echo 
+												'';
+												break;
+												case 1:
+												echo 
+												'<button class="order-manage-button order-manage-4">
+													取消订单
+												</button>';
+												break;
+												case 2:
+												echo 
+												'<button class="order-manage-button order-manage-5">
+													确认收货
+												</button>';
+												break;
+												case 3:
+												{
+													if ($v['is_remarked'] != 0)
+													{
+														echo 
+												'<button class="order-manage-button order-manage-1">
+													追加评论
+												</button>
+												<button class="order-manage-button order-manage-2">
+													删除订单
+												</button>';
+														break;
+													}
+													else
+													{
+														echo 
+												'<button class="order-manage-button order-manage-6">
+													评价收货
+												</button>
+												<button class="order-manage-button order-manage-2">
+													删除收货
+												</button>';
+													}
+													break;
+												}
+												default:echo "状态异常"; 
+											}
+										?>
+											<p><a>订单详情</a></p>				
+										</td>							
+									</tr>
+								</foreach>			
+							</tbody>
+						</foreach>
 						<tbody>				
 							<tr class="order-info-head">
 								<td colspan="2">
@@ -96,7 +199,6 @@
 									
 								</td>	
 							</tr>
-							<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 							<tr class="order-info-detailed">
 								<td>
 									<img class="fl" src="__PUBLIC__/img/goods.png" alt="">
@@ -104,23 +206,24 @@
 										<p>Homee LED百变耳机台灯创意可以做耳机的台灯</p>
 										<p>设计师原创，纯手工打造</p>
 										<p>共1件商品</p>
-									</div>		
-								</td>
-								<td>已完成</td>
-								<td class='b'>
-									￥79
-								</td >
-								<td>
-								<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
-									<button class="order-manage-button order-manage-1">
-										追加评论
-									</button>
-									<button class="order-manage-button order-manage-2">
-										删除订单
-									</button>
-									<p><a>订单详情</a></p>				
-								</td>							
-							</tr>			
+									</div>
+									</td>
+									<td>已完成</td>
+									<td class='b'>
+										￥79
+									</td >
+									<td>
+									<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+										<button class="order-manage-button order-manage-1">
+											追加评论
+										</button>
+										<button class="order-manage-button order-manage-2">
+											删除订单
+										</button>
+										<p><a>订单详情</a></p>				
+									</td>							
+								</tr>
+							</foreach>			
 						</tbody>
 						<tbody>				
 							<tr class="order-info-head">

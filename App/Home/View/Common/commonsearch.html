@@ -6,7 +6,11 @@
 				<span class="text-special fl"><p>For优<br><span class="bold inline-block">为你更好的生活</span></span>
 			</div>
 			<div id="header-search" class="fl">
-				<input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
+			    <if condition="searchHidden eq 1">
+			        <input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
+			    <else/>	<input name="keyword" type="text" placeholder="请输入要查找的商品" value="" list="search-record">
+			    </if>
+			
 
 				<datalist id="search-record">
 				
@@ -14,11 +18,26 @@
 					
 				<button id="search">搜索</button>
 				<ul>
-					<volist name="category" id="vi" offset='1' length="6">
+					<!-- <volist name="category" id="vi" offset='1' length="6">
 						<li>
-							<a href="">{$vi.category}</a>
+							<a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vi['category_id'],'campusId'=>cookie('campusId')))}">{$vi.category}</a>
 						</li>				
-					</volist>
+					</volist> -->
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>cookie('campusId'),'categoryName'=>'新鲜水果','searchHidden'=>1))}">新鲜水果</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'牛奶','campusId'=>cookie('campusId'),'categoryName'=>'新鲜牛奶','searchHidden'=>1))}">新鲜牛奶</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'面包','campusId'=>cookie('campusId'),'categoryName'=>'美味面包','searchHidden'=>1))}">美味面包</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'家政','campusId'=>cookie('campusId'),'categoryName'=>'家政服务','searchHidden'=>1))}">家政服务</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>cookie('campusId'),'categoryName'=>'可口饮料','searchHidden'=>1))}">可口饮料</a>
+					</li>
 				</ul>
 			</div>
 

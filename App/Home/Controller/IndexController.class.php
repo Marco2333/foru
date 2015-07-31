@@ -4,7 +4,7 @@ use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
 class IndexController extends Controller {
-    
+
     public function index(){
 
         $campusId=I('campusId');        //获取校区id
@@ -42,7 +42,7 @@ class IndexController extends Controller {
         ->select();               //获取主页头图
 
         $good=M('food');
-
+        
         foreach ($classes as $key => $cate) {
             $goods=$good->where('category_id=%d',$cate['category_id'])
             ->limit(5)
@@ -66,6 +66,8 @@ class IndexController extends Controller {
              ->assign("category",$classes)  
              ->assign('module',$module)
              ->assign('cartGood',$cartGood);
+
+
         $this->display();
     }
     
@@ -137,17 +139,25 @@ class IndexController extends Controller {
             'campus_id'=>$campusId
         );
         
+        $categoryName=I('categoryName');
+        if($categoryName!=null){
+            $this->assign('categoryName',$categoryName);    //路径中显示
+        }   
+
         if($categoryId!=''){
             $data['category_id']=$categoryId;
             $this->assign('categoryId',$categoryId);
             $categoryName=$category->where('category_id=%d',$categoryId)->find();
-            $this->assign('categoryName',$categoryName['category']); 
+            $this->assign('categoryName',$categoryName['category']);     //路径中显示
         }
 
         if($search!=''){
             $data['name|food_flag']=array('like',"%".$search."%");
             $this->assign('search',$search);
-            $this->assign('categoryName',$search); 
+            $searchHidden=I('searchHidden');
+            if($searchHidden==1){
+                $this->assign($searchHidden);
+            } 
         }
 
         $count = M('food')->where($data)->count();// 查询满足要求的总记录数
@@ -174,6 +184,7 @@ class IndexController extends Controller {
              ->assign('goods',$goods)// 赋值数据集
              ->assign('page',$show)// 赋值分页输出
              ->assign('categoryHidden',1)
+             ->assign('hiddenLocation',1)
              ->assign('module',$module);
 
         $this->display();
@@ -225,9 +236,11 @@ class IndexController extends Controller {
         ->limit($limit)
         ->select();
         
-        $this->assign('comments',$comments);
-        $this->assign('good',$good);
-        $this->assign('categoryHidden',1);
+        $this->assign('comments',$comments)
+             ->assign('good',$good)
+             ->assign('categoryHidden',1)
+             ->assign('hiddenLocation',1);
+
         $this->display();
     }
 
