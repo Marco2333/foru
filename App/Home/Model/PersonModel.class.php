@@ -56,6 +56,11 @@ class PersonModel extends ViewModel {
                         ->field($field)
                         ->find();
 
+        if ($data['img_url'] == null)
+        {
+            $data['img_url'] == '';//默认forU灰色图标
+        }
+
         return $data;
     }
 
@@ -217,6 +222,7 @@ class PersonModel extends ViewModel {
                 'orders.order_count',
                 'orders.status',
                 'orders.together_id',
+                'orders.is_remarked',
                 'food.name' => 'foodName',
                 'food.message',
                 'food.price',
@@ -275,7 +281,6 @@ class PersonModel extends ViewModel {
 
     public function getOrderInfo($together_id){
         $Orders = M('orders');
-
         $where  = array(
             'together_id' => $together_id
             );
@@ -397,19 +402,21 @@ class PersonModel extends ViewModel {
         return $campus['campus_id'];
     }
 
-    public function getOrder($flag = 1){
+    public function getOrders($flag = 1){
         $Orders = M('orders');
         $where  = array(
             'phone'  => $_SESSION['username']
             );
         $field  = array(
             'together_id',
-            'together_date'
+            'together_date',
+            'status'
             );
         $order  = array(
             'together_date desc'
             );
-        $sortedOrder = $Orders->where($where)
+        $sortedOrder = $Orders->distinct(true)
+                              ->where($where)
                               ->field($field)
                               ->order($order)
                               ->select();
@@ -420,17 +427,27 @@ class PersonModel extends ViewModel {
             {
                 $orderIDstr    = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
                 $goodsInfo[$i] = $this->getGoodsInfo($orderIDstr);
+
             }
 
-            return $goodsinfo;
+            return $goodsInfo;
         }
         else
         {
-            $orderIDstr = $this->getOrderIDstr($sortedOrder[0]['together_id']);
+            for ($i = 0;$i < count($sortedOrder);$i++)
+            {
+                if ($sortedOrder[$i]['status'] != 0)
+                {
+                    $orderIDstr = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
+                    break;
+                }
+            }
+
             $goodsInfo  = $this->getGoodsInfo($orderIDstr);
 
             return $goodsInfo;
         }
+
     }
 
     public function getOrderIDstr($together_id)
@@ -461,6 +478,17 @@ class PersonModel extends ViewModel {
         }
 
         return $orderIDstr;
+    }
+
+    public function addOrderInfo($orderList){
+        for ($i = 0;$i < count($orderList);$i++)
+        {
+            $orderInfo = $this->getOrderInfo($orderList[$i][0]['together_id']);
+            $orderList[$i][0]['orderInfo']['together_id']   = $orderInfo['together_id'];
+            $orderList[$i][0]['orderInfo']['together_date'] = $orderInfo['together_date'];
+        }
+
+        return $orderList;
     }
 
 };
