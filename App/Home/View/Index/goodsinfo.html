@@ -5,12 +5,8 @@
 		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
 		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
-		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
-		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
-		<script src="__PUBLIC__/script/goodsinfo.js"></script>
-		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
-		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
-		<title>For优 购物车</title>
+	
+		<title>For优 商品信息</title>
 		<style>
 			body{
 				background-color: #fff;
@@ -115,11 +111,11 @@
 			<div class="img-and-evaluate w">
 				<div class="img-and-evaluate-head">
 					<ul class="clearfix">
-						<li  class="active"><a>图文详情</a></li>
-						<li><a>商品评价</a></li>
+						<!-- <li><a>图文详情</a></li> -->
+						<li class="active"><a>商品评价</a></li>
 					</ul>
 				</div>
-				<div id="evaluate-body" class="none">
+				<div id="evaluate-body">
 					<table>
 						<colgroup>
 							<col width="100">
@@ -162,97 +158,7 @@
 									</div>
 								</td>	
 							</tr>
-						    </foreach>	
-							<!-- <tr class="eval-info-detailed">
-								<td>
-									<img src="__PUBLIC__/img/userimg.png" alt="">
-								</td>
-								<td>
-									<div class="eval-info-detailed-score">
-										<span class="glyphicon glyphicon-star eval-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star"></span>
-										<span>4分</span>
-									</div>
-									<div class="eval-info-detailed-mark">
-										草莓功效：1.新鲜有机奶油大草莓4盒装防癌降脂水果 2.新鲜有机奶油大草莓4盒装 蛋糕装饰 3.鲜有机奶油大草莓4盒装防癌降脂水果 4.新鲜有机奶油大草莓4盒装防癌降脂水果 5.新鲜有机奶油大草莓4盒装防癌降脂水果 6.新鲜有机奶油大草莓4盒装防癌降脂水果 7.新鲜有机奶油大草莓4盒装防癌降脂水果
-									</div>
-								</td>	
-							</tr>
-							<tr class="eval-info-detailed">
-								<td>
-									<img src="__PUBLIC__/img/userimg.png" alt="">
-								</td>
-								<td>
-									<div class="eval-info-detailed-score">
-										<span class="glyphicon glyphicon-star eval-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star"></span>
-										<span>4分</span>
-									</div>
-									<div class="eval-info-detailed-mark">
-										草莓功效：1.新鲜有机奶油大草莓4盒装防癌降脂水果 2.新鲜有机奶油大草莓4盒装 蛋糕装饰 3.鲜有机奶油大草莓4盒装防癌降脂水果 4.新鲜有机奶油大草莓4盒装防癌降脂水果 5.新鲜有机奶油大草莓4盒装防癌降脂水果 6.新鲜有机奶油大草莓4盒装防癌降脂水果 7.新鲜有机奶油大草莓4盒装防癌降脂水果
-									</div>
-								</td>	
-							</tr>	
-							<tr class="eval-info-detailed">
-								<td>
-									<img src="__PUBLIC__/img/userimg.png" alt="">
-								</td>
-								<td>
-									<div class="eval-info-detailed-score">
-										<span class="glyphicon glyphicon-star eval-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star"></span>
-										<span>4分</span>
-									</div>
-									<div class="eval-info-detailed-mark">
-										草莓功效：1.新鲜有机奶油大草莓4盒装防癌降脂水果 2.新鲜有机奶油大草莓4盒装 蛋糕装饰 3.鲜有机奶油大草莓4盒装防癌降脂水果 4.新鲜有机奶油大草莓4盒装防癌降脂水果 5.新鲜有机奶油大草莓4盒装防癌降脂水果 6.新鲜有机奶油大草莓4盒装防癌降脂水果 7.新鲜有机奶油大草莓4盒装防癌降脂水果
-									</div>
-								</td>	
-							</tr>	
-							<tr class="eval-info-detailed">
-								<td>
-									<img src="__PUBLIC__/img/userimg.png" alt="">
-								</td>
-								<td>
-									<div class="eval-info-detailed-score">
-										<span class="glyphicon glyphicon-star eval-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star"></span>
-										<span>4分</span>
-									</div>
-									<div class="eval-info-detailed-mark">
-										草莓功效：1.新鲜有机奶油大草莓4盒装防癌降脂水果 2.新鲜有机奶油大草莓4盒装 蛋糕装饰 3.鲜有机奶油大草莓4盒装防癌降脂水果 4.新鲜有机奶油大草莓4盒装防癌降脂水果 5.新鲜有机奶油大草莓4盒装防癌降脂水果 6.新鲜有机奶油大草莓4盒装防癌降脂水果 7.新鲜有机奶油大草莓4盒装防癌降脂水果
-									</div>
-								</td>	
-							</tr>	
-							<tr class="eval-info-detailed">
-								<td>
-									<img src="__PUBLIC__/img/userimg.png" alt="">
-								</td>
-								<td>
-									<div class="eval-info-detailed-score">
-										<span class="glyphicon glyphicon-star eval-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>
-										<span class="glyphicon glyphicon-star eval-star"></span>
-										<span>4分</span>
-									</div>
-									<div class="eval-info-detailed-mark">
-										草莓功效：1.新鲜有机奶油大草莓4盒装防癌降脂水果 2.新鲜有机奶油大草莓4盒装 蛋糕装饰 3.鲜有机奶油大草莓4盒装防癌降脂水果 4.新鲜有机奶油大草莓4盒装防癌降脂水果 5.新鲜有机奶油大草莓4盒装防癌降脂水果 6.新鲜有机奶油大草莓4盒装防癌降脂水果 7.新鲜有机奶油大草莓4盒装防癌降脂水果
-									</div>
-								</td>	
-							</tr>			 -->
+						    </foreach>			
 						</tbody>
 					</table>
 						<div class="msg-page">
@@ -263,7 +169,7 @@
 					</div>
 				</div>
 				
-				<div id="goods-img-detailed" class="w">
+				<div id="goods-img-detailed" class="none w">
 				    <foreach name="good['img']" item="img">
 				    	<img src="{$img}" alt="">
 				    </foreach>				
@@ -273,5 +179,11 @@
 		</div>
 	
 		<include file='App/Home/View/Common/commontail.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/script/goodsinfo.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
 	</body>
 </html>

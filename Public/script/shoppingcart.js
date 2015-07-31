@@ -66,7 +66,7 @@ $(document).ready(function(){
        }
        );
     });
-    
+
     $('a.add-goods').on('click',function(){
       var $orderCount=$('input.goods-count').val();
       var $orderId=$('a.add-goods').attr('data-orderId');
@@ -150,7 +150,6 @@ $(document).ready(function(){
      };
    });
 });
-
 
 function caltotalCost(){
     var trList = $(".order-info-detailed");
