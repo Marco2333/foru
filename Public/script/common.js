@@ -187,10 +187,6 @@ $(document).ready(function(){
 
         var searchValue = $("#campus-search").val();
 
-        // if(searchValue == ""){
-        //     return;
-        // }
-
         $("#campus-location li").removeClass("active");
         $("#campus-content ul").empty();
 
@@ -223,7 +219,6 @@ $(document).ready(function(){
     }); 
 
 });
-
 
 String.prototype.trim = function() {
     return this.replace(/(^\s*)|(\s*$)/g, '');

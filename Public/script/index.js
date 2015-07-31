@@ -1,9 +1,5 @@
 $(function(){
-    $(".drop-down-left,.drop-down-layer").hover(function(){
-        $(".drop-down-layer").show();
-    },function(){
-        $(".drop-down-layer").hide();  
-    })
+    $('#slide-wrapper').carousel();
     
 });
 
