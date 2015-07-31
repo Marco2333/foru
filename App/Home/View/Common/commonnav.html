@@ -20,7 +20,7 @@
 				<a href="{:U('/Home/index/goodslist',array('categoryId'=>$module[6]['category_id'],'campusId'=>$module[6]['campus_id']))}">特惠秒杀</a>
 			</li>
 			<li>
-				<a href="{:U('Person/personhomepage')}">个人中心</a>
+				<a href="{:U('Person/personhomepage',array('campusId'=>cookie('campusId')))}">个人中心</a>
 			</li>
 			<if condition="$hiddenLocation neq 1">
 				<li>

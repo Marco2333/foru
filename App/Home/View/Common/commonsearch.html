@@ -78,10 +78,10 @@
 				    				<span class="pre-total-cost">￥269.5</span>
 				    			</span> -->
 				    			<span class="block clearfix">
-				    				<a href="{:U('ShoppingCart/shoppingcart')}" class="fl">
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('ShoppingCart/shoppingcart')}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>

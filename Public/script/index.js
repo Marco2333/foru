@@ -1,8 +1,14 @@
 $(function(){
     $('#slide-wrapper').carousel();
     
+    if($.cookie('campusId')==null){
+       $.cookie("campusId", 1, { expires: 7 });
+    }
 });
 
+ if($.cookie('campusId')==null){
+       $.cookie("campusId", 1, { expires: 7 });              //确保cookie中有值
+ }
 // $(document).ready(function() {
 
 // 	var offset = $("#goods-count").offset();

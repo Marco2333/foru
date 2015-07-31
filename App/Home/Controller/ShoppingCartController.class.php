@@ -22,6 +22,12 @@ class ShoppingCartController extends Controller {
             $campusId=1;
         }
    
+         $cartGood=array();
+        if(isset($_SESSION['username'])){
+            $phone=session('username');
+           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        }
+
         $campus=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
@@ -39,7 +45,8 @@ class ShoppingCartController extends Controller {
 
         $this->assign('campus',$campus)
              ->assign('shoppingcart',$shoppingData)
-             ->assign('categoryHidden',1);
+             ->assign('categoryHidden',1)
+             ->assign('cartGood',$cartGood);
 
         $this->display();
 	}

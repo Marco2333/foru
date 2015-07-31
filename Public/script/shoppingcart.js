@@ -59,7 +59,7 @@ $(document).ready(function(){
       var $phone=$.cookie('username');
 
       $.post(
-        '../../Home/ShoppingCart/saveOrderCount',
+        '../../../../Home/ShoppingCart/saveOrderCount',
         {orderCount:$orderCount,orderId:$orderId,phone:$phone},
         function(data){
          console.log(data.status);
@@ -73,7 +73,7 @@ $(document).ready(function(){
       var $phone=$.cookie('username');
 
       $.post(
-        '../../Home/ShoppingCart/saveOrderCount',
+        '../../../../Home/ShoppingCart/saveOrderCount',
         {orderCount:$orderCount,orderId:$orderId,phone:$phone},
         function(data){
          console.log(data.status);
@@ -94,15 +94,22 @@ $(document).ready(function(){
           }
         }                       
       });
-      $(this).attr('href',"../../Home/Person/goodsPayment?orderIds="+orderIds);
+      if(orderIds==""){
+        alert("选择的商品不能为空");
+        return;
+      }
+      $(this).attr('href',"../../../../Home/Person/goodsPayment?orderIds="+orderIds+"&campusId="+$.cookie('campusId'));
     });
 
     $('a[name="deleteSmallOrder"]').on('click',function(){
       var datarow = $(this).parent().parent();
       var orderId=$(this).parent().parent().attr('data-orderId');
       console.log(datarow);
-
-      $.post('../ShoppingCart/deleteOrders',{orderIds:orderId},function(json){
+     
+      //
+      //var json=<?php echo U('/Home/ShoppingCart/deleteOrders');?>;
+      //alert(json);
+      $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderId},function(json){
         if(json.status=="success"){
           $(datarow).remove();
           caltotalCost();
@@ -129,7 +136,7 @@ $(document).ready(function(){
       });
       //console.log(orderIds);
       if (confirm('是否删除？')) {
-       $.post('../../Home/ShoppingCart/deleteOrders',{orderIds:orderIds},function(json){
+       $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderIds},function(json){
         console.log("删除失败");
         if(json.status=="success"){
          

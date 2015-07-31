@@ -16,28 +16,28 @@ class PersonController extends Controller {
         $this->personInfo();
     }
 
-      public function getCampusName($campusId, $cityId){
+    public function getCampusName($campusId, $cityId){
          
-          if($campusId==null){
-              $campusId=1;
-          }
+      if($campusId==null){
+          $campusId=1;
+      }
 
-          $campus_name=M("campus")
-          ->field('campus_name')
-          ->where('campus_id=%d',$campusId)
-          ->select();
+      $campus_name=M("campus")
+      ->field('campus_name')
+      ->where('campus_id=%d',$campusId)
+      ->select();
 
-          if($cityId==null){
-              $cityId=1;
-          }
+      if($cityId==null){
+          $cityId=1;
+      }
 
-          $city=D('CampusView')->getAllCity();   //获取所有的城市 
-          $campus=D('CampusView')->getCampusByCity($cityId);
+      $city=D('CampusView')->getAllCity();   //获取所有的城市 
+      $campus=D('CampusView')->getCampusByCity($cityId);
 
-          $this->assign('campus',$campus)
-               ->assign('city',$cityId)
-               ->assign("cities",$city)
-               ->assign("campus_name",$campus_name[0]);
+      $this->assign('campus',$campus)
+           ->assign('city',$cityId)
+           ->assign("cities",$city)
+           ->assign("campus_name",$campus_name[0]);
       }
 
     public function personInfo($active = "0"){
@@ -575,13 +575,18 @@ class PersonController extends Controller {
 
     public function goodsPayment(){
         $campusId=I('campusId');        //获取校区id
-        $cityId=I('cityId');           //获取城市id
-        $this-> getCampusName($campusId,$cityId);
-
+        //$cityId=I('cityId');           //获取城市id
+        //$this-> getCampusName($campusId,$cityId);
+        if($campusId==null){
+            $campusId=1;
+        }
         $user = $_SESSION['username'];
+
+        $cartGood=array();
 
         if ($user != null)
         {
+            $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
             $orderIDstr = I('orderIds');
             if ($orderIDstr != '')
             {
@@ -610,6 +615,7 @@ class PersonController extends Controller {
             // $this->assign('cities',$cities);
             // $this->assign('campus',$campus);
             $this->assign("categoryHidden",1);
+            $this->assign("cartGood",$cartGood);
             $this->display("goodsPayment");
         }
         else
@@ -651,9 +657,11 @@ class PersonController extends Controller {
 
     public function personHomePage(){
         $campusId=I('campusId');        //获取校区id
-        $cityId=I('cityId');           //获取城市id
-        $this-> getCampusName($campusId,$cityId);
-
+        //$cityId=I('cityId');           //获取城市id
+        //$this-> getCampusName($campusId,$cityId);
+        if($campusId==null){
+            $campusId=1;
+        }
         $Person      = D('Person');
         $data        = $Person->getUserInfo();
         $address     = $Person->getAddress(1);
@@ -661,11 +669,18 @@ class PersonController extends Controller {
         $together_id = $lastOrder[0]['together_id'];
         $orderInfo   = $Person->getOrderInfo($together_id);
 
+         $cartGood=array();
+        if(isset($_SESSION['username'])){
+            $phone=session('username');
+           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        }
+
         $this->assign("data",$data);
         $this->assign("defaultAddress",$address[0]['address']);
         $this->assign("lastOrder",$lastOrder);
         $this->assign('orderInfo',$orderInfo);
-        $this->assign("categoryHidden",1);
+        $this->assign("categoryHidden",1)
+             ->assign("cartGood",$cartGood);
         $this->display("personhomepage");
     }
 
