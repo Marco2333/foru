@@ -33,7 +33,7 @@ $(document).ready(function(){
               $.cookie("record", newrecord);    
           } 
       }
-      window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search;
+      window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
   });
 
   $("#header-search input").focus(function(){
@@ -119,7 +119,7 @@ $(document).ready(function(){
                   // record[record.length] = $search;
                   $.cookie("record", newrecord);  
               } 
-              window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search;
+              window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
           }
         }
     });

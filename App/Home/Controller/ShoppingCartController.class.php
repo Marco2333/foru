@@ -9,6 +9,7 @@ class ShoppingCartController extends Controller {
         if (!isset($_SESSION['username'])) {
             $this->redirect('/Home/Login/Index');
         }
+        $this->hiddenLocation=1;
     }
 
     

@@ -26,7 +26,7 @@ class IndexController extends Controller {
         $category=M("food_category");      //获取左侧导航栏的分类
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
-        ->cache(true)
+        /*->cache(true)*/
         ->limit(8)
         ->select();          //获取分类
                
@@ -133,6 +133,12 @@ class IndexController extends Controller {
         ->order('serial')
         ->select();
 
+        $cartGood=array();
+        if(isset($_SESSION['username'])){
+            $phone=session('username');
+           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        }
+
         $data= array(
             'tag' => 1 ,
             'status'=>1,
@@ -185,6 +191,7 @@ class IndexController extends Controller {
              ->assign('page',$show)// 赋值分页输出
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
+             ->assign('cartGood',$cartGood)
              ->assign('module',$module);
 
         $this->display();
@@ -236,10 +243,17 @@ class IndexController extends Controller {
         ->limit($limit)
         ->select();
         
+         $cartGood=array();
+        if(isset($_SESSION['username'])){
+            $phone=session('username');
+           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        }
+
         $this->assign('comments',$comments)
              ->assign('good',$good)
              ->assign('categoryHidden',1)
-             ->assign('hiddenLocation',1);
+             ->assign('hiddenLocation',1)
+             ->assign('cartGood',$cartGood);
 
         $this->display();
     }
