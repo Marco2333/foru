@@ -1,6 +1,6 @@
 $(function(){
     cityChange('location1','location2');
-
+    var $index;
 	$("#person-location-info tbody .revise-button").on("click",function(){
         $("#change-location").show(300);
         $("#add-location").hide();
@@ -9,20 +9,20 @@ $(function(){
         var rank    = $(this).nextAll(".rank-none").val();
 
         reviseAddress(phone,rank);
-
-        $("#recevier_submit_button_revise").on("click",function(){
-
-            alert("aaa");
-            alert("bbb");
+        $("#recevier_submit_button_revise").unbind("click").bind("click",function(){
             var info = saveReviseLocation(phone,rank);
         });
     });
+     
 
     $("#person-location-info tbody .delete-button").on("click",function(){
-        var phone   = $(this).nextAll(".phone-none").val();
-        var rank    = $(this).nextAll(".rank-none").val();
-        $(this).parent().parent().remove();
-        deleteAddress(phone,rank);
+        var flag=confirm("确认删除？");
+         if(flag){
+            var phone   = $(this).nextAll(".phone-none").val();
+            var rank    = $(this).nextAll(".rank-none").val();
+            $(this).parent().parent().remove();
+            deleteAddress(phone,rank);
+        }
     });
 
     $("#change-location").hide();
@@ -86,10 +86,11 @@ function saveNewLocation(){
 	            }).appendTo(td);
 	            
 	            $("<button class='delete-button'>删除地址</button>").on("click",function(){
-	                var phone   = $(this).nextAll(".phone-none").val();
-	                var rank    = $(this).nextAll(".rank-none").val();
-	                $(this).parent().parent().remove();
-	                deleteAddress(phone,rank);
+                    
+                        var phone   = $(this).nextAll(".phone-none").val();
+                        var rank    = $(this).nextAll(".rank-none").val();
+                        $(this).parent().parent().remove();
+                        deleteAddress(phone,rank);
 	            }).appendTo(td);
 
 	            td.append("<input class='phone-none none' value="+info['phone']+">")
@@ -214,26 +215,28 @@ function reviseAddress(phone,rank){
 }
 
 function deleteAddress(phone,rank){
-    var info = {
-        phone:phone,
-        rank:rank
-    };
+   
+        var info = {
+            phone:phone,
+            rank:rank
+        };
 
-    $.ajax({
-        type:"POST",
-        url:"../../Home/Person/deleteLocation",
-        data:info,
-        success:function(data){
-        	if (data['result'] != 0)
-        	{
-        		// alert("收货地址删除成功！");
-        	}
-        	else
-        	{
-        		alert("收货地址删除失败！");
-        	}
-        }
-    })
+        $.ajax({
+            type:"POST",
+            url:"../../Home/Person/deleteLocation",
+            data:info,
+            success:function(data){
+                if (data['result'] != 0)
+                {
+                    // alert("收货地址删除成功！");
+                }
+                else
+                {
+                    alert("收货地址删除失败！");
+                }
+            }
+        })
+    
 }
 
 function cityChange(city,campus){

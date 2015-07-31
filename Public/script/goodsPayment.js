@@ -19,7 +19,7 @@ $(function(){
 
         reviseAddress(phone,rank);
 
-        $("#revise_submit").on("click",function(){
+        $("#revise_submit").unbind("click").on("click",function(){
             var info = saveReviseLocation(phone,rank);
         });
 	});
@@ -39,10 +39,13 @@ $(function(){
 	});
 	
 	$(".main-wrapper-1-btn-delete").on("click",function(){
-        var phone   = $(this).nextAll(".phone-none").val();
-        var rank    = $(this).nextAll(".rank-none").val();
-        $(this).parent().parent().remove();
-        deleteAddress(phone,rank);
+        var flag=confirm("确认删除？");
+         if(flag){
+            var phone   = $(this).nextAll(".phone-none").val();
+            var rank    = $(this).nextAll(".rank-none").val();
+            $(this).parent().parent().remove();
+            deleteAddress(phone,rank);
+        }
     });
 
 });
