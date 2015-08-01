@@ -686,12 +686,15 @@ class PersonController extends Controller {
 
     public function orderManage(){
         echo "样例中没有食品在购物车的样式"."<br>".
-             "数据库中没有待付款的标识"."<br>".
+             "数据库中没有待付款的字段"."<br>".
              "感觉已付款和待确认是一个状态";
         $Person    = D('Person');
         $orderList = $Person->getOrders();
         $orderList = $Person->addOrderInfo($orderList);
-// dump($orderList[0]);
+        $orderPage = $Person->producePage($orderList,3);
+
+        // $this->assign("orderList",$orderPage)        //分页
+        //      ->assign("page",count($orderPage));     //页数
         $this->assign("orderList",$orderList);
         $this->assign("categoryHidden",1);
         $this->display("orderManage");

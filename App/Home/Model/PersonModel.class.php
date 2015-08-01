@@ -423,7 +423,7 @@ class PersonModel extends ViewModel {
 
         if ($flag != 0)
         {
-            for ($i = 0;$i < count($sortedOrder) and $i < 3;$i++)
+            for ($i = 0;$i < count($sortedOrder);$i++)
             {
                 $orderIDstr    = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
                 $goodsInfo[$i] = $this->getGoodsInfo($orderIDstr);
@@ -434,7 +434,7 @@ class PersonModel extends ViewModel {
         }
         else
         {
-            for ($i = 0;$i < count($sortedOrder);$i++)
+            for ($i = 0;$i < count($sortedOrder) and $i < 3;$i++)
             {
                 if ($sortedOrder[$i]['status'] != 0)
                 {
@@ -489,6 +489,26 @@ class PersonModel extends ViewModel {
         }
 
         return $orderList;
+    }
+
+    public function producePage($orderList,$limit = 5)
+    {
+        $finalPage = count($orderList) / $limit;
+
+        if ($orderList % $limit != 0)
+        {
+            $finalPage++;
+        }
+
+        for ($page = 0;$page < $finalPage;$page++)
+        {
+            for ($line = 0;$line < $limit;$line++)
+            {
+                $book[$page][$line] = $orderList[$page*5+$line];
+            }
+        }
+
+        return $book;
     }
 
 };
