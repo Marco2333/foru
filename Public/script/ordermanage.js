@@ -1,5 +1,5 @@
 $(function(){
-    $(".tab-div > button").click(function(){
+    $(".tab-div > .button").click(function(){
         $(this).siblings().removeClass("active");
         $(this).addClass("active"); 
         $("#person-nav-side li").removeClass("active");
@@ -14,11 +14,11 @@ $(function(){
     	$(this).siblings().removeClass("active");
     	$(this).addClass("active");
 
-    	$(".tab-div > button").removeClass("active");
+    	$(".tab-div > .button").removeClass("active");
 
     	var prevAll = $(this).prevAll();
 
-    	$(".tab-div > button:eq("+prevAll.length+")").addClass("active");
+    	$(".tab-div > .button:eq("+(prevAll.length-1)+")").addClass("active");
     });
 
 });

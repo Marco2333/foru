@@ -717,7 +717,8 @@ class PersonController extends Controller {
     }
 
     public function orderManage(){
-       
+        $campusId = I('campusId');
+        $status = I('status');
         $Person    = D('Person');
         $orderList = $Person->getOrders();
         $orderList = $Person->addOrderInfo($orderList);
