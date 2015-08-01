@@ -734,7 +734,7 @@ class PersonController extends Controller {
     public function orderManage(){
         $campusId = I('campusId');
         $status = I('status');
-         if($campusId==null){
+         if( $campusId==null){
             $campusId=1;
         }
 
@@ -742,6 +742,7 @@ class PersonController extends Controller {
         $orderList = $Person->getOrders($campusId,$status);
         // $orderList = $Person->addOrderInfo($orderList);
 
+        // dump($orderList);
         $this->assign("orderList",$orderList)
                ->assign("status",$status);
         // $module=M('food_category')                 //获取首页八个某块,将导航对应起来
