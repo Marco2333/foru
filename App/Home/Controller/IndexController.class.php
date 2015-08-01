@@ -30,11 +30,11 @@ class IndexController extends Controller {
         ->limit(8)
         ->select();          //获取分类
                
-       /* $campus=M('campus')
+        $campusList=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
         ->cache(true)
-        ->select();*/       //获取校区列表
+        ->select();       //获取校区列表
 
         $newsImage=M('news')
         ->field('news_id,img_url')
@@ -65,6 +65,7 @@ class IndexController extends Controller {
              ->assign('main_image',$newsImage)
              ->assign("category",$classes)  
              ->assign('module',$module)
+             ->assign('campusList',$campusList)
              ->assign('cartGood',$cartGood);
 
 

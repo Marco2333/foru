@@ -5,9 +5,8 @@ $(function(){
        $.cookie("campusId", 1, { expires: 7 });
     }
 });
-
  if($.cookie('campusId')==null){
-       $.cookie("campusId", 1, { expires: 7 });              //确保cookie中有值
+       $.cookie("campusId", 1, { expires: 7 });
  }
 // $(document).ready(function() {
 
