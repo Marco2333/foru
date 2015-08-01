@@ -26,33 +26,33 @@
 		</div>
 
 		<div class="wrapper clearfix" >
-			<!-- <div id="person-nav-side">
-				<span>我的订单</span>
-				<ul>	
-					<li class="active" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId')))}"><a>全部</a></li>
-					<li><a >待付款</a></li>
-					<li><a>待确认</a></li>
-					<li><a>配送中</a></li>
-					<li><a>待评价</a></li>
-					<li><a>已完成</a></li>
-				
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">全部</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">待付款</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>3))}">待确认</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>4))}">配送中</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>5))}">待评价</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>6))}">已完成</a></li>
+				</ul>
+				<ul>
 					<span>资料管理</span>
-				
 					<li><a href="{:U('Person/personInfo',array('campusId'=>cookie('campusId')))}">个人信息</a></li>
 					<li><a href="{:U('Person/locaManage',array('campusId'=>cookie('campusId')))}">地址管理</a></li>
 					<li><a href="{:U('Person/resetpword',array('campusId'=>cookie('campusId')))}">账户安全</a></li>
-				
+				</ul>
+				<ul>
 					<span>服务中心</span>
-				
 					<li><a>联系客服</a></li>
 					<li><a>关于我们</a></li>
 					<li><a>意见反馈</a></li>
 				</ul>
-			</div> -->
-			<include file='App/Home/View/Person/person-side-nav.html'/>
+			</div>
+		
 			<div id="person-info-body">
 				<div class="tab-div" data-status="{$status}">
-					<a id="tab-1" class="active button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">
+					<a id="tab-1" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">
 						全部
 					</a>
 					<a id="tab-2" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">

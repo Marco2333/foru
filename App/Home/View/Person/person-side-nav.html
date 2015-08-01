@@ -1,12 +1,12 @@
 <div id="person-nav-side">
 	<ul>
 		<span>我的订单</span>
-		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId')))}">全部</a></li>
-		<li><a>待付款</a></li>
-		<li><a>待确认</a></li>
-		<li><a>配送中</a></li>
-		<li><a>待评价</a></li>
-		<li><a>已完成</a></li>
+		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">全部</a></li>
+		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">待付款</a></li>
+		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>3))}">待确认</a></li>
+		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>4))}">配送中</a></li>
+		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>5))}">待评价</a></li>
+		<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>6))}">已完成</a></li>
 	</ul>
 	<ul>
 		<span>资料管理</span>

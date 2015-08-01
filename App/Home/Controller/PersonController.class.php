@@ -734,10 +734,12 @@ class PersonController extends Controller {
     public function orderManage(){
         $campusId = I('campusId');
         $status = I('status');
-         if( $campusId==null){
+        if( $campusId==null){
             $campusId=1;
         }
-
+        if($status == null) {
+            $status = 1;
+        }
         $Person    = D('Person');
         $orderList = $Person->getOrders($campusId,$status);
         // $orderList = $Person->addOrderInfo($orderList);
