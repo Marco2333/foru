@@ -218,6 +218,11 @@ class IndexController extends Controller {
             'food_comment.campus_id'=>$campusId
         );
 
+        $module=M('food_category')                 //获取首页八个某块的
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
+
         $count = M('food_comment')
         ->where($map)
         ->where('tag=1 and comment is not null')
@@ -253,7 +258,8 @@ class IndexController extends Controller {
              ->assign('good',$good)
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
-             ->assign('cartGood',$cartGood);
+             ->assign('cartGood',$cartGood)
+             ->assign('module',$module);
 
         $this->display();
     }

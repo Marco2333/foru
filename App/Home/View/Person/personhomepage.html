@@ -17,8 +17,8 @@
 
 			<div id="nav-breadcrumb" class="wrapper">
 				<ul class="breadcrumb">
-					<li><a href="{:U('Index/index')}">首页</a></li>
-					<li class="active"><a href="#">我的For优</a></li>
+					<li><a href="{:U('Index/index',array('campusId'=>cookie('campusId')))}">首页</a></li>
+					<li class="active"><a href="{:U('/Home/Person/personhomepage',array('campusId'=>cookie('campusId')))}">我的For优</a></li>
 				</ul>
 			</div>
 		</div>

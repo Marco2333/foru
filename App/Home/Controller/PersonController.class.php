@@ -43,9 +43,11 @@ class PersonController extends Controller {
     public function personInfo($active = "0"){
 
         $campusId=I('campusId');        //获取校区id
-        $cityId=I('cityId');           //获取城市id
-        $this->getCampusName($campusId,$cityId);
-
+        //$cityId=I('cityId');           //获取城市id
+        //$this->getCampusName($campusId,$cityId);
+        if($campusId==null){
+            $campusId=1;
+        }
         $user = $_SESSION['username'];
 
          $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
@@ -53,6 +55,9 @@ class PersonController extends Controller {
         ->order('serial')
         ->select();
 
+         $cartGood=array();      
+         $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
+    
         //dump($module);
         if ($user != null)
         {
@@ -66,6 +71,7 @@ class PersonController extends Controller {
                 $this->assign("active",$active);
                 $this->assign("categoryHidden",1);
                 $this->assign('module',$module);
+                $this->assign('cartGood',$cartGood);
                 $this->display("personInfo");
             }
             else
@@ -217,8 +223,8 @@ class PersonController extends Controller {
 
     public function locaManage(){
         $campusId=I('campusId');        //获取校区id
-        $cityId=I('cityId');           //获取城市id
-        $this-> getCampusName($campusId,$cityId);
+        //$cityId=I('cityId');           //获取城市id
+        //$this-> getCampusName($campusId,$cityId);
 
          $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
         ->where('campus_id=%d and serial is not null',$campusId)
@@ -226,6 +232,9 @@ class PersonController extends Controller {
         ->select();
 
         $user = $_SESSION['username'];
+        $cartGood=array();      
+        $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
+       
 
         if ($user != null)
         {
@@ -236,14 +245,16 @@ class PersonController extends Controller {
             {
                 $this->assign("data",$data)
                      ->assign("categoryHidden",1)
-                     ->assign('module',$module);
+                     ->assign('module',$module)
+                     ->assign('cartGood',$cartGood);
 
                 $this->display("locamanage");
             }
             else
             {
                 $this->assign("categoryHidden",1)
-                     ->assign('module',$module);
+                     ->assign('module',$module)
+                     ->assign('cartGood',$cartGood);
 
                 $this->display("locaManage");
             }
@@ -504,9 +515,12 @@ class PersonController extends Controller {
         ->order('serial')
         ->select();
 
+        $cartGood=array();      
+        $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
         if ($user != null)
         {
-            $this->assign('module',$moudle);
+            $this->assign('module',$moudle)
+                 ->assign('cartGood',$cartGood);
             $this->display("resetpword");
         }
         else
@@ -687,6 +701,7 @@ class PersonController extends Controller {
         if($campusId==null){
             $campusId=1;
         }
+
         $Person      = D('Person');
         $data        = $Person->getUserInfo();
         $address     = $Person->getAddress(1);

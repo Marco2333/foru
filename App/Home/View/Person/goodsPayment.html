@@ -8,7 +8,6 @@
 		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
 		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="__PUBLIC__/css/style_li.css" />
-
 	</head>
 	<body>
 		
@@ -20,7 +19,7 @@
 
 				<div id="nav-breadcrumb" class="wrapper">
 					<ul class="breadcrumb">
-						<li><a href="{:U('Index/index')}">首页</a></li>
+						<li><a href="{:U('Index/index',array('campusId'=>cookie('campusId')))}">首页</a></li>
 						<li><a href="{:U('ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}">购物车</a></li>
 						<li class="active"><a href="__SELF__">确认订单</a></li>
 					</ul>
