@@ -23,12 +23,17 @@
 				<a href="{:U('Person/personhomepage',array('campusId'=>cookie('campusId')))}">个人中心</a>
 			</li>
 			<if condition="$hiddenLocation neq 1">
-				<li>
-					<img src="__PUBLIC__/img/icon/location.png" alt="">
-					<span id="location" >
-					  	{$campus_name.campus_name}
-					</span>
-				</li>
+			   <foreach name="campusList" item="vo">
+			   	   <if condition="$vo.campus_id eq cookie('campusId')">
+			   	   	<li>
+			   	   		<img src="__PUBLIC__/img/icon/location.png" alt="">
+			   	   		<span id="location" >
+			   	   		  	{$campus_name.campus_name}
+			   	   		</span>
+			   	   	</li>
+			   	   </if>
+			   </foreach>
+				
 				<else/><li></li>
 			</if>
 		</ul>
