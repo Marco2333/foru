@@ -719,24 +719,26 @@ class PersonController extends Controller {
     public function orderManage(){
         $campusId = I('campusId');
         $status = I('status');
-        $Person    = D('Person');
-        $orderList = $Person->getOrders();
-        $orderList = $Person->addOrderInfo($orderList);
-
-        $campusId=I('campusId');
-        if($campusId==null){
+         if($campusId==null){
             $campusId=1;
         }
-        $module=M('food_category')                 //获取首页八个某块,将导航对应起来
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
 
-        $orderPage = $Person->producePage($orderList,3);
+        $Person    = D('Person');
+        $orderList = $Person->getOrders($campusId,$status);
+        // $orderList = $Person->addOrderInfo($orderList);
+
         $this->assign("orderList",$orderList)
-             ->assign("categoryHidden",1)
-             ->assign('module',$module)
-             ->assign("orderList",$orderList);
+               ->assign("status",$status);
+        // $module=M('food_category')                 //获取首页八个某块,将导航对应起来
+        // ->where('campus_id=%d and serial is not null',$campusId)
+        // ->order('serial')
+        // ->select();
+
+        // $orderPage = $Person->producePage($orderList,3);
+        // $this->assign("orderList",$orderList)
+        //      ->assign("categoryHidden",1)
+        //      ->assign('module',$module)
+        //      ->assign("orderList",$orderList);
              
         // $this->assign("orderList",$orderPage)        //分页
         //      ->assign("page",count($orderPage));     //页数
