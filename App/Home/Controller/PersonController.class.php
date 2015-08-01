@@ -753,15 +753,33 @@ class PersonController extends Controller {
         $Person    = D('Person');
         $orderList = $Person->getOrders($campusId,$status);
         // $orderList = $Person->addOrderInfo($orderList);
+        for ($i=0; $i < count($orderList); $i++) { 
+            for ($j=0; $j < count($orderList[$i]); $j++) { 
+                $count++;
+            }
+        }
+        $page = new \Think\Page($count,10);
+        $page->setConfig('header','条数据');
+        $page->setConfig('prev','<');
+        $page->setConfig('next','>');
+        $page->setConfig('first','<<');
+        $page->setConfig('last','>>');
+        $page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% <span>共 %TOTAL_ROW% %HEADER%</span>');
+        $page->rollPage = 6; //控制页码数量
+        $show = $page->show();// 分页显示输出
+        $limit = $page->firstRow.','.$page->listRows; 
 
-        // dump($orderList);
+        $goods=M("food")
+        ->field("food_id,name,campus_id,img_url,message,price,discount_price,is_discount,sale_number")
+        ->where($data)
+        ->limit($limit)
+        ->select();
+
+
         $this->assign("orderList",$orderList)
-               ->assign("status",$status);
-        // $module=M('food_category')                 //获取首页八个某块,将导航对应起来
-        // ->where('campus_id=%d and serial is not null',$campusId)
-        // ->order('serial')
-        // ->select();
-
+               ->assign("status",$status)
+               ->assign('orderpage',$show);// 赋值分页输出
+       
         // $orderPage = $Person->producePage($orderList,3);
         // $this->assign("orderList",$orderList)
         //      ->assign("categoryHidden",1)
