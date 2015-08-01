@@ -10,10 +10,8 @@ $(function(){
 
         reviseAddress(phone,rank);
 
-        $("#recevier_submit_button_revise").on("click",function(){
+        $("#recevier_submit_button_revise").unbind('click').on("click",function(){
 
-            alert("aaa");
-            alert("bbb");
             var info = saveReviseLocation(phone,rank);
         });
     });
@@ -63,7 +61,7 @@ function saveNewLocation(){
 
     $.ajax({
         type:"POST",
-        url:"../../Home/Person/saveLocation",
+        url:"../../../../Home/Person/saveLocation",
         data:info,
         success:function(data){
             document.getElementById("userName").value="";
@@ -124,7 +122,7 @@ function saveReviseLocation(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../../Home/Person/reviseLocation",
+        url:"../../../../Home/Person/reviseLocation",
         data:info,
         success:function(data){
             if (data['result'] != 0)
@@ -160,14 +158,14 @@ function reviseAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../../Home/Person/getPhoneRank",
+        url:"../../../../Home/Person/getPhoneRank",
         data:info,
         success:function(data){
             var $city=$("#"+'location1');
             $.ajax({
                 type:"post",
                 data:{'':''},
-                url:"../../Home/Person/selectCity",
+                url:"../../../../Home/Person/selectCity",
                 success:function(city){
                     $city.empty();
                     for(var i=0;i<city.length;i++){
@@ -189,7 +187,7 @@ function reviseAddress(phone,rank){
                 };
                 $.ajax({
                     type:"post",
-                    url:"../../Home/Person/selectCampus",
+                    url:"../../../../Home/Person/selectCampus",
                     data:info,
                     success:function(campus){
                         for(var i=0;i<campus.length;i++){
@@ -221,7 +219,7 @@ function deleteAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../../Home/Person/deleteLocation",
+        url:"../../../../Home/Person/deleteLocation",
         data:info,
         success:function(data){
         	if (data['result'] != 0)
@@ -244,7 +242,7 @@ function cityChange(city,campus){
     $.ajax({
         type:"post",
         data:{'':''},
-        url:"../../Home/Person/selectCity",
+        url:"../../../../Home/Person/selectCity",
         success:function(data){
             $value=data[0]['city_id'];
             var $city=$("#"+city);
@@ -260,7 +258,7 @@ function cityChange(city,campus){
                 };
             $.ajax({
                 type:"post",
-                url:"../../Home/Person/selectCampus",
+                url:"../../../../Home/Person/selectCampus",
                 data:info,
                 success:function(data){
                     for(var i=0;i<data.length;i++){
@@ -280,7 +278,7 @@ function cityChange(city,campus){
         };
         $.ajax({
             type:"post",
-            url:"../../Home/Person/selectCampus",
+            url:"../../../../Home/Person/selectCampus",
             data:info,
             success:function(data){
                 for(var i=0;i<data.length;i++){

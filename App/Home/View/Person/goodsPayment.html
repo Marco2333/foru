@@ -76,7 +76,7 @@
 				</div>
 				
 				<div class="wrapper main-wrapper-2">
-					<form action="{:U('Person/addOrReviseSave')}" method="POST">
+					<form action="{:U('Person/addOrReviseSave',array('campusId'=>cookie('campusId')))}" method="POST">
 						<div>
 							<label for="li_person">收货人：</label>
 							<input type="text" name="user-name" id="userName" class="person"/>
@@ -106,7 +106,7 @@
 						</div>
 					</form>
 				</div>
-			<form action="{:U('Person/payAtOnce')}" method="POST">
+			<form action="{:U('Person/payAtOnce',array('campusId'=>cookie('campusId')))}" method="POST">
 				<div class="wrapper main-wrapper-3">
 					<table class="wrapper">
 						<colgroup>
