@@ -95,13 +95,8 @@ class PersonModel extends ViewModel {
 
     public function getPayData($together_id)
     {
-        // $Orders         = M('orders');
-        // $joinFood       = 'food On orders.food_id = food.food_id';
-        // $joinReceiver   = 'receiver On orders.rank = receiver.rank';
         $where  = array(
             'together_id'   => $together_id
-            // 'is_out'        => 0,
-            // '_logic'        => 'and'
             );
 
         // $field = array(
@@ -142,9 +137,6 @@ class PersonModel extends ViewModel {
             'address'
             );
 
-        // $data = $Orders
-        // $this->join($joinFood)
-        //      ->join($joinReceiver)
         $data = $this->where($where)
                      ->field($field)
                      ->select();

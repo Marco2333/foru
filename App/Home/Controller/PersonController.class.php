@@ -717,9 +717,7 @@ class PersonController extends Controller {
     }
 
     public function orderManage(){
-        echo "样例中没有食品在购物车的样式"."<br>".
-             "数据库中没有待付款的字段"."<br>".
-             "感觉已付款和待确认是一个状态";
+       
         $Person    = D('Person');
         $orderList = $Person->getOrders();
         $orderList = $Person->addOrderInfo($orderList);
