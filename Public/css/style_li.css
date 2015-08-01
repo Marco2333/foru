@@ -126,3 +126,36 @@
 
 .special-paddright{ padding-right: 10px}
 .special-paddingleft{padding-left: 10px}
+
+
+
+
+/*comment*/
+.nav-comment{background-color: transparent;}
+#nav-breadcrumb .breadcrumb{background-color: transparent;}
+.inner-wrapper{border: 1px solid #aaaaaa; height:auto; font-family: "黑体"; margin-bottom: 120px;}
+.comment-banner{ margin-left: 25px;}
+.body-thing{vertical-align: top; margin-top: 20px;}
+.thing-left{ display: inline-block; max-width: 20%; vertical-align: 10px;}
+.thing-left img{ width: 200px; height: 200px;padding: 20px;}
+.thing-right{ display: inline-block; max-width: 78%;}
+.thing-right h3{ font-size: 20px; font-weight: bold;}
+.thing-right p{ max-width: 100%; color: #aaaaaa; padding:5px 0;}
+.thing-right span{ font-size: 13px;}
+.thing-right .star{ font-size: 20px;}
+.height-star{vertical-align: -9px;}
+.body-icon{ margin-left: 25px; margin-top: 20px;}
+.body-icon .text{ font-size: 17px;}
+.star-2{ vertical-align: -9px;}
+.comment-body .hr{ width:1050px; margin: 0 auto; height: 2px; margin-top: 10px; background-color: #aaaaaa;  }
+.body-comment{width:1050px;margin: 0 auto; margin-top: 20px;}
+.body-comment textarea{ width: 1050px; height: 200px; font-size: 20px;}
+.comment-footer{ width: 1050px; margin: 0 auto; margin-top: 25px; margin-bottom: 40px;}
+.comment-footer input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px; font-size: 15px; font-weight: bold;}
+
+
+/*改变bootstrap中因为优先级而不能改变颜色所定义的class*/
+span.height-star span.show-color:before{ color:#ff573a;}
+span.red-star:before,span.star:before{ color: #aaaaaa;}
+span.star-2 .special-red:before {color:#ff573a;}
+span.star-2 .special-click:before{color:#ff573a;}
