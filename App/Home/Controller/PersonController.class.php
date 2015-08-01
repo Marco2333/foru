@@ -177,7 +177,7 @@ class PersonController extends Controller {
 
             if ($info)
             {
-                $data['img_url'] = '/foryou/Public'
+                $data['img_url'] = '/foru/Public'
                                   .$info['savepath']
                                   .$info['savename'];
 
