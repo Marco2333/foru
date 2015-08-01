@@ -26,10 +26,10 @@
 		</div>
 
 		<div class="wrapper clearfix" >
-			<div id="person-nav-side">
+			<!-- <div id="person-nav-side">
 				<span>我的订单</span>
 				<ul>	
-					<li class="active" href="{:U('Person/orderManage')}"><a>全部</a></li>
+					<li class="active" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId')))}"><a>全部</a></li>
 					<li><a >待付款</a></li>
 					<li><a>待确认</a></li>
 					<li><a>配送中</a></li>
@@ -38,9 +38,9 @@
 				
 					<span>资料管理</span>
 				
-					<li><a href="{:U('Person/personInfo')}">个人信息</a></li>
-					<li><a href="{:U('Person/locaManage')}">地址管理</a></li>
-					<li><a href="{:U('Person/resetpword')}">账户安全</a></li>
+					<li><a href="{:U('Person/personInfo',array('campusId'=>cookie('campusId')))}">个人信息</a></li>
+					<li><a href="{:U('Person/locaManage',array('campusId'=>cookie('campusId')))}">地址管理</a></li>
+					<li><a href="{:U('Person/resetpword',array('campusId'=>cookie('campusId')))}">账户安全</a></li>
 				
 					<span>服务中心</span>
 				
@@ -48,7 +48,8 @@
 					<li><a>关于我们</a></li>
 					<li><a>意见反馈</a></li>
 				</ul>
-			</div>
+			</div> -->
+			<include file='App/Home/View/Person/person-side-nav.html'/>
 			<div id="person-info-body">
 				<div class="tab-div">
 					<button id="tab-1" class="active">

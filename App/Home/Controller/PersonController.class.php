@@ -48,6 +48,12 @@ class PersonController extends Controller {
 
         $user = $_SESSION['username'];
 
+         $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
+
+        //dump($module);
         if ($user != null)
         {
             $Person = D('Person');
@@ -59,12 +65,14 @@ class PersonController extends Controller {
                 $this->assign("data",$data);
                 $this->assign("active",$active);
                 $this->assign("categoryHidden",1);
+                $this->assign('module',$module);
                 $this->display("personInfo");
             }
             else
             {
                 $this->assign("active",$active);
                 $this->assign("categoryHidden",1);
+                $this->assign('module',$module);
                 $this->display("personInfo");
             }
         }
@@ -212,6 +220,10 @@ class PersonController extends Controller {
         $cityId=I('cityId');           //获取城市id
         $this-> getCampusName($campusId,$cityId);
 
+         $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
 
         $user = $_SESSION['username'];
 
@@ -222,13 +234,17 @@ class PersonController extends Controller {
 
             if ($data !== false)
             {
-                $this->assign("data",$data);
-                $this->assign("categoryHidden",1);
+                $this->assign("data",$data)
+                     ->assign("categoryHidden",1)
+                     ->assign('module',$module);
+
                 $this->display("locamanage");
             }
             else
             {
-                $this->assign("categoryHidden",1);
+                $this->assign("categoryHidden",1)
+                     ->assign('module',$module);
+
                 $this->display("locaManage");
             }
         }
@@ -475,13 +491,22 @@ class PersonController extends Controller {
         
     public function resetpword(){
         $campusId=I('campusId');        //获取校区id
-        $cityId=I('cityId');           //获取城市id
-        $this-> getCampusName($campusId,$cityId);
-
+       // $cityId=I('cityId');           //获取城市id
+        //$this-> getCampusName($campusId,$cityId);
+        
         $user = $_SESSION['username'];
+
+        if($campusId ==null){
+            $campusId=1;
+        }
+        $module=M('food_category')                 //获取首页八个某块的
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
 
         if ($user != null)
         {
+            $this->assign('module',$moudle);
             $this->display("resetpword");
         }
         else
@@ -669,18 +694,25 @@ class PersonController extends Controller {
         $together_id = $lastOrder[0]['together_id'];
         $orderInfo   = $Person->getOrderInfo($together_id);
 
+         $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
+
          $cartGood=array();
         if(isset($_SESSION['username'])){
             $phone=session('username');
            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
         }
 
-        $this->assign("data",$data);
-        $this->assign("defaultAddress",$address[0]['address']);
-        $this->assign("lastOrder",$lastOrder);
-        $this->assign('orderInfo',$orderInfo);
-        $this->assign("categoryHidden",1)
-             ->assign("cartGood",$cartGood);
+        $this->assign("data",$data)
+             ->assign("defaultAddress",$address[0]['address']) 
+             ->assign("lastOrder",$lastOrder) 
+             ->assign('orderInfo',$orderInfo) 
+             ->assign("categoryHidden",1)
+             ->assign("cartGood",$cartGood)
+             ->assign("module",$module);
+
         $this->display("personhomepage");
     }
 
@@ -691,9 +723,19 @@ class PersonController extends Controller {
         $Person    = D('Person');
         $orderList = $Person->getOrders();
         $orderList = $Person->addOrderInfo($orderList);
+        $campusId=I('campusId');
+        if($campusId==null){
+            $campusId=1;
+        }
+        $module=M('food_category')                 //获取首页八个某块,将导航对应起来
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
 // dump($orderList[0]);
-        $this->assign("orderList",$orderList);
-        $this->assign("categoryHidden",1);
+        $this->assign("orderList",$orderList)
+             ->assign("categoryHidden",1)
+             ->assign('module',$module);
+
         $this->display("orderManage");
     }
 

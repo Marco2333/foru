@@ -43,10 +43,16 @@ class ShoppingCartController extends Controller {
         ->where('orders.status = 0 and orders.campus_id=%d and phone=%s',$campusId,$phone) 
         ->select();
 
+         $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
+        ->select();
+
         $this->assign('campus',$campus)
              ->assign('shoppingcart',$shoppingData)
              ->assign('categoryHidden',1)
-             ->assign('cartGood',$cartGood);
+             ->assign('cartGood',$cartGood)
+             ->assign('module',$module);
 
         $this->display();
 	}

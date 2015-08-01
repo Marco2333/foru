@@ -23,28 +23,7 @@
 			</div>
 		</div>
 		<div class="wrapper clearfix" >
-			<div id="person-nav-side">
-				<ul>
-					<span>我的订单</span>
-					<li><a>全部</a></li>
-					<li><a>待付款</a></li>
-					<li><a>待确认</a></li>
-					<li><a>配送中</a></a></li>
-					<li><a>已完成</a></li>
-				</ul>
-				<ul>
-					<span>资料管理</span>
-					<li><a href="{:U('Person/personInfo')}">个人信息</a></li>
-					<li><a href="{:U('Person/locaManage')}">地址管理</a></li>
-					<li><a href="{:U('Person/resetpword')}">账户安全</a></li>
-				</ul>
-				<ul>
-					<span>服务中心</span>
-					<li><a>联系客服</a></li>
-					<li><a>关于我们</a></li>
-					<li><a>意见反馈</a></li>
-				</ul>
-			</div>
+			<include file='App/Home/View/Person/person-side-nav.html'/>
 			<div id="person-info-body">
 				<span>尊敬的</span><span>{$data['nickname']}</span>，<span>您好！欢迎来到For优</span>
 				<div id="personhome-info" class="clearfix">
@@ -69,7 +48,7 @@
 				</div>
 				<div class="info-title">
 						近期订单
-						<span class="fr"><a href="{:U('Person/ordermanage')}">查看所有订单</a></span>
+						<span class="fr"><a href="{:U('Person/ordermanage',array('campusId'=>cookie('campusId')))}">查看所有订单</a></span>
 				</div>
 				<div class="personhome-order-info">
 					<table>
@@ -130,7 +109,7 @@
 									<td colspan="3">
 									</td>
 									<td colspan="1">
-										<a href="{:U('Person/orderManage')}">订单详情</a>
+										<a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId')))}">订单详情</a>
 									</td>
 							</tr>		
 						</tbody>
