@@ -3,6 +3,16 @@ namespace Home\Controller;
 use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
+/**
+ * 资料管理控制器
+ * 
+ * @package     app
+ * @subpackage  core
+ * @category    controller
+ * @author      Tony<879833043@qq.com>
+ *
+ */ 
+
 class PersonController extends Controller {
     public function _initialize() {
         if (!isset($_SESSION['username'])) {
@@ -177,7 +187,7 @@ class PersonController extends Controller {
 
             if ($info)
             {
-                $data['img_url'] = '/foryou/Public'
+                $data['img_url'] = '/foru/Public'
                                   .$info['savepath']
                                   .$info['savename'];
 
