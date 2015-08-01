@@ -3,6 +3,16 @@
 namespace Home\Model;
 use Think\Model\ViewModel;
 
+/**
+ * 资料管理模型
+ * 
+ * @package     app
+ * @subpackage  Home
+ * @category    MODEL
+ * @author      Tony<879833043@qq.com>
+ *
+ */ 
+
 class PersonModel extends ViewModel {
     // protected $tableName="orders"; 
     protected $viewFields=array(
@@ -11,32 +21,13 @@ class PersonModel extends ViewModel {
          // 'receiver'  =>array('phone_id'=>'customer_phone','name'=>'receiverName','address','is_out','_on'=>'orders.phone = receiver.phone')
     );
 
-    // protected $viewFields = array(
-    //     'order_food_receiver'  => array(
-    //             'phone',
-    //             'campus_id',
-    //             'together_id',
-    //             'order_count',
-    //             'food_id',
-    //             'rank',
-    //             'together_date',
-    //             'admin_phone',
-    //             'reserve_time',
-    //             'tag',
-    //             'foodName',
-    //             'price',
-    //             'discount_price',
-    //             'img_url',
-    //             'status',
-    //             'is_discount',
-    //             'message',
-    //             'customer_phone',
-    //             'receiverName',
-    //             'address',
-    //             'is_out'
-    //         )
-    //     );
-
+    /**
+     * 模型函数
+     * 取得用户基本信息-手机号，昵称，性别，学院，qq，wechart，头像存储路径
+     * @access public
+     * @param null
+     * @param array(array()) 用户数据
+     */
     public function getUserInfo(){
         $user = $_SESSION['username'];
 
@@ -58,12 +49,20 @@ class PersonModel extends ViewModel {
 
         if ($data['img_url'] == null)
         {
-            $data['img_url'] == '';//默认forU灰色图标
+            $data['img_url'] == '\foru\Public\Uploads\2015-08-01\ForUForUForUForUForUForUForUForUForUForUForUForU.jpg';//默认forU灰色图标
         }
 
         return $data;
     }
 
+    /**
+     * 模型函数
+     * 为一批订单设置一个订单号，同时设置下单时间
+     * 根据phone和order_id在orders表中记录together_id,together_date
+     * @access public
+     * @param null
+     * @param string 订单号
+     */
     public function setTogetherID(){
         $user = $_SESSION['username'];
 
@@ -93,30 +92,18 @@ class PersonModel extends ViewModel {
         return $together_id;
     }
 
+    /**
+     * 模型函数
+     * 通过订单号获得order_food_receiver视图对应数据
+     * @access public
+     * @param string $together_id 订单号
+     * @param array(array()) 订单信息
+     */
     public function getPayData($together_id)
     {
         $where  = array(
             'together_id'   => $together_id
             );
-
-        // $field = array(
-        //     'orders.phone',
-        //     'orders.together_id',
-        //     'orders.order_count',
-        //     'orders.food_id',
-        //     'orders.rank',
-        //     'orders.together_date',
-        //     'food.name as foodName',
-        //     'food.price',
-        //     'food.discount_price',
-        //     'food.img_url',
-        //     'food.status',
-        //     'food.is_discount',
-        //     'food.message',
-        //     'receiver.phone_id',
-        //     'receiver.name as receiverName',
-        //     'receiver.address'
-        //     );
 
         $field = array(
             'phone',
@@ -144,6 +131,15 @@ class PersonModel extends ViewModel {
         return $data;
     }
 
+    /**
+     * 模型函数
+     * 获取用户的收货地址
+     * @access public
+     * @param int $flag 标识
+     *            0：获取所有未删除的收货地址；
+     *            1：获取默认收货地址；
+     * @param array(array()) 收货地址信息
+     */
     public function getAddress($flag = 0){
         $Receiver = M('receiver');
 
@@ -190,6 +186,54 @@ class PersonModel extends ViewModel {
         return $address;
     }
 
+    /**
+     * 模型函数
+     * 将小订单号用英文逗号连接成字符串
+     * @access public
+     * @param string $together_id 
+     * @param string 小订单号组成的字符串
+     */
+    public function getOrderIDstr($together_id)
+    {
+        $Orders = M('orders');
+        $where  = array(
+            'phone'       => $_SESSION['username'],
+            'together_id' => $together_id
+            );
+        $field  = array(
+            'together_id',
+            'order_id'
+            );
+        $orderID = $Orders->where($where)
+                              ->field($field)
+                              ->select();
+
+        for($i = 0;$i < count($orderID);$i++)
+        {
+            if ($i < count($orderID)-1)
+            {
+                $orderIDstr .= $orderID[$i]['order_id'].',';
+            }
+            else
+            {
+                $orderIDstr .= $orderID[$i]['order_id'];
+            }
+        }
+
+        return $orderIDstr;
+    }
+
+    /**
+     * 模型函数
+     * 获取订单中食品信息-食品名称，原价，打折价，是否打折，图片url，
+     *                    食品简介，订购数量，状态，订单号，是否评价
+     * @access public
+     * @param string $orderIDstr 
+     *        订单用英文逗号隔开，结尾没有英文逗号
+     *        0表示在goodsPayment界面刷新时获取当前订单原价和打折价
+     * @param array(array()) 一个订单中所有食品的信息，
+     * 以及每种食品原价totalPrice和打折价discountPrice（单价*数量）
+     */
     public function getGoodsInfo($orderIDstr = 0){
 
         if ($orderIDstr != 0)
@@ -246,8 +290,17 @@ class PersonModel extends ViewModel {
         return $foodInfo;
     }
 
-    public function getTotalPrice(){
-        $foodInfo = $this->getGoodsInfo();
+    /**
+     * 模型函数
+     * 计算当前订单的原价和打折价
+     * @access public
+     * @param string $orderIDstr 
+     *        订单用英文逗号隔开，结尾没有英文逗号
+     *        0表示在goodsPayment界面刷新时获取当前订单原价和打折价
+     * @param array() 原价totalPrice打折价discountPrice
+     */
+    public function getTotalPrice($orderIDstr = 0){
+        $foodInfo = $this->getGoodsInfo($orderIDstr);
 
         $price = array(
             'totalPrice'    => 0,
@@ -271,6 +324,13 @@ class PersonModel extends ViewModel {
         return $price;
     }
 
+    /**
+     * 模型函数
+     * 获取当前订单的信息-订单号together_id,下单时间together_date
+     * @access public
+     * @param string $together_id 订单号
+     * @param array() 订单号，下单时间
+     */
     public function getOrderInfo($together_id){
         $Orders = M('orders');
         $where  = array(
@@ -287,6 +347,15 @@ class PersonModel extends ViewModel {
         return $orderInfo;
     }
 
+    /**
+     * 模型函数
+     * 判断用户有没有收货地址
+     * @access public
+     * @param null
+     * @param int
+     *        0：用户有收获地址
+     *        1：用户没有收货地址
+     */
     public function addressIsEmpty(){
         $Receiver = M('receiver');
         $where    = array(
@@ -309,6 +378,13 @@ class PersonModel extends ViewModel {
         }
     }
 
+    /**
+     * 模型函数
+     * 删除收货地址时判断是否要改变默认收货地址，并做出相应改变
+     * @access public
+     * @param string $rank 时间戳
+     * @param null
+     */
     public function deleteAddress($rank){
         $Receiver = M('receiver');
         $whereTag = array(
@@ -353,6 +429,13 @@ class PersonModel extends ViewModel {
 
     }
 
+    /**
+     * 模型函数
+     * 获取city表中所有城市名字和id
+     * @access public
+     * @param null
+     * @param array(array()) 城市名称，城市id
+     */
     public function getCities()
     {
         $City = M('city');
@@ -361,6 +444,13 @@ class PersonModel extends ViewModel {
         return $cities;
     }
 
+    /**
+     * 模型函数
+     * 获取选定城市的所有校区名字及id
+     * @access public
+     * @param string $cityID 城市id
+     * @param array(array()) 校区名称，校区id
+     */
     public function getCampus($cityID){
         $Campus = M('campus');
         $where = array(
@@ -378,6 +468,13 @@ class PersonModel extends ViewModel {
 
     }
 
+    /**
+     * 模型函数
+     * 获取选定城市的所有校区名字及id
+     * @access public
+     * @param string $cityID 城市id
+     * @param array(array()) 校区名称，校区id
+     */
     public function getCampusID($campusName)
     {
         $Campus = M('campus');
@@ -394,6 +491,17 @@ class PersonModel extends ViewModel {
         return $campus['campus_id'];
     }
 
+    /**
+     * 模型函数
+     * 获取订单信息
+     * @access public
+     * @param int $flag 标识
+     *            0：获取最近一次的订单详情
+     *            1：获取所有订单的详情
+     * @param int $status 状态
+     *        0、在购物车 1、全部 2、代付款 3、待确认/已付款 4、配送中 5、待评价 6、已完成
+     * @param array(array())/array(array(array())) 订单详情/某种状态下所有订单的详情
+     */
     public function getOrders($flag = 1,$status = 1){
         $Orders = M('orders');
         
@@ -411,7 +519,7 @@ class PersonModel extends ViewModel {
                 'status' 
                 );
             break;
-            case 3://待确认
+            case 3://待确认/已付款
             $where  = array(
                 'phone'  => $_SESSION['username'],
                 'status' => 1
@@ -487,36 +595,13 @@ class PersonModel extends ViewModel {
 
     }
 
-    public function getOrderIDstr($together_id)
-    {
-        $Orders = M('orders');
-        $where  = array(
-            'phone'       => $_SESSION['username'],
-            'together_id' => $together_id
-            );
-        $field  = array(
-            'together_id',
-            'order_id'
-            );
-        $orderID = $Orders->where($where)
-                              ->field($field)
-                              ->select();
-
-        for($i = 0;$i < count($orderID);$i++)
-        {
-            if ($i < count($orderID)-1)
-            {
-                $orderIDstr .= $orderID[$i]['order_id'].',';
-            }
-            else
-            {
-                $orderIDstr .= $orderID[$i]['order_id'];
-            }
-        }
-
-        return $orderIDstr;
-    }
-
+    /**
+     * 模型函数
+     * 将订单的订单号和下单时间组装到订单详情的数组中
+     * @access public
+     * @param array $orderList 订单列表
+     * @param array(array(array())) 带订单号和下单时间的订单详情
+     */
     public function addOrderInfo($orderList){
         for ($i = 0;$i < count($orderList);$i++)
         {
@@ -528,11 +613,19 @@ class PersonModel extends ViewModel {
         return $orderList;
     }
 
-    public function producePage($orderList,$limit = 5)
+    /**
+     * 模型函数
+     * 将订单列表做成页
+     * @access public
+     * @param array $list  列表
+     * @param int   $limit 每页数量
+     * @param array($list) 页式list
+     */
+    public function producePage($list,$limit = 5)
     {
-        $finalPage = count($orderList) / $limit;
+        $finalPage = count($list) / $limit;
 
-        if ($orderList % $limit != 0)
+        if ($list % $limit != 0)
         {
             $finalPage++;
         }
@@ -541,7 +634,7 @@ class PersonModel extends ViewModel {
         {
             for ($line = 0;$line < $limit;$line++)
             {
-                $book[$page][$line] = $orderList[$page*5+$line];
+                $book[$page][$line] = $list[$page*5+$line];
             }
         }
 
