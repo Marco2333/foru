@@ -51,23 +51,23 @@
 			</div> -->
 			<include file='App/Home/View/Person/person-side-nav.html'/>
 			<div id="person-info-body">
-				<div class="tab-div">
-					<a id="tab-1" class="active button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">
+				<div class="tab-div" data-status="{$status}">
+					<a id="tab-1" class="active button" href="{:U('Person/orderManage?campusId=>cookie('campusId')&status=>1)}">
 						全部
 					</a>
-					<a id="tab-2" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">
+					<a id="tab-2" class="button" href="{:U('Person/orderManage?campusId=>cookie('campusId')&status=>2)}">
 						待付款
 					</a>
-					<a id="tab-3" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>3))}">
+					<a id="tab-3" class="button" href="{:U('Person/orderManage?campusId=>cookie('campusId')&status=>3)}">
 						待确认
 					</a>
-					<a id="tab-4" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>4))}">
+					<a id="tab-4" class="button" href="{:U('Person/orderManage?campusId=>cookie('campusId')&status=>4)}">
 						配送中
 					</a>
-					<a id="tab-5" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>5))}">
+					<a id="tab-5" class="button" href="{:U('Person/orderManage?campusId=>cookie('campusId')&status=>5)}">
 						待评价
 					</a>
-					<a id="tab-6" class="button" href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>6))}">
+					<a id="tab-6" class="button" href="{:U('Person/orderManage?campusId=>cookie('campusId')&status=>6)}">
 						已完成
 					</a>
 				</div>

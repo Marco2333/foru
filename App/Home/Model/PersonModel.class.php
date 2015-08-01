@@ -394,11 +394,56 @@ class PersonModel extends ViewModel {
         return $campus['campus_id'];
     }
 
-    public function getOrders($flag = 1){
+    public function getOrders($flag = 1,$status = 1){
         $Orders = M('orders');
-        $where  = array(
-            'phone'  => $_SESSION['username']
-            );
+        
+        switch($status)
+        {
+            case 1://全部
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' => array('neq',0)
+                );
+            break;
+            case 2://待付款//数据库没有匹配的字段
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' 
+                );
+            break;
+            case 3://待确认
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' => 1
+                );
+            break;
+            case 4://配送中
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' => 2
+                );
+            break;
+            case 5://待评价
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' => 3,
+                'is_marked' => 0
+                );
+            break;
+            case 6://已完成
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' => 3,
+                'is_marked' => 1 
+                );
+            break;
+            default:
+            $where  = array(
+                'phone'  => $_SESSION['username'],
+                'status' => array('neq',0)
+                );
+        }
+
         $field  = array(
             'together_id',
             'together_date',
