@@ -744,6 +744,8 @@ class PersonController extends Controller {
     public function orderManage(){
         $campusId = I('campusId');
         $status = I('status');
+        $phone = session('username');
+
         if( $campusId==null){
             $campusId=1;
         }
@@ -751,13 +753,21 @@ class PersonController extends Controller {
             $status = 1;
         }
         $Person    = D('Person');
-        $orderList = $Person->getOrders($campusId,$status);
-        // $orderList = $Person->addOrderInfo($orderList);
-        for ($i=0; $i < count($orderList); $i++) { 
-            for ($j=0; $j < count($orderList[$i]); $j++) { 
-                $count++;
-            }
-        }
+        //$orderList = $Person->getOrders($campusId,$status);
+       
+     
+        //dump($orderList);
+        $count = M('orders')
+        ->where("orders.status = %d and phone = %s",$status,$phone)
+        ->count();
+        // // $orderList = $Person->addOrderInfo($orderList);
+        // for ($i=0; $i < count($orderList); $i++) { 
+        //     for ($j=0; $j < count($orderList[$i]); $j++) { 
+        //         $count++;
+        //     }
+        // }
+        //$count=$("orders")->where('')->count();
+        //dump($count);
         $page = new \Think\Page($count,10);
         $page->setConfig('header','条数据');
         $page->setConfig('prev','<');
@@ -769,16 +779,22 @@ class PersonController extends Controller {
         $show = $page->show();// 分页显示输出
         $limit = $page->firstRow.','.$page->listRows; 
 
-        $goods=M("food")
+      /*  $goods=M("food")
         ->field("food_id,name,campus_id,img_url,message,price,discount_price,is_discount,sale_number")
         ->where($data)
         ->limit($limit)
+        ->select();*/
+         
+         //dump($goods);
+        $orderList = M('orders')
+        ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
+        ->where("orders.status = %d and phone = %s",$status,$phone)
+        ->limit($limit)
         ->select();
-
-
+        //dump($orderList);
         $this->assign("orderList",$orderList)
-               ->assign("status",$status)
-               ->assign('orderpage',$show);// 赋值分页输出
+             ->assign("status",$status)
+             ->assign('orderpage',$show);// 赋值分页输出
        
         // $orderPage = $Person->producePage($orderList,3);
         // $this->assign("orderList",$orderList)

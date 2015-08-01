@@ -1565,11 +1565,10 @@ footer a:hover {
 .order-info-detailed {
 	height: 90px;
 }
-.personhome-order-info tr:last-child {
+#person-info-body .personhome-order-info tr:last-child {
 	height: 45px;
 }
-.personhome-order-info tr:last-child a {
-	color: #E4393C;
+#person-info-body .personhome-order-info tr:last-child a {
 	text-decoration: none;
 }
 .order-info-detailed td {
