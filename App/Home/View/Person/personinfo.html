@@ -60,7 +60,7 @@
 						更换头像
 					</button>
 				</div>
-				<!-- <form action="{:U('Person/submit')}" name="form" method="post"> -->
+				<!-- <form action="{:U('Person/submit',array('campusId'=>cookie('campusId')))}" name="form" method="post"> -->
 					<div id="person-basic-info" <?php if ($active == "1") echo "class='none'" ?> >
 						<div class="person-info-div clearfix" >
 							<span class="personinfo-before">昵称:</span>
@@ -107,7 +107,7 @@
 						</div>
 					</div>
 				<!-- </form> -->
-				<form action="{:U('Person/savePortrait')}" name="form" method="post" id="form1" runat="server" enctype="multipart/form-data">
+				<form action="{:U('Person/savePortrait',array('campusId'=>cookie('campusId')))}" name="form" method="post" id="form1" runat="server" enctype="multipart/form-data">
 					<div id="change-image-wrapper" <?php if ($active == "0") echo "class='none'" ?> >	
 						<div id="change-image" class="clearfix">
 							<div class="fl">

@@ -195,7 +195,7 @@ class PersonController extends Controller {
 
                 if ($result !== false)
                 {
-                    $this->redirect('/Home/Person/personInfo',array('active'=>1));
+                    $this->redirect('/Home/Person/personInfo',array('campusId'=>cookie('campusId')));//,array('active'=>1)
                 }
                 else
                 {
@@ -205,7 +205,7 @@ class PersonController extends Controller {
             else
             {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
-                $this->redirect('/Home/Person/personInfo',array('active'=>1));
+                $this->redirect('/Home/Person/personInfo',array('campusId'=>cookie('campusId')));//,array('active'=>1)
             }
         }
         else
@@ -431,11 +431,11 @@ class PersonController extends Controller {
 
             if ($page != '0')
             {
-                $this->redirect('/Home/Person/goodsPayment');
+                $this->redirect('/Home/Person/goodsPayment',array('campusId'=>cookie('campusId')));
             }
             else
             {
-                $this->redirect('/Home/Person/locaManage');
+                $this->redirect('/Home/Person/locaManage',array('campusId'=>cookie('campusId')));
             }
         }
         else

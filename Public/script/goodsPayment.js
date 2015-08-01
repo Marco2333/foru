@@ -19,7 +19,7 @@ $(function(){
 
         reviseAddress(phone,rank);
 
-        $("#revise_submit").on("click",function(){
+        $("#revise_submit").unbind('click').on("click",function(){
             var info = saveReviseLocation(phone,rank);
         });
 	});

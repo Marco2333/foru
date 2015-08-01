@@ -75,7 +75,7 @@
 									</td>
 									<td>{$v['address']}</td>
 									<td>
-										<!-- <form action="{:U('Person/deleteAddress')}" method=post> -->
+										<!-- <form action="{:U('Person/deleteAddress',array('campusId'=>cookie('campusId')))}" method=post> -->
 										
 										<button class="revise-button">修改</button>
 										<button class="delete-button">删除地址</button>
@@ -93,7 +93,7 @@
 						</button>
 					<!-- </form> -->
 				</div>
-				<form id="receiver_form" action="{:U('Person/addOrReviseSave')}" method='post'>
+				<form id="receiver_form" action="{:U('Person/addOrReviseSave',array('campusId'=>cookie('campusId')))}" method='post'>
 					<div id="change-location" class="none">
 						<div id="change-location-info">
 							<div class="location-info-div clearfix" >
