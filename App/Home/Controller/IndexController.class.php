@@ -417,21 +417,84 @@ public function comment(){
     }
 
     public function addToShoppingCar($campusId,$foodId,$count){
-        $data = array(
-            'order_id'    => Time(),
-            'phone'       => $_SESSION['username'],
-            'campus_id'   => $campusId,
-            'create_time' => date("Y-m-d H:m:s",Time()),
-            'status'      => 0,
-            'order_count' => $count,
-            'is_remarked'   => 0,
-            'food_id'     => $foodId,
-            'tag'         => 1
-            );
-
         $Orders = M('orders');
-        $result = $Orders->data($data)
-                         ->add();
+
+        $where = array(
+            'phone'     => $_SESSION['username'],
+            'status'    => 0
+            );
+        $field = array(
+            'order_id',
+            'food_id',
+            'order_count'
+            );
+        $preOrders = $Orders->where($where)
+                           ->field($field)
+                           ->select();
+
+        $have = 1;
+        for ($i = 0; $i < count($preOrders); $i++) 
+        { 
+            if ($preOrders[$i]['food_id'] != $foodId)
+            {
+                continue;
+            }
+            else
+            {
+                $order_count = $preOrders[$i]['order_count'] + $count;
+                $have = 0;
+                break;
+            }
+        }
+
+        if ($have != 0)
+        {
+            $data = array(
+                'order_id'    => Time(),
+                'phone'       => $_SESSION['username'],
+                'campus_id'   => $campusId,
+                'create_time' => date("Y-m-d H:m:s",Time()),
+                'status'      => 0,
+                'order_count' => $count,
+                'is_remarked' => 0,
+                'food_id'     => $foodId,
+                'tag'         => 1
+                );
+
+            $result = $Orders->data($data)
+                             ->add();
+
+            for ($i = 0; $i < count($preOrders); $i++) 
+            { 
+                $data['ordersId'] .= $preOrders[$i]['order_id'].',';
+            }
+
+            $data['ordersId'] .= $data['order_id'];
+        }
+        else
+        {
+            $wherefood = array(
+                'phone'     => $_SESSION['username'],
+                'food_id'   => $foodId
+                );
+            $data = array(
+                'order_count' => $order_count
+                );
+            $result = $Orders->where($wherefood)
+                             ->save($data);
+
+            for ($i = 0; $i < count($preOrders); $i++) 
+            { 
+                if ($i < count($orderID)-1)
+                {
+                    $data['ordersId'] .= $preOrders[$i]['order_id'].',';
+                }
+                else
+                {
+                    $data['ordersId'] .= $preOrders[$i]['order_id'];
+                }
+            }
+        }
 
         if ($result !== false)
         {
