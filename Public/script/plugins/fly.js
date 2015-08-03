@@ -1,11 +1,3 @@
-/*
- * jquery.fly
- * 
- * 抛物线动画
- * @github https://github.com/amibug/fly
- * Copyright (c) 2014 wuyuedong
- * copy from tmall.com
- */
 (function ($) {
   $.fly = function (element, options) {
     // 默认值

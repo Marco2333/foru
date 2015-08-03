@@ -1884,6 +1884,7 @@ input.goods-count {
 	background-color: #FF573A;
 	font-weight: bold;
 	margin: 5px 10px;
+	outline: none;
 }
 .img-and-detailed-body .buy-now {
 	margin-left: 55px;

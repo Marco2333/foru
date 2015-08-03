@@ -110,4 +110,26 @@ $(document).ready(function(){
             }
         })
     });
+
+    $(".put-cart").click(function() {
+        var offset = $("#shopping-cart").offset();
+        var img = $(this).parents(".goods-info-index")
+        .children(".goods-info-img").find('img').attr('src');
+        var flyer = $('<img class="u-flyer" src="' + img + '">');
+        flyer.fly({
+            start : {
+                 left : $(".goods-info-img img").first().offset().top, //开始位置（必填）#fly元素会被设置成position: fixed
+                 top : $(".goods-info-img img").first().offset().left //开始位置（必填）
+             },
+             end : {
+                 left : offset.left + 10, //结束位置（必填）
+                 top : offset.top + 10, //结束位置（必填）
+                 width : 0, //结束时宽度
+                 height : 0 //结束时高度
+             },
+             onEnd : function() {//结束回调
+                 $(this).remove();
+             }
+        });
+    });
 });

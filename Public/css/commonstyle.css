@@ -121,4 +121,8 @@ i, cite, em {
 	height: 0;
 	clear: both;
 	visibility: hidden; 
+}
+.u-flyer {
+	width: 180px;
+	height: 180px;
 } 
