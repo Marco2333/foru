@@ -749,26 +749,21 @@ class PersonController extends Controller {
         if( $campusId==null){
             $campusId=1;
         }
-        if($status == null) {
-            $status = 1;
-        }
-        $Person    = D('Person');
-        //$orderList = $Person->getOrders($campusId,$status);
        
-     
-        //dump($orderList);
-        $count = M('orders')
-        ->where("orders.status = %d and phone = %s",$status,$phone)
-        ->count();
-        // // $orderList = $Person->addOrderInfo($orderList);
-        // for ($i=0; $i < count($orderList); $i++) { 
-        //     for ($j=0; $j < count($orderList[$i]); $j++) { 
-        //         $count++;
-        //     }
-        // }
-        //$count=$("orders")->where('')->count();
-        //dump($count);
-        $page = new \Think\Page($count,10);
+        $Person    = D('Person');
+       
+       if($status==0||$status==null){
+         $count = M('orders')
+         ->where("orders.status != 0 and phone = %s",$phone)
+         ->count();
+       }else{
+         $count = M('orders')
+         ->where("orders.status = %d and phone = %s",$status,$phone)
+         ->count();
+       }
+       
+    
+        $page = new \Think\Page($count,6);
         $page->setConfig('header','条数据');
         $page->setConfig('prev','<');
         $page->setConfig('next','>');
@@ -779,32 +774,32 @@ class PersonController extends Controller {
         $show = $page->show();// 分页显示输出
         $limit = $page->firstRow.','.$page->listRows; 
 
-      /*  $goods=M("food")
-        ->field("food_id,name,campus_id,img_url,message,price,discount_price,is_discount,sale_number")
-        ->where($data)
-        ->limit($limit)
-        ->select();*/
-         
-         //dump($goods);
-        $orderList = M('orders')
-        ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-        ->where("orders.status = %d and phone = %s",$status,$phone)
-        ->limit($limit)
+        if($status==0||$status == null){            //显示所有订单
+          $orderList = M('orders')
+          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
+          ->where("orders.status !=0 and phone = %s",$phone)
+          ->limit($limit)
+          ->select();
+        }else{
+          $orderList = M('orders')
+          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
+          ->where("orders.status = %d and phone = %s",$status,$phone)
+          ->limit($limit)
+          ->select();  
+        }
+        
+        $cartGood=array();
+        $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
+        ->where('campus_id=%d and serial is not null',$campusId)
+        ->order('serial')
         ->select();
-        //dump($orderList);
+
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
-             ->assign('orderpage',$show);// 赋值分页输出
-       
-        // $orderPage = $Person->producePage($orderList,3);
-        // $this->assign("orderList",$orderList)
-        //      ->assign("categoryHidden",1)
-        //      ->assign('module',$module)
-        //      ->assign("orderList",$orderList);
-             
-        // $this->assign("orderList",$orderPage)        //分页
-        //      ->assign("page",count($orderPage));     //页数
-        //$this->assign("orderList",$orderList);
+             ->assign('module',$module)
+             ->assign('cartGood',$cartGood)
+             ->assign('orderpage',$show);// 赋值分页输
       
         $this->display("orderManage");
     }
