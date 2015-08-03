@@ -41,6 +41,7 @@ class ShoppingCartController extends Controller {
             food.price,is_discount,food.message,name')
         ->join('food on food.food_id=orders.food_id and food.campus_id=orders.campus_id')
         ->where('orders.status = 0 and orders.campus_id=%d and phone=%s',$campusId,$phone) 
+        ->order('create_time desc')
         ->select();
 
          $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
@@ -94,5 +95,14 @@ class ShoppingCartController extends Controller {
         }
 
         $this->ajaxReturn($result);
+    }
+
+    public function getCartGood(){
+        $campusId=I('campusId');
+        $phone=session('username');
+
+        $cartgood=array();
+        $cartgood=D('orders')->getCartGood($phone,$campusId);
+        $this->ajaxReturn($cartgood);
     }
 }

@@ -106,9 +106,6 @@ $(document).ready(function(){
       var orderId=$(this).parent().parent().attr('data-orderId');
       console.log(datarow);
      
-      //
-      //var json=<?php echo U('/Home/ShoppingCart/deleteOrders');?>;
-      //alert(json);
       $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderId},function(json){
         if(json.status=="success"){
           $(datarow).remove();
@@ -134,7 +131,7 @@ $(document).ready(function(){
           }
         }                       
       });
-      //console.log(orderIds);
+     
       if (confirm('是否删除？')) {
        $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderIds},function(json){
         console.log("删除失败");
@@ -160,11 +157,9 @@ $(document).ready(function(){
 
 function caltotalCost(){
     var trList = $(".order-info-detailed");
-    // console.log(trList);
     var totalCost = 0;
     var totalCostBef = 0;
     for(var i = 0;i<trList.length;i++){
-      // console.log($(trList[i]).children("td").first().children("input").prop("checked"));
       if($(trList[i]).children("td").first().children("input").prop("checked")){
         var pricePer = $(trList[i]).children("td.good-price").children().first().text().substr(1);
 

@@ -18,10 +18,9 @@ class OrdersModel extends Model{
 
 	public function getCartGood($phone,$campusId){
 		$cartGood=$this->join('food on food.campus_id =orders.campus_id and food.food_id=orders.food_id')
-		->field('name,food.price,discount_price,img_url,order_id,order_count')
+		->field('name,food.price,is_discount,discount_price,img_url,order_id,order_count')
 		->where('orders.status=0 and orders.tag=1 and food.tag=1 and food.status=1 and phone=%s and orders.campus_id=%d',$phone,$campusId)
 		->order('create_time desc')
-		->limit(5)
 		->select();
 
 		return $cartGood;

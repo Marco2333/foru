@@ -55,18 +55,23 @@
 				    	<div class="index-shopping-cart clearfix">							<!-- -->
 				    		<ul class="clearfix">
 				    		   <foreach name="cartGood" item="vo">
-				    			   	<li id="{$vo.order_id}">
-				    			   	    <div>
-				    						<img src="{$vo.img_url}" alt="{$vo.name}">
-				    						<div>{$vo.name}</div>
-				    						<span class="goods-cost fl">
-				    							￥{$vo.price|number_format=###,1}×{$vo.order_count}
-				    						</span>
-				    						<span class="fr">
-				    							<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
-				    						</span>
-				    					</div>
-				    				</li>
+				    		       <if condition="$key lt 5">
+					    			   	<li id="{$vo.order_id}">
+					    			   	    <div class="smallgood" data-orderId="{$vo.order_id}">
+					    						<img src="{$vo.img_url}" alt="{$vo.name}">
+					    						<div>{$vo.name}</div>
+					    						<span class="goods-cost fl">
+					    						  <if condition="$vo['is_discount'] eq 1">
+                                                       ￥{$vo.discount_price|number_format=###,1}×{$vo.order_count}
+                                                  <else/>￥{$vo.price|number_format=###,1}×{$vo.order_count}
+					    						  </if>	
+					    						</span>
+					    						<span class="fr">
+					    							<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+					    						</span>
+					    					</div>
+					    				</li>
+				    				</if>
 				    		   </foreach>
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
