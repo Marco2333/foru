@@ -101,7 +101,7 @@ $(document).ready(function(){
                 if (data['result'] != 0)
                 {
                     // alert("您的宝贝成功加入购物车！");
-                    window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['order_id']+"&campusId="+$.cookie('campusId');
+                    window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['ordersId']+"&campusId="+$.cookie('campusId');
                 }
                 else
                 {
