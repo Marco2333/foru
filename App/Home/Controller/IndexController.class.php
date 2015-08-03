@@ -204,6 +204,10 @@ class IndexController extends Controller {
             "campus_id"=>$campusId
         );
 
+        $campusInfo = M('campus')->where('campus_id = %d',$campusId)
+                                 // ->field('campus_name')
+                                 ->find();
+
         $good=M('food')->where($data)->find();     //获取商品详情
         $img=split(',',$good['info']);
         array_unshift($img, $good['img_url']);
@@ -257,6 +261,7 @@ class IndexController extends Controller {
 
         $this->assign('comments',$comments)
              ->assign('good',$good)
+             ->assign('campus',$campusInfo)
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
              ->assign('cartGood',$cartGood)
@@ -409,6 +414,37 @@ public function comment(){
         }
        
         $this->ajaxReturn($result);
+    }
+
+    public function addToShoppingCar($campusId,$foodId,$count){
+        $data = array(
+            'order_id'    => Time(),
+            'phone'       => $_SESSION['username'],
+            'campus_id'   => $campusId,
+            'create_time' => date("Y-m-d H:m:s",Time()),
+            'status'      => 0,
+            'order_count' => $count,
+            'is_remarked'   => 0,
+            'food_id'     => $foodId,
+            'tag'         => 1
+            );
+
+        $Orders = M('orders');
+        $result = $Orders->data($data)
+                         ->add();
+
+        if ($result !== false)
+        {
+            $data['result'] = 1;
+            $this->ajaxReturn($data);
+        }
+        else
+        {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
     }
 
 }

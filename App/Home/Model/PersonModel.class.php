@@ -535,14 +535,14 @@ class PersonModel extends ViewModel {
             $where  = array(
                 'phone'  => $_SESSION['username'],
                 'status' => 3,
-                'is_marked' => 0
+                'is_remarked' => 0
                 );
             break;
             case 6://已完成
             $where  = array(
                 'phone'  => $_SESSION['username'],
                 'status' => 3,
-                'is_marked' => 1 
+                'is_remarked' => 1 
                 );
             break;
             default:
