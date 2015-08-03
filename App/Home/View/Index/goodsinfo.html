@@ -104,9 +104,58 @@
 						<div>
 							<input type="submit" class="buy-now">立即购买</button>
 							<input type="button" class="put-cart">加入购物车</button>
+					<div class="goods-info-detailed fl">
+						<div class="img-and-detailed-head">
+							<h1>{$good.name}</h1>
+							<p>{$good.message}</p>
+						</div>
+						<div class="img-and-detailed-body">
+							<dl class="clearfix">
+								<dt>价格:</dt>
+								<dd>
+								  <if condition="$good.is_discount eq 1">
+									<span class="discount-price">￥{$good.discount_price}</span>
+									<span class="bef-price">原价:￥{$good.price}</span>
+								  </if>
+								</dd>
+							</dl>
+							<dl  class="clearfix">
+								<dt>评价:</dt>
+								<dd>
+								    <for start="1" end="6">
+								         <?php if($good['grade']>=$i)
+								                 echo '<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>';
+								                else echo '<span class="glyphicon glyphicon-star eval-star"></span>';
+								        ?>
+								    </for>						
+									<span>{$good.grade}</span>
+								</dd>
+							</dl>
+							<dl  class="clearfix">
+								<dt>配送至:</dt>
+								<dd>
+									<p>{$campus.campus_name}</p>
+								</dd>
+							</dl>
+							<dl  class="clearfix">
+								<dt>数量:</dt>
+								<dd>
+									<td>
+										<a class="sub-goods">-</a>
+										<input id="goods-count" class="goods-count" type="text" value="1" disabled="true">
+										<a class="add-goods">+</a>
+									</td>
+								</dd>
+							</dl>
+							<div>
+								<input type="button" class="buy-now">立即购买</button>
+								<input type="button" onclick="addToShoppingCar();" class="put-cart">加入购物车</button>
+							</div>
 						</div>
 					</div>
-				</div>
+					<input type="text" id="campusId-none" class="none" value="{$campus.campus_id}">
+					<input type="text" id="foodId-none" class="none" value="{$good.food_id}">
+
 			</div>
 			<div class="img-and-evaluate w">
 				<div class="img-and-evaluate-head">

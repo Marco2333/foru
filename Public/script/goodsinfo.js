@@ -61,4 +61,53 @@ $(document).ready(function(){
         $(".goods-info-img dt img").attr("src",$(this)
             .children("img").first().attr("src"));
     });
+
+    $(".put-cart").click(function(){
+        var info = {
+            campusId:$("#campusId-none").val(),
+            foodId:$("#foodId-none").val(),
+            count:$("#goods-count").val()
+        };
+
+        $.ajax({
+            type:"POST",
+            url:"../../../../../../Home/Index/addToShoppingCar",
+            data:info,
+            success:function(res){
+                if (res['result'] != 0)
+                {
+                    // alert("您的宝贝成功加入购物车！");
+                }
+                else
+                {
+                    alert("您的宝贝加入购物车失败！");
+                }
+            }
+        })
+    });
+
+    $(".buy-now").click(function(){
+        var info = {
+            campusId:$("#campusId-none").val(),
+            foodId:$("#foodId-none").val(),
+            count:$("#goods-count").val()
+        };
+
+        $.ajax({
+            type:"POST",
+            url:"../../../../../../Home/Index/addToShoppingCar",
+            data:info,
+            success:function(data){
+                if (data['result'] != 0)
+                {
+                    // alert("您的宝贝成功加入购物车！");
+                    window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['order_id']+"&campusId="+$.cookie('campusId');
+                }
+                else
+                {
+                    alert("您的宝贝加入购物车失败！");
+                }
+            }
+        })
+    });
 });
