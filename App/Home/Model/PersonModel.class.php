@@ -49,7 +49,7 @@ class PersonModel extends ViewModel {
 
         if ($data['img_url'] == null)
         {
-            $data['img_url'] == '\foru\Public\Uploads\2015-08-01\ForUForUForUForUForUForUForUForUForUForUForUForU.jpg';//默认forU灰色图标
+            $data['img_url'] = '\foru\Public\Uploads\2015-08-01\ForUForUForUForUForUForUForUForUForUForUForUForU.jpg';//默认forU灰色图标
         }
 
         return $data;
