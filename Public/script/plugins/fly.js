@@ -5,7 +5,7 @@
       version: '1.0.0',
       autoPlay: true,
       vertex_Rtop: 20, // 默认顶点高度top值
-      speed: 1.2,
+      speed: 1.3,
       start: {}, // top, left, width, height
       end: {},
       onEnd: $.noop

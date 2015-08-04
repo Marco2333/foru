@@ -78,10 +78,10 @@ class ShoppingCartController extends Controller {
     }
 
     public function deleteOrders(){
-        $orderId=I('orderIds');
+        $orderId = I('orderIds');
         $smallOrders=split(',',$orderId);                 //拆分订单id,获取单笔订单id
 
-        $order=M('orders');
+        $order = M('orders');
         $data["phone"]=session('username');
         foreach ($smallOrders as $key => $value) {
             $data["order_id"]=$value;

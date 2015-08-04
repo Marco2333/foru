@@ -49,9 +49,50 @@
 				<div class="drop-down-layer ">
 				   <empty name="cartGood">
 				   		<div class="no-goods">
-						 当前校区购物车中还没有商品，赶紧去选购吧！
-					</div>
+						 	当前校区购物车中还没有商品，赶紧去选购吧！
+						</div>
+						<div class="index-shopping-cart clearfix none">							<!-- -->
+				    		<ul class="clearfix">
+				    		   <foreach name="cartGood" item="vo">
+				    		       <if condition="$key lt 5">
+					    			   	<li id="{$vo.order_id}">
+					    			   	    <div class="smallgood" data-orderId="{$vo.order_id}">
+					    						<img src="{$vo.img_url}" alt="{$vo.name}">
+					    						<div>{$vo.name}</div>
+					    						<span class="goods-cost fl">
+					    						  <if condition="$vo['is_discount'] eq 1">
+                                                       ￥{$vo.discount_price|number_format=###,1}×{$vo.order_count}
+                                                  <else/>￥{$vo.price|number_format=###,1}×{$vo.order_count}
+					    						  </if>	
+					    						</span>
+					    						<span class="fr">
+					    							<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+					    						</span>
+					    					</div>
+					    				</li>
+				    				</if>
+				    		   </foreach>
+				    		</ul>
+				    		<div class="shopping-cart-bottom">
+				    			<!-- <span class="block ">合计: 
+				    				<span class="total-cost">￥169.5</span>
+				    			</span>
+				    			<span class="block">
+				    				原价: 
+				    				<span class="pre-total-cost">￥269.5</span>
+				    			</span> -->
+				    			<span class="block clearfix">
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" class="fl">
+				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
+				    				</a>
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    			</span>
+				    		</div>
+				    	</div>
 				    <else/>
+				    	<div class="no-goods none">
+						 	当前校区购物车中还没有商品，赶紧去选购吧！
+						</div>
 				    	<div class="index-shopping-cart clearfix">							<!-- -->
 				    		<ul class="clearfix">
 				    		   <foreach name="cartGood" item="vo">

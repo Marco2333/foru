@@ -1,38 +1,61 @@
 $(document).ready(function(){
- 
+
   $(".drop-down-left,.drop-down-layer").hover(function(){
       $(".drop-down-layer").show();
-       $.post(
-        '/foru/index.php/Home/ShoppingCart/getCartGood',
-        {campusId:$.cookie('campusId')},
-        function(json){
-          $('.index-shopping-cart ul').empty();
-           for (var i = 0; i <json.length-1; i++) {
-              if(i>4)break;
-              var price;
-              if(json[i].is_discount==1){
-                  price=new Number(json[i].discount_price).toFixed(1);
-              }else{
-                  price=new Number(json[i].price).toFixed(1);
-              }
-              $(".index-shopping-cart ul").append('<li id="'+json[i].order_id+'"><div><img src="'+json[i].img_url+'" alt="'+json[i].name+'"><div>'+json[i].name+'</div><span class="goods-cost fl">￥'+price+'×'+json[i].order_count+'</span><span class="fr"><a data-href="">删除</a></span></div></li>');
-           };
-           $(".goods-count").text(json.length);
-           //为新添加的删除按钮添加监听
-           $('.smallgood span a').on('click',function(){
-            alert("d");
-                var href_url=$(this).attr('data-href');
-                var orderId=$(this).parent().parent().attr('data-orderId');
-                $.post(
-                 href_url,{orderIds:orderId},
-                 function(data){
-                    console.log(data);
-                 });
-           });
-        }
-       );
+      $.post(
+          '/foru/index.php/Home/ShoppingCart/getCartGood',
+          {campusId:$.cookie('campusId')},
+          function(json){
+               $('.index-shopping-cart ul').empty();
+               if(json.length==0) {
+                  $(".no-goods").removeClass("none");
+                  $(".index-shopping-cart").addClass("none");
+                  return;
+               }
+               else {
+                  $(".no-goods").addClass("none");
+                  $(".index-shopping-cart").removeClass("none");
+               }
+               for (var i = 0; i <json.length; i++) {
+                  if(i>5)break;
+                  var price;
+                  if(json[i].is_discount==1){
+                      price=new Number(json[i].discount_price).toFixed(1);
+                  }else{
+                      price=new Number(json[i].price).toFixed(1);
+                  }
+                  $(".index-shopping-cart ul").append(
+                    '<li id="'+json[i].order_id+'"><div class="smallgood"><img src="'+json[i].img_url+'" alt="'+json[i].name+'"><div>'+json[i].name+'</div><span class="goods-cost fl">￥'+price+'×'+json[i].order_count+'</span><span class="fr"><a>删除</a></span></div></li>');
+              };
+              $(".goods-count").text(json.length);
+              //为新添加的删除按钮添加监听
+              $(".smallgood span a").on('click',function(){
+                // "/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']"
+                  
+                   var orderId=$(this).parent().parent().parent().attr('id');
+                   $.post(
+                      '/foru/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
+                      function(data){
+                        if(data.status=='success') {
+                            $(this).parent().parent().parent().remove();
+                        }
+                   });
+              });
+      });
   },function(){
       $(".drop-down-layer").hide();  
+  });
+
+  $(".smallgood span a").on('click',function(){   
+       var orderId=$(this).parent().parent().parent().attr('id');
+       console.log(orderId);
+       $.post(
+          '/foru/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
+          function(data){
+             if(data.status=='success') {
+                 $(this).parent().parent().parent().remove();
+             }
+       });
   });
 
   $("#search").on('click',function(){
@@ -44,7 +67,6 @@ $(document).ready(function(){
               var record = $search;
               $.cookie("record", record);
           }
-
           else {     
               var recordList = record.split(",");
               var newrecord = "";
