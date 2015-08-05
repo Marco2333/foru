@@ -65,7 +65,7 @@ $(document).ready(function(){
 
           if(record == null) {
               var record = $search;
-              $.cookie("record", record);
+              $.cookie("record", record,{ expires: 14 });
           }
           else {     
               var recordList = record.split(",");
@@ -81,7 +81,7 @@ $(document).ready(function(){
               if(recordList.length > 6){                  
                   newrecord = newrecord.substr(newrecord.indexOf(",")+1);
               }
-              $.cookie("record", newrecord);    
+              $.cookie("record", newrecord,{ expires: 14 });    
           } 
       }
       window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
@@ -105,7 +105,7 @@ $(document).ready(function(){
   $("#campus-location li").click(function(){
 
       var $city=$(this).attr('data-city');
-      $.cookie("cityId", $city);
+      $.cookie("cityId", $city,{ expires: 14 });
 
       $.post("/foru/index.php/Home/Index/getCampusByCity?cityId="+$city,
          {cityId:$city},
@@ -131,7 +131,7 @@ $(document).ready(function(){
                  $(this).addClass("active");
 
                  var $campusId = $(this).attr('data-campusId');
-                 $.cookie("campusId", $campusId);
+                 $.cookie("campusId", $campusId,{ expires: 14 });
                  $("#location").text($(this).text());
             });          
         });
@@ -139,7 +139,7 @@ $(document).ready(function(){
 
     $("#campus-content ul li").click(function(){
          var $campusId=$(this).attr('data-campusId');
-         $.cookie("campusId", $campusId);
+         $.cookie("campusId", $campusId,{ expires: 14 });
     });
 
     $("input[name='keyword']").on('keydown',function(e){
@@ -151,7 +151,7 @@ $(document).ready(function(){
               record = $.cookie("record");
               if(record == null) {
                   var record = $search;
-                  $.cookie("record", record);
+                  $.cookie("record", record,{ expires: 14 });
               }
               else {
                   var recordList = record.split(",");
@@ -168,7 +168,7 @@ $(document).ready(function(){
                       newrecord = newrecord.substr(newrecord.indexOf(",")+1);
                   }
                   // record[record.length] = $search;
-                  $.cookie("record", newrecord);  
+                  $.cookie("record", newrecord,{ expires: 14 });  
               } 
               window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
           }
@@ -181,7 +181,7 @@ $(document).ready(function(){
 
         var $city = $("#campus-location li.active").attr('data-city');
         
-        $.cookie("cityId", $city);
+        $.cookie("cityId", $city,{ expires: 14 });
 
         $.post("/foru/index.php/Home/Index/getCampusByCity?cityId="+$city,
           {cityId:$city},
@@ -208,7 +208,7 @@ $(document).ready(function(){
                    $(this).addClass("active");
 
                    var $campusId = $(this).attr('data-campusId');
-                   $.cookie("campusId", $campusId);
+                   $.cookie("campusId", $campusId,{ expires: 14 });
                    $("#location").text($(this).text());
               }); 
          });         
@@ -222,7 +222,7 @@ $(document).ready(function(){
     $("#campus-content li").click(function(){
         $("#location").text($(this).text());
         var $campusId = $(this).attr('data-campusId');
-        $.cookie("campusId", $campusId);
+        $.cookie("campusId", $campusId,{ expires: 14});
     });
 
     $("#campus-close").bind("click",function(){
@@ -262,7 +262,7 @@ $(document).ready(function(){
                       $(this).siblings.removeClass("active");
                       $(this).addClass("active");
                       var $campusId = $(this).attr('data-campusId');
-                      $.cookie("campusId", $campusId);
+                      $.cookie("campusId", $campusId,{ expires: 14 });
                   });
                }  
             }

@@ -1,3 +1,4 @@
+/*commonhead*/
 .public-top-layout {
 	font-family: Arial, "宋体";
 	line-height: 20px;
@@ -21,7 +22,7 @@
 	font-size: 12px;
 }
 .public-top-layout .user-entry a {
-	color: #333333
+	color: #333;
 }
 .public-top-layout .quick-menu {
 	width: 380px;
@@ -62,6 +63,8 @@
 	font-weight: 500;
 	font-family: "黑体";
 }
+
+/*commonsearch*/
 #header-botton-wrapper {
 	width: 1100px;
 	margin: 0 auto;
@@ -91,10 +94,10 @@
 	margin-top: 25px;
 }
 #header-search {
-	width: 486px;
+	width: 500px;
 	height: 40px;
-	border: 2px solid #24dfc2;
-	margin: 7px 0 0 180px;
+	border: 3px solid #24dfc2;
+	margin: 7px 0 0 170px;
 }
 #header-search input {
 	width: 398px;
