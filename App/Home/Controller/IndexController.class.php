@@ -508,4 +508,18 @@ public function comment(){
         }
     }
 
+    /**
+     * 获取用户是否登录的判断
+     * @return status状态
+     */
+     public function getSessionPhone(){
+        if(!isset($_SESSION["username"])){
+            $message['status']="failure";
+        }else{
+            $message['status']="success";
+        }
+
+        $this->ajaxReturn($message);
+    }
+
 }

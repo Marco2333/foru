@@ -71,19 +71,29 @@ $(document).ready(function(){
 
         $.ajax({
             type:"POST",
-            url:"../../../../../../Home/Index/addToShoppingCar",
-            data:info,
+            url:"../../../../../../Home/Index/getSessionPhone",
             success:function(res){
-                if (res['result'] != 0)
-                {
-                    // alert("您的宝贝成功加入购物车！");
-                }
-                else
-                {
-                    alert("您的宝贝加入购物车失败！");
-                }
+               if(res.status != "success"){
+                   window.location.href="../../../../../../Home/Login/index";
+               }else{
+                    $.ajax({
+                        type:"POST",
+                        url:"../../../../../../Home/Index/addToShoppingCar",
+                        data:info,
+                        success:function(res){
+                            if (res['result'] != 0)
+                            {
+                                // alert("您的宝贝成功加入购物车！");
+                            }
+                            else
+                            {
+                                alert("您的宝贝加入购物车失败！");
+                            }
+                        }
+                    });
+               }
             }
-        })
+        });
     });
 
     $(".buy-now").click(function(){
@@ -95,20 +105,30 @@ $(document).ready(function(){
 
         $.ajax({
             type:"POST",
-            url:"../../../../../../Home/Index/addToShoppingCar",
-            data:info,
-            success:function(data){
-                if (data['result'] != 0)
-                {
-                    // alert("您的宝贝成功加入购物车！");
-                    window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['ordersId']+"&campusId="+$.cookie('campusId');
-                }
-                else
-                {
-                    alert("您的宝贝加入购物车失败！");
-                }
-            }
-        })
+            url:"../../../../../../Home/Index/getSessionPhone",
+            success:function(res){
+               if(res.status != "success"){
+                   window.location.href="../../../../../../Home/Login/index";
+               }else{
+                   $.ajax({
+                       type:"POST",
+                       url:"../../../../../../Home/Index/addToShoppingCar",
+                       data:info,
+                       success:function(data){
+                           if (data['result'] != 0)
+                           {
+                               window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['ordersId']+"&campusId="+$.cookie('campusId');
+                           }
+                           else
+                           {
+                               alert("网络不给力啊！");
+                           }
+                       }
+                   })
+               }
+           }
+       });
+       
     });
 
     $(".put-cart").click(function() {
