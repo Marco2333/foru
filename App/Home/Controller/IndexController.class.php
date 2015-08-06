@@ -21,7 +21,7 @@ class IndexController extends Controller {
         $cartGood=array();
         if(isset($_SESSION['username'])){
             $phone=session('username');
-           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
         }
         $category=M("food_category");      //获取左侧导航栏的分类
         $classes=$category

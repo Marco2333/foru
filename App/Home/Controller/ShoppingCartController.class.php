@@ -6,13 +6,9 @@ header("Content-type:text/html;charset=utf-8");
 class ShoppingCartController extends Controller {
 
     public function _initialize() {
-        if (!isset($_SESSION['username'])) {
-            $this->redirect('/Home/Login/Index');
-        }
         $this->hiddenLocation=1;
     }
 
-    
     //购物车
 	public function shoppingcart(){
    		$shoppingcart=M('Orders');
@@ -26,6 +22,8 @@ class ShoppingCartController extends Controller {
         if(isset($_SESSION['username'])){
             $phone=session('username');
            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+        }else{
+            $this->redirect('/Home/Login/Index');
         }
 
         $campus=M('campus')
@@ -100,9 +98,16 @@ class ShoppingCartController extends Controller {
     public function getCartGood(){
         $campusId=I('campusId');
         $phone=session('username');
+          
+        if($campusId==null){
+            $campusId=1;
+        }
 
         $cartgood=array();
-        $cartgood=D('orders')->getCartGood($phone,$campusId);
+        if($phone!=null){
+            $cartgood=D('orders')->getCartGood($phone,$campusId);
+        }
+       
         $this->ajaxReturn($cartgood);
     }
 }

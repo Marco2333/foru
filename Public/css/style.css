@@ -2038,7 +2038,7 @@ input.goods-count {
 }
 #campus-item { 
 	height: 470px;
-	overflow: scroll;
+	overflow: auto;
 	width: 220px;
 	float: left;
 	background-color: #f5f5f5; 
