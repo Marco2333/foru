@@ -25,4 +25,8 @@ class OrdersModel extends Model{
 
 		return $cartGood;
 	}
+	public function getComment($order_id){
+		$data1=$this->where('order_id='.$order_id)->field('create_time,food_id,tag,order_count,is_remarked')->find();
+		return $data1;
+	}
 }
