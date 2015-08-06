@@ -327,18 +327,15 @@ public function comment(){
         // $this->show();
         $order_id=$_GET['order_id'];
 		$user = $_SESSION['username'];
-		$db1=M('orders');
-		$db2=M('food');
 		/*查找orders表*/
-		$where1['order_id']=$order_id;
-		$data1=$db1->where($where1)->field('create_time,food_id,tag,order_count')->find();
+		$data1=D('Orders')->getComment($order_id);
 		$create_time=$data1['create_time'];
 		$food_id=$data1['food_id'];
 		$tag=$data1['tag'];
 		$order_count=$data1['order_count'];
+		$is_remarked=$data1['is_remarked'];
 		/*查找food表*/
-		$where2['food_id']=$food_id;
-		$data2=$db2->where($where2)->field('campus_id,img_url,name,message,grade')->find();
+		$data2=D('Food')->getComment($food_id);
 		$campus_id=$data2['campus_id'];
 		$img_url=$data2['img_url'];
 		$name=$data2['name'];
@@ -348,6 +345,7 @@ public function comment(){
 		$this->assign("order_id",$order_id)
 			->assign('img_url',$img_url)
 			->assign('order_count',$order_count)
+			->assign('is_remarked',$is_remarked)
 			->assign('create_time',$create_time)
 			->assign('name',$name)
 			->assign('message',$message)
