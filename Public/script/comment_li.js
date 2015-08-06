@@ -6,7 +6,7 @@ $(function(){
 });
 
 function showStar(){
-	var $grade=$("#thing_grade").html();
+	var $grade=$("#thing_grade").text();
 	if($grade=="null" || $grade==null){
 		$grade=0;
 	}else if($grade==0){
@@ -44,11 +44,26 @@ function mouseStar(){
 
 function submitComment(){
 	var $comment=$("textarea").val();
-	var $order_id=$("#order_id").html();
+	var $order_id=$("#order_id").text();
 	var $grade=$(".special-click").length;
-	var $campus_id=$("#campus_id").html();
-	var $tag=$('#thing_tag').html();
-	var $food_id=$("#food_id").html();
+	var $campus_id=$("#campus_id").text();
+	var $tag=$('#thing_tag').text();
+	var $food_id=$("#food_id").text();
+	var $is_remarked=$("#is_remarked").text();
+	if($is_remarked != 0){
+		$("#fix-warn").html("<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>你已经评价过了，不可以重评奥^_^。</div>").removeClass('none');
+		setTimeout(function(){
+			$("#fix-warn").addClass('none');
+		},2000);
+		return;
+	}
+	if($grade == 0 && $grade ==""){
+		$("#fix-warn").html("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>请打点分吧^_^。</div>").removeClass('none');
+		setTimeout(function(){
+			$("#fix-warn").addClass('none');
+		},2000);
+		return;
+	}
 	var $info={
 		"food_id":$food_id,
 		"order_id":$order_id,
@@ -64,15 +79,16 @@ function submitComment(){
 		url:'../Index/saveComment',
 		success:function(data){
 			if(data['value']=='success'){
-				alert('评论成功');
-			}else if(data['value']=='error'){
-				alert('评论保存失败请重试！');
+				$("#fix-warn").html("<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>成功！</strong>恭喜你评论成功，页面将在5秒后跳转。</div>").removeClass('none');
+				setTimeout(function(){
+					location.href = '../Index/index';
+				},3000);
 			}else{
-				alert('未知错误，请截图联系管理员');
+				$("#fix-warn").html("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>没有评论成功QAQ。</div>").removeClass('none');
 			}
 		},
 		error:function(){
-			alert("不是正确连接，请稍后再试如果还是如此，请联系管理员");
+				$("#fix-warn").html("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>没有评论成功QAQ。</div>").removeClass('none');
 		}
 	});
 }

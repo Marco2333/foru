@@ -159,3 +159,5 @@ span.height-star span.show-color:before{ color:#ff573a;}
 span.red-star:before,span.star:before{ color: #aaaaaa;}
 span.star-2 .special-red:before {color:#ff573a;}
 span.star-2 .special-click:before{color:#ff573a;}
+
+#fix-warn{ position: fixed; width: 800px; height: 50px; top: 112px; left: 285px; z-index: 999999;}
