@@ -37,7 +37,7 @@ function login() {
 	// alert(username);
 	$.ajax({
 		type: "POST",
-		url: "../Login/tologin",
+		url: "../../Home/Login/tologin",
 		//url:""{:U('Login/tologin')}"",
 		//url: __SELF__+"/toLogin",
 		data:{

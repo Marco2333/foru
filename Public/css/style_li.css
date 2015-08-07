@@ -1,5 +1,10 @@
 /*input{ background-color: black;}*/
-
+body {
+	font-family: "黑体";
+}
+* {
+	outline: none;
+}
 #person-info-body{ font-family: "微软雅黑";}
 .person-info-body-main{margin-left: 120px;}
 .span-inline-block{display: inline-block;}
@@ -52,7 +57,6 @@
 
 .margin-form{ margin-left: 125px;}
 
-*/
 
 /*pay*/
 
@@ -63,14 +67,18 @@
 .main-wrapper-1 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
 .main-wrapper-1 tbody tr td{ padding-left: 35px;padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-1 .main-wrapper-1-radio{ vertical-align: -7px;}
-.main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
-.main-wrapper-1 .main-wrapper-1-btn-delete{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
-
+.main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; }
+.main-wrapper-1 .main-wrapper-1-btn-delete{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; }
+.main-wrapper-1 .main-wrapper-1-btn-revise:hover,
+.main-wrapper-1 .main-wrapper-1-btn-delete:hover {
+	background: #ddd;
+}
 .main-wrapper-2-1{ margin-top: 25px;}
 .main-wrapper-2-1 input{ background-color: #ff573a; color: white; border: 0px; padding: 10px; padding-left: 20px; padding-right: 20px; font-size: 17px; font-weight: bold;}
 #new_address{font-weight: bold;}
 
-.main-wrapper-2{padding: 30px; background-color: #f0f0f0; margin-top:25px;}
+.main-wrapper-2 input {padding-left: 8px;}
+.main-wrapper-2{padding: 30px; background-color: rgb(248,248,248); margin-top:25px;}
 .main-wrapper-2 form{margin: 0px; padding: 0px;}
 .main-wrapper-2 form div{ padding: 5px; margin-left: -30px;}
 .main-wrapper-2 input,.main-wrapper-2 select{ height: 31px; border:2px solid #7a7a7a;}
@@ -91,27 +99,27 @@
 .main-wrapper-3 tbody tr{ height: 30px;}
 .main-wrapper-3 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
-
+.main-wrapper-4 .order-info-detailed td img {border: 1px solid #eee;}
 .main-wrapper-4{margin-top:25px;}
 .main-wrapper-4 table{margin: 0 auto;}
 .main-wrapper-4 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-4 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
-.main-wrapper-4 span.red_price{ color: red;}
-.main-wrapper-4 span.gray{ color: #aaaaaa;}
+.main-wrapper-4 span.red_price{ color: red;margin-right: 16px;}
+.main-wrapper-4 span.gray{ color: #aaa;}
 .main-wrapper-4 td.b span.move{ margin-left: -10px;}
+.main-wrapper-4 td.b span.move span {margin: 0 8px}
 
-
-.main-wrapper-5 table{border: 1px solid #aaaaaa; margin-top:25px;}
-.main-wrapper-5 thead{ border-bottom: 1px solid #aaaaaa;}
+.main-wrapper-5 table{border: 1px solid #aaa; margin-top:25px;}
+.main-wrapper-5 thead{ border-bottom: 1px solid #aaa;}
 .main-wrapper-5 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-5 tbody tr{ height: 30px;}
 .main-wrapper-5 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
 
 .main-wrapper-6 table{ margin-top:25px;}
-.main-wrapper-6 thead{border:1px solid #aaaaaa;}
+.main-wrapper-6 thead{border:1px solid #aaa; border-bottom: none;}
 .main-wrapper-6 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
-.main-wrapper-6 tbody textarea{ width: 100%; border-left: 1px solid #aaaaaa; border-right: 1px solid #aaaaaa;border-bottom: 1px solid #aaaaaa;}
+.main-wrapper-6 tbody textarea{ padding: 3px 3px 0 8px; resize:none; width: 100%; border-left: 1px solid #aaa; border-right: 1px solid #aaaaaa;border-bottom: 1px solid #aaaaaa;}
 
 
 .main-wrapper-7{margin-top:25px; overflow: hidden; margin-bottom: 170px;}
