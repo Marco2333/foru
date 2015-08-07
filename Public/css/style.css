@@ -1565,6 +1565,9 @@ footer a:hover {
 .personhome-order-info tbody {
 	border: 1px solid #ccc;
 }
+.personhome-order-info tbody tr:last-child td {
+	padding-bottom: 10px;
+}
 .order-info-detailed {
 	height: 90px;
 }
