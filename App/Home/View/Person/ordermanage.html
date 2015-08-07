@@ -20,7 +20,22 @@
 					<li><a href="{:U('Index/index',array('campusId'=>cookie('campusId')))}">首页</a></li>
 					<li><a href="{:U('/Home/Person/personhomepage',array('campusId'=>cookie('campusId')))}">我的For优</a></li>
 					<li><a href="{:U('/Home/Person/ordermanage',array('campusId'=>cookie('campusId')))}">我的订单</a></li>
-					<li class="active"><a href="__SELF__">全部</a></li>
+					<li class="active">
+						<a href="__SELF__">
+							<?php
+								switch($status)
+								{
+									case 0:echo "全部";break;
+									case 1:echo "待付款";break;
+									case 2:echo "待确认";break;
+									case 3:echo "配送中";break;
+									case 4:echo "待评价";break;
+									case 5:echo "已完成";break;
+									default:echo ""; 
+								}
+							?>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -125,27 +140,18 @@
 											</div>		
 										</td>
 										<td>
-										<?php
-											switch($page['status'])
-											{
-												case 0:echo "宝贝在购物车中";break;
-												case 1:echo "已付款/待确认";break;
-												case 2:echo "配送中";break;
-												case 3:
+											<?php
+												echo $page['status'];
+												switch($page['status'])
 												{
-													if ($page['is_remarked'] != 0)
-													{
-														echo "已完成";break;
-													}
-													else
-													{
-														echo "待评价";
-													}
-													break;
+													case 1:echo "待付款";break;
+													case 2:echo "待确认";break;
+													case 3:echo "配送中";break;
+													case 4:echo "待评价";break;
+													case 5:echo "已完成";break;
+													default:echo ""; 
 												}
-												default:echo "状态异常"; 
-											}
-										?>
+											?>
 										</td>
 										<td class='b'>
 											￥{$page.discountPrice}
@@ -214,7 +220,6 @@
 		</div>
 
 		<include file='App/Home/View/Common/commontail.html'/>
-		<include file='App/Home/View/Common/commonlocation.html'/>
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>

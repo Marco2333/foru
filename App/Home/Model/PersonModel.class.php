@@ -554,7 +554,7 @@ class PersonModel extends ViewModel {
      *            0：获取最近一次的订单详情
      *            1：获取所有订单的详情
      * @param int $status 状态
-     *        0、在购物车 1、全部 2、代付款 3、待确认/已付款 4、配送中 5、待评价 6、已完成
+     * 
      * @return array(array())/array(array(array())) 订单详情/某种状态下所有订单的详情
      */
     public function getOrders($flag = 1,$status = 1){

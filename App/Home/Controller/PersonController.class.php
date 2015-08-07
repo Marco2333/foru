@@ -521,24 +521,24 @@ class PersonController extends Controller {
         $status = I('status');
         $phone = session('username');
 
+        echo $status;
         if( $campusId==null) {
             $campusId=1;
         }
        
-        $Person    = D('Person');
-       
-       if($status==0||$status==null) {
-         $count = M('orders')
-         ->where("orders.status != 0 and phone = %s",$phone)
-         ->count();
+        $Person = D('Person');
+        
+       if($status == 0||$status == null) {
+             $count = M('orders')
+             ->where("orders.status != 0 and phone = %s",$phone)
+             ->count();
        }
        else {
-         $count = M('orders')
-         ->where("orders.status = %d and phone = %s",$status,$phone)
-         ->count();
+             $count = M('orders')
+             ->where("orders.status = %d and phone = %s",$status,$phone)
+             ->count();
        }
        
-    
         $page = new \Think\Page($count,6);
         $page->setConfig('header','条数据');
         $page->setConfig('prev','<');
@@ -554,6 +554,7 @@ class PersonController extends Controller {
           $orderList = M('orders')
           ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
           ->where("orders.status !=0 and phone = %s",$phone)
+          ->field('status',true)
           ->limit($limit)
           ->select();
         }
@@ -561,9 +562,12 @@ class PersonController extends Controller {
           $orderList = M('orders')
           ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
           ->where("orders.status = %d and phone = %s",$status,$phone)
+          ->field(array('food.status'),true)
           ->limit($limit)
           ->select();  
         }
+
+        dump($orderList);
         
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
