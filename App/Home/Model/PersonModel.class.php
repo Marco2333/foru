@@ -26,7 +26,7 @@ class PersonModel extends ViewModel {
      * 取得用户基本信息-手机号，昵称，性别，学院，qq，wechart，头像存储路径
      * @access public
      * @param null
-     * @param array(array()) 用户数据
+     * @return array(array()) 用户数据
      */
     public function getUserInfo(){
         $user = $_SESSION['username'];
@@ -47,8 +47,7 @@ class PersonModel extends ViewModel {
                         ->field($field)
                         ->find();
 
-        if ($data['img_url'] == null)
-        {
+        if ($data['img_url'] == null) {
             $data['img_url'] == '\foru\Public\Uploads\2015-08-01\ForUForUForUForUForUForUForUForUForUForUForUForU.jpg';//默认forU灰色图标
         }
 
@@ -61,7 +60,7 @@ class PersonModel extends ViewModel {
      * 根据phone和order_id在orders表中记录together_id,together_date
      * @access public
      * @param null
-     * @param string 订单号
+     * @return string 订单号
      */
     public function setTogetherID(){
         $user = $_SESSION['username'];
@@ -78,8 +77,7 @@ class PersonModel extends ViewModel {
             'together_date' => $time
             );
 
-        for ($i = 0;$i < count($orderID);$i++)
-        {
+        for ($i = 0;$i < count($orderID);$i++) {
             $where = array(
                 'phone'    => $user,
                 'order_id' => $orderID[$i]
@@ -97,7 +95,7 @@ class PersonModel extends ViewModel {
      * 通过订单号获得order_food_receiver视图对应数据
      * @access public
      * @param string $together_id 订单号
-     * @param array(array()) 订单信息
+     * @return array(array()) 订单信息
      */
     public function getPayData($together_id)
     {
@@ -138,13 +136,12 @@ class PersonModel extends ViewModel {
      * @param int $flag 标识
      *            0：获取所有未删除的收货地址；
      *            1：获取默认收货地址；
-     * @param array(array()) 收货地址信息
+     * @return array(array()) 收货地址信息
      */
     public function getAddress($flag = 0){
         $Receiver = M('receiver');
 
-        if ($flag != 0)
-        {
+        if ($flag != 0) {
             $where    = array(
                 'phone'  => $_SESSION['username'],
                 'is_out' => 0,
@@ -152,8 +149,7 @@ class PersonModel extends ViewModel {
                 '_logic'=> 'and'
                 );
         }
-        else
-        {
+        else {
             $where    = array(
                 'phone'  => $_SESSION['username'],
                 'is_out' => 0,
@@ -175,8 +171,7 @@ class PersonModel extends ViewModel {
                             ->order($order)
                             ->select();
 
-        for ($i = 0;$i < count($address);$i++)
-        {
+        for ($i = 0;$i < count($address);$i++) {
             $subAddress = explode('^',$address[$i]['address']);
             $address[$i]['address'] = $subAddress[0].
                                       $subAddress[1].
@@ -191,7 +186,7 @@ class PersonModel extends ViewModel {
      * 将小订单号用英文逗号连接成字符串
      * @access public
      * @param string $together_id 
-     * @param string 小订单号组成的字符串
+     * @return string 小订单号组成的字符串
      */
     public function getOrderIDstr($together_id)
     {
@@ -208,14 +203,11 @@ class PersonModel extends ViewModel {
                               ->field($field)
                               ->select();
 
-        for($i = 0;$i < count($orderID);$i++)
-        {
-            if ($i < count($orderID)-1)
-            {
+        for($i = 0;$i < count($orderID);$i++) {
+            if ($i < count($orderID)-1) {
                 $orderIDstr .= $orderID[$i]['order_id'].',';
             }
-            else
-            {
+            else {
                 $orderIDstr .= $orderID[$i]['order_id'];
             }
         }
@@ -231,22 +223,19 @@ class PersonModel extends ViewModel {
      * @param string $orderIDstr 
      *        订单用英文逗号隔开，结尾没有英文逗号
      *        0表示在goodsPayment界面刷新时获取当前订单原价和打折价
-     * @param array(array()) 一个订单中所有食品的信息，
+     * @return array(array()) 一个订单中所有食品的信息，
      * 以及每种食品原价totalPrice和打折价discountPrice（单价*数量）
      */
     public function getGoodsInfo($orderIDstr = 0){
 
-        if ($orderIDstr != 0)
-        {
+        if ($orderIDstr != 0) {
             $orderID = explode(',',$orderIDstr);
         }
-        else
-        {
+        else {
             $orderID = split(',',$_SESSION['orderIDstr']);
         }
 
-        for ($i = 0;$i < count($orderID);$i++)
-        {
+        for ($i = 0;$i < count($orderID);$i++) {
             $Orders   = M('orders');
             $joinFood = 'food On orders.food_id = food.food_id';
             $where    = array(
@@ -273,16 +262,13 @@ class PersonModel extends ViewModel {
                                    ->find();
         }
 
-        for ($i = 0;$i < count($foodInfo);$i++)
-        {
+        for ($i = 0;$i < count($foodInfo);$i++) {
             $foodInfo[$i]['totalPrice'] =+ $foodInfo[$i]['price']*$foodInfo[$i]['order_count'];
 
-            if ($foodInfo[$i]['is_discount'] != 0)
-            {
+            if ($foodInfo[$i]['is_discount'] != 0) {
                 $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['discount_price']*$foodInfo[$i]['order_count'];
             }
-            else
-            {
+            else {
                 $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['price']*$foodInfo[$i]['order_count'];
             }
         }
@@ -297,7 +283,7 @@ class PersonModel extends ViewModel {
      * @param string $orderIDstr 
      *        订单用英文逗号隔开，结尾没有英文逗号
      *        0表示在goodsPayment界面刷新时获取当前订单原价和打折价
-     * @param array() 原价totalPrice打折价discountPrice
+     * @return array() 原价totalPrice打折价discountPrice
      */
     public function getTotalPrice($orderIDstr = 0){
         $foodInfo = $this->getGoodsInfo($orderIDstr);
@@ -307,16 +293,13 @@ class PersonModel extends ViewModel {
             'discountPrice' => 0
             );
 
-        for ($i = 0;$i < count($foodInfo);$i++)
-        {
+        for ($i = 0;$i < count($foodInfo);$i++) {
             $price['totalPrice'] += $foodInfo[$i]['totalPrice'];
 
-            if ($foodInfo[$i]['is_discount'] != 0)
-            {
+            if ($foodInfo[$i]['is_discount'] != 0) {
                 $price['discountPrice'] += $foodInfo[$i]['discountPrice'];
             }
-            else
-            {
+            else {
                 $price['discountPrice'] += $foodInfo[$i]['totalPrice'];
             }
         }
@@ -329,7 +312,7 @@ class PersonModel extends ViewModel {
      * 获取当前订单的信息-订单号together_id,下单时间together_date
      * @access public
      * @param string $together_id 订单号
-     * @param array() 订单号，下单时间
+     * @return array() 订单号，下单时间
      */
     public function getOrderInfo($together_id){
         $Orders = M('orders');
@@ -352,7 +335,7 @@ class PersonModel extends ViewModel {
      * 判断用户有没有收货地址
      * @access public
      * @param null
-     * @param int
+     * @return int
      *        0：用户有收获地址
      *        1：用户没有收货地址
      */
@@ -364,69 +347,141 @@ class PersonModel extends ViewModel {
             'is_out'=> 0,
             '_logic'=> 'and'
             );
-        $address  = $Receiver->where($where)
-                             ->field()
-                             ->select();
+        $count = $Receiver->where($where)
+                          ->count();
 
-        if (count($address) != 0)
-        {
+        if ($count != 0) {
             return false;
         }
-        else
-        {
+        else {
             return true;
         }
     }
 
     /**
      * 模型函数
-     * 删除收货地址时判断是否要改变默认收货地址，并做出相应改变
+     * 判断用户有没有默认收货地址
      * @access public
-     * @param string $rank 时间戳
      * @param null
+     * @return bool
+     *        true ：用户有默认收获地址
+     *        false：用户没有默认收货地址
      */
-    public function deleteAddress($rank){
+    public function hasDefaultAddress(){
+        $count = $this->where('phone='.$_SESSION['username'].' and '.'is_out=0'.' and '.'tag=0')
+                      ->count();
+
+        if ($count != 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * 模型函数
+     * 在默认地址被删除的情况下设置默认地址
+     * @access public
+     * @param null
+     * @return bool
+     *        true ：用户默认收获地址设置成功
+     *        false：用户默认收货地址设置失败
+     */
+
+    public function setDefaultAddress(){
         $Receiver = M('receiver');
-        $whereTag = array(
+        $where    = array(
             'phone' => $_SESSION['username'],
-            'rank'  => $rank,
+            'is_out'=> 0,
             '_logic'=> 'and'
             );
-        $field = array(
-            'tag'
-            );
-        $res = $Receiver->where($whereTag)
-                        ->field($field)
-                        ->find();
+        $data     = $Receiver->where($where)
+                             ->find();
 
-        if ($res['tag'] != '0')
-        {
-            return;
+        $data['tag'] = 0;
+        $res = $Receiver->where($where)
+                        ->save($date);
+
+        if ($res !== false) {
+            return true;
         }
-        else
-        {
-            $where    = array(
-                'phone' => $_SESSION['username'],
-                'is_out'=> 0,
-                '_logic'=> 'and'
-                );
-            $address  = $Receiver->where($where)
-                                 ->field()
-                                 ->select();
+        else {
+            return false;
+        }
+    }
 
-            if (count($address) != 0)
-            {
-                $address[0]['tag'] = 0;
-                $whereSave  = array(
-                    'phone' => $address[0]['phone'],
-                    'rank'  => $address[0]['rank'],
-                    '_logic'=> 'and'
-                    );
-                $Receiver->where($whereSave)
-                         ->save($address[0]);
+    /**
+     * 模型函数
+     * 删除用户收货地址
+     * @access public
+     * @param null
+     * @return bool
+     *        true ：用户收获地址删除成功
+     *        false：用户收货地址删除失败
+     */
+    public function removeAddress(){
+        $Receiver = M('receiver');
+        $where    = array(
+            'phone' => $_SESSION['username'],
+            'rank'  => I('rank'),
+            'is_out'=> 0,
+            '_logic'=> 'and'
+            );
+        $data     = array(
+            'is_out'=> 1
+            );
+        $res = $Receiver->where($where)
+                        ->save($data);
+
+        if ($res !== false) {
+            if(!$this->hasDefaultAddress() && !$this->addressIsEmpty()) {
+                $res = $this->setDefaultAddress();
+
+                if ($res !== false) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return true;
             }
         }
+        else {
+            return false;
+        }
+    }
 
+    public function saveNewAddress(){
+        if ($this->addressIsEmpty()) {
+            $tag = 0;
+        }
+        else {
+            $tag = 1;
+        }
+
+        $campus_id = $this->getCampusID(I('select-location-2'));
+
+        $data = array(
+            'phone'         =>  $_SESSION['username'],
+            'phone_id'      =>  I('phone-number'),
+            'name'          =>  I('user-name'),
+            'address'       =>  I('select-location-1')."^".
+                                I('select-location-2')."^".
+                                I('detailed-location'),
+            'tag'           =>  $tag,
+            'rank'          =>  Time(),
+            'is_out'        =>  0,
+            'campus_id'     =>  $campus_id
+        );
+            
+        $Receiver = M("receiver");
+        $result = $Receiver->data($data)
+                               ->add();
+
+        return $result;
     }
 
     /**
@@ -434,7 +489,7 @@ class PersonModel extends ViewModel {
      * 获取city表中所有城市名字和id
      * @access public
      * @param null
-     * @param array(array()) 城市名称，城市id
+     * @return array(array()) 城市名称，城市id
      */
     public function getCities()
     {
@@ -449,7 +504,7 @@ class PersonModel extends ViewModel {
      * 获取选定城市的所有校区名字及id
      * @access public
      * @param string $cityID 城市id
-     * @param array(array()) 校区名称，校区id
+     * @return array(array()) 校区名称，校区id
      */
     public function getCampus($cityID){
         $Campus = M('campus');
@@ -473,7 +528,7 @@ class PersonModel extends ViewModel {
      * 获取选定城市的所有校区名字及id
      * @access public
      * @param string $cityID 城市id
-     * @param array(array()) 校区名称，校区id
+     * @return array(array()) 校区名称，校区id
      */
     public function getCampusID($campusName)
     {
@@ -500,13 +555,12 @@ class PersonModel extends ViewModel {
      *            1：获取所有订单的详情
      * @param int $status 状态
      *        0、在购物车 1、全部 2、代付款 3、待确认/已付款 4、配送中 5、待评价 6、已完成
-     * @param array(array())/array(array(array())) 订单详情/某种状态下所有订单的详情
+     * @return array(array())/array(array(array())) 订单详情/某种状态下所有订单的详情
      */
     public function getOrders($flag = 1,$status = 1){
         $Orders = M('orders');
         
-        switch($status)
-        {
+        switch($status) {
             case 1://全部
             $where  = array(
                 'phone'  => $_SESSION['username'],
@@ -566,23 +620,17 @@ class PersonModel extends ViewModel {
                               ->order($order)
                               ->select();
 
-        if ($flag != 0)
-        {
-            for ($i = 0;$i < count($sortedOrder);$i++)
-            {
+        if ($flag != 0) {
+            for ($i = 0;$i < count($sortedOrder);$i++) {
                 $orderIDstr    = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
                 $goodsInfo[$i] = $this->getGoodsInfo($orderIDstr);
-
             }
 
             return $goodsInfo;
         }
-        else
-        {
-            for ($i = 0;$i < count($sortedOrder) and $i < 3;$i++)
-            {
-                if ($sortedOrder[$i]['status'] != 0)
-                {
+        else {
+            for ($i = 0;$i < count($sortedOrder) and $i < 3;$i++) {
+                if ($sortedOrder[$i]['status'] != 0) {
                     $orderIDstr = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
                     break;
                 }
@@ -600,11 +648,10 @@ class PersonModel extends ViewModel {
      * 将订单的订单号和下单时间组装到订单详情的数组中
      * @access public
      * @param array $orderList 订单列表
-     * @param array(array(array())) 带订单号和下单时间的订单详情
+     * @return array(array(array())) 带订单号和下单时间的订单详情
      */
     public function addOrderInfo($orderList){
-        for ($i = 0;$i < count($orderList);$i++)
-        {
+        for ($i = 0;$i < count($orderList);$i++) {
             $orderInfo = $this->getOrderInfo($orderList[$i][0]['together_id']);
             $orderList[$i][0]['orderInfo']['together_id']   = $orderInfo['together_id'];
             $orderList[$i][0]['orderInfo']['together_date'] = $orderInfo['together_date'];
@@ -619,21 +666,18 @@ class PersonModel extends ViewModel {
      * @access public
      * @param array $list  列表
      * @param int   $limit 每页数量
-     * @param array($list) 页式list
+     * @return array($list) 页式list
      */
     public function producePage($list,$limit = 5)
     {
         $finalPage = count($list) / $limit;
 
-        if ($list % $limit != 0)
-        {
+        if ($list % $limit != 0) {
             $finalPage++;
         }
 
-        for ($page = 0;$page < $finalPage;$page++)
-        {
-            for ($line = 0;$line < $limit;$line++)
-            {
+        for ($page = 0;$page < $finalPage;$page++) {
+            for ($line = 0;$line < $limit;$line++) {
                 $book[$page][$line] = $list[$page*5+$line];
             }
         }
