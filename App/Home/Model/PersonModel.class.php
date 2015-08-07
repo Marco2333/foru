@@ -454,6 +454,15 @@ class PersonModel extends ViewModel {
         }
     }
 
+    /**
+     * 模型函数
+     * 新增用户收货地址
+     * @access public
+     * @param null
+     * @return bool
+     *        true ：用户收获地址新增成功
+     *        false：用户收货地址新增失败
+     */
     public function saveNewAddress(){
         if ($this->addressIsEmpty()) {
             $tag = 0;
@@ -548,63 +557,18 @@ class PersonModel extends ViewModel {
 
     /**
      * 模型函数
-     * 获取订单信息
+     * 获取最近一次的订单信息
      * @access public
-     * @param int $flag 标识
-     *            0：获取最近一次的订单详情
-     *            1：获取所有订单的详情
-     * @param int $status 状态
-     * 
-     * @return array(array())/array(array(array())) 订单详情/某种状态下所有订单的详情
+     * @param null
+     * @return array() 最近一次订单详情
      */
-    public function getOrders($flag = 1,$status = 1){
+    public function getOrders(){
         $Orders = M('orders');
         
-        switch($status) {
-            case 1://全部
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' => array('neq',0)
-                );
-            break;
-            case 2://待付款//数据库没有匹配的字段
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' 
-                );
-            break;
-            case 3://待确认/已付款
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' => 1
-                );
-            break;
-            case 4://配送中
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' => 2
-                );
-            break;
-            case 5://待评价
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' => 3,
-                'is_remarked' => 0
-                );
-            break;
-            case 6://已完成
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' => 3,
-                'is_remarked' => 1 
-                );
-            break;
-            default:
-            $where  = array(
-                'phone'  => $_SESSION['username'],
-                'status' => array('neq',0)
-                );
-        }
+        $where  = array(
+            'phone'  => $_SESSION['username'],
+            'status' => array('neq',0)
+            );    
 
         $field  = array(
             'together_id',
@@ -614,33 +578,97 @@ class PersonModel extends ViewModel {
         $order  = array(
             'together_date desc'
             );
-        $sortedOrder = $Orders->distinct(true)
-                              ->where($where)
+        $sortedOrder = $Orders->where($where)
                               ->field($field)
                               ->order($order)
-                              ->select();
+                              ->find();
 
-        if ($flag != 0) {
-            for ($i = 0;$i < count($sortedOrder);$i++) {
-                $orderIDstr    = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
-                $goodsInfo[$i] = $this->getGoodsInfo($orderIDstr);
-            }
+        $orderIDstr    = $this->getOrderIDstr($sortedOrder['together_id']);
+        $goodsInfo     = $this->getGoodsInfo($orderIDstr);
 
-            return $goodsInfo;
+        return $goodsInfo;
+    }
+
+    /**
+     * 模型函数
+     * 获取所有订单信息
+     * @access public
+     * @param string $limit 一页有几个订单，形式'0,x'
+     * @param int $status 状态
+     *        0：全部 1：待付款 2：待确认 3：配送中 4：待评价 5：已完成
+     * @return array(array())某种状态下所有订单的详情
+     */
+    public function getOrderList($limit = '0,6',$status = 0){
+        $Orders = M('orders');
+        
+        $where  = array(
+            'phone'  => $_SESSION['username'],
+            'status' => array('neq',0)
+            );    
+
+        $field  = array(
+            'orders.together_id',
+            'orders.together_date',
+            'orders.order_count',
+            'orders.status',
+            'food.name' => 'foodName',
+            'food.message',
+            'food.price',
+            'food.discount_price',
+            'food.is_discount',
+            'food.img_url'
+
+            );
+        $order  = array(
+            'together_date desc'
+            );
+
+        if($status==0||$status == null) {
+          $orderList = M('orders')
+          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
+          ->where("orders.status !=0 and phone = %s",$_SESSION['username'])
+          ->field($field)
+          ->order($order)
+          ->limit($limit)
+          ->select();
         }
         else {
-            for ($i = 0;$i < count($sortedOrder) and $i < 3;$i++) {
-                if ($sortedOrder[$i]['status'] != 0) {
-                    $orderIDstr = $this->getOrderIDstr($sortedOrder[$i]['together_id']);
-                    break;
-                }
-            }
-
-            $goodsInfo  = $this->getGoodsInfo($orderIDstr);
-
-            return $goodsInfo;
+          $orderList = M('orders')
+          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
+          ->where("orders.status = %d and phone = %s",$status,$_SESSION['username'])
+          ->field($field)
+          ->order($order)
+          ->limit($limit)
+          ->select();  
         }
 
+        for ($i = 0;$i < count($orderList);$i++) {
+            if ($orderList[$i]['is_discount'] != 0) {
+                $orderList[$i]['Price'] += $orderList[$i]['discount_price']*$orderList[$i]['order_count'];
+            }
+            else {
+                $orderList[$i]['Price'] += $orderList[$i]['price']*$orderList[$i]['order_count'];
+            }
+        }
+
+        return $orderList;
+    }
+
+    /**
+     * 模型函数
+     * 将大订单数组变为小订单数组
+     * @access public
+     * @param array(array(array())) $orderList 订单列表
+     * @return array(array()) 订单列表
+     */    
+    public function splitOrders($orderList){
+        for ($i = 0;$i < count($orderList);$i++) {
+            for ($j = 0;$j < count($orderList[$i]);$j++) {
+                $orders[$cnt++] = $orderList[$i][$j];
+            }
+        }
+
+        return $orders;
     }
 
     /**

@@ -521,7 +521,6 @@ class PersonController extends Controller {
         $status = I('status');
         $phone = session('username');
 
-        echo $status;
         if( $campusId==null) {
             $campusId=1;
         }
@@ -550,37 +549,15 @@ class PersonController extends Controller {
         $show = $page->show();// 分页显示输出
         $limit = $page->firstRow.','.$page->listRows; 
 
-        if($status==0||$status == null) {            //显示所有订单
-          $orderList = M('orders')
-          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status !=0 and phone = %s",$phone)
-          ->field('status',true)
-          ->limit($limit)
-          ->select();
-        }
-        else {
-          $orderList = M('orders')
-          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status = %d and phone = %s",$status,$phone)
-          ->field(array('food.status'),true)
-          ->limit($limit)
-          ->select();  
-        }
+        $orderList = $Person->getOrderList($limit,$status);
 
-        dump($orderList);
-        
         $cartGood=array();
-        $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
-        $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
+        $cartGood=D('orders')->getCartGood($phone,$campusId);
 
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
-             ->assign('module',$module)
              ->assign('cartGood',$cartGood)
-             ->assign('orderpage',$show);// 赋值分页输
+             ->assign('orderpage',$show);
       
         $this->display("orderManage");
     }
