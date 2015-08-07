@@ -154,55 +154,53 @@
 											?>
 										</td>
 										<td class='b'>
-											￥{$page.discountPrice}
+											￥{$page.Price}
 										</td >
 										<td>
 										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 										<?php
 											switch($page['status'])
 											{
-												case 0:
-												echo 
-												'';
-												break;
 												case 1:
 												echo 
-												'<button class="order-manage-button order-manage-4">
+												'<button class="order-manage-button order-manage-3">
+													立即付款
+												</button>
+												<button class="order-manage-button order-manage-4">
 													取消订单
 												</button>';
 												break;
 												case 2:
+												echo
+												'<button class="order-manage-button order-manage-4">
+													取消订单
+												</button>';
+												break;
+												case 3:
 												echo 
 												'<button class="order-manage-button order-manage-5">
 													确认收货
 												</button>';
 												break;
-												case 3:
-												{
-													if ($page['is_remarked'] != 0)
-													{
-														echo 
-												'<button class="order-manage-button order-manage-1">
-													追加评论
-												</button>
-												<button class="order-manage-button order-manage-2">
-													删除订单
-												</button>';
-														break;
-													}
-													else
-													{
-														echo 
+												case 4:
+												echo 
 												'<button class="order-manage-button order-manage-6">
 													评价收货
 												</button>
 												<button class="order-manage-button order-manage-2">
 													删除收货
 												</button>';
-													}
-													break;
-												}
-												default:echo "状态异常"; 
+												break;
+												case 5:
+												echo 
+												'<button class="order-manage-button order-manage-1">
+													追加评论
+												</button>
+												<button class="order-manage-button order-manage-2">
+													删除订单
+												</button>';
+												break;
+												default:echo ""; 
 											}
 										?>
 											<p><a>订单详情</a></p>				
