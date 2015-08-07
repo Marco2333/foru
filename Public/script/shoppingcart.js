@@ -54,8 +54,8 @@ $(document).ready(function(){
     });
 
     $('a.sub-goods').on('click',function(){
-      var $orderCount=$('input.goods-count').val();
-      var $orderId=$('a.sub-goods').attr('data-orderId');
+      var $orderCount=$(this).next("input").val();
+      var $orderId=$(this).attr('data-orderId');
       var $phone=$.cookie('username');
 
       $.post(
@@ -68,8 +68,8 @@ $(document).ready(function(){
     });
 
     $('a.add-goods').on('click',function(){
-      var $orderCount=$('input.goods-count').val();
-      var $orderId=$('a.add-goods').attr('data-orderId');
+      var $orderCount=$(this).prev("input").val();
+      var $orderId=$(this).attr('data-orderId');
       var $phone=$.cookie('username');
 
       $.post(
