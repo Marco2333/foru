@@ -157,7 +157,7 @@ body {
 .star-2{ vertical-align: -9px;}
 .comment-body .hr{ width:1050px; margin: 0 auto; height: 2px; margin-top: 10px; background-color: #aaaaaa;  }
 .body-comment{width:1050px;margin: 0 auto; margin-top: 20px;}
-.body-comment textarea{ width: 1050px; height: 200px; font-size: 20px;}
+.body-comment textarea{ width: 1050px; height: 200px; font-size: 20px; text-indent: 40px;}
 .comment-footer{ width: 1050px; margin: 0 auto; margin-top: 25px; margin-bottom: 40px;}
 .comment-footer input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px; font-size: 15px; font-weight: bold;}
 
