@@ -20,8 +20,8 @@
 			<div id="nav-breadcrumb" class="wrapper nav-comment">
 				<ul class="breadcrumb">
 					<li><a href="{:U('Index/index')}">首页</a></li>
-					<li><a href="{:U('Index/index')}">我的订单</a></li>
-					<li><a href="{:U('Index/index')}">待评价</a></li>
+					<li><a href="{:U('Person/ordermanage',array('campusId'=>cookie('campusId'),'status'=>0))}">我的订单</a></li>
+					<li><a href="{:U('Person/ordermanage',array('campusId'=>cookie('campusId'),'status'=>4))}">待评价</a></li>
 					<li class="active"><a href="#">评价订单</a></li>
 				</ul>
 			</div>
@@ -89,7 +89,7 @@
 		</footer>
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
-		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/comment_li.js"></script>
 	</body>

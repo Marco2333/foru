@@ -22,6 +22,9 @@ $(document).ready(function(){
 			},
 			"security-code": {
 				required:true
+			},
+			mail: {
+				email:true
 			}
 		},
 		messages:{
@@ -45,6 +48,9 @@ $(document).ready(function(){
 			},
 			"security-code": {
 				required:""
+			},
+			mail:{
+				email:"请输入规范的邮箱号"
 			}
 		},
 		errorPlacement:function(error, element) {

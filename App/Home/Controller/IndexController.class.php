@@ -66,8 +66,9 @@ class IndexController extends Controller {
              ->assign("category",$classes)  
              ->assign('module',$module)
              ->assign('campusList',$campusList)
-             ->assign('cartGood',$cartGood);
-
+             ->assign('cartGood',$cartGood)
+             ->assign('hiddenLocation',0)/*设置padding-top的值为0*/
+             ->assign('categoryHidden',0);
 
         $this->display();
     }
@@ -354,7 +355,8 @@ public function comment(){
 			->assign('tag',$tag)
 			->assign('campus_id',$campus_id)
 			->assign('food_id',$food_id)
-			->assign('hiddenLocation',1);/*设置padding-top的值为0*/
+			->assign('hiddenLocation',1)/*设置padding-top的值为0*/
+            ->assign('categoryHidden',1);
         $this->display('comment');
         // $this->personInfo();
     }
