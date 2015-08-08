@@ -111,11 +111,12 @@
 									<?php
 										switch($v['status'])
 										{
-											case 0:echo "宝贝在购物车中";break;
-											case 1:echo "已付款";break;
-											case 2:echo "配送中";break;
-											case 3:echo "已完成";break;
-											default:echo "状态异常"; 
+											case 1:echo "待付款";break;
+											case 2:echo "待确认";break;
+											case 3:echo "配送中";break;
+											case 4:echo "待评价";break;
+											case 5:echo "已完成";break;
+											default:echo ""; 
 										}
 									?>
 									</td>
@@ -131,7 +132,7 @@
 										<td colspan="3">
 										</td>
 										<td colspan="1">
-											<a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId')))}">订单详情</a>
+											<a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>0))}">订单详情</a>
 										</td>
 								</tr>		
 						</tbody>
