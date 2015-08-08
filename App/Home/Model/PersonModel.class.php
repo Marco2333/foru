@@ -611,6 +611,7 @@ class PersonModel extends ViewModel {
             'orders.together_date',
             'orders.order_count',
             'orders.status',
+            'orders.order_id',
             'food.name' => 'foodName',
             'food.message',
             'food.price',
