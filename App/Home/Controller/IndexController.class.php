@@ -418,8 +418,10 @@ public function comment(){
         $Orders = M('orders');
 
         $where = array(
-            'phone'     => $_SESSION['username'],
-            'status'    => 0
+            'phone'       => $_SESSION['username'],
+            'status'      => 0,
+            'order_count' => array('gt',0),
+            '_logic'      => 'and'
             );
         $field = array(
             'order_id',
