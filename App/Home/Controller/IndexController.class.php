@@ -328,7 +328,7 @@ public function comment(){
         $order_id=$_GET['order_id'];
 		$user = $_SESSION['username'];
 		/*查找orders表*/
-		$data1=D('Orders')->getComment($order_id);
+		// $data1=D('Orders')->getComment($order_id);
 		$create_time=$data1['create_time'];
 		$food_id=$data1['food_id'];
 		$tag=$data1['tag'];
