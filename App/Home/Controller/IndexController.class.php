@@ -377,6 +377,7 @@ public function comment(){
 		$add['comment']=$comment;
 		$add['grade']=$grade;
 		$add['tag']=$tag;
+		$add['order_id']=$order_id;
 		$data1=$db1->data($add)->add();
 //		dump($add);
 		/*将评论成功的商品，将其在orders表中的is_remarked变为1*/
