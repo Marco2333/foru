@@ -333,6 +333,7 @@ public function comment(){
 		$food_id=$data1['food_id'];
 		$tag=$data1['tag'];
 		$order_count=$data1['order_count'];
+		/*获得is_remarked的值，来判断此商品是否已经评价过了*/
 		$is_remarked=$data1['is_remarked'];
 		/*查找food表*/
 		$data2=D('Food')->getComment($food_id);
@@ -341,7 +342,7 @@ public function comment(){
 		$name=$data2['name'];
 		$message=$data2['message'];
 		$grade=$data2['grade'];
-		
+		/*从数据库里获取数据，向页面传值*/
 		$this->assign("order_id",$order_id)
 			->assign('img_url',$img_url)
 			->assign('order_count',$order_count)
@@ -352,7 +353,8 @@ public function comment(){
 			->assign('grade',$grade)
 			->assign('tag',$tag)
 			->assign('campus_id',$campus_id)
-			->assign('food_id',$food_id);
+			->assign('food_id',$food_id)
+			->assign('hiddenLocation',1);/*设置padding-top的值为0*/
         $this->display('comment');
         // $this->personInfo();
     }
@@ -367,7 +369,7 @@ public function comment(){
 		$campus_id=$_POST['campus_id'];
 		$tag=$_POST['tag'];
 		$date=date("Y-m-d H:i",time());;
-		
+		/*向food-comment表中添加评论*/
 		$add['food_id']=$food_id;
 		$add['campus_id']=$campus_id;
 		$add['phone']=$phone;
@@ -377,11 +379,17 @@ public function comment(){
 		$add['tag']=$tag;
 		$data1=$db1->data($add)->add();
 //		dump($add);
-		
+		/*将评论成功的商品，将其在orders表中的is_remarked变为1*/
 		$where['order_id']=$order_id;
 		$save['is_remarked']=1;
-		$date2=$db2->where($where)->save($save);
-		if($data1 && $date2){
+		/*如果评论添加成功，那么orders中的is_remarked变为1，否则返回error*/
+		if($data1){
+			$date2=$db2->where($where)->save($save);
+		}else{
+			$state['value']='error';
+			$this->ajaxReturn($state);
+		}
+		if($date2){
 			$state['value']='success';
 			$this->ajaxReturn($state);
 		}
