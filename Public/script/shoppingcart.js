@@ -98,7 +98,7 @@ $(document).ready(function(){
         alert("选择的商品不能为空");
         return;
       }
-      $(this).attr('href',"../../../../Home/Person/goodsPayment?orderIds="+orderIds+"&campusId="+$.cookie('campusId'));
+      $(this).attr('href',"../../../../Home/Index/comment?orderIds="+orderIds+"&campusId="+$.cookie('campusId'));
     });
 
     $('a[name="deleteSmallOrder"]').on('click',function(){

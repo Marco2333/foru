@@ -603,7 +603,8 @@ class PersonModel extends ViewModel {
         
         $where  = array(
             'phone'  => $_SESSION['username'],
-            'status' => array('neq',0)
+            'status' => array('neq',0),
+            'tag'    => 1
             );    
 
         $field  = array(
@@ -627,7 +628,7 @@ class PersonModel extends ViewModel {
         if($status==0||$status == null) {
           $orderList = M('orders')
           ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status !=0 and phone = %s",$_SESSION['username'])
+          ->where("orders.status !=0 and phone = %s and orders.tag = 1",$_SESSION['username'])
           ->field($field)
           ->order($order)
           ->limit($limit)
@@ -636,7 +637,7 @@ class PersonModel extends ViewModel {
         else {
           $orderList = M('orders')
           ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status = %d and phone = %s",$status,$_SESSION['username'])
+          ->where("orders.status = %d and phone = %s and orders.tag = 1",$status,$_SESSION['username'])
           ->field($field)
           ->order($order)
           ->limit($limit)
@@ -712,6 +713,32 @@ class PersonModel extends ViewModel {
         }
 
         return $book;
+    }
+
+    public function setOrderTag($where){
+        $Orders = M('orders');
+
+        $data = array(
+            'tag' => 0
+            );
+
+        $res = $Orders->where($where)
+                      ->save($data);
+
+        return $res;
+    }
+
+    public function confirmReceive($where){
+        $Orders = M('orders');
+
+        $data = array(
+            'status' => 4
+            );
+
+        $res = $Orders->where($where)
+                      ->save($data);
+
+        return $res;
     }
 
 };
