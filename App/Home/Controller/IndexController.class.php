@@ -385,6 +385,7 @@ public function comment(){
 		/*将评论成功的商品，将其在orders表中的is_remarked变为1*/
 		$where['order_id']=$order_id;
 		$save['is_remarked']=1;
+        $save['status']=5;
 		/*如果评论添加成功，那么orders中的is_remarked变为1，否则返回error*/
 		if($data1){
 			$date2=$db2->where($where)->save($save);

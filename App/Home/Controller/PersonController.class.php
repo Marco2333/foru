@@ -562,6 +562,53 @@ class PersonController extends Controller {
         $this->display("orderManage");
     }
 
+    public function deleteOrCancelOrder(){
+        $Person = D('Person'); 
+     
+        $where  = array(
+            'phone'    => $_SESSION['username'],
+            'order_id' => I('order_id')
+            );
+
+        $result = $Person->setOrderTag($where);
+
+        if ($result !== false) {
+            $res = array(
+                'result' => 1
+                );
+            $this->ajaxReturn($res);
+        }
+        else {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
+    }
+
+    public function confirmReceive(){
+        $Person = D('Person');
+
+        $where  = array(
+            'phone'    => $_SESSION['username'],
+            'order_id' => I('order_id')
+            );
+
+        $result = $Person->confirmReceive($where);
+
+        if ($result !== false) {
+            $res = array(
+                'result' => 1
+                );
+            $this->ajaxReturn($res);
+        }
+        else {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
+    }
 }
 
 
