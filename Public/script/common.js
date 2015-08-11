@@ -128,9 +128,6 @@ $(document).ready(function(){
             $("#campus-content li").on('click',function(){
                  $(this).siblings().removeClass("active");
                  $(this).addClass("active");
-                 // var $campusId = $(this).attr('data-campusId');
-                 // $.cookie("campusId", $campusId,{ expires: 14 });
-                 // $("#location").text($(this).text());
             });          
         });
     });
@@ -197,10 +194,7 @@ $(document).ready(function(){
                  
               $("#campus-content li").on('click',function(){
                    $(this).siblings().removeClass("active");
-                   $(this).addClass("active");
-                   // var $campusId = $(this).attr('data-campusId');
-                   // $.cookie("campusId", $campusId,{ expires: 14 });
-                   // $("#location").text($(this).text());
+                   $(this).addClass("active"); 
               }); 
          });         
     });
@@ -248,11 +242,8 @@ $(document).ready(function(){
                   }
 
                   $("#campus-content li").click(function(){
-                      // $("#location").text($(this).text());
-                      $(this).siblings.removeClass("active");
+                      $(this).siblings().removeClass("active");
                       $(this).addClass("active");
-                      // var $campusId = $(this).attr('data-campusId');
-                      // $.cookie("campusId", $campusId,{ expires: 14 });
                   });
                }  
             }
