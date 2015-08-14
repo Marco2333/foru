@@ -132,7 +132,7 @@ $(document).ready(function(){
                }else{
                    $.ajax({
                        type:"POST",
-                       url:"../../../../../../Home/Index/addToShoppingCar",
+                       url:"../../../../../../Home/Index/payNow",
                        data:info,
                        success:function(data){
                            if (data['result'] != 0)

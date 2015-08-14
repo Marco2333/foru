@@ -65,7 +65,7 @@ class PersonModel extends ViewModel {
     public function setTogetherID(){
         $user = $_SESSION['username'];
 
-        $together_id = $user.Time();
+        $together_id = $user.Time().'000';
         $time = date("Y-m-d H:m:s",time());
 
         $orderIDstr = I('orderIds');
@@ -481,7 +481,7 @@ class PersonModel extends ViewModel {
                                 I('select-location-2')."^".
                                 I('detailed-location'),
             'tag'           =>  $tag,
-            'rank'          =>  Time(),
+            'rank'          =>  Time().'000',
             'is_out'        =>  0,
             'campus_id'     =>  $campus_id
         );

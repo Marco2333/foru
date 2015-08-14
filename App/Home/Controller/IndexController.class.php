@@ -475,12 +475,12 @@ public function comment(){
             $result = $Orders->data($data)
                              ->add();
 
-            for ($i = 0; $i < count($preOrders); $i++) 
-            { 
-                $data['ordersId'] .= $preOrders[$i]['order_id'].',';
-            }
+            // for ($i = 0; $i < count($preOrders); $i++) 
+            // { 
+            //     $data['ordersId'] .= $preOrders[$i]['order_id'].',';
+            // }
 
-            $data['ordersId'] .= $data['order_id'];
+            // $data['ordersId'] .= $data['order_id'];
         }
         else
         {
@@ -494,17 +494,17 @@ public function comment(){
             $result = $Orders->where($wherefood)
                              ->save($data);
 
-            for ($i = 0; $i < count($preOrders); $i++) 
-            { 
-                if ($i < count($preOrders)-1)
-                {
-                    $data['ordersId'] .= $preOrders[$i]['order_id'].",";
-                }
-                else
-                {
-                    $data['ordersId'] .= $preOrders[$i]['order_id'];
-                }
-            }
+            // for ($i = 0; $i < count($preOrders); $i++) 
+            // { 
+            //     if ($i < count($preOrders)-1)
+            //     {
+            //         $data['ordersId'] .= $preOrders[$i]['order_id'].",";
+            //     }
+            //     else
+            //     {
+            //         $data['ordersId'] .= $preOrders[$i]['order_id'];
+            //     }
+            // }
         }
 
         if ($result !== false)
@@ -514,6 +514,40 @@ public function comment(){
         }
         else
         {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
+    }
+
+    public function payNow($campusId,$foodId,$count){
+        $order_id = time().'000';
+
+        $data = array(
+            'phone'       => $_SESSION['username'],
+            'order_id'    => $order_id,
+            'campus_id'   => $campusId,
+            'create_time' => date("Y-m-d H:m:s",Time()),
+            'status'      => 0,
+            'order_count' => $count,
+            'is_remarked' => 0,
+            'food_id'     => $foodId,
+            'tag'         => 1
+            );
+
+        $Orders = M('orders');
+        $result = $Orders->data($data)
+                             ->add();
+
+        if ($result !== false) {
+            $res = array(
+                'result'   => 1,
+                'ordersId' => $order_id
+                );
+            $this->ajaxReturn($res);
+        }
+        else {
             $res = array(
                 'result' => 0
                 );
