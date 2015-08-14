@@ -496,9 +496,9 @@ public function comment(){
 
             for ($i = 0; $i < count($preOrders); $i++) 
             { 
-                if ($i < count($orderID)-1)
+                if ($i < count($preOrders)-1)
                 {
-                    $data['ordersId'] .= $preOrders[$i]['order_id'].',';
+                    $data['ordersId'] .= $preOrders[$i]['order_id'].",";
                 }
                 else
                 {
