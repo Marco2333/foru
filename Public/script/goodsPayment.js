@@ -3,16 +3,16 @@ $(function(){
 
 	$(".main-wrapper-2").hide();
 	$(".main-wrapper-2-1").bind("click",function(){
-		$(".main-wrapper-2").show(300);
-		$(this).hide();
+		$(".main-wrapper-2").slideDown(300);
+		$(this).slideUp();
 
 		$("#save_submit").removeClass("none");
         $("#revise_submit").addClass("none");
 	});
 
 	$(".main-wrapper-1-btn-revise").bind("click",function(){
-		$(".main-wrapper-2").show(300);
-        $(".main-wrapper-2-1").hide();
+		$(".main-wrapper-2").slideDown(300);
+        $(".main-wrapper-2-1").slideUp();
 
 		var phone   = $(this).nextAll(".phone-none").val();
         var rank    = $(this).nextAll(".rank-none").val();
@@ -25,8 +25,8 @@ $(function(){
 	});
 
 	$(".main-wrapper-2 .but-button").bind("click",function(){
-		$(".main-wrapper-2").hide(300);
-		$(".main-wrapper-2-1").show();
+		$(".main-wrapper-2").slideUp(300);
+		$(".main-wrapper-2-1").slideDown();
 
 		$("#save_submit").removeClass("none");
         $("#revise_submit").addClass("none");

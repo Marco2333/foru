@@ -126,20 +126,10 @@ $(document).ready(function(){
                 $("#campus-content li").first().addClass("active");
             }
             $("#campus-content li").on('click',function(){
-
                  $(this).siblings().removeClass("active");
                  $(this).addClass("active");
-
-                 var $campusId = $(this).attr('data-campusId');
-                 $.cookie("campusId", $campusId,{ expires: 14 });
-                 $("#location").text($(this).text());
             });          
         });
-    });
-
-    $("#campus-content ul li").click(function(){
-         var $campusId=$(this).attr('data-campusId');
-         $.cookie("campusId", $campusId,{ expires: 14 });
     });
 
     $("input[name='keyword']").on('keydown',function(e){
@@ -203,13 +193,8 @@ $(document).ready(function(){
               }
                  
               $("#campus-content li").on('click',function(){
-
                    $(this).siblings().removeClass("active");
-                   $(this).addClass("active");
-
-                   var $campusId = $(this).attr('data-campusId');
-                   $.cookie("campusId", $campusId,{ expires: 14 });
-                   $("#location").text($(this).text());
+                   $(this).addClass("active"); 
               }); 
          });         
     });
@@ -219,17 +204,16 @@ $(document).ready(function(){
         $(this).addClass("active");
     });
 
-    $("#campus-content li").click(function(){
-        $("#location").text($(this).text());
-        var $campusId = $(this).attr('data-campusId');
-        $.cookie("campusId", $campusId,{ expires: 14});
-    });
-
     $("#campus-close").bind("click",function(){
         var campus_id = $("#campus-content li.active").attr("data-campusId");
-        if(campus_id != null) {
-             window.location.href="/foru/index.php/Home/Index/index?campusId="+campus_id;
-             $("#location").text($("#campus-content li.active").text());
+        console.log(campus_id);
+        console.log($.cookie("campusId"));
+        if($.cookie("campusId") != campus_id){
+            $.cookie("campusId", campus_id,{ expires: 14});
+            if(campus_id != null) {
+                 window.location.href="/foru/index.php/Home/Index/index?campusId="+campus_id;
+                 $("#location").text($("#campus-content li.active").text());
+            }
         }
         $("#campus-background").hide(300);    
     });
@@ -258,11 +242,8 @@ $(document).ready(function(){
                   }
 
                   $("#campus-content li").click(function(){
-                      $("#location").text($(this).text());
-                      $(this).siblings.removeClass("active");
+                      $(this).siblings().removeClass("active");
                       $(this).addClass("active");
-                      var $campusId = $(this).attr('data-campusId');
-                      $.cookie("campusId", $campusId,{ expires: 14 });
                   });
                }  
             }

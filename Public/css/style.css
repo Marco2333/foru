@@ -96,7 +96,7 @@
 #header-search {
 	width: 500px;
 	height: 40px;
-	border: 3px solid #24dfc2;
+	border: 2px solid #24dfc2;
 	margin: 7px 0 0 170px;
 }
 #header-search input {
@@ -1565,6 +1565,9 @@ footer a:hover {
 .personhome-order-info tbody {
 	border: 1px solid #ccc;
 }
+.personhome-order-info tbody tr:last-child td {
+	padding-bottom: 10px;
+}
 .order-info-detailed {
 	height: 90px;
 }
@@ -1608,7 +1611,7 @@ footer a:hover {
 }
 .order-manage-3:hover,
 .order-manage-5:hover {
-	background-color: #F5A087;
+	background-color: #F04614;
 }
 .goods-list-side {
 	width: 200px;
@@ -2081,7 +2084,8 @@ input.goods-count {
 	color: #ccc;
 	margin-top: 15px;
 	float:left;
-	margin-left:500px;
+	width: 100%;
+	padding-left: 200px;
 }
 .page { 
 	padding:5px;

@@ -69,31 +69,27 @@ class PersonController extends Controller {
          $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
     
         //dump($module);
-        if ($user != null)
-        {
+        if ($user != null) {
             $Person = D('Person');
             $data   = $Person->getUserInfo();
 
-            if ($data !== false)
-            {
+            if ($data !== false) {
                 // dump($data);
-                $this->assign("data",$data);
-                $this->assign("active",$active);
-                $this->assign("categoryHidden",1);
-                $this->assign('module',$module);
-                $this->assign('cartGood',$cartGood);
+                $this->assign("data",$data)
+                     ->assign("active",$active)
+                     ->assign("categoryHidden",1)
+                     ->assign('module',$module)
+                     ->assign('cartGood',$cartGood);
                 $this->display("personInfo");
             }
-            else
-            {
-                $this->assign("active",$active);
-                $this->assign("categoryHidden",1);
-                $this->assign('module',$module);
+            else {
+                $this->assign("active",$active)
+                     ->assign("categoryHidden",1)
+                     ->assign('module',$module);
                 $this->display("personInfo");
             }
         }
-        else
-        {
+        else {
             $this->redirect('/Home/Login/index');
         }
     }
@@ -124,15 +120,13 @@ class PersonController extends Controller {
         $result = $Users->where($where)
                         ->save($data);     
 
-        if ($result !== false)
-        {
+        if ($result !== false) {
             $res = array(
                 'result' => 1
                 );
             $this->ajaxReturn($res);
         }
-        else
-        {
+        else {
             $res = array(
                 'result' => 0
                 );
@@ -140,49 +134,10 @@ class PersonController extends Controller {
         }
     }
 
-    public function submit(){
-        $user = $_SESSION['username'];
-
-        if ($username != null)
-        {
-            $nickname   = I('nick-name');
-            $usersex    = I('user-sex');
-            $academy    = I('academy');
-            $qqnum      = I('qq-num');
-            $weixinnum  = I('weixin-num');
-      
-            $_SESSION['nickname']   = $nickname;
-            $_SESSION['academy']    = $academy;
-
-            $Users = M("users");
-            $where = array(
-                'phone'  => $user
-                );
-
-            $data = array(
-                'nickname'   => $nickname,
-                'sex'        => $usersex,
-                'academy'    => $academy,
-                'qq'         => $qqnum,
-                'weixin'     => $weixinnum
-                );
-
-            $Users->where($where)
-                  ->save($data);
-
-            $this->personInfo("0");
-        }
-        else
-        {
-            $this->redirect('/Home/Login/index');
-        }
-    }
-
     public function savePortrait(){
         $user = $_SESSION['username'];
 
-        if ($user != null)
-        {
+        if ($user != null) {
             $upload             = new \Think\Upload();
             $upload->maxSize    = 4194304;
             $upload->exts       = array('jpg','gif','jpeg','bmp');
@@ -191,8 +146,7 @@ class PersonController extends Controller {
             
             $info = $upload->uploadOne($_FILES['img']);
 
-            if ($info)
-            {
+            if ($info) {
                 $data['img_url'] = '/foru/Public'
                                   .$info['savepath']
                                   .$info['savename'];
@@ -209,23 +163,19 @@ class PersonController extends Controller {
                 $result = $Users->where($where)
                                 ->save($data);
 
-                if ($result !== false)
-                {
+                if ($result !== false) {
                     $this->redirect('/Home/Person/personInfo',array('campusId'=>cookie('campusId')));//,array('active'=>1)
                 }
-                else
-                {
+                else {
                     // 数据库操作失败
                 }
             }
-            else
-            {
+            else {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
                 $this->redirect('/Home/Person/personInfo',array('campusId'=>cookie('campusId')));//,array('active'=>1)
             }
         }
-        else
-        {
+        else {
             $this->redirect('/Home/Login/index');
         }
         
@@ -246,13 +196,11 @@ class PersonController extends Controller {
         $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
        
 
-        if ($user != null)
-        {
+        if ($user != null) {
             $Person = D('Person');
             $data = $Person->getAddress();
 
-            if ($data !== false)
-            {
+            if ($data !== false) {
                 $this->assign("data",$data)
                      ->assign("categoryHidden",1)
                      ->assign('module',$module)
@@ -260,8 +208,7 @@ class PersonController extends Controller {
 
                 $this->display("locamanage");
             }
-            else
-            {
+            else {
                 $this->assign("categoryHidden",1)
                      ->assign('module',$module)
                      ->assign('cartGood',$cartGood);
@@ -269,59 +216,10 @@ class PersonController extends Controller {
                 $this->display("locaManage");
             }
         }
-        else
-        {
+        else {
             $this->redirect('/Home/Login/index');
         }
 
-    }
-
-    public function saveLocation($userName,
-                                 $location1,
-                                 $location2,
-                                 $detailedLoc,
-                                 $phoneNum      ){
-        $user = $_SESSION['username'];
-        $tag  = 0;
-        $rank = time();
-
-        $data = array(
-            'phone'      =>     $user,
-            'rank'       =>     $rank,
-            'name'       =>     $userName,
-            'address'    =>     $location1."^".
-                                $location2."^".
-                                $detailedLoc,
-            'phone_id'   =>     $phoneNum,
-            'is_out'     =>     0
-            );
-
-        $Receiver    =   M('receiver');
-        $where       =   array(
-            'phone'  => $user,
-            'rank'   => $rank,
-            '_logic' => 'and'
-            );
-
-        $result     =   $Receiver->data($data)
-                                 ->add();
-
-        if ($result !== false)
-        {
-            $res = array(
-                'result' => 1,
-                'phone'  => $user,
-                'rank'   => $rank
-                );
-            $this->ajaxReturn($res);
-        }
-        else
-        {
-            $res = array(
-                'result' => 0
-                );
-            $this->ajaxReturn($res);
-        }
     }
 
     public function getPhoneRank($phone,$rank){
@@ -334,15 +232,14 @@ class PersonController extends Controller {
         $result = $Receiver->where($where)
                            ->find();
         
-        if ($result !== false)
-        {
+        if ($result !== false) {
             $locations = explode('^',$result['address']);
 
             $whereCity = array(
                 'city_name' => $locations[0]
                 );
             $city = M('city')->where($whereCity)
-                                              ->find();
+                             ->find();
 
             $result['city']        = $locations[0];
             $result['campus']      = $locations[1];
@@ -352,46 +249,8 @@ class PersonController extends Controller {
 
             $this->ajaxReturn($result);
         }
-        else
-        {
+        else {
            $res = array(
-                'result' => 0
-                );
-            $this->ajaxReturn($res);
-        }
-    }
-
-    public function reviseLocation( $phone,
-                                    $rank,
-                                    $userName,
-                                    $location1,
-                                    $location2,
-                                    $detailedLoc,
-                                    $phoneNum       ){
-
-        $data = array(
-            'is_out'    =>  1
-            );
-
-        $Receiver = M('receiver');
-        $where  = array(
-            'phone'  => $phone,
-            'rank'   => $rank,
-            '_logic' => 'and'
-            );
-        $result = $Receiver->where($where)
-                           ->save($data);
-
-        if ($result !== false)
-        {
-            $res = array(
-                'result' => 1
-                );
-            $this->ajaxReturn($res);
-        }
-        else
-        {
-            $res = array(
                 'result' => 0
                 );
             $this->ajaxReturn($res);
@@ -414,87 +273,33 @@ class PersonController extends Controller {
 
     public function addOrReviseSave(){
         $Person = D('Person');
+        $result = $Person->saveNewAddress();
 
-        $user   = $_SESSION['username'];
-        $rank   = Time();
-
-        if ($Person->addressIsEmpty())
-        {
-            $tag = 0;
-        }
-        else
-        {
-            $tag = 1;
-        }
-
-        $campus_id = $Person->getCampusID(I('select-location-2'));
-
-        $data = array(
-            'phone'         =>  $user,
-            'phone_id'      =>  I('phone-number'),
-            'name'          =>  I('user-name'),
-            'address'       =>  I('select-location-1')."^".
-                                I('select-location-2')."^".
-                                I('detailed-location'),
-            'tag'           =>  $tag,
-            'rank'          =>  $rank,
-            'is_out'        =>  0,
-            'campus_id'     =>  $campus_id
-        );
-            
-        $Receiver = M("receiver");
-        $result = $Receiver->data($data)
-                               ->add();
-
-        if ($result !== false)
-        {
+        if ($result !== false) {
             $page = I('page');
 
-            if ($page != '0')
-            {
+            if ($page != '0') {
                 $this->redirect('/Home/Person/goodsPayment',array('campusId'=>cookie('campusId')));
             }
-            else
-            {
+            else {
                 $this->redirect('/Home/Person/locaManage',array('campusId'=>cookie('campusId')));
             }
         }
-        else
-        {
+        else {
             // 数据库操作失败
         }
     }
 
-    public function deleteLocation($phone,$rank){
-        $data = array(
-            'is_out'    =>  1
-            );
+    public function deleteLocation($rank){
+        $Receiver = D('Person');
 
-        $Receiver = M('receiver');
-        $where  = array(
-            'phone'  => $phone,
-            'rank'   => $rank,
-            '_logic' => 'and'
-            );
-        $result = $Receiver->where($where)
-                           ->save($data);
+        $res = $Receiver->removeAddress();
 
-        if ($result !== false)
-        {
-            $Person = D('Person');
-            $Person->deleteAddress($rank);
-
-            $res = array(
-                'result' => 1
-                );
-            $this->ajaxReturn($res);
+        if ($res !== false) {
+            $this->saveNewAddress();
         }
-        else
-        {
-            $res = array(
-                'result' => 0
-                );
-            $this->ajaxReturn($res);
+        else {
+            // 修改地址失败
         }
     }
 
@@ -527,62 +332,40 @@ class PersonController extends Controller {
 
         $cartGood=array();      
         $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
-        if ($user != null)
-        {
+        if ($user != null) {
             $this->assign('module',$moudle)
                  ->assign('cartGood',$cartGood);
             $this->display("resetpword");
         }
-        else
-        {
+        else {
             $this->redirect('Home/Login/index');
         }
      }
-
-    public function check(){
-        $check  = $_POST['check'];
-        $flag   = $this->check_verify($check);
-
-        if($flag)
-        {
-            $state = array(
-                'value' => 'success'
-                );
-            $this->ajaxReturn($state);
-        }
-        else
-        {
-            $state = array(
-                'value' => 'error'
-                );
-            $this->ajaxReturn($state);
-        }
-    }
     
     public function phone(){
         $user  = $_SESSION['username'];
         $phone = $_POST["phone"];
 		$check  = $_POST['check'];
         $flag   = check_verify($check);
-        if($user==$phone && $flag)
-        {
+        if($user==$phone && $flag) {
             $state = array(
                 'value' => 'success'
                 );
             $this->ajaxReturn($state);
-        }else if(!$flag){
+        }
+        else if(!$flag) {
         	$state = array(
                 'value' => 'checkerror'
               );
             $this->ajaxReturn($state);
-        }else if($user!=$phone){
+        }
+        else if($user!=$phone) {
         	$state = array(
                 'value' => 'phoneerror'
               );
             $this->ajaxReturn($state);
         }
-        else
-        {
+        else {
             $state = array(
                 'value' => 'error'
                 );
@@ -606,15 +389,13 @@ class PersonController extends Controller {
         $data=$db->where($where)
                  ->save($save);
 
-        if($data>0)
-        {
+        if($data>0) {
             $state = array(
                 'value' => 'success'
                 );
             $this->ajaxReturn($state);
         }
-        else
-        {
+        else {
             $state = array(
                 'value' => 'error'
                 );
@@ -633,16 +414,13 @@ class PersonController extends Controller {
 
         $cartGood=array();
 
-        if ($user != null)
-        {
+        if ($user != null) {
             $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
             $orderIDstr = I('orderIds');
-            if ($orderIDstr != '')
-            {
+            if ($orderIDstr != '') {
                 session('orderIDstr',$orderIDstr);
             }
-            else
-            {
+            else {
                 $orderIDstr = $_SESSION['orderIDstr'];
             }            
 
@@ -667,8 +445,7 @@ class PersonController extends Controller {
             $this->assign("cartGood",$cartGood);
             $this->display("goodsPayment");
         }
-        else
-        {
+        else {
             $this->redirect('Home/Login/index');
         }
     }
@@ -676,8 +453,7 @@ class PersonController extends Controller {
     public function payAtOnce(){
         $user = $_SESSION['username'];
 
-        if ($user != null)
-        {
+        if ($user != null) {
             $together_id = I('together-id');
             echo $together_id."<br>";
 
@@ -698,8 +474,7 @@ class PersonController extends Controller {
 
             dump($pay);
         }
-        else
-        {
+        else {
             $this->redirect('Home/Login/index');
         }
     }
@@ -708,7 +483,7 @@ class PersonController extends Controller {
         $campusId=I('campusId');        //获取校区id
         //$cityId=I('cityId');           //获取城市id
         //$this-> getCampusName($campusId,$cityId);
-        if($campusId==null){
+        if($campusId==null) {
             $campusId=1;
         }
 
@@ -746,23 +521,23 @@ class PersonController extends Controller {
         $status = I('status');
         $phone = session('username');
 
-        if( $campusId==null){
+        if( $campusId==null) {
             $campusId=1;
         }
        
-        $Person    = D('Person');
-       
-       if($status==0||$status==null){
-         $count = M('orders')
-         ->where("orders.status != 0 and phone = %s",$phone)
-         ->count();
-       }else{
-         $count = M('orders')
-         ->where("orders.status = %d and phone = %s",$status,$phone)
-         ->count();
+        $Person = D('Person');
+        
+       if($status == 0||$status == null) {
+             $count = M('orders')
+             ->where("orders.status != 0 and phone = %s and tag = 0",$phone)
+             ->count();
+       }
+       else {
+             $count = M('orders')
+             ->where("orders.status = %d and phone = %s and tag = 0",$status,$phone)
+             ->count();
        }
        
-    
         $page = new \Think\Page($count,6);
         $page->setConfig('header','条数据');
         $page->setConfig('prev','<');
@@ -774,36 +549,66 @@ class PersonController extends Controller {
         $show = $page->show();// 分页显示输出
         $limit = $page->firstRow.','.$page->listRows; 
 
-        if($status==0||$status == null){            //显示所有订单
-          $orderList = M('orders')
-          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status !=0 and phone = %s",$phone)
-          ->limit($limit)
-          ->select();
-        }else{
-          $orderList = M('orders')
-          ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status = %d and phone = %s",$status,$phone)
-          ->limit($limit)
-          ->select();  
-        }
-        
+        $orderList = $Person->getOrderList($limit,$status);
+
         $cartGood=array();
-        $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
-        $module=M('food_category')                 //获取首页八个某块,让导航栏对应起来
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
+        $cartGood=D('orders')->getCartGood($phone,$campusId);
 
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
-             ->assign('module',$module)
              ->assign('cartGood',$cartGood)
-             ->assign('orderpage',$show);// 赋值分页输
+             ->assign('orderpage',$show);
       
         $this->display("orderManage");
     }
 
+    public function deleteOrCancelOrder(){
+        $Person = D('Person'); 
+     
+        $where  = array(
+            'phone'    => $_SESSION['username'],
+            'order_id' => I('order_id')
+            );
+
+        $result = $Person->setOrderTag($where);
+
+        if ($result !== false) {
+            $res = array(
+                'result' => 1
+                );
+            $this->ajaxReturn($res);
+        }
+        else {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
+    }
+
+    public function confirmReceive(){
+        $Person = D('Person');
+
+        $where  = array(
+            'phone'    => $_SESSION['username'],
+            'order_id' => I('order_id')
+            );
+
+        $result = $Person->confirmReceive($where);
+
+        if ($result !== false) {
+            $res = array(
+                'result' => 1
+                );
+            $this->ajaxReturn($res);
+        }
+        else {
+            $res = array(
+                'result' => 0
+                );
+            $this->ajaxReturn($res);
+        }
+    }
 }
 
 

@@ -28,12 +28,12 @@
 			<div id="person-nav-side">
 				<ul>
 					<span>我的订单</span>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">全部</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">待付款</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>3))}">待确认</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>4))}">配送中</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>5))}">待评价</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>6))}">已完成</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>0))}">全部</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">待付款</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">待确认</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>3))}">配送中</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>4))}">待评价</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>5))}">已完成</a></li>
 				</ul>
 				<ul>
 					<span>资料管理</span>
@@ -148,6 +148,6 @@
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/locamanage.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
-		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
 	</body>
 </html>

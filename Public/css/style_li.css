@@ -1,5 +1,10 @@
 /*input{ background-color: black;}*/
-
+body {
+	font-family: "黑体";
+}
+* {
+	outline: none;
+}
 #person-info-body{ font-family: "微软雅黑";}
 .person-info-body-main{margin-left: 120px;}
 .span-inline-block{display: inline-block;}
@@ -8,9 +13,8 @@
 .person-info-body-page-text{ font-size: 9px; vertical-align: 9px;}
 .person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
 .person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
-.glyphicon{ font-size: 24px; vertical-align: 5px;}
+.glyphicon{ font-size: 18px; vertical-align: 5px;}
 .person-info-body{ margin-left: 48px;}
-
 
 /*process*/
 #person-info-body .person-info-body-progress{padding-left: 110px; margin-bottom: 80px; margin-top: 40px;}
@@ -46,13 +50,9 @@
 #person-info-body span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 #person-info-body .person-info-body-page4-text{font-size: 30px; vertical-align: -11px;}
 
-
 /*验证码*/
 #check-image{width: 100px; height: 30px;}
-
 .margin-form{ margin-left: 125px;}
-
-*/
 
 /*pay*/
 
@@ -63,27 +63,30 @@
 .main-wrapper-1 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
 .main-wrapper-1 tbody tr td{ padding-left: 35px;padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-1 .main-wrapper-1-radio{ vertical-align: -7px;}
-.main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
-.main-wrapper-1 .main-wrapper-1-btn-delete{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; font-weight: bold;}
-
+.main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; }
+.main-wrapper-1 .main-wrapper-1-btn-delete{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; }
+.main-wrapper-1 .main-wrapper-1-btn-revise:hover,
+.main-wrapper-1 .main-wrapper-1-btn-delete:hover {
+	background: #ddd;
+}
 .main-wrapper-2-1{ margin-top: 25px;}
 .main-wrapper-2-1 input{ background-color: #ff573a; color: white; border: 0px; padding: 10px; padding-left: 20px; padding-right: 20px; font-size: 17px; font-weight: bold;}
 #new_address{font-weight: bold;}
 
-.main-wrapper-2{padding: 30px; background-color: #f0f0f0; margin-top:25px;}
+.main-wrapper-2 input {padding-left: 8px;}
+.main-wrapper-2{padding: 30px; background-color: rgb(248,248,248); margin-top:25px;}
 .main-wrapper-2 form{margin: 0px; padding: 0px;}
 .main-wrapper-2 form div{ padding: 5px; margin-left: -30px;}
-.main-wrapper-2 input,.main-wrapper-2 select{ height: 31px; border:2px solid #7a7a7a;}
+.main-wrapper-2 input,.main-wrapper-2 select{ height: 31px; border:1px solid #999;}
 .main-wrapper-2 label{ width: 100px; font-size: 14px; text-align: end; letter-spacing: 3px;}
 .main-wrapper-2 .person{ width: 262px;}
 .main-wrapper-2 select{ width: 154px;}
 .main-wrapper-2 .address{ width: 500px;}
 .main-wrapper-2 .phone{ width: 262px;}
 .main-wrapper-2 .div_but{padding-left:87px ;}
-.main-wrapper-2 .but{  padding-left: 10px; padding-right: 10px; width:120px; border:0px; margin-left: 20px; color: white;}
+.main-wrapper-2 .but{ background: #ccc; padding-left: 10px; padding-right: 10px; width:120px; border:0px; margin-left: 20px; color: white;}
 .main-wrapper-2 .but-submit{ background-color: #ff573a;}
 .main-wrapper-2 .but-reset{background-color: #aaaaaa;}
-
 
 .main-wrapper-3 table{border: 1px solid #aaaaaa; margin-top:25px;}
 .main-wrapper-3 thead{ border-bottom: 1px solid #aaaaaa;}
@@ -91,28 +94,26 @@
 .main-wrapper-3 tbody tr{ height: 30px;}
 .main-wrapper-3 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
-
+.main-wrapper-4 .order-info-detailed td img {border: 1px solid #eee;}
 .main-wrapper-4{margin-top:25px;}
 .main-wrapper-4 table{margin: 0 auto;}
 .main-wrapper-4 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
-.main-wrapper-4 tbody tr td{ padding-left: 17px;padding-top: 10px; padding-bottom: 10px;}
-.main-wrapper-4 span.red_price{ color: red;}
-.main-wrapper-4 span.gray{ color: #aaaaaa;}
-.main-wrapper-4 td.b span.move{ margin-left: -10px;}
+.main-wrapper-4 tbody tr td{ padding-left: 22px;padding-top: 10px; padding-bottom: 10px;}
+.main-wrapper-4 span.red_price{ color: red;margin-right: 16px;}
+.main-wrapper-4 span.gray{ color: #aaa;}
+.main-wrapper-4 span.move{ margin-left: -10px;}
+.main-wrapper-4 span.move span {margin: 0 8px}
 
-
-.main-wrapper-5 table{border: 1px solid #aaaaaa; margin-top:25px;}
-.main-wrapper-5 thead{ border-bottom: 1px solid #aaaaaa;}
+.main-wrapper-5 table{border: 1px solid #aaa; margin-top:25px;}
+.main-wrapper-5 thead{ border-bottom: 1px solid #aaa;}
 .main-wrapper-5 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
 .main-wrapper-5 tbody tr{ height: 30px;}
 .main-wrapper-5 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
-
 .main-wrapper-6 table{ margin-top:25px;}
-.main-wrapper-6 thead{border:1px solid #aaaaaa;}
+.main-wrapper-6 thead{border:1px solid #aaa; border-bottom: none;}
 .main-wrapper-6 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
-.main-wrapper-6 tbody textarea{ width: 100%; border-left: 1px solid #aaaaaa; border-right: 1px solid #aaaaaa;border-bottom: 1px solid #aaaaaa;}
-
+.main-wrapper-6 tbody textarea{ padding: 3px 3px 0 8px; resize:none; width: 100%; border:1px solid #aaa;}
 
 .main-wrapper-7{margin-top:25px; overflow: hidden; margin-bottom: 170px;}
 .main-wrapper-7-main{float:right;  text-align: end;}
@@ -121,14 +122,8 @@
 .main-wrapper-7 span.zhe span{ font-size: 20px; font-weight: bold;}
 .main-wrapper-7 span.yuan{}
 .main-wrapper-7 input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px;}
-
-
-
 .special-paddright{ padding-right: 10px}
 .special-paddingleft{padding-left: 10px}
-
-
-
 
 /*comment*/
 .nav-comment{background-color: transparent;}
@@ -149,9 +144,9 @@
 .star-2{ vertical-align: -9px;}
 .comment-body .hr{ width:1050px; margin: 0 auto; height: 2px; margin-top: 10px; background-color: #aaaaaa;  }
 .body-comment{width:1050px;margin: 0 auto; margin-top: 20px;}
-.body-comment textarea{ width: 1050px; height: 200px; font-size: 20px;}
+.body-comment textarea{ width: 1050px; height: 200px; font-size: 16px; text-indent: 15px; padding: 4px;}
 .comment-footer{ width: 1050px; margin: 0 auto; margin-top: 25px; margin-bottom: 40px;}
-.comment-footer input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px; font-size: 15px; font-weight: bold;}
+.comment-footer input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; font-size: 15px; font-weight: bold;}
 
 
 /*改变bootstrap中因为优先级而不能改变颜色所定义的class*/

@@ -20,9 +20,8 @@ function login() {
 	var username = $("#username").val();
 	var password = $("#userpassword").val();
 	var verify = $("#security-code input[name='verify']").val();
-	//var token = $("#security-code").val();
-     
-  //    var xz=document.getElementById("ck_rmbUser"); 
+	//var token = $("#security-code").val();     
+
 	if (document.getElementById("ck_rmbUser").checked) {
 	    $.cookie("rmbUser", "true", { expires: 7 }); 
 	    $.cookie("username", username, { expires: 7 });
@@ -37,17 +36,16 @@ function login() {
 	$.ajax({
 		type: "POST",
 		url: Think.U('/Home/Login/tologin'),
+
 		data:{
 			username : username,
 			password: password,
 			verify:verify
-            //token: token
 		},
 		success : function(data) {
 			
 			if (data.status=='1') {
-			    window.location.href = "../Index/index";
-			    
+			    window.location.href = "/foru/index.php/Home/Index/index";
                 //window.prompt(json.message);
 			} else if(data.status=='2'){
 				alert("验证码错误！");

@@ -43,6 +43,7 @@ $(document).ready(function(){
         // alert(parseInt(left.substr(0,left.length-2)));
         // $("#good-info-slide ul").css("left",parseInt(left.substr(0,left.length-2))-78+"px");
     });
+
     $(".goods-info-img .right-pointer").click(function(){
         // var left = $("#good-info-slide ul").css("left");
         if(parseInt($(this).nextAll("input.none").val())<0){
@@ -57,6 +58,7 @@ $(document).ready(function(){
              $(this).addClass("inactive-pointer");
         }
     });
+
     $("#good-info-slide li").click(function(){
         $(".goods-info-img dt img").attr("src",$(this)
             .children("img").first().attr("src"));
@@ -83,7 +85,25 @@ $(document).ready(function(){
                         success:function(res){
                             if (res['result'] != 0)
                             {
-                                // alert("您的宝贝成功加入购物车！");
+                                 var offset = $("#shopping-cart").offset();
+                                 var img = $(".put-cart").parents(".goods-info-index")
+                                 .children(".goods-info-img").find('img').attr('src');
+                                 var flyer = $('<img class="u-flyer" src="' + img + '">');
+                                 flyer.fly({
+                                     start : {
+                                          left : $(".goods-info-img img").first().offset().top, //开始位置（必填）#fly元素会被设置成position: fixed
+                                          top : $(".goods-info-img img").first().offset().left //开始位置（必填）
+                                      },
+                                      end : {
+                                          left : offset.left + 10, //结束位置（必填）
+                                          top : offset.top + 10, //结束位置（必填）
+                                          width : 0, //结束时宽度
+                                          height : 0 //结束时高度
+                                      },
+                                      onEnd : function() {//结束回调
+                                          $(this).remove();
+                                      }
+                                 });
                             }
                             else
                             {
@@ -132,24 +152,6 @@ $(document).ready(function(){
     });
 
     $(".put-cart").click(function() {
-        var offset = $("#shopping-cart").offset();
-        var img = $(this).parents(".goods-info-index")
-        .children(".goods-info-img").find('img').attr('src');
-        var flyer = $('<img class="u-flyer" src="' + img + '">');
-        flyer.fly({
-            start : {
-                 left : $(".goods-info-img img").first().offset().top, //开始位置（必填）#fly元素会被设置成position: fixed
-                 top : $(".goods-info-img img").first().offset().left //开始位置（必填）
-             },
-             end : {
-                 left : offset.left + 10, //结束位置（必填）
-                 top : offset.top + 10, //结束位置（必填）
-                 width : 0, //结束时宽度
-                 height : 0 //结束时高度
-             },
-             onEnd : function() {//结束回调
-                 $(this).remove();
-             }
-        });
+  
     });
 });

@@ -20,7 +20,22 @@
 					<li><a href="{:U('Index/index',array('campusId'=>cookie('campusId')))}">首页</a></li>
 					<li><a href="{:U('/Home/Person/personhomepage',array('campusId'=>cookie('campusId')))}">我的For优</a></li>
 					<li><a href="{:U('/Home/Person/ordermanage',array('campusId'=>cookie('campusId')))}">我的订单</a></li>
-					<li class="active"><a href="__SELF__">全部</a></li>
+					<li class="active">
+						<a href="__SELF__">
+							<?php
+								switch($status)
+								{
+									case 0:echo "全部";break;
+									case 1:echo "待付款";break;
+									case 2:echo "待确认";break;
+									case 3:echo "配送中";break;
+									case 4:echo "待评价";break;
+									case 5:echo "已完成";break;
+									default:echo ""; 
+								}
+							?>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -88,10 +103,11 @@
 							</tr>
 						</thead>
 						<foreach name="orderList" item="page">
-							<tbody>		
-							    <if condition="$key eq 0">
-							       <assign name="currentId" value="$page['together_id']"/>
-							       <tr class="order-info-head">
+									
+						    <if condition="$key eq 0">
+						    <tbody>
+						       <assign name="currentId" value="$page['together_id']"/>
+						       <tr class="order-info-head">
 							       	<td colspan="2">
 							       		订单编号：<span>{$page.together_id}</span>
 							       		提交时间：<span>{$page.together_date}</span>	
@@ -99,9 +115,11 @@
 							       	<td colspan="2">
 							       		
 							       	</td>	
-							       </tr>
-							    </if>
-							    <if condition="$page.together_id neq $currentId">
+						       </tr>
+	
+						    <elseif condition="$page.together_id neq $currentId"/>
+								</tbody>
+						    	<tbody>	
 									<assign name="currentId" value="$page['together_id']"/>
 									<tr class="order-info-head">
 										<td colspan="2">
@@ -112,9 +130,8 @@
 											
 										</td>	
 									</tr>
-							    </if>		
-																
-								<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+							</if>
+										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 									<tr class="order-info-detailed">
 										<td>
 											<img class="fl" src="{$page.img_url}" alt="">
@@ -125,86 +142,72 @@
 											</div>		
 										</td>
 										<td>
-										<?php
-											switch($page['status'])
-											{
-												case 0:echo "宝贝在购物车中";break;
-												case 1:echo "已付款/待确认";break;
-												case 2:echo "配送中";break;
-												case 3:
+											<?php
+												switch($page['status'])
 												{
-													if ($page['is_remarked'] != 0)
-													{
-														echo "已完成";break;
-													}
-													else
-													{
-														echo "待评价";
-													}
-													break;
+													case 1:echo "待付款";break;
+													case 2:echo "待确认";break;
+													case 3:echo "配送中";break;
+													case 4:echo "待评价";break;
+													case 5:echo "已完成";break;
+													default:echo ""; 
 												}
-												default:echo "状态异常"; 
-											}
-										?>
+											?>
 										</td>
 										<td class='b'>
-											￥{$page.discountPrice}
+											￥{$page.Price}
 										</td >
 										<td>
 										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 										<?php
 											switch($page['status'])
 											{
-												case 0:
-												echo 
-												'';
-												break;
 												case 1:
 												echo 
-												'<button class="order-manage-button order-manage-4">
+												'<button class="order-manage-button order-manage-3">
+													立即付款
+												</button>
+												<button class="order-manage-button order-manage-4">
 													取消订单
 												</button>';
 												break;
 												case 2:
+												echo
+												'<button class="order-manage-button order-manage-4">
+													取消订单
+												</button>';
+												break;
+												case 3:
 												echo 
 												'<button class="order-manage-button order-manage-5">
 													确认收货
 												</button>';
 												break;
-												case 3:
-												{
-													if ($page['is_remarked'] != 0)
-													{
-														echo 
-												'<button class="order-manage-button order-manage-1">
-													追加评论
+												case 4:
+												echo 
+												'<button class="order-manage-button order-manage-6">
+													立即评价
 												</button>
 												<button class="order-manage-button order-manage-2">
 													删除订单
 												</button>';
-														break;
-													}
-													else
-													{
-														echo 
-												'<button class="order-manage-button order-manage-6">
-													评价收货
-												</button>
-												<button class="order-manage-button order-manage-2">
-													删除收货
+												break;
+												case 5:
+												echo 
+												'<button class="order-manage-button order-manage-2">
+													删除订单
 												</button>';
-													}
-													break;
-												}
-												default:echo "状态异常"; 
+												break;
+												default:echo ""; 
 											}
 										?>
-											<p><a>订单详情</a></p>				
+
+											<!-- <p><a>订单详情</a></p>	 -->
+											<input type="text" class="order-none none" id="{$page.order_id}" value="{$page.order_id}" />	
 										</td>							
-									</tr>
-									
-							</tbody>
-						</foreach>
+									</tr>						
+							</foreach>
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -214,11 +217,10 @@
 		</div>
 
 		<include file='App/Home/View/Common/commontail.html'/>
-		<include file='App/Home/View/Common/commonlocation.html'/>
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
-		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
-		<script src="__PUBLIC__/script/ordermanage.js" type="text/javascript"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/ordermanage.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
 	</body>
 </html>

@@ -48,81 +48,17 @@ $(function(){
     });
 });
 
-function saveNewLocation(){
-    var info = {
-        userName:$('#userName').val(),
-        location1:$('#location1').val(),
-        location2:$('#location2').val(),
-        detailedLoc:$('#detailedLoc').val(),
-        phoneNum:$('#phoneNum').val()
-    };
-
-    $("#change-location").addClass("none");
-
-    $.ajax({
-        type:"POST",
-        url:"../../../../Home/Person/saveLocation",
-        data:info,
-        success:function(data){
-            document.getElementById("userName").value="";
-
-            if (data['result'] != 0)
-            {
-	            info['phone']   = data['phone'];
-	            info['rank']    = data['rank'];
-
-	            var tr=$("<tr></tr>");
-	            tr.append("<td>"+"收货人："+info['userName']+"<p>"+"联系电话："+info['phoneNum']+"</td>")
-	              .append("<td>"+info['location1']+"</td>");
-	            var td=$("<td></td>");
-
-	            $("<button class='revise-button'>修改</button>").on("click",function(){
-	                var phone   = $(this).nextAll(".phone-none").val();
-	                var rank    = $(this).nextAll(".rank-none").val();
-
-	                reviseAddress(phone,rank);
-	            }).appendTo(td);
-	            
-	            $("<button class='delete-button'>删除地址</button>").on("click",function(){
-	                var phone   = $(this).nextAll(".phone-none").val();
-	                var rank    = $(this).nextAll(".rank-none").val();
-	                $(this).parent().parent().remove();
-	                deleteAddress(phone,rank);
-	            }).appendTo(td);
-
-	            td.append("<input class='phone-none none' value="+info['phone']+">")
-	              .append("<input class='rank-none none'  value="+info['rank']+">");
-
-	            tr.append(td);
-
-	            $("tbody").append(tr);
-
-            }
-            else
-            {
-            	alert("收货地址保存失败！");
-            }
-        }
-    })
-}
-
 function saveReviseLocation(phone,rank){
 
     $("#change-location").addClass("none");
 
     var info = {
-        phone:phone,
-        rank:rank,
-        userName:$('#userName').val(),
-        location1:$('#location1').val(),
-        location2:$('#location2').val(),
-        detailedLoc:$('#detailedLoc').val(),
-        phoneNum:$('#phoneNum').val()
+        rank:rank
     };
 
     $.ajax({
         type:"POST",
-        url:"../../../../Home/Person/reviseLocation",
+        url:"../../../../Home/Person/deleteLocation",
         data:info,
         success:function(data){
             if (data['result'] != 0)
@@ -213,7 +149,6 @@ function reviseAddress(phone,rank){
 
 function deleteAddress(phone,rank){
     var info = {
-        phone:phone,
         rank:rank
     };
 
