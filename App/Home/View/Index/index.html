@@ -28,7 +28,7 @@
 					<ul class="primary_nav_list">
 						<foreach name="category" item="vo">
 							<li class="primary_nav_li">
-								<a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vo['category_id'],'campusId'=>cookie('campusId')))}">{$vo.category}</a>
+								<a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vo['category_id'],'campusId'=>$vo['campus_id']))}">{$vo.category}</a>
 							</li>				
 						</foreach>
 						

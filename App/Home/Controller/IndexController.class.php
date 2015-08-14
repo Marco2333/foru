@@ -47,7 +47,7 @@ class IndexController extends Controller {
         $good=M('food');
         
         foreach ($classes as $key => $cate) {
-            $goods=$good->where('category_id=%d',$cate['category_id'])
+            $goods=$good->where('category_id=%d and campus_id= %d',$cate['category_id'],$cate['campus_id'])
             ->limit(5)
             ->select();
 
@@ -116,9 +116,6 @@ class IndexController extends Controller {
         $cityId=I('cityId');           //获取城市id
         $this-> getCampusName($campusId,$cityId);
 
-        if($campusId==null){
-            $campusId=1;
-        }
         if($cityId==null){
             $cityId=1;
         }
@@ -581,12 +578,18 @@ public function comment(){
      public function changeCampus($campusId){
         if($campusId!=null&&$campusId != 'undefined'){
             session('campusId',$campusId);
-            $data['status'] = "success";
+            if(isset($_SESSION['username'])){
+                $phone=session('username');
+                $data['last_campus']=$campusId;
+                M('users')->where("phone = %s",$phone)->save($data);                        //数据库保存上次的校区
+            }
+           
+            $message['status'] = "success";
         }else{
-            $data['status'] = "failure";
+            $message['status'] = "failure";
         }
 
-        $this->ajaxReturn($data);
+        $this->ajaxReturn($message);
      }
 
      /**

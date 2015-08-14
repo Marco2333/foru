@@ -33,7 +33,7 @@
 				<ul>
 				   <foreach name="classes" item="vo">
 				       <li>
-						  <a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vo['category_id']))}">{$vo.category}</a>	
+						  <a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vo['category_id'],'campusId'=>$vo['campus_id']))}">{$vo.category}</a>	
 					   </li>
 				   </foreach>					
 				</ul>	
