@@ -6,15 +6,8 @@ $(document).ready(function () {
         $("#username").attr("value",$.cookie("username"));
         // $("#userpassword").val($.cookie("password"));
         $("#userpassword").attr("value",$.cookie("password"));
-        
-        // window.location.href = "../Index/index";
     }
 });
-
-// function changeImgCode(){
-// 	var imgCode=$("#imgCode");
-// 	imgCode.attr("src",imgCode.attr("src") + '?' + Math.floor(Math.random()*100));
-// }
 
 function login() {
 	var username = $("#username").val();
@@ -32,25 +25,26 @@ function login() {
 	    $.cookie("username", "", { expires: -1 });
 	    $.cookie("password", "", { expires: -1 });
 	}
-
+    
 	$.ajax({
 		type: "POST",
-		url: Think.U('/Home/Login/tologin'),
-
+		url: toLoginUrl,
 		data:{
 			username : username,
 			password: password,
 			verify:verify
 		},
-		success : function(data) {
-			
+		success : function(data) {			
 			if (data.status=='1') {
-			    window.location.href = "/foru/index.php/Home/Index/index";
-                //window.prompt(json.message);
+			     window.location.href = toIndexUrl;
 			} else if(data.status=='2'){
-				alert("验证码错误！");
+			   $('#info').show();
+               $('#info').html("验证码错误");
+               setTimeout("$('#info').hide()", 2000 );
 			}else {
-				alert("用户名或密码错误！");
+			   $('#info').show();
+               $('#info').html("用户名或者密码错误");
+               setTimeout("$('#info').hide()", 2000 );
 			}
 		}
 	    

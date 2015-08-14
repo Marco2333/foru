@@ -75,6 +75,10 @@ $(document).ready(function(){
 	})
 	$("#register-info input[name='phone']").blur(function(){
 		checkUserExist();
+	});
+
+	$("#register-info input[name='mail']").blur(function(){
+		checkMailExist();
 	})
 })
 
@@ -88,12 +92,28 @@ function checkUserExist(){
 		},
 		success: function(data){
 			var json = eval(data);
-			if(json.status==0){
-				//alert("该手机号已被注册！");
+			if(json.status==0){	
 				$(".userinfo-behind[name='message']").html("<label class='error-info'>该手机号已经被注册</label>");
-				// $("#register-info input[name='phone']").attr("value","");
 				 $("#register-info input[name='phone']").val("");
 			}
 		}
-	})
+	});
+}
+
+function checkMailExist(){
+	var mail = $("#register-info input[name='mail']").val();
+	$.ajax({
+		type:"POST",
+		url: "../Login/checkMailExist",
+		data: {
+			mail:mail
+		},
+		success: function(data){
+			var json = eval(data);
+			if(json.status==0){	
+				$(".userinfo-behind[name='mail_message']").html("<label class='error-info'>该邮箱已经被注册</label>");
+				$("#register-info input[name='mail']").val("");
+			}
+		}
+	});
 }

@@ -3,7 +3,7 @@ $(document).ready(function(){
   $(".drop-down-left,.drop-down-layer").hover(function(){
       $(".drop-down-layer").show();
       $.post(
-          '/foru/index.php/Home/ShoppingCart/getCartGood',
+          '/index.php/Home/ShoppingCart/getCartGood',
           {campusId:$.cookie('campusId')},
           function(json){
                $('.index-shopping-cart ul').empty();
@@ -34,7 +34,7 @@ $(document).ready(function(){
                   
                    var orderId=$(this).parent().parent().parent().attr('id');
                    $.post(
-                      '/foru/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
+                      '/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
                       function(data){
                         if(data.status=='success') {
                             $(this).parent().parent().parent().remove();
@@ -50,7 +50,7 @@ $(document).ready(function(){
        var orderId=$(this).parent().parent().parent().attr('id');
        console.log(orderId);
        $.post(
-          '/foru/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
+          '/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
           function(data){
              if(data.status=='success') {
                  $(this).parent().parent().parent().remove();
@@ -84,7 +84,7 @@ $(document).ready(function(){
               $.cookie("record", newrecord,{ expires: 14 });    
           } 
       }
-      window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
+      window.location.href="/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
   });
 
   $("#header-search input").focus(function(){
@@ -107,7 +107,7 @@ $(document).ready(function(){
       var $city=$(this).attr('data-city');
       $.cookie("cityId", $city,{ expires: 14 });
 
-      $.post("/foru/index.php/Home/Index/getCampusByCity?cityId="+$city,
+      $.post("/index.php/Home/Index/getCampusByCity?cityId="+$city,
          {cityId:$city},
          function(data){
 
@@ -160,7 +160,7 @@ $(document).ready(function(){
                   // record[record.length] = $search;
                   $.cookie("record", newrecord,{ expires: 14 });  
               } 
-              window.location.href="/foru/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
+              window.location.href="/index.php/Home/Index/goodslist?search="+$search+"&categoryName="+$search;
           }
         }
     });
@@ -173,7 +173,7 @@ $(document).ready(function(){
         
         $.cookie("cityId", $city,{ expires: 14 });
 
-        $.post("/foru/index.php/Home/Index/getCampusByCity?cityId="+$city,
+        $.post("/index.php/Home/Index/getCampusByCity?cityId="+$city,
           {cityId:$city},
           function(data){
 
@@ -210,8 +210,15 @@ $(document).ready(function(){
         console.log($.cookie("campusId"));
         if($.cookie("campusId") != campus_id){
             $.cookie("campusId", campus_id,{ expires: 14});
+
             if(campus_id != null) {
-                 window.location.href="/foru/index.php/Home/Index/index?campusId="+campus_id;
+               $.post(                                                     //改变session里面的campusId
+                  '/index.php/Home/index/changeCampus',
+                  {campusId:campus_id},
+                  function(data){
+                     window.location.href="/index.php/Home/Index/index";
+                  }
+                );
                  $("#location").text($("#campus-content li.active").text());
             }
         }
@@ -221,13 +228,15 @@ $(document).ready(function(){
     $('#campus-search').bind('input propertychange', function() {
 
         var searchValue = $("#campus-search").val();
-
+        var re=/[^\u4e00-\u9fa5]/;
+        if(re.test(searchValue)){
+          return;
+        }
         $("#campus-location li").removeClass("active");
-        $("#campus-content ul").empty();
 
         $.ajax({
             type:"POST",
-            url:"/foru/index.php/Home/Index/searchCampus",
+            url:"/index.php/Home/Index/searchCampus",
             data:{
               name:searchValue
             },
@@ -236,6 +245,7 @@ $(document).ready(function(){
                     return;
                 }
                 else {
+                   $("#campus-content ul").empty();
                   var campusList = data.campus;
                   for(var i=0;i<campusList.length;i++){
                       $("#campus-content ul").append('<li data-campusId="'+campusList[i].campus_id+'">'+campusList[i].campus_name+'</li>');

@@ -2055,8 +2055,7 @@ input.goods-count {
 	cursor: pointer;
 }
 #campus-main li:hover { 
-	background-color: #ff573a; 
-	color: white;
+	background-color: #F5F5F5; 
 }
 #campus-main li.active { 
 	background-color: #FF573A; 
@@ -2108,4 +2107,22 @@ input.goods-count {
 	color:#fff;
 }
 
+/*-----------------提示信息样式---------*/
+#info{
+    width: 180px;
+    height: 26px;
+    background: #24DFC2;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    margin-left: -90px;
+    font-weight: bold;
+    font-size:14px;
+    display: none;
+    color: #fff;
+    text-align: center;
+    line-height: 26px;
+    position: fixed;
+    z-index: 99;
+}
 

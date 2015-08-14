@@ -529,12 +529,12 @@ class PersonController extends Controller {
         
        if($status == 0||$status == null) {
              $count = M('orders')
-             ->where("orders.status != 0 and phone = %s and tag = 0",$phone)
+             ->where("orders.status != 0 and phone = %s and tag = 1",$phone)
              ->count();
        }
        else {
              $count = M('orders')
-             ->where("orders.status = %d and phone = %s and tag = 0",$status,$phone)
+             ->where("orders.status = %d and phone = %s and tag = 1",$status,$phone)
              ->count();
        }
        
