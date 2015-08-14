@@ -754,8 +754,20 @@ class PersonModel extends ViewModel {
 
         return $res;
     }
+   
+    /**
+    * 获取用户最后一次选择的校区
+    * @param  [type] $phone [description]
+    * @return [type]        [description]
+    */
+   public function getLastCampus($phone){
+        $campusId=M('users')
+                 ->field('last_campus')
+                 ->where("phone = %s",$phone)
+                 ->find();
 
+        return $campusId['last_campus'];
+   }
 };
-
 
 ?>

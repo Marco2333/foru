@@ -1,10 +1,10 @@
 $(function(){
     $('#slide-wrapper').carousel();
     
-    // if ($.cookie("rmbUser") == "true") { 
-    	
-    // }
-    if($.cookie('campusId')==null){
-       $.cookie("campusId", 1, { expires: 7 });
-    }
+   $.get(
+   		'/index.php/Home/Index/getCampus',
+   		function(data){
+           $.cookie("campusId", data.campusId, { expires: 7 });
+   		}
+   	);      
 });

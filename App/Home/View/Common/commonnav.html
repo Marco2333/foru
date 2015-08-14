@@ -24,14 +24,13 @@
 			</li>
 
 			<if condition="$hiddenLocation neq 1">
-				
-				<if condition="cookie('campusId') eq undefined">
+				<if condition="($campusId eq null) OR (cookie('campusId') eq undefined)">
 					<li>
 					  	<foreach name="campusList" item="vo">
 					   	   <if condition="$vo.campus_id eq 1">
 					   	   		<img src="__PUBLIC__/img/icon/location.png" alt="">
 					   	   		<span id="location" >
-					   	   		  	{$campus_name.campus_name}
+					   	   		  	{$vo.campus_name}
 					   	   		</span>
 					   	   </if>
 					   </foreach>		
@@ -39,10 +38,10 @@
 					<else/>
 					<li>
 					   <foreach name="campusList" item="vo">
-					   	   <if condition="$vo.campus_id eq cookie('campusId')">
+					   	   <if condition="$vo.campus_id eq $campusId">
 					   	   		<img src="__PUBLIC__/img/icon/location.png" alt="">
 					   	   		<span id="location" >
-					   	   		  	{$campus_name.campus_name}
+					   	   		  	{$vo.campus_name}
 					   	   		</span>
 					   	   </if>
 					   </foreach>

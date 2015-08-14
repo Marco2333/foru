@@ -7,13 +7,17 @@ class IndexController extends Controller {
 
     public function index(){
 
-        $campusId=I('campusId');        //获取校区id
-        $cityId=I('cityId');           //获取城市id
-        $this-> getCampusName($campusId,$cityId);
-
+        if(isset($_SESSION['campusId'])){
+            $campusId=$_SESSION['campusId'];
+        }
+     
         if($campusId==null){
             $campusId=1;
         }
+        $cityId=I('cityId');           //获取城市id
+        $this-> getCampusName($campusId,$cityId);
+        
+        
         if($cityId==null){
             $cityId=1;
         }
@@ -26,14 +30,13 @@ class IndexController extends Controller {
         $category=M("food_category");      //获取左侧导航栏的分类
         $classes=$category
         ->where('campus_id=%d and tag=1',$campusId)
-        /*->cache(true)*/
         ->limit(8)
         ->select();          //获取分类
                
         $campusList=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
-        ->cache(true)
+        //->cache(true)
         ->select();       //获取校区列表
 
         $newsImage=M('news')
@@ -56,16 +59,14 @@ class IndexController extends Controller {
         $campus=D('CampusView')->getCampusByCity($cityId);
 
       
-        $module=M('food_category')                 //获取首页八个某块的
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
+        $module=D('FoodCategory')->getModule($campusId);                 //获取首页八个模块
 
         $this->assign('goodlist',$goodList)
              ->assign('main_image',$newsImage)
              ->assign("category",$classes)  
              ->assign('module',$module)
              ->assign('campusList',$campusList)
+             ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
              ->assign('hiddenLocation',0)/*设置padding-top的值为0*/
              ->assign('categoryHidden',0);
@@ -75,7 +76,7 @@ class IndexController extends Controller {
     
     public function getCampusName($campusId, $cityId){
        
-        if($campusId==null){
+        if($campusId==null||$campusId="undefined"){
             $campusId=1;
         }
 
@@ -109,6 +110,9 @@ class IndexController extends Controller {
 
      public function goodslist($categoryId='',$search=''){
         $campusId=I('campusId');        //获取校区id
+        if($campusId==null){
+            $campusId=1;
+        }
         $cityId=I('cityId');           //获取城市id
         $this-> getCampusName($campusId,$cityId);
 
@@ -534,5 +538,35 @@ public function comment(){
 
         $this->ajaxReturn($message);
     }
+   
+     /**
+      * [changeCampus 改变会话中的校区id]
+      * @param  [type] $campusId [description]
+      * @return [type]           [description]
+      */
+     public function changeCampus($campusId){
+        if($campusId!=null&&$campusId != 'undefined'){
+            session('campusId',$campusId);
+            $data['status'] = "success";
+        }else{
+            $data['status'] = "failure";
+        }
 
+        $this->ajaxReturn($data);
+     }
+
+     /**
+      * [getCampus 获取campusId]
+      * @return [type] [description]
+      */
+     public function getCampus(){
+        if(isset($_SESSION['campusId'])){
+            $campusId=session('campusId');
+            $data['campusId'] = $campusId;
+        }else{
+            $data['campusId'] = 1;
+        }
+
+        $this->ajaxReturn($data);
+     }
 }

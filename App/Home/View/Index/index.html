@@ -136,7 +136,7 @@
 								<div class="goods-show">
 									<dl>
 										<dd>
-											<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$good['food_id'],'campusId'=>cookie('campusId')))}"><img src="{$good.img_url}"/></a>
+											<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$good['food_id'],'campusId'=>$good['campus_id']))}"><img src="{$good.img_url}"/></a>
 										</dd>
 										<dt>
 											<div class="goods-info ">
@@ -150,7 +150,7 @@
 													<!-- <span class="googs-volume">销量(1306)</span> -->
 												</div>
 												<div  class="goods-name">
-													<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$good['food_id'],'campusId'=>cookie('campusId')))}">{$good.name}</a>
+													<a href="{:U('/Home/Index/goodsInfo',array('goodId'=>$good['food_id'],'campusId'=>$good['campus_id']))}">{$good.name}</a>
 												</div>
 										    </div>
 										</dt>
