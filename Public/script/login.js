@@ -23,7 +23,6 @@ function login() {
 	//var token = $("#security-code").val();
      
   //    var xz=document.getElementById("ck_rmbUser"); 
-	 // alert(xz.checked); 
 	if (document.getElementById("ck_rmbUser").checked) {
 	    $.cookie("rmbUser", "true", { expires: 7 }); 
 	    $.cookie("username", username, { expires: 7 });
@@ -34,12 +33,10 @@ function login() {
 	    $.cookie("username", "", { expires: -1 });
 	    $.cookie("password", "", { expires: -1 });
 	}
-	// alert(username);
+
 	$.ajax({
 		type: "POST",
-		url: "../Login/tologin",
-		//url:""{:U('Login/tologin')}"",
-		//url: __SELF__+"/toLogin",
+		url: Think.U('/Home/Login/tologin'),
 		data:{
 			username : username,
 			password: password,
