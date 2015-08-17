@@ -79,6 +79,7 @@ class PersonController extends Controller {
                      ->assign("active",$active)
                      ->assign("categoryHidden",1)
                      ->assign('module',$module)
+                     ->assign('campusId',$campusId)
                      ->assign('cartGood',$cartGood);
                 $this->display("personInfo");
             }
@@ -164,7 +165,7 @@ class PersonController extends Controller {
                                 ->save($data);
 
                 if ($result !== false) {
-                    $this->redirect('/Home/Person/personInfo',array('campusId'=>cookie('campusId')));//,array('active'=>1)
+                    $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId')));//,array('active'=>1)
                 }
                 else {
                     // 数据库操作失败
@@ -172,7 +173,7 @@ class PersonController extends Controller {
             }
             else {
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
-                $this->redirect('/Home/Person/personInfo',array('campusId'=>cookie('campusId')));//,array('active'=>1)
+                $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId')));//,array('active'=>1)
             }
         }
         else {
@@ -204,6 +205,7 @@ class PersonController extends Controller {
                 $this->assign("data",$data)
                      ->assign("categoryHidden",1)
                      ->assign('module',$module)
+                     ->assign('campusId',$campusId)
                      ->assign('cartGood',$cartGood);
 
                 $this->display("locamanage");
@@ -211,6 +213,7 @@ class PersonController extends Controller {
             else {
                 $this->assign("categoryHidden",1)
                      ->assign('module',$module)
+                     ->assign('campusId',$campusId)
                      ->assign('cartGood',$cartGood);
 
                 $this->display("locaManage");
@@ -325,15 +328,14 @@ class PersonController extends Controller {
         if($campusId ==null){
             $campusId=1;
         }
-        $module=M('food_category')                 //获取首页八个某块的
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
+        $module=D('FoodCategory')->getModule($campusId);                 //获取首页八个某块的
+      
 
         $cartGood=array();      
         $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
         if ($user != null) {
             $this->assign('module',$moudle)
+                 ->assign('campusId',$campusId)
                  ->assign('cartGood',$cartGood);
             $this->display("resetpword");
         }
@@ -342,16 +344,30 @@ class PersonController extends Controller {
         }
      }
     
+    /**
+     * 校验邮箱是否正确
+     * @return [type] [description]
+     */
     public function phone(){
         $user  = $_SESSION['username'];
-        $phone = $_POST["phone"];
+        $mail = $_POST["phone"];
 		$check  = $_POST['check'];
         $flag   = check_verify($check);
-        if($user==$phone && $flag) {
-            $state = array(
-                'value' => 'success'
-                );
-            $this->ajaxReturn($state);
+
+        $exitMail=M('users')->where('phone = %s',$user)->getField('mail');
+        if($exitMail==$mail && $flag) {
+            $message['value']='success';
+
+            $randNumber=rand(1000,9999);
+            session('changePWordNumber',$randNumber);
+            $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            if($r){
+               $message['status']='success';
+               $this->ajaxReturn($message);
+            }else{
+               $message['status']='failure';
+               $this->ajaxReturn($message);
+            }
         }
         else if(!$flag) {
         	$state = array(
@@ -359,7 +375,7 @@ class PersonController extends Controller {
               );
             $this->ajaxReturn($state);
         }
-        else if($user!=$phone) {
+        else if($exitMail!=$mail) {
         	$state = array(
                 'value' => 'phoneerror'
               );
@@ -442,6 +458,7 @@ class PersonController extends Controller {
             // $this->assign('cities',$cities);
             // $this->assign('campus',$campus);
             $this->assign("categoryHidden",1);
+            $this->assign("campusId",$campusId);
             $this->assign("cartGood",$cartGood);
             $this->display("goodsPayment");
         }
@@ -510,6 +527,7 @@ class PersonController extends Controller {
              ->assign("lastOrder",$lastOrder) 
              ->assign('orderInfo',$orderInfo) 
              ->assign("categoryHidden",1)
+             ->assign('campusId',$campusId)
              ->assign("cartGood",$cartGood)
              ->assign("module",$module);
 
@@ -556,6 +574,7 @@ class PersonController extends Controller {
 
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
+             ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
              ->assign('orderpage',$show);
       
@@ -608,6 +627,39 @@ class PersonController extends Controller {
                 );
             $this->ajaxReturn($res);
         }
+    }
+
+    /**
+     * 向邮箱发送验证码
+     * @param  [type] $mail [description]
+     * @return [type]       [description]
+     */
+    public function sendMailForcCheck($mail){
+       $randNumber=rand(1000,9999);
+       session('changePWordNumber',$randNumber);
+       $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为<strong>'.$randNumber.'</strong>,不要告诉别人哦！');
+       if($r){
+          $message['status']='success';
+          $this->ajaxReturn($message);
+       }else{
+          $message['status']='failure';
+          $this->ajaxReturn($message);
+       }
+    }
+
+    /**
+     * 校验验证码
+     * @param  [type] $postcode [验证码]
+     * @return 
+     */
+    public function checkMailPost($postcode){
+       if($postcode==session('changePWordNumber')){
+          $message['status']='success';
+          $this->ajaxReturn($message);
+       }else{
+           $message['status']='failure';
+          $this->ajaxReturn($message);
+       }
     }
 }
 

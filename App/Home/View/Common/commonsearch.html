@@ -2,13 +2,13 @@
 	<div id="header-botton-wrapper">
 		<div id="log-wrapper" class="fl">
 			<div id="header-logo" class="fl">
-				<a href="{:U('/Home/Index/index',array('campusId'=>cookie('campusId')))}"><img src="__PUBLIC__/img/logo.png" class="fl"></a>
+				<a href="{:U('/Home/Index/index',array('campusId'=>$campusId))}"><img src="__PUBLIC__/img/logo.png" class="fl"></a>
 				<span class="text-special fl"><p>For优<br><span class="bold inline-block">为你更好的生活</span></span>
 			</div>
 			<div id="header-search" class="fl">
-			    <if condition="searchHidden eq 1">
+			    <if condition="$searchHidden eq 1">
 			        <input name="keyword" type="text" placeholder="请输入要查找的商品" value="" list="search-record">
-			    <else/>	<input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
+			    <else/><input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
 			    </if>
 			
 
@@ -24,19 +24,19 @@
 						</li>				
 					</volist> -->
 					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>cookie('campusId'),'categoryName'=>'新鲜水果','searchHidden'=>1))}">新鲜水果</a>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>$campusId,'categoryName'=>'新鲜水果','searchHidden'=>1))}">新鲜水果</a>
 					</li>
 					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'牛奶','campusId'=>cookie('campusId'),'categoryName'=>'新鲜牛奶','searchHidden'=>1))}">新鲜牛奶</a>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'牛奶','campusId'=>$campusId,'categoryName'=>'新鲜牛奶','searchHidden'=>1))}">新鲜牛奶</a>
 					</li>
 					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'面包','campusId'=>cookie('campusId'),'categoryName'=>'美味面包','searchHidden'=>1))}">美味面包</a>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'面包','campusId'=>$campusId,'categoryName'=>'美味面包','searchHidden'=>1))}">美味面包</a>
 					</li>
 					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'家政','campusId'=>cookie('campusId'),'categoryName'=>'家政服务','searchHidden'=>1))}">家政服务</a>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'家政','campusId'=>$campusId,'categoryName'=>'家政服务','searchHidden'=>1))}">家政服务</a>
 					</li>
 					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>cookie('campusId'),'categoryName'=>'可口饮料','searchHidden'=>1))}">可口饮料</a>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>$campusId,'categoryName'=>'可口饮料','searchHidden'=>1))}">可口饮料</a>
 					</li>
 				</ul>
 			</div>
@@ -44,7 +44,7 @@
 			<div id="shopping-cart" class="drop-down" >
 				<div class="drop-down-left">
 					<img src="__PUBLIC__/img/icon/shopping-cart.png" alt="">	
-					<a target="_blank" href="{:U('ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}">购物车 &gt;&gt;</a>
+					<a target="_blank" href="{:U('ShoppingCart/shoppingcart',array('campusId'=>$campusId))}">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
 				   <empty name="cartGood">
@@ -57,10 +57,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" class="fl">
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>
@@ -92,10 +92,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" class="fl">
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>cookie('campusId')))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>

@@ -50,6 +50,7 @@ class ShoppingCartController extends Controller {
         $this->assign('campus',$campus)
              ->assign('shoppingcart',$shoppingData)
              ->assign('categoryHidden',1)
+             ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
              ->assign('module',$module);
 

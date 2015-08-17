@@ -27,11 +27,9 @@ class IndexController extends Controller {
             $phone=session('username');
             $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
         }
-        $category=M("food_category");      //获取左侧导航栏的分类
-        $classes=$category
-        ->where('campus_id=%d and tag=1',$campusId)
-        ->limit(8)
-        ->select();          //获取分类
+            
+        $classes=D('FoodCategory')       //获取左侧导航栏的分类
+        ->getHomeClasses($campusId);
                
         $campusList=M('campus')
         ->field('campus_id,campus_name')
@@ -46,7 +44,8 @@ class IndexController extends Controller {
 
         $good=M('food');
         
-        foreach ($classes as $key => $cate) {
+        $homeGood=D('FoodCategory')->getClasses($campusId,8);
+        foreach ($homeGood as $key => $cate) {
             $goods=$good->where('category_id=%d and campus_id= %d',$cate['category_id'],$cate['campus_id'])
             ->limit(5)
             ->select();
@@ -63,7 +62,8 @@ class IndexController extends Controller {
 
         $this->assign('goodlist',$goodList)
              ->assign('main_image',$newsImage)
-             ->assign("category",$classes)  
+             ->assign("category",$classes) 
+             ->assign("homeGood",$homeGood) 
              ->assign('module',$module)
              ->assign('campusList',$campusList)
              ->assign('campusId',$campusId)
@@ -114,7 +114,7 @@ class IndexController extends Controller {
             $campusId=1;
         }
         $cityId=I('cityId');           //获取城市id
-        $this-> getCampusName($campusId,$cityId);
+        $this->getCampusName($campusId,$cityId);
 
         if($cityId==null){
             $cityId=1;
@@ -125,16 +125,9 @@ class IndexController extends Controller {
         ->where('status=1')
         ->select();       //获取校区列表
 
-        $category=M("food_category");
-
-        $classes=$category
-        ->where('campus_id=%d and tag=1',$campusId)
-        ->select();          //获取分类
+        $classes=D("FoodCategory")->getAllClasses($campusId);     //获取分类
               
-         $module=M('food_category')                 //获取首页八个某块的
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
+        $module=D('FoodCategory')->getModule($campusId);
 
         $cartGood=array();
         if(isset($_SESSION['username'])){
@@ -156,7 +149,7 @@ class IndexController extends Controller {
         if($categoryId!=''){
             $data['category_id']=$categoryId;
             $this->assign('categoryId',$categoryId);
-            $categoryName=$category->where('category_id=%d',$categoryId)->find();
+            $categoryName=D('FoodCategory')->where('category_id=%d',$categoryId)->find();
             $this->assign('categoryName',$categoryName['category']);     //路径中显示
         }
 
@@ -165,7 +158,7 @@ class IndexController extends Controller {
             $this->assign('search',$search);
             $searchHidden=I('searchHidden');
             if($searchHidden==1){
-                $this->assign($searchHidden);
+                $this->assign("searchHidden",$searchHidden);
             } 
         }
 
@@ -194,6 +187,7 @@ class IndexController extends Controller {
              ->assign('page',$show)// 赋值分页输出
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
+             ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
              ->assign('module',$module);
 
@@ -225,10 +219,7 @@ class IndexController extends Controller {
             'food_comment.campus_id'=>$campusId
         );
 
-        $module=M('food_category')                 //获取首页八个某块的
-        ->where('campus_id=%d and serial is not null',$campusId)
-        ->order('serial')
-        ->select();
+        $module=D('FoodCategory')->getModule($campusId);
 
         $count = M('food_comment')
         ->where($map)
@@ -267,6 +258,7 @@ class IndexController extends Controller {
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
              ->assign('cartGood',$cartGood)
+             ->assign('campusId',$campusId)
              ->assign('module',$module);
 
         $this->display();

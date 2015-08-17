@@ -11,7 +11,7 @@ body {
 .person-info-body-page-margin{ margin-left: 2px; margin-right: 2px;}
 .person-info-body-page-eletop{margin-top:20px;}
 .person-info-body-page-text{ font-size: 9px; vertical-align: 9px;}
-.person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 15px;}
+.person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 13px; padding-left: 8px;}
 .person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
 .glyphicon{ font-size: 18px; vertical-align: 5px;}
 .person-info-body{ margin-left: 48px;}

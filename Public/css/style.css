@@ -2111,7 +2111,7 @@ input.goods-count {
 #info{
     width: 180px;
     height: 26px;
-    background: #24DFC2;
+    background: #FF6347;
     position: absolute;
     top: 60px;
     left: 50%;
@@ -2125,4 +2125,23 @@ input.goods-count {
     position: fixed;
     z-index: 99;
 }
+
+/*resetpassword*/
+#resent-secword {
+	vertical-align: 11px;
+	color: #fff;
+	background: rgb(36, 223, 194);
+	border: none;
+	outline: none;
+	height: 30px;
+	border-radius: 3px;
+	font-family: "黑体";
+	margin-left: 10px;
+}
+.sub-number {
+	font-size: 16px;
+	width: 60px;
+	font-family: "微软雅黑";
+}
+  
 

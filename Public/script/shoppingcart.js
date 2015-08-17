@@ -95,10 +95,12 @@ $(document).ready(function(){
         }                       
       });
       if(orderIds==""){
-        alert("选择的商品不能为空");
+        $('#info').show();
+        $('#info').html("选择的商品不能为空");
+        setTimeout("$('#info').hide()", 3000 );
         return;
       }
-      $(this).attr('href',"../../../../Home/Person/goodsPayment?orderIds="+orderIds+"&campusId="+$.cookie('campusId'));
+      $(this).attr('href',"../../../../Home/Person/goodsPayment?orderIds="+orderIds+"&campusId="+$campusId);
     });
 
     $('a[name="deleteSmallOrder"]').on('click',function(){
@@ -110,9 +112,13 @@ $(document).ready(function(){
         if(json.status=="success"){
           $(datarow).remove();
           caltotalCost();
-          console.log("删除成功!");
+          $('#info').show();
+          $('#info').html("删除成功！");
+          setTimeout("$('#info').hide()", 2000 );
         }else{
-          console.log("删除失败");
+          $('#info').show();
+          $('#info').html("删除失败！");
+          setTimeout("$('#info').hide()", 2000 );
         }
       });
     });
@@ -134,10 +140,7 @@ $(document).ready(function(){
      
       if (confirm('是否删除？')) {
        $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderIds},function(json){
-        console.log("删除失败");
         if(json.status=="success"){
-         
-
           var trList = $(".order-info-detailed");
           for(var i = 0;i<trList.length;i++){
             if($(trList[i]).children("td").first().children("input").prop("checked")){
@@ -145,9 +148,13 @@ $(document).ready(function(){
             }
           }
           caltotalCost();
-          console.log("删除成功!");
+          $('#info').show();
+          $('#info').html("删除成功！");
+          setTimeout("$('#info').hide()", 2000 );
         }else{
-          console.log("删除失败");
+           $('#info').show();
+           $('#info').html("删除失败！");
+           setTimeout("$('#info').hide()", 2000 );
         }
       });
 

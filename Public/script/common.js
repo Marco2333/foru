@@ -4,7 +4,7 @@ $(document).ready(function(){
       $(".drop-down-layer").show();
       $.post(
           '/index.php/Home/ShoppingCart/getCartGood',
-          {campusId:$.cookie('campusId')},
+          {campusId:$campusId},
           function(json){
                $('.index-shopping-cart ul').empty();
                if(json.length==0) {

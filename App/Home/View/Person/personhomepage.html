@@ -17,7 +17,7 @@
 
 			<div id="nav-breadcrumb" class="wrapper">
 				<ul class="breadcrumb">
-					<li><a href="{:U('Index/index',array('campusId'=>cookie('campusId')))}">首页</a></li>
+					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
 					<li class="active"><a href="{:U('/Home/Person/personhomepage',array('campusId'=>cookie('campusId')))}">我的For优</a></li>
 				</ul>
 			</div>
@@ -26,18 +26,18 @@
 			<div id="person-nav-side">
 				<ul>
 					<span>我的订单</span>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>0))}">全部</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>1))}">待付款</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>2))}">待确认</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>3))}">配送中</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>4))}">待评价</a></li>
-					<li><a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>5))}">已完成</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>0))}">全部</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>1))}">待付款</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>2))}">待确认</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>3))}">配送中</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>4))}">待评价</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>5))}">已完成</a></li>
 				</ul>
 				<ul>
 					<span>资料管理</span>
-					<li><a href="{:U('Person/personInfo',array('campusId'=>cookie('campusId')))}">个人信息</a></li>
-					<li><a href="{:U('Person/locaManage',array('campusId'=>cookie('campusId')))}">地址管理</a></li>
-					<li><a href="{:U('Person/resetpword',array('campusId'=>cookie('campusId')))}">账户安全</a></li>
+					<li><a href="{:U('Person/personInfo',array('campusId'=>$campusId))}">个人信息</a></li>
+					<li><a href="{:U('Person/locaManage',array('campusId'=>$campusId))}">地址管理</a></li>
+					<li><a href="{:U('Person/resetpword',array('campusId'=>$campusId))}">账户安全</a></li>
 				</ul>
 				<ul>
 					<span>服务中心</span>
@@ -70,7 +70,7 @@
 				</div>
 				<div class="info-title">
 						近期订单
-						<span class="fr"><a href="{:U('Person/ordermanage',array('campusId'=>cookie('campusId'),'status'=>0))}">查看所有订单</a></span>
+						<span class="fr"><a href="{:U('Person/ordermanage',array('campusId'=>$campusId,'status'=>0))}">查看所有订单</a></span>
 				</div>
 				<div class="personhome-order-info">
 					<table>
@@ -130,7 +130,7 @@
 										<td colspan="3">
 										</td>
 										<td colspan="1">
-											<a href="{:U('Person/orderManage',array('campusId'=>cookie('campusId'),'status'=>0))}">订单详情</a>
+											<a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>0))}">订单详情</a>
 										</td>
 								</tr>		 -->
 						</tbody>
