@@ -6,8 +6,7 @@
 		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
 		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="__PUBLIC__/css/style_li.css" />
-        <script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+    
 		<title>For优 修改密码</title>
 	</head>
 	<body>
@@ -114,7 +113,7 @@
 							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">邮箱验证:</span>
 							<input type="text" placeholder="请输入收到的邮箱验证码" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="mailcode" form="person-info-body-form-2" id="person-info-body-form-message"/>
 							<!-- <span class="span-inline-block person-info-body-page-text person-info-body-page-margin">请输入收到的邮箱验证码</span> -->
-							<button id="resent-secword">重新发送验证码</button>
+							<button id="resent-secword" class="bground-special">重新发送验证码</button>
 							<p><br /></p>
 						</div>
 						<!--3-->
@@ -122,7 +121,6 @@
 							<input type="button" value="提交" class="bground-special text-white person-info-body-page-input person-info-body-page-submit" id="body-form-2-button"/>
 						</form>
 					</div>
-					
 					
 					<div class="person-info-body-page3 none">
 						<div class="person-info-body person-info-body-3">
@@ -159,7 +157,10 @@
 
 		<include file='App/Home/View/Common/commontail.html'/>
 		<include file='App/Home/View/Common/commonlocation.html'/>
-	    <script type="text/javascript">
+
+        <script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript">
               var checkpwordUrl="{:U('/Home/Person/Phone')}";
               var changepwordUrl="{:U('/Home/Person/changePWord')}";
               var checkMailPostUrl="{:U('/Home/Person/checkMailPost')}";

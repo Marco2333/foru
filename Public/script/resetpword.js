@@ -58,14 +58,30 @@ $(function(){
 		});	
 	});
 	
-	$("#resent-secword").click(function(){
-		$(this).text("10").addClass("sub-number");
-		// resent_word = setInterval("sub_number()",1000);
 
-		for(var i = 60;i>=0;i++){
-		 	setTimeout("sub_number()",1000);
-		}
+	$("#resent-secword").click(function(){
+		$(this).text("60秒后重新发送").addClass("sub-number")
+			.attr("disabled",true);
+		var a = setInterval(function(){
+			var num = $("#resent-secword").text().substr(0,2);
+
+			if(parseInt(num)-1<10) {
+				$("#resent-secword").text("0"+parseInt(num)-1+"秒后重新发送");
+			}
+			else if (parseInt(num)-1 > 10) {
+				$("#resent-secword").text(parseInt(num)-1+"秒后重新发送");
+			}
+			if(parseInt(num)==0) {
+				clearInterval(a);
+				$("#resent-secword").text("重新获取验证码")
+				.removeClass("sub-number").attr("disabled",false);
+			}
+			
+			
+		},1000);
 	});
+
+	
 
 	$("#person-info-body-form-phone").blur(function(){
 		var $phone=$("#person-info-body-form-phone").val();
@@ -146,13 +162,3 @@ $(function(){
 		}
 	});
 });
-
-function sub_number() {
-	var num = $("#resent-secword").text();
-	// if(parseInt(num)==0) {
-	// 	$("#resent-secword").text("");
-	// }
-	// clearInterval(resent_word);
-	$("#resent-secword").text(parseInt(num)-1);
-
-}
