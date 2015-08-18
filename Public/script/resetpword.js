@@ -60,7 +60,7 @@ $(function(){
 	
 
 	$("#resent-secword").click(function(){
-		$(this).text("60秒后重新发送").addClass("sub-number")
+		$(this).text("59秒后重新发送").addClass("sub-number")
 			.attr("disabled",true);
 		var a = setInterval(function(){
 			var num = $("#resent-secword").text().substr(0,2);
