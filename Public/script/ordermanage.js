@@ -32,7 +32,7 @@ $(function(){
 
         $.ajax({
             type:"POST",
-            url:"../../../../../../Home/Person/deleteOrCancelOrder",
+            url:cancelOrderUrl,
             data:{order_id:$order_id},
             success:function(result){
                 if (result['result'] != 0) {
@@ -67,7 +67,7 @@ $(function(){
     $("#person-info-body .order-manage-3").unbind('click').on("click",function(){
         var $order_id = $(this).nextAll(".order-none").val();
 
-        var $href = "../../../../../../Home/Person/goodsPayment?orderIds="+$order_id+"&campusId="+$.cookie('campusId');
+        var $href = goodPaymentsUrl+"?orderIds="+$order_id+"&campusId="+$.cookie('campusId');
         window.location.href=$href;        
     });
 
@@ -76,7 +76,7 @@ $(function(){
 
         $.ajax({
             type:"POST",
-            url:"../../../../../../Home/Person/deleteOrCancelOrder",
+            url:cancelOrderUrl,
             data:{order_id:$order_id},
             success:function(result){
                 if (result['result'] != 0) {
@@ -113,7 +113,7 @@ $(function(){
         
         $.ajax({
             type:"POST",
-            url:"../../../../../../Home/Person/confirmReceive",
+            url:confirmReceiveUrl,
             data:{order_id:$order_id},
             success:function(result){
                 if (result['result'] != 0) {
@@ -125,17 +125,65 @@ $(function(){
                     btn2.innerHTML = "删除订单";
 
                     var newtd = document.createElement("td");
+                    var neworderNone = document.createElement("input");
+                    neworderNone.setAttribute("class","order-none none");
+                    neworderNone.setAttribute("id",$order_id);
+                    neworderNone.setAttribute("value",$order_id);
+
                     newtd.appendChild(btn1);
                     newtd.appendChild(btn2);
+                    newtd.appendChild(neworderNone);
 
                     var input = document.getElementById($order_id);
 
                     var td = input.parentNode;
                     var tr = input.parentNode.parentNode;
                     tr.replaceChild(newtd,td);
+
+                    $("#person-info-body .order-manage-2").unbind('click').on("click",function(){
+                        var $order_id = $(this).nextAll(".order-none").val();
+                        $.ajax({
+                            type:"POST",
+                            url:cancelOrderUrl,
+                            data:{order_id:$order_id},
+                            success:function(result){
+                                if (result['result'] != 0) {
+                                    var input = document.getElementById($order_id);
+                                    var tr    = input.parentNode.parentNode;
+                                    var tbody = input.parentNode.parentNode.parentNode;
+
+                                    var trs   = tbody.childNodes;
+                                    var cnt = 0;
+                                    for (i = 0;i < trs.length;i++) {
+                                        if (trs[i].nodeName == "TR") {
+                                            cnt++;
+                                        }
+                                    }
+
+                                    if (cnt <= 2) {
+                                        var table = tbody.parentNode;
+
+                                        table.removeChild(tbody);
+                                    }
+                                    else {
+                                        tbody.removeChild(tr);
+                                    }
+                                }
+                                else {
+                                   
+                                }
+                            }
+                        })        
+                    });
+
+                    $("#person-info-body .order-manage-6").unbind('click').on("click",function(){
+                        var $order_id = $(this).nextAll(".order-none").val();
+                        var $href = commentUrl+"?order_id="+$order_id+"&campusId="+$.cookie('campusId');;
+                        window.location.href = $href;
+                    });
                 }
                 else {
-                    // alert("确认收货失败，请重试！");
+                   
                 }
             }
         })
@@ -143,8 +191,7 @@ $(function(){
 
     $("#person-info-body .order-manage-6").unbind('click').on("click",function(){
         var $order_id = $(this).nextAll(".order-none").val();
-        
-        var $href = "../../../../../../Home/Index/comment?order_id="+$order_id+"&campusId="+$.cookie('campusId');;
+        var $href = commentUrl+"?order_id="+$order_id+"&campusId="+$.cookie('campusId');;
         window.location.href = $href;
     });
 

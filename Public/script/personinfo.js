@@ -41,19 +41,20 @@ function savePersonInfo(){
 
     $.ajax({
         type:"POST",
-        url:"../../../../Home/Person/savePersonInfo",
+        url:savePersonInfoUrl,
         data:info,
         success:function(data){
-            // alert(data['result']);//保存操作成功/失败信息返回，选择适当形式告知用户
-            // console.log("aaa");
-
             if (data['result'] != 0)
             {
-                alert("个人信息保存成功！");
+               $('#info').show();
+               $('#info').html("保存个人信息成功");
+               setTimeout("$('#info').hide()", 2000 );
             }
             else
             {
-                alert("个人信息保存失败！");
+               $('#info').show();
+               $('#info').html("保存个人信息失败");
+               setTimeout("$('#info').hide()", 2000 );
             }
             
         }

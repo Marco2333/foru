@@ -34,7 +34,8 @@ class PersonModel extends ViewModel {
         $Users  = M("users");
         $where  = array(
             'phone' => $user
-            );
+        );
+
         $field  = array(
             'phone',
             'nickname',
@@ -46,10 +47,6 @@ class PersonModel extends ViewModel {
         $data   = $Users->where($where)
                         ->field($field)
                         ->find();
-
-        if ($data['img_url'] == null) {
-            $data['img_url'] == '\foru\Public\Uploads\2015-08-01\ForUForUForUForUForUForUForUForUForUForUForUForU.jpg';//默认forU灰色图标
-        }
 
         return $data;
     }
@@ -241,7 +238,7 @@ class PersonModel extends ViewModel {
             $where    = array(
                 'order_id'    => $orderID[$i],
                 '_logic'      => 'and'  
-                );
+            );
 
             $field = array(
                 'orders.order_count',
@@ -287,7 +284,8 @@ class PersonModel extends ViewModel {
      */
     public function getTotalPrice($orderIDstr = 0){
         $foodInfo = $this->getGoodsInfo($orderIDstr);
-
+   
+        //dump($foodInfo);
         $price = array(
             'totalPrice'    => 0,
             'discountPrice' => 0
@@ -768,6 +766,53 @@ class PersonModel extends ViewModel {
 
         return $campusId['last_campus'];
    }
+
+   public function pay($channel,$amount,$orderNo){
+        require_once(dirname(__FILE__) . '/../init.php');
+       // $input_data = json_decode(file_get_contents('php://input'), true);
+        //if (empty($input_data['channel']) || empty($input_data['amount'])) {
+         //   echo 'channel or amount is empty';
+          //  exit();
+        //}
+      
+        //$orderNo = substr(md5(time()), 0, 12);
+
+//$extra 在使用某些渠道的时候，需要填入相应的参数，其它渠道则是 array() .具体见以下代码或者官网中的文档。其他渠道时可以传空值也可以不传。
+        $extra = array();
+        switch ($channel) {
+            case 'alipay_wap':
+            $extra = array(
+                'success_url' => 'http://foru.com:8000/index.php',
+                'cancel_url' => 'http://foru.com:8000/index.php/Home/Login/toLogin'
+                );
+            break;
+        }
+
+        \Pingpp\Pingpp::setApiKey('sk_test_HC4CmLin9iPOTOGOW1iHqLOG');
+
+        try {
+            $ch = \Pingpp\Charge::create(
+                array(
+                    'subject'   => 'Your Subject',
+                    'body'      => 'Your Body',
+                    'amount'    => $amount,
+                    'order_no'  => $orderNo,
+                    'currency'  => 'cny',
+                    'extra'     => $extra,
+                    'channel'   => $channel,
+                    'client_ip' => $_SERVER['REMOTE_ADDR'],
+                    'app'       => array('id' => 'app_ffLajDzjLe181iHa')
+                    )
+                );
+           // dump($ch);
+            return $ch;
+        } catch (\Pingpp\Error\Base $e) {
+            header('Status: ' . $e->getHttpStatus());
+            
+           //echo $e->getHttpBody();
+        }
+
+    }
 };
 
 ?>

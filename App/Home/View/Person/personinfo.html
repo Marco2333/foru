@@ -15,7 +15,7 @@
 			<include file='App/Home/View/Common/commonsearch.html'/>
 
 			<include file='App/Home/View/Common/commonnav.html'/>
-
+            <div id="info"></div>
 			<div id="nav-breadcrumb" class="wrapper">
 				<ul class="breadcrumb">
 					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
@@ -149,6 +149,9 @@
 		<include file='App/Home/View/Common/commonlocation.html'/>
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript">
+   			 var savePersonInfoUrl="{:U('/Home/Person/savePersonInfo')}"
+		</script>
 		<script type="text/javascript" src="__PUBLIC__/script/personinfo.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>

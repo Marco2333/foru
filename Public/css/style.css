@@ -1974,6 +1974,10 @@ input.goods-count {
 .eval-info-detailed-mark {
 	font-family: "黑体";
 	font-size: 14px;
+	width: 1000px;
+	word-wrap:break-word;
+	padding-right: 15px;
+	text-indent: 20px;
 }
 #goods-img-detailed img {
 	width: 100%;
@@ -2144,4 +2148,9 @@ input.goods-count {
 	font-family: "微软雅黑";
 }
   
+.clearfix dd>p{
+   font-family: "黑体";
+   font-size:15px;
+   color:#aaa;
+}
 

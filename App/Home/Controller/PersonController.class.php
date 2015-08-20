@@ -142,16 +142,15 @@ class PersonController extends Controller {
             $upload             = new \Think\Upload();
             $upload->maxSize    = 4194304;
             $upload->exts       = array('jpg','gif','jpeg','bmp');
-            $upload->rootPath   = './Public/';
-            $upload->savePath   = '/Uploads/';
+            $upload->rootPath   = './forImg/';
+            $upload->savePath   = '/headimg/';
             
             $info = $upload->uploadOne($_FILES['img']);
 
             if ($info) {
-                $data['img_url'] = '/foru/Public'
+                $data['img_url'] = C('IpUrl')."forImg"
                                   .$info['savepath']
                                   .$info['savename'];
-
                 $Users  = M("users");
                 $where  = array(
                     'phone'  => $user
@@ -160,20 +159,26 @@ class PersonController extends Controller {
                 $img_url = $Users->where($where)
                                  ->field("img_url")
                                  ->find();
-                // unlink($img_url);
+               
+                $imgUrlName=str_replace(C('IpUrl'), "", $img_url['img_url']);
+
+                if(file_exists($imgUrlName)){
+                     unlink($imgUrlName);             //删除原头像
+                }
                 $result = $Users->where($where)
                                 ->save($data);
 
                 if ($result !== false) {
-                    $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId')));//,array('active'=>1)
+                    $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)          
                 }
                 else {
                     // 数据库操作失败
                 }
             }
             else {
+                // $this->error($upload->getError());
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
-                $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId')));//,array('active'=>1)
+                $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)
             }
         }
         else {
@@ -469,27 +474,21 @@ class PersonController extends Controller {
 
     public function payAtOnce(){
         $user = $_SESSION['username'];
-
+                        
+        $channel=I('pay_way');                  //支付方式
+        $reversetime=I('reversetime');           //预定时间
+        $rank=I('rank'); 
+                                //收货地址序列
         if ($user != null) {
-            $together_id = I('together-id');
-            echo $together_id."<br>";
+            $together_id = I('togetherId');                           //大订单号
 
-            $orderIDstr = I('orderIDstr');
-            echo "Iamhere"."<br>";
-            echo $orderIDstr;
+            $orderIDstr = I('orderIdstr');                     //小订单列表           
+          
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
-            dump($price);
-            
-            $pay = array(
-                'address'     => I('information'),
-                'payMethod'   => I('pay-way'),
-                'reversetime' => I('time'),
-                'message'     => I('message'),
-                'totalPrice'  => $price['discountPrice']
-                );
-
-            dump($pay);
+            $amount=10;
+            $charge=$Person->pay($channel,$amount,$together_id);
+            echo $charge;                         //返回charge数据给客户端
         }
         else {
             $this->redirect('Home/Login/index');

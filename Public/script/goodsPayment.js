@@ -45,6 +45,28 @@ $(function(){
         deleteAddress(phone,rank);
     });
 
+    $("#submitPay").on("click",function(){
+        var $togetherId=$('input[name="together-id"').val();
+        var $orderIdstr=$("input[name='orderIDstr']").val();
+        var $pay_way=$("input[type='radio'][name='pay-way']").val();
+        var $rank=$(".main-wrapper-1-radio:checked").val();
+        var data={
+            togetherId:$togetherId,
+            orderIdstr:$orderIdstr,
+            pay_way:$pay_way,
+            rank:$rank
+        };
+
+         $.ajax({
+            url:payAtOnceUrl,
+            data:data,
+            success:function(data){
+                  /*pingpp.createPayment(data, function(result, err) {
+                    console.log(result);
+                    console.log(err);*/
+            }
+        });
+    });
 });
 
 function reviseAddress(phone,rank){
@@ -226,7 +248,6 @@ function cityChange(city,campus){
         });
     });
 }
-
 
 
 

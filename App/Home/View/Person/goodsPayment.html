@@ -12,7 +12,7 @@
 	<body>
 		
 		<include file='App/Home/View/Common/commonhead.html'/>
-			<div id="index-header" >
+			<div id="index-header" data-campusId="{$campusId}">
 				<include file='App/Home/View/Common/commonsearch.html'/>
 
 				<include file='App/Home/View/Common/commonnav.html'/>
@@ -105,7 +105,7 @@
 						</div>
 					</form>
 				</div>
-			<form action="{:U('Person/payAtOnce',array('campusId'=>cookie('campusId')))}" method="POST">
+			<form>
 				<div class="wrapper main-wrapper-3">
 					<table class="wrapper">
 						<colgroup>
@@ -119,16 +119,14 @@
 						<tbody>
 							<tr>
 								<td>
-									<input type="radio" name="pay-way" value="支付宝支付" checked="checked"/>
+									<input type="radio" name="pay-way" value="alipay_wap" checked="checked"/>
 									<img src="__PUBLIC__/img/zhifubao.png" alt="" />
 									支付宝支付
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="radio" name="pay-way" value="微信支付"/>&nbsp&nbsp&nbsp
-									<img src="__PUBLIC__/img/weixin.png" alt="" />
-									&nbsp&nbsp&nbsp&nbsp微信支付
+									<input type="radio" name="pay-way" value=""/>&nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/img/weixin.png" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;微信支付
 								</td>
 							</tr>
 						</tbody>
@@ -247,7 +245,7 @@
 					<div class="main-wrapper-7-main">
 						<span class="zhe"><span>合计：</span><span class="price">￥</span><span class="price">{$price['discountPrice']}</span><span class="price">元</span><br /></span>
 						<span class="yuan"><del>原价：￥<span>{$price['totalPrice']}</span>元</del></span><br />
-						<input type="submit" value="立即支付"/>
+						<input id="submitPay" type="button" value="立即支付"/>
 					</div>
 				</div>
 			</form>
@@ -259,6 +257,11 @@
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript">
+             var $campusId=$("#index-header").attr("data-campusId");
+             var payAtOnceUrl="{:U('/Home/Person/payAtOnce')}";
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/script/pingpp_pay.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/goodsPayment.js"></script>
 	</body>
