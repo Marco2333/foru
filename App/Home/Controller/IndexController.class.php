@@ -200,9 +200,9 @@ class IndexController extends Controller {
             "campus_id"=>$campusId
         );
 
-        $campusInfo = M('campus')->where('campus_id = %d',$campusId)
-                                 // ->field('campus_name')
-                                 ->find();
+        $campusInfo = M('campus')
+                    ->where('campus_id = %d',$campusId)
+                    ->find();
 
         $good=M('food')->where($data)->find();     //获取商品详情
         $img=split(',',$good['info']);
@@ -223,11 +223,11 @@ class IndexController extends Controller {
 
         $count = M('food_comment')
         ->where($map)
-        ->where('tag=1 and comment is not null')
+        ->where('tag=1')
         ->count();                     // 查询评价的总记录数
          //评价分页
         $page = new \Think\Page($count,6);
-        $page->setConfig('header','条数据');
+        $page->setConfig('header','条评论');
         $page->setConfig('prev','<');
         $page->setConfig('next','>');
         $page->setConfig('first','<<');
@@ -242,7 +242,7 @@ class IndexController extends Controller {
         ->join('users on users.phone=food_comment.phone')
         ->field('nickname,img_url,date,comment,grade')
         ->where($map)
-        ->where('tag=1 and comment is not null')
+        ->where('tag=1')
         ->limit($limit)
         ->select();
         
@@ -255,6 +255,7 @@ class IndexController extends Controller {
         $this->assign('comments',$comments)
              ->assign('good',$good)
              ->assign('campus',$campusInfo)
+             ->assign('page',$show)// 赋值分页输出
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
              ->assign('cartGood',$cartGood)

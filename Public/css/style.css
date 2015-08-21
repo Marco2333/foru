@@ -1984,7 +1984,9 @@ input.goods-count {
 	height: auto;
 	margin-bottom: 10px;
 }
-
+.img-and-evaluate + .msg-page {
+	padding-left: 0;
+}
 /*change-campus*/
 #campus-background { 
 	background-color: rgba(145,145,145,.5); 
@@ -2086,7 +2088,7 @@ input.goods-count {
 	text-align: center;
 	color: #ccc;
 	margin-top: 15px;
-	float:left;
+	/*float:left;*/
 	width: 100%;
 	padding-left: 200px;
 }
