@@ -437,35 +437,40 @@ class PersonController extends Controller {
 
         if ($user != null) {
             $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
-            $orderIDstr = I('orderIds');
-            if ($orderIDstr != '') {
-                session('orderIDstr',$orderIDstr);
-            }
-            else {
-                $orderIDstr = $_SESSION['orderIDstr'];
-            }            
-
+            
+            $together_id=I('togetherId');
             $Person      = D('Person');
-            $together_id = $Person->setTogetherID();
-
+            if($together_id==null){
+                 $orderIDstr = I('orderIds');
+                if ($orderIDstr != '') {
+                    session('orderIDstr',$orderIDstr);
+                }
+                else {
+                    $orderIDstr = $_SESSION['orderIDstr'];
+                }            
+ 
+                $together_id = $Person->setTogetherID();
+            }
+           
             $address   = $Person->getAddress();
             $orderInfo = $Person->getOrderInfo($together_id);
-            $goodsInfo = $Person->getGoodsInfo();
+            $orderIdstr = $Person->getOrderIdStr($together_id);
+            $goodsInfo = $Person->getGoodsInfo($orderIdstr);
             $price     = $Person->getTotalPrice();
             // $cities    = $Person->getCities();
             // $campus    = $Person->getCampus($cities[0]['city_id']);
 
-            $this->assign('orderIDstr',$orderIDstr);
-            $this->assign('address',$address);
-            $this->assign('orderInfo',$orderInfo);
-            $this->assign('goodsInfo',$goodsInfo);
-            $this->assign('price',$price);
+            $this->assign('orderIDstr',$orderIdstr)
+                 ->assign('address',$address)
+                 ->assign('orderInfo',$orderInfo)
+                 ->assign('goodsInfo',$goodsInfo)
+                 ->assign('price',$price)
+                 ->assign("categoryHidden",1)
+                 ->assign("campusId",$campusId)
+                 ->assign("cartGood",$cartGood)
+                 ->display("goodsPayment");
             // $this->assign('cities',$cities);
             // $this->assign('campus',$campus);
-            $this->assign("categoryHidden",1);
-            $this->assign("campusId",$campusId);
-            $this->assign("cartGood",$cartGood);
-            $this->display("goodsPayment");
         }
         else {
             $this->redirect('Home/Login/index');
@@ -488,7 +493,22 @@ class PersonController extends Controller {
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
             $amount=10;
             $charge=$Person->pay($channel,$amount,$together_id);
-            echo $charge;                         //返回charge数据给客户端
+
+            //更改该笔订单为待付款
+            $data['status']=1;
+            $data['rank']=$rank;
+            if($channel=="alipay_wap"){
+                $data['pay_way']=1;
+            }else{
+                 $data['pay_way']=2;
+            }
+
+            $result=M("orders")->where('together_id = %s',$together_id)->save($data);
+            if($result){
+                 echo $charge;    //返回charge数据给客户端
+            }else{
+                echo "null";
+            }                         
         }
         else {
             $this->redirect('Home/Login/index');
@@ -555,6 +575,7 @@ class PersonController extends Controller {
              ->count();
        }
        
+        $module=D("FoodCategory")->getModule($campusId);
         $page = new \Think\Page($count,6);
         $page->setConfig('header','条数据');
         $page->setConfig('prev','<');
@@ -571,10 +592,12 @@ class PersonController extends Controller {
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);
 
+        //dump($orderList);
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
              ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
+             ->assign('module',$module)
              ->assign('orderpage',$show);
       
         $this->display("orderManage");

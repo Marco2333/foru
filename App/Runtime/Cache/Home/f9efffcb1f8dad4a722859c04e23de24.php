@@ -4,13 +4,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>请登录|ForU</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
-		<link href="/foru/Public/css/style.css" rel="stylesheet"/>
-		<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="/foru/Public/script/plugins/jquery.cookie.js"></script>
-		<script type="text/javascript" src="/foru/Public/script/login.js"></script>
-		<script src="/foru/Public/bootstrap/js/bootstrap.min.js"></script>
+		<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/Public/css/commonstyle.css" rel="stylesheet" />
+		<link href="/Public/css/style.css" rel="stylesheet"/>
+
 		<style>
 			body {
 				background-color: rgba(250,250,250,.9);
@@ -18,11 +15,12 @@
 		</style>
 	</head>
 	<body>
+	    <div id="info"></div>
 		<div class="wrapper">
 			<div id="login-top">
 				<div class="fl">
-					<img src="/foru/Public/img/logo.png" />
-					<span class="text-special"> For优 </span> <span>您的专属校园超市</span>
+					<a href="<?php echo U('/Home/Index/Index');?>"><img src="/Public/img/logo.png" /></a>
+					<a href="<?php echo U('/Home/Index/Index');?>"><span class="text-special"> For优 </span></a> <span>您的专属校园超市</span>
 				</div>
 				<!-- <div class="fr">
 					<span><span class="glyphicon glyphicon-thumbs-up"> </span>最廉价的商品 </span>
@@ -32,7 +30,7 @@
 			</div>
 			<div id="login-main">
 				<div class="fl">
-					<img src="/foru/Public/img/login-show.png" />
+					<img src="/Public/img/login-show.png" />
 					<div>为你，为更好地生活</div>
 				</div>
 				<div class="fr">
@@ -53,7 +51,7 @@
 					</div>
 					<div id="security-code">
 						<input type="text" name="verify" placeholder="验证码"/>
-						<span id="security-code-img"><img src=" /foru/index.php/Home/Login/verify/id/'+Math.random()" onclick="this.src='/foru/index.php/Home/Login/verify/id/'+Math.random()"/> </span><!-- <span><a >看不清，换一张</a> </span> -->
+						<span id="security-code-img"><img src=" /index.php/Home/Login/verify/id/'+Math.random()" onclick="this.src='/index.php/Home/Login/verify/id/'+Math.random()"/> </span><!-- <span><a >看不清，换一张</a> </span> -->
 					</div>
 					<div id="remember-password-div">
 						<input id="ck_rmbUser" class="fl" type="checkbox" name="remember-password" />
@@ -68,5 +66,13 @@
 				</div>
 			</div>
 		</div>
+	    <script type="text/javascript">
+             var toLoginUrl="<?php echo U('/Home/Login/toLogin');?>";
+             var  toIndexUrl="<?php echo U('/Home/Index/index');?>";
+	    </script>
+		<script type="text/javascript" src="/Public/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="/Public/script/plugins/jquery.cookie.js"></script>
+		<script src="/Public/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/Public/script/login.js"></script>
 	</body>
 </html>

@@ -11,7 +11,7 @@
 	<body>
 		<include file='App/Home/View/Common/commonhead.html'/>
 
-		<div id="index-header" >
+		<div id="index-header" data-campusId="{$campusId}">
 			<include file='App/Home/View/Common/commonsearch.html'/>
 			<include file='App/Home/View/Common/commonnav.html'/>
 
@@ -144,6 +144,9 @@
 		
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript">
+             var $campusId=$("#index-header").attr("data-campusId");
+		</script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
 
 	</body>

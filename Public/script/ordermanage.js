@@ -64,11 +64,16 @@ $(function(){
         })        
     });
 
-    $("#person-info-body .order-manage-3").unbind('click').on("click",function(){
+    $(".order-info-detailed .per-order-manage").unbind('click').on("click",function(){
         var $order_id = $(this).nextAll(".order-none").val();
 
         var $href = goodPaymentsUrl+"?orderIds="+$order_id+"&campusId="+$.cookie('campusId');
         window.location.href=$href;        
+    });
+    
+    $(".order-info-head .together-order-manage").unbind('click').on("click",function(){
+        var $togetherId = $(this).attr('data-togetherId');
+         window.location.href = goodPaymentsUrl+"?togetherId="+$togetherId;
     });
 
     $("#person-info-body .order-manage-4").unbind('click').on("click",function(){

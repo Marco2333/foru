@@ -61,10 +61,18 @@ $(function(){
             url:payAtOnceUrl,
             data:data,
             success:function(data){
-                  /*pingpp.createPayment(data, function(result, err) {
-                    console.log(result);
-                    console.log(err);*/
-            }
+                if(data!="null"){
+                    pingpp.createPayment(data, function(result, err) {
+                      console.log(result);
+                      console.log(err);
+                    });
+                }else{
+                   $('#info').show();
+                   $('#info').html("支付失败，请重新失败");
+                   setTimeout("$('#info').hide()", 2000 );
+                }
+                 
+              }
         });
     });
 });
@@ -125,10 +133,7 @@ function reviseAddress(phone,rank){
             	document.getElementById("detailedLoc").value =data['detailedLoc'];
                 document.getElementById("phoneNum").value    =data['phone_id'];      		
             }
-            else
-            {
-            	alert("原收货地址获取失败！");
-            }
+
         }
     })
 }
@@ -155,13 +160,14 @@ function saveReviseLocation(phone,rank){
         success:function(data){
             if (data['result'] != 0)
             {
-                // alert("修改收货地址成功！");
 
                 return info;
             }
             else
             {
-                alert("修改收货地址失败！");
+               $('#info').show();
+               $('#info').html("修改收货地址失败");
+               setTimeout("$('#info').hide()", 2000 );
             }
 
         }
@@ -182,11 +188,15 @@ function deleteAddress(phone,rank){
             console.log(data);
         	if (data['result'] != 0)
         	{
-        		// alert("收货地址删除成功！");
+        	   $('#info').show();
+               $('#info').html("删除收货地址成功");
+               setTimeout("$('#info').hide()", 2000 );
         	}
         	else
         	{
-        		alert("收货地址删除失败！");
+        	   $('#info').show();
+               $('#info').html("删除收货地址失败");
+               setTimeout("$('#info').hide()", 2000 );
         	}
         }
     })

@@ -11,7 +11,7 @@
 	<body>
 		<include file='App/Home/View/Common/commonhead.html'/>
 
-		<div id="index-header" >
+		<div id="index-header" data-campusId="{$campusId}">
 			<include file='App/Home/View/Common/commonsearch.html'/>
 			<include file='App/Home/View/Common/commonnav.html'/>
 
@@ -103,28 +103,39 @@
 							</tr>
 						</thead>
 						<foreach name="orderList" item="page">
-									
 						    <if condition="$key eq 0">
 						    <tbody>
 						       <assign name="currentId" value="$page['together_id']"/>
+						        
 						       <tr class="order-info-head">
 							       	<td colspan="2">
 							       		订单编号：<span>{$page.together_id}</span>
-							       		提交时间：<span>{$page.together_date}</span>	
+							       		提交时间：<span>{$page.together_date}</span>
+							       		<if condition="$page['status'] eq 1">
+							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+													立即付款
+										</button>
+							       		</if>   		
 							       	</td>
 							       	<td colspan="2">
 							       		
 							       	</td>	
 						       </tr>
-	
-						    <elseif condition="$page.together_id neq $currentId"/>
+						      
+						    <elseif condition="$page.together_id nheq $currentId" /> 
+						  
 								</tbody>
 						    	<tbody>	
 									<assign name="currentId" value="$page['together_id']"/>
 									<tr class="order-info-head">
 										<td colspan="2">
 											订单编号：<span>{$page.together_id}</span>
-											提交时间：<span>{$page.together_date}</span>	
+											提交时间：<span>{$page.together_date}</span>
+                       						<if condition="$page['status'] eq 1">
+							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+													立即付款
+										</button>
+							       		</if>   
 										</td>
 										<td colspan="2">
 											
@@ -136,7 +147,7 @@
 										<td>
 											<img class="fl" src="{$page.img_url}" alt="">
 											<div class="fl">
-												<p>{$page.name}</p>
+												<p>{$page.foodname}</p>
 												<p>{$page.message}</p>
 												<p>共{$page.order_count}件商品</p>
 											</div>		
@@ -164,7 +175,7 @@
 											{
 												case 1:
 												echo 
-												'<button class="order-manage-button order-manage-3">
+												'<button class="order-manage-button order-manage-3 per-order-manage">
 													立即付款
 												</button>
 												<button class="order-manage-button order-manage-4">
@@ -220,6 +231,7 @@
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript">
+		       var $campusId=$('index-header').attr("data-campusId");
                var cancelOrderUrl="{:U('/Home/Person/deleteOrCancelOrder')}";
                var goodPaymentsUrl="{:U('/Home/Person/goodsPayment')}";
                var confirmReceiveUrl="{:U('Home/Person/confirmReceive')}";

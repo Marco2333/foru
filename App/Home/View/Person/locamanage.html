@@ -23,7 +23,7 @@
 				</ul>
 			</div>
 		</div>
-
+        <div id="info" data-campusId="{$campusId}"></div>
 		<div class="wrapper clearfix" >
 			<div id="person-nav-side">
 				<ul>
@@ -146,6 +146,9 @@
 		<include file='App/Home/View/Common/commonlocation.html'/>
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript">
+               var $campusId=$("#info").attr('data-campusId');
+		</script>
 		<script type="text/javascript" src="__PUBLIC__/script/locamanage.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>

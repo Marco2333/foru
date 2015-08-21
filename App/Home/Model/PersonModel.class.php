@@ -67,20 +67,20 @@ class PersonModel extends ViewModel {
 
         $orderIDstr = I('orderIds');
         $orderID    = split(',',$orderIDstr);
-
+       
         $Orders = M('orders');
         $data = array(
             'together_id'   => $together_id,
             'together_date' => $time
-            );
-
+        );
+      
         for ($i = 0;$i < count($orderID);$i++) {
             $where = array(
                 'phone'    => $user,
                 'order_id' => $orderID[$i]
-                );
-
-            $Orders->where($where)
+            );
+             
+            $result=$Orders->where($where)
                    ->save($data);
         }
 
@@ -200,6 +200,7 @@ class PersonModel extends ViewModel {
                               ->field($field)
                               ->select();
 
+       
         for($i = 0;$i < count($orderID);$i++) {
             if ($i < count($orderID)-1) {
                 $orderIDstr .= $orderID[$i]['order_id'].',';
@@ -208,7 +209,8 @@ class PersonModel extends ViewModel {
                 $orderIDstr .= $orderID[$i]['order_id'];
             }
         }
-
+        
+      
         return $orderIDstr;
     }
 
@@ -272,6 +274,20 @@ class PersonModel extends ViewModel {
 
         return $foodInfo;
     }
+
+    /**
+     * [getOrderIdStr 根据大订单获取小订单的字符串列表]
+     * @param  [type] $togetherId [description]
+     * @return [type]             [description]
+     */
+   /* public function getOrderIdStr($togetherId){
+         $orderIds=M('orders')->field('order_id')->where('together_id = %s and tag=1',$togetherId)->select();
+
+         foreach ($orderIds as $key => $order) {
+             $orderIdstr=$order['order_id'].",";
+         }
+         return $orderIdstr;
+    }*/
 
     /**
      * 模型函数

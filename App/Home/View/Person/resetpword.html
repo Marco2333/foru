@@ -13,7 +13,7 @@
 	<body>
 		<include file='App/Home/View/Common/commonhead.html'/>
         <div id="info"></div>
-		<div id="index-header" >
+		<div id="index-header" data-campusId="{$campusId}">
 			<include file='App/Home/View/Common/commonsearch.html'/>
 			<include file='App/Home/View/Common/commonnav.html'/>
 
@@ -163,6 +163,7 @@
               var checkpwordUrl="{:U('/Home/Person/Phone')}";
               var changepwordUrl="{:U('/Home/Person/changePWord')}";
               var checkMailPostUrl="{:U('/Home/Person/checkMailPost')}";
+              var $campusId=$("#index-header").attr("data-campusId");
 	    </script>
 		<script src="__PUBLIC__/script/resetpword.js" type="text/javascript" charset="utf-8"></script>
 		<script src="__PUBLIC__/script/common.js" type="text/javascript" charset="utf-8"></script>
