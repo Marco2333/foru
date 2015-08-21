@@ -2134,18 +2134,17 @@ input.goods-count {
 #resent-secword {
 	vertical-align: 11px;
 	color: #fff;
-	background: rgb(36, 223, 194);
 	border: none;
 	outline: none;
 	height: 30px;
 	border-radius: 3px;
 	font-family: "黑体";
 	margin-left: 10px;
+	width: 110px;
 }
 .sub-number {
-	font-size: 16px;
-	width: 60px;
 	font-family: "微软雅黑";
+	background: #B0E0D9;
 }
   
 .clearfix dd>p{
