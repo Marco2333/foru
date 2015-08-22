@@ -35,9 +35,12 @@ class LoginController extends Controller {
         if (check_verify($verify))
         {
             $username = I('username');                        //获取用户手机号
+            if(preg_match("/^1\d{10}$/", $username)){
+                 $user = M('users')->where(array('phone' => $username))->find();
+             }else{
+                 $user = M('users')->where(array('mail' => $username))->find();
+             }
             $pwd = I('password', '', 'md5');
-            $user = M('users')->where(array('phone' => $username))->find();
-            
             if (!$user || $user['password'] != $pwd) 
             {
                 $result['status']=0;
@@ -46,7 +49,6 @@ class LoginController extends Controller {
             session('username', $user['phone']);
             session('nickname', $user['nickname']);
             session('imgurl', $user['imgurl']);
-            
             $campusId=D('Person')->getLastCampus($user['phone']);        //获取上次选择的校区
             session('campusId',$campusId);              //存下本次会话的校区号
             $result['status']=1;

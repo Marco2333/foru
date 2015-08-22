@@ -135,7 +135,7 @@ class PersonController extends Controller {
         }
     }
 
-    public function savePortrait(){
+    public function savePortrait(){            //保存头像
         $user = $_SESSION['username'];
 
         if ($user != null) {
@@ -200,59 +200,63 @@ class PersonController extends Controller {
         $user = $_SESSION['username'];
         $cartGood=array();      
         $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
+         
+        $Person = D('Person');
+        $data = $Person->getAddress();
        
+        foreach ($data as $key => $address) {
+            $campusAndCity=D('CampusView')->getCampusCityName($address['campus_id']);
+            $data[$key]['address']=$campusAndCity['campus_name'].$address['address'];
+        }
+        if ($data !== false) {
+            $this->assign("data",$data)
+                 ->assign("categoryHidden",1)
+                 ->assign('module',$module)
+                 ->assign('campusId',$campusId)
+                 ->assign('cartGood',$cartGood);
 
-        if ($user != null) {
-            $Person = D('Person');
-            $data = $Person->getAddress();
-
-            if ($data !== false) {
-                $this->assign("data",$data)
-                     ->assign("categoryHidden",1)
-                     ->assign('module',$module)
-                     ->assign('campusId',$campusId)
-                     ->assign('cartGood',$cartGood);
-
-                $this->display("locamanage");
-            }
-            else {
-                $this->assign("categoryHidden",1)
-                     ->assign('module',$module)
-                     ->assign('campusId',$campusId)
-                     ->assign('cartGood',$cartGood);
-
-                $this->display("locaManage");
-            }
+            $this->display();
         }
         else {
-            $this->redirect('/Home/Login/index');
+            $this->assign("categoryHidden",1)
+                 ->assign('module',$module)
+                 ->assign('campusId',$campusId)
+                 ->assign('cartGood',$cartGood);
+
+            $this->display();
         }
+   
 
     }
 
-    public function getPhoneRank($phone,$rank){
+    /**
+     * 获取某个地址的详细信息
+     * @param  [type] $phone [description]  无效
+     * @param  [type] $rank  [description]
+     * @return [type]        [description]
+     */
+    public function getPhoneRank($rank){
         $Receiver = M('receiver');
         $where = array(
-            'phone'  => $phone,
+            'phone_id'  => $_SESSION['username'],
             'rank'   => $rank,
             '_logic' => 'and'
             );
         $result = $Receiver->where($where)
                            ->find();
-        
+
         if ($result !== false) {
-            $locations = explode('^',$result['address']);
+           
+            $cityAndCampus = M('city')
+                  ->join('campus on campus.city_id = city.city_id')
+                  ->field('city.city_id,city_name,campus_name')
+                  ->where('campus_id = %d',$result['campus_id'])
+                  ->find();                          //获取该地址的城市和校区信息
 
-            $whereCity = array(
-                'city_name' => $locations[0]
-                );
-            $city = M('city')->where($whereCity)
-                             ->find();
-
-            $result['city']        = $locations[0];
-            $result['campus']      = $locations[1];
-            $result['detailedLoc'] = $locations[2];
-            $result['city_id']     = $city['city_id'];
+            $result['city']        = $cityAndCampus['city_name'];
+            $result['campus']      = $cityAndCampus['campus_name'];
+            $result['detailedLoc'] = $result['address'];
+            $result['city_id']     = $cityAndCampus['city_id'];
             $result['result']      = 1;
 
             $this->ajaxReturn($result);
@@ -287,15 +291,13 @@ class PersonController extends Controller {
             $page = I('page');
 
             if ($page != '0') {
-                $this->redirect('/Home/Person/goodsPayment',array('campusId'=>cookie('campusId')));
+                $this->redirect('/Home/Person/goodsPayment',array('campusId'=>session('campusId')));
             }
             else {
-                $this->redirect('/Home/Person/locaManage',array('campusId'=>cookie('campusId')));
+                $this->redirect('/Home/Person/locaManage',array('campusId'=>session('campusId')));
             }
         }
-        else {
-            // 数据库操作失败
-        }
+       
     }
 
     public function deleteLocation($rank){
@@ -305,9 +307,6 @@ class PersonController extends Controller {
 
         if ($res !== false) {
             $this->saveNewAddress();
-        }
-        else {
-            // 修改地址失败
         }
     }
 

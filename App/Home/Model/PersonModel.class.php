@@ -140,7 +140,7 @@ class PersonModel extends ViewModel {
 
         if ($flag != 0) {
             $where    = array(
-                'phone'  => $_SESSION['username'],
+                'phone_id'  => $_SESSION['username'],
                 'is_out' => 0,
                 'tag'    => 0,
                 '_logic'=> 'and'
@@ -148,7 +148,7 @@ class PersonModel extends ViewModel {
         }
         else {
             $where    = array(
-                'phone'  => $_SESSION['username'],
+                'phone_id'  => $_SESSION['username'],
                 'is_out' => 0,
                 '_logic'=> 'and'
                 );
@@ -160,10 +160,10 @@ class PersonModel extends ViewModel {
             'name'      => 'receiverName',
             'phone_id'  => 'customer_phone',
             'address'
-            );
+        );
         $order    = array(
             'tag asc'
-            );
+        );
         $address = $Receiver->where($where)
                             ->order($order)
                             ->select();
@@ -356,7 +356,7 @@ class PersonModel extends ViewModel {
     public function addressIsEmpty(){
         $Receiver = M('receiver');
         $where    = array(
-            'phone' => $_SESSION['username'],
+            'phone_id' => $_SESSION['username'],
             'tag'   => 0,
             'is_out'=> 0,
             '_logic'=> 'and'
@@ -382,7 +382,7 @@ class PersonModel extends ViewModel {
      *        false：用户没有默认收货地址
      */
     public function hasDefaultAddress(){
-        $count = $this->where('phone='.$_SESSION['username'].' and '.'is_out=0'.' and '.'tag=0')
+        $count = M('receiver')->where('phone_id= %s and is_out=0 and tag=0',$_SESSION['username'])
                       ->count();
 
         if ($count != 0) {
@@ -406,7 +406,7 @@ class PersonModel extends ViewModel {
     public function setDefaultAddress(){
         $Receiver = M('receiver');
         $where    = array(
-            'phone' => $_SESSION['username'],
+            'phone_id' => $_SESSION['username'],
             'is_out'=> 0,
             '_logic'=> 'and'
             );
@@ -437,16 +437,14 @@ class PersonModel extends ViewModel {
     public function removeAddress(){
         $Receiver = M('receiver');
         $where    = array(
-            'phone' => $_SESSION['username'],
+            'phone_id' => $_SESSION['username'],
             'rank'  => I('rank'),
-            'is_out'=> 0,
-            '_logic'=> 'and'
-            );
+        );
         $data     = array(
             'is_out'=> 1
-            );
+        );
         $res = $Receiver->where($where)
-                        ->save($data);
+                        ->save($data);        
 
         if ($res !== false) {
             if(!$this->hasDefaultAddress() && !$this->addressIsEmpty()) {
@@ -478,7 +476,7 @@ class PersonModel extends ViewModel {
      *        false：用户收货地址新增失败
      */
     public function saveNewAddress(){
-        if ($this->addressIsEmpty()) {
+        if ($this->addressIsEmpty()) {        //判断前面有没有收货地址，没有则置为默认收货地址
             $tag = 0;
         }
         else {
@@ -488,14 +486,12 @@ class PersonModel extends ViewModel {
         $campus_id = $this->getCampusID(I('select-location-2'));
 
         $data = array(
-            'phone'         =>  $_SESSION['username'],
-            'phone_id'      =>  I('phone-number'),
+            'phone_id'         =>  $_SESSION['username'],
+            'phone'      =>  I('phone-number'),
             'name'          =>  I('user-name'),
-            'address'       =>  I('select-location-1')."^".
-                                I('select-location-2')."^".
-                                I('detailed-location'),
+            'address'       =>  I('detailed-location'),
             'tag'           =>  $tag,
-            'rank'          =>  Time().'000',
+            'rank'          =>  Time().rand(100,999),
             'is_out'        =>  0,
             'campus_id'     =>  $campus_id
         );
@@ -616,7 +612,7 @@ class PersonModel extends ViewModel {
         $Orders = M('orders');
         
         $where  = array(
-            'phone'  => $_SESSION['username'],
+            'phone_id'  => $_SESSION['username'],
             'status' => array('neq',0),
             'tag'    => 1
             );    

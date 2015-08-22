@@ -165,7 +165,7 @@ class IndexController extends Controller {
         $count = M('food')->where($data)->count();// 查询满足要求的总记录数
          //分页
         $page = new \Think\Page($count,12);
-        $page->setConfig('header','条数据');
+        $page->setConfig('header','件商品');
         $page->setConfig('prev','<');
         $page->setConfig('next','>');
         $page->setConfig('first','<<');
@@ -265,7 +265,10 @@ class IndexController extends Controller {
         $this->display();
     }
 
-    //
+    /**
+     * 获取折扣商品
+     * @return [type] [description]
+     */
     public function discountGoods(){
          $campusId=I('campusId');        //获取校区id
         if($campusId==null){
@@ -319,7 +322,6 @@ class IndexController extends Controller {
         $this->display('goodslist');
     }
 public function comment(){
-        // $this->show();
         $order_id=$_GET['order_id'];
 		$user = $_SESSION['username'];
 		/*查找orders表*/

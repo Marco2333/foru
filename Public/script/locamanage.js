@@ -1,28 +1,41 @@
 $(function(){
     cityChange('location1','location2');
 
-	$("#person-location-info tbody .revise-button").on("click",function(){
+   /* $("input[type='button'][name='submit-location-info']").on('click',function(){
+        var $phoneNum=$('#phoneNum').val();
+        if(/\w{11,11}/.test($phoneNum)){
+            $form=document.getElementById('receiver_form');
+            $form.submit();
+        }else{
+            $('#info').show();
+            $('#info').html("修改收货地址失败");
+            setTimeout("$('#info').hide()", 2000 );
+        }
+    });*/
+
+	$("#person-location-info tbody .revise-button").on("click",function(){     //修改地址
         $("#change-location").show(300);
         $("#add-location").hide();
 
-        var phone   = $(this).nextAll(".phone-none").val();
         var rank    = $(this).nextAll(".rank-none").val();
-
-        reviseAddress(phone,rank);
+        reviseAddress(rank);   //修改
 
         $("#recevier_submit_button_revise").unbind('click').on("click",function(){
 
-            var info = saveReviseLocation(phone,rank);
+            var info = saveReviseLocation(rank);
         });
     });
 
-    $("#person-location-info tbody .delete-button").on("click",function(){
-        var phone   = $(this).nextAll(".phone-none").val();
+    $("#person-location-info tbody .delete-button").on("click",function(){  //删除地址
         var rank    = $(this).nextAll(".rank-none").val();
+        
+        deleteAddress(rank);  
         $(this).parent().parent().remove();
-        deleteAddress(phone,rank);
+        
     });
 
+
+    //点击的变化
     $("#change-location").hide();
 
     $("#add-location").bind("click",function(){
@@ -48,7 +61,7 @@ $(function(){
     });
 });
 
-function saveReviseLocation(phone,rank){
+function saveReviseLocation(rank){
 
     $("#change-location").addClass("none");
 
@@ -58,18 +71,21 @@ function saveReviseLocation(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../../../../Home/Person/deleteLocation",
+        url:"../../../../Home/Person/addOrReviseSave",
         data:info,
         success:function(data){
             if (data['result'] != 0)
             {
-                // alert("修改收货地址成功！");
-
+                $('#info').show();
+               $('#info').html("修改收货地址成功");
+               setTimeout("$('#info').hide()", 2000 );
                 return info;
             }
             else
             {
-                alert("修改收货地址失败！");
+               $('#info').show();
+               $('#info').html("修改收货地址失败");
+               setTimeout("$('#info').hide()", 2000 );
             }
 
         }
@@ -82,13 +98,12 @@ function addAddress(){
     $("#recevier_submit_button_revise").addClass("none");
 }
 
-function reviseAddress(phone,rank){
+function reviseAddress(rank){                //修改地址
     $("#change-location").removeClass("none");
     $("#recevier_submit_button").addClass("none");
     $("#recevier_submit_button_revise").removeClass("none");
 
     var info = {
-        phone:phone,
         rank:rank
     };
 
@@ -136,18 +151,20 @@ function reviseAddress(phone,rank){
                         }
                     },
                 });
-                document.getElementById("detailedLoc").value =data['detailedLoc'];
-                document.getElementById("phoneNum").value    =data['phone_id'];             
+                document.getElementById("detailedLoc").value =data['address'];
+                document.getElementById("phoneNum").value    =data['phone'];             
             }
             else
             {
-                alert("原收货地址获取失败！");
+               $('#info').show();
+               $('#info').html("获取收货地址失败");
+               setTimeout("$('#info').hide()", 2000 );
             }
         }
     })
 }
 
-function deleteAddress(phone,rank){
+function deleteAddress(rank){
     var info = {
         rank:rank
     };
@@ -159,11 +176,15 @@ function deleteAddress(phone,rank){
         success:function(data){
         	if (data['result'] != 0)
         	{
-        		// alert("收货地址删除成功！");
+        	   $('#info').show();
+               $('#info').html("删除收货地址成功");
+               setTimeout("$('#info').hide()", 2000 );
         	}
         	else
         	{
-        		alert("收货地址删除失败！");
+        	   $('#info').show();
+               $('#info').html("删除收货地址失败");
+               setTimeout("$('#info').hide()", 2000 );
         	}
         }
     })

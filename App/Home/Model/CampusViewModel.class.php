@@ -21,7 +21,17 @@ class CampusViewModel extends ViewModel {
        return $campus;
 	}
 
-	/*public function getModule($campusId){
-       $module=M('campus')->field('campus_id,campus_name')
-	}*/
+    /**
+     * 根据校区id获取校区名称和城市名称
+     * @param  [type] $campusId [description]
+     * @return [type]           [description]
+     */
+	public function getCampusCityName($campusId){
+       $campusAndCity=$this
+                     ->field('city_id,city_name,campus_name')
+                     ->where('campus_id=%d',$campusId)
+                     ->find();
+
+       return $campusAndCity;
+	}
 }
