@@ -60,7 +60,7 @@ body {
 .main-wrapper-1{font-weight: bolder;}
 .main-wrapper-1 table{ border:1px solid #aaaaaa;}
 .main-wrapper-1 thead{border-bottom: 1px solid #aaaaaa;}
-.main-wrapper-1 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px; font-weight: bold;}
+.main-wrapper-1 thead th{ padding-left: 17px; font-size: 16px; padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-1 tbody tr td{ padding-left: 35px;padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-1 .main-wrapper-1-radio{ vertical-align: -7px;}
 .main-wrapper-1 .main-wrapper-1-btn-revise{ border: 0; padding: 5px; padding-left: 20px; padding-right: 20px; border-radius: 5px; background-color: #f0f0f0; margin-right: 5px; }
@@ -70,15 +70,14 @@ body {
 	background: #ddd;
 }
 .main-wrapper-2-1{ margin-top: 25px;}
-.main-wrapper-2-1 input{ background-color: #ff573a; color: white; border: 0px; padding: 10px; padding-left: 20px; padding-right: 20px; font-size: 17px; font-weight: bold;}
-#new_address{font-weight: bold;}
+.main-wrapper-2-1 input{ background-color: #ff573a; color: white; border: 0px; padding: 10px 18px; font-size: 14px;}
 
 .main-wrapper-2 input {padding-left: 8px;}
 .main-wrapper-2{padding: 30px; background-color: rgb(248,248,248); margin-top:25px;}
 .main-wrapper-2 form{margin: 0px; padding: 0px;}
 .main-wrapper-2 form div{ padding: 5px; margin-left: -30px;}
 .main-wrapper-2 input,.main-wrapper-2 select{ height: 31px; border:1px solid #999;}
-.main-wrapper-2 label{ width: 100px; font-size: 14px; text-align: end; letter-spacing: 3px;}
+.main-wrapper-2 label{ font-weight:300; width: 100px; font-size: 14px; text-align: end; letter-spacing: 3px;}
 .main-wrapper-2 .person{ width: 262px;}
 .main-wrapper-2 select{ width: 154px;}
 .main-wrapper-2 .address{ width: 500px;}
@@ -97,57 +96,56 @@ body {
 .main-wrapper-4 .order-info-detailed td img {border: 1px solid #eee;}
 .main-wrapper-4{margin-top:25px;}
 .main-wrapper-4 table{margin: 0 auto;}
-.main-wrapper-4 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-4 thead th{ padding-left: 17px; font-size: 16px; padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-4 tbody tr td{ padding-left: 22px;padding-top: 10px; padding-bottom: 10px;}
-.main-wrapper-4 span.red_price{ color: red;margin-right: 16px;}
+.main-wrapper-4 span.red_price{ color: red;font-size: 14px}
 .main-wrapper-4 span.gray{ color: #aaa;}
 .main-wrapper-4 span.move{ margin-left: -10px;}
 .main-wrapper-4 span.move span {margin: 0 8px}
 
 .main-wrapper-5 table{border: 1px solid #aaa; margin-top:25px;}
 .main-wrapper-5 thead{ border-bottom: 1px solid #aaa;}
-.main-wrapper-5 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-5 thead th{ padding-left: 17px; font-size: 16px; padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-5 tbody tr{ height: 30px;}
 .main-wrapper-5 tbody tr td{ padding-left: 17px; font-size: 15px;padding-top: 10px; padding-bottom: 10px;}
 
 .main-wrapper-6 table{ margin-top:25px;}
 .main-wrapper-6 thead{border:1px solid #aaa; border-bottom: none;}
-.main-wrapper-6 thead th{ padding-left: 17px; font-size: 17px; padding-top: 10px; padding-bottom: 10px;font-weight: bold;}
+.main-wrapper-6 thead th{ padding-left: 17px; font-size: 16px; padding-top: 10px; padding-bottom: 10px;}
 .main-wrapper-6 tbody textarea{ padding: 3px 3px 0 8px; resize:none; width: 100%; border:1px solid #aaa;}
 
 .main-wrapper-7{margin-top:25px; overflow: hidden; margin-bottom: 170px;}
 .main-wrapper-7-main{float:right;  text-align: end;}
 .main-wrapper-7 span.zhe{ font-size: 20px;}
 .main-wrapper-7 span.zhe span.price{color: red;}
-.main-wrapper-7 span.zhe span{ font-size: 20px; font-weight: bold;}
+.main-wrapper-7 span.zhe span{ font-size: 19px;}
 .main-wrapper-7 span.yuan{}
-.main-wrapper-7 input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; margin-top: 25px;}
+.main-wrapper-7 input{ border: none; padding: 8px 55px; font-size: 16px; background-color: #ff573a; border-radius: 3px; color: #fff; margin-top: 20px;}
 .special-paddright{ padding-right: 10px}
 .special-paddingleft{padding-left: 10px}
 
 /*comment*/
 .nav-comment{background-color: transparent;}
 #nav-breadcrumb .breadcrumb{background-color: transparent;}
-.inner-wrapper{border: 1px solid #aaaaaa; height:auto; font-family: "黑体"; margin-bottom: 120px;}
+.inner-wrapper{padding-top: 14px; border: 1px solid #aaaaaa; height:auto; font-family: "黑体"; margin-bottom: 120px;}
 .comment-banner{ margin-left: 25px;}
-.body-thing{vertical-align: top; margin-top: 20px;}
+.body-thing{vertical-align: top; margin-top: 3px;}
 .thing-left{ display: inline-block; max-width: 20%; vertical-align: 10px;}
 .thing-left img{ width: 200px; height: 200px;padding: 20px;}
 .thing-right{ display: inline-block; max-width: 78%;}
-.thing-right h3{ font-size: 20px; font-weight: bold;}
+.thing-right h3{ font-size: 19px;}
 .thing-right p{ max-width: 100%; color: #aaaaaa; padding:5px 0;}
 .thing-right span{ font-size: 13px;}
-.thing-right .star{ font-size: 20px;}
+.thing-right .star{ font-size: 19px;}
 .height-star{vertical-align: -9px;}
 .body-icon{ margin-left: 25px; margin-top: 20px;}
 .body-icon .text{ font-size: 17px;}
 .star-2{ vertical-align: -9px;}
 .comment-body .hr{ width:1050px; margin: 0 auto; height: 2px; margin-top: 10px; background-color: #aaaaaa;  }
 .body-comment{width:1050px;margin: 0 auto; margin-top: 20px;}
-.body-comment textarea{ width: 1050px; height: 200px; font-size: 16px; text-indent: 15px; padding: 4px;}
-.comment-footer{ width: 1050px; margin: 0 auto; margin-top: 25px; margin-bottom: 40px;}
-.comment-footer input{ border: 0px; padding: 5px; padding-left: 60px; padding-right: 60px; background-color: #ff573a; border-radius: 5px; color: white; font-size: 15px; font-weight: bold;}
-
+.body-comment textarea{ resize:none; width: 1050px; height: 200px; font-size: 14px; text-indent: 15px; padding: 4px;}
+.comment-footer{ width: 1050px; margin: 20px auto;}
+.comment-footer input { width: 160px; height: 33px; border: none; background-color: #ff573a; border-radius: 3px; color: white; font-size: 16px;}
 
 /*改变bootstrap中因为优先级而不能改变颜色所定义的class*/
 span.height-star span.show-color:before{ color:#ff573a;}
