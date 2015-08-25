@@ -33,12 +33,12 @@ class ShoppingCartController extends Controller {
         ->select();       //获取校区列表
 
         $phone=session('username');
-        $shoppingData=$shoppingcart
+        $shoppingData=$shoppingcart        //获取购物车信息
         ->field('order_id,orders.campus_id,phone,order_count,
             orders.food_id as food_id,img_url,discount_price,
             food.price,is_discount,food.message,name')
         ->join('food on food.food_id=orders.food_id and food.campus_id=orders.campus_id')
-        ->where('orders.status = 0 and orders.campus_id=%d and phone=%s',$campusId,$phone) 
+        ->where('orders.tag=1 and orders.status = 0 and orders.campus_id=%d and phone=%s',$campusId,$phone) 
         ->order('create_time desc')
         ->select();
 

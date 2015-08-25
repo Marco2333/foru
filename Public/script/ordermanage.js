@@ -78,39 +78,102 @@ $(function(){
 
     $("#person-info-body .order-manage-4").unbind('click').on("click",function(){
         var $order_id = $(this).nextAll(".order-none").val();
+        var $togetherId= $(this).attr('data-togetherId');   //togetherId
 
-        $.ajax({
-            type:"POST",
-            url:cancelOrderUrl,
-            data:{order_id:$order_id},
-            success:function(result){
-                if (result['result'] != 0) {
-                    var input = document.getElementById($order_id);
-                    var tr    = input.parentNode.parentNode;
-                    var tbody = input.parentNode.parentNode.parentNode;
+       
+        if(typeof($togetherId)!="undefined"){
+             console.log($togetherId);
+            $.ajax({
+                type:"POST",
+                url:cancelOrderUrl,
+                data:{togetherId:$togetherId},
+                success:function(result){
+                    if (result['status'] =="success") {
+                        //将该记录消失
+                      /*  var input = document.getElementById($order_id);
+                        var tr    = input.parentNode.parentNode;
+                        var tbody = input.parentNode.parentNode.parentNode;
 
-                    var trs   = tbody.childNodes;
-                    var cnt = 0;
-                    for (i = 0;i < trs.length;i++) {
-                        if (trs[i].nodeName == "TR") {
-                            cnt++;
+                        var trs   = tbody.childNodes;
+                        var cnt = 0;
+                        for (i = 0;i < trs.length;i++) {
+                            if (trs[i].nodeName == "TR") {
+                                cnt++;
+                            }
                         }
-                    }
 
-                    if (cnt <= 2) {
-                        var table = tbody.parentNode;
+                        if (cnt <= 2) {
+                            var table = tbody.parentNode;
 
-                        table.removeChild(tbody);
+                            table.removeChild(tbody);
+                        }
+                        else {
+                            tbody.removeChild(tr);
+                        }*/
+                        if(result['type']="refund"){
+                            $('#info').show();
+                            $('#info').css("width","380px").html("订单取消成功，请耐心等待退款处理");
+                            setTimeout("$('#info').hide()", 3000 );
+                        }else {
+                            $('#info').show();
+                            $('#info').html("订单取消成功");
+                            setTimeout("$('#info').hide()", 2000 );
+                        }         
                     }
                     else {
-                        tbody.removeChild(tr);
+                        $('#info').show();
+                        $('#info').css("width","220px").html("订单取消失败，请重试！");
+                        setTimeout("$('#info').hide()", 2000 );
                     }
                 }
-                else {
-                    // alert("订单取消失败，请重试！");
+            });
+        }else{
+            $.ajax({
+                type:"POST",
+                url:deleteOrderUrl,
+                data:{order_id:$order_id},
+                success:function(result){
+                    if (result['status'] =="success") {
+                        //将该记录消失
+                        var input = document.getElementById($order_id);
+                        var tr    = input.parentNode.parentNode;
+                        var tbody = input.parentNode.parentNode.parentNode;
+
+                        var trs   = tbody.childNodes;
+                        var cnt = 0;
+                        for (i = 0;i < trs.length;i++) {
+                            if (trs[i].nodeName == "TR") {
+                                cnt++;
+                            }
+                        }
+
+                        if (cnt <= 2) {
+                            var table = tbody.parentNode;
+
+                            table.removeChild(tbody);
+                        }
+                        else {
+                            tbody.removeChild(tr);
+                        }
+                        if(result['type']=="refund"){
+                            $('#info').show();
+                            $('#info').html("该订单已经付款，无法直接删除");
+                            setTimeout("$('#info').hide()", 3000 );
+                        }else {
+                            $('#info').show();
+                            $('#info').html("订单取消成功");
+                            setTimeout("$('#info').hide()", 2000 );
+                        }         
+                    }
+                    else {
+                        $('#info').show();
+                        $('#info').html("订单取消失败，请重试！");
+                        setTimeout("$('#info').hide()", 2000 );
+                    }
                 }
-            }
-        })        
+            });
+        }
+        
     });
 
     $("#person-info-body .order-manage-5").unbind('click').on("click",function(){

@@ -491,7 +491,7 @@ class PersonController extends Controller {
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
             $amount=10;
-            $charge=$Person->pay($channel,$amount,$together_id);
+            $charge=$Person->pay($channel,$amount,$together_id);   //调用支付
 
             //更改该笔订单为待付款
             $data['status']=1;
@@ -502,7 +502,7 @@ class PersonController extends Controller {
                  $data['pay_way']=2;
             }
 
-            $result=M("orders")->where('together_id = %s',$together_id)->save($data);
+            $result=M("orders")->where('together_id = %s and tag=1',$together_id)->save($data);
             if($result){
                  echo $charge;    //返回charge数据给客户端
             }else{
@@ -602,13 +602,17 @@ class PersonController extends Controller {
         $this->display("orderManage");
     }
 
-    public function deleteOrCancelOrder(){
+    /**
+     * 删除订单
+     * @return [type] [description]
+     */
+    public function deleteOrder(){
         $Person = D('Person'); 
      
         $where  = array(
             'phone'    => $_SESSION['username'],
             'order_id' => I('order_id')
-            );
+        );
 
         $result = $Person->setOrderTag($where);
 
@@ -617,8 +621,7 @@ class PersonController extends Controller {
                 'result' => 1
                 );
             $this->ajaxReturn($res);
-        }
-        else {
+        }else {
             $res = array(
                 'result' => 0
                 );
@@ -682,7 +685,73 @@ class PersonController extends Controller {
           $this->ajaxReturn($message);
        }
     }
-}
 
+     /**
+     * 取消订单,如果是待付款订单直接置为无效
+     * 若已付款待配送，则申请退款
+     * @return [type] [description]
+     */
+    public function cancelOrder($togetherId){
+        $orderStatus=M('orders')
+                     ->field('together_id,status')
+                     ->where('tag =1 and together_id =%s',$togetherId)
+                     ->find();       //获取该订单的状态
+
+        if($orderStatus['status']==2){     //将状态置为9,申请退款
+             $data['status']=9;                    
+             $flag=M('orders')
+                  ->where('together_id = %s and tag=1',$togetherId)
+                  ->save($data);
+            $result['type']="refund";          //退款
+        }else if($orderStatus['status']==1){      //将该订单置为无效订单
+            $data['tag']=0;                    
+
+            $flag=M('orders')
+            ->where('together_id = %s and tag=1',$togetherId)
+            ->save($data);
+            $result['type']="invalid";            //无效
+        }
+       
+
+        if($flag!=false){
+            $result['status']="success";
+        }else{
+            $result['status']="fail";
+        }
+
+        $this->ajaxReturn($result);
+    }
+
+     /**
+     * 取消小订单
+     * @return [type] [description]
+     */
+    public function deleteSmallOrder($order_id){       
+        $orderStatus=M('orders')
+                     ->field('order_id,status')
+                     ->where('tag =1 and order_id =%s and phone = %s',$order_id,$_SESSION['username'])
+                     ->find();       //获取该订单的状态
+     
+        if($orderStatus['status']==2){     //将状态置为9,申请退款
+             $result['type']="refund";          
+        }else if($orderStatus['status']==1){      //将该订单置为无效订单
+            $data['tag']=0;                    
+
+            $flag=M('orders')
+            ->where('order_id = %s and tag=1',$order_id)
+            ->save($data);
+            $result['type']="invalid";            //无效
+        }
+       
+
+        if($flag!=false){
+            $result['status']="success";
+        }else{
+            $result['status']="fail";
+        }
+
+        $this->ajaxReturn($result);
+    }
+}
 
 ?>

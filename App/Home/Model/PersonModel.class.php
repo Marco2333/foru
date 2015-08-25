@@ -190,7 +190,8 @@ class PersonModel extends ViewModel {
         $Orders = M('orders');
         $where  = array(
             'phone'       => $_SESSION['username'],
-            'together_id' => $together_id
+            'together_id' => $together_id,
+            'tag'         =>1
             );
         $field  = array(
             'together_id',
@@ -331,7 +332,8 @@ class PersonModel extends ViewModel {
     public function getOrderInfo($together_id){
         $Orders = M('orders');
         $where  = array(
-            'together_id' => $together_id
+            'together_id' => $together_id,
+            'tag'         =>1
             );
         $field  = array(
             'together_date',
@@ -445,7 +447,7 @@ class PersonModel extends ViewModel {
         );
         $res = $Receiver->where($where)
                         ->save($data);        
-
+        
         if ($res !== false) {
             if(!$this->hasDefaultAddress() && !$this->addressIsEmpty()) {
                 $res = $this->setDefaultAddress();
@@ -577,7 +579,8 @@ class PersonModel extends ViewModel {
         
         $where  = array(
             'phone'  => $_SESSION['username'],
-            'status' => array('neq',0)
+            'status' => array('neq',0),
+            'tag'   =>1
             );    
 
         $field  = array(
@@ -779,6 +782,13 @@ class PersonModel extends ViewModel {
         return $campusId['last_campus'];
    }
 
+   /**
+    * 立即支付
+    * @param  [type] $channel [description]
+    * @param  [type] $amount  [description]
+    * @param  [type] $orderNo [description]
+    * @return [type]          [description]
+    */
    public function pay($channel,$amount,$orderNo){
         require_once(dirname(__FILE__) . '/../init.php');
        // $input_data = json_decode(file_get_contents('php://input'), true);

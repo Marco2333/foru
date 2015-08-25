@@ -15,6 +15,7 @@
 			<include file='App/Home/View/Common/commonsearch.html'/>
 			<include file='App/Home/View/Common/commonnav.html'/>
 
+            <div id="info"></div>
 			<div id="nav-breadcrumb" class="wrapper">
 				<ul class="breadcrumb">
 					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
@@ -114,7 +115,11 @@
 							       		<if condition="$page['status'] eq 1">
 							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
 													立即付款
-										</button>
+										    </button>
+										<elseif condition="$page['status'] eq 2"/>
+					                            <button class="order-manage-button order-manage-4 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+													取消订单
+										        </button>
 							       		</if>   		
 							       	</td>
 							       	<td colspan="2">
@@ -134,8 +139,13 @@
                        						<if condition="$page['status'] eq 1">
 							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
 													立即付款
-										</button>
-							       		</if>   
+										    </button>
+										    <elseif condition="$page['status'] eq 2"/>
+					                            <button class="order-manage-button order-manage-4 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+													取消订单
+										        </button>
+										    <elseif 
+							       		    </if>   
 										</td>
 										<td colspan="2">
 											
@@ -182,12 +192,12 @@
 													取消订单
 												</button>';
 												break;
-												case 2:
+												/*case 2:
 												echo
 												'<button class="order-manage-button order-manage-4">
 													取消订单
 												</button>';
-												break;
+												break;*/
 												case 3:
 												echo 
 												'<button class="order-manage-button order-manage-5">
@@ -232,7 +242,8 @@
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript">
 		       var $campusId=$('index-header').attr("data-campusId");
-               var cancelOrderUrl="{:U('/Home/Person/deleteOrCancelOrder')}";
+               var cancelOrderUrl="{:U('/Home/Person/cancelOrder')}";
+               var deleteOrderUrl="{:U('/Home/Person/deleteSmallOrder')}"
                var goodPaymentsUrl="{:U('/Home/Person/goodsPayment')}";
                var confirmReceiveUrl="{:U('Home/Person/confirmReceive')}";
                var commentUrl="{:U('Home/Index/Comment')}";
