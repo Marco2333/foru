@@ -31,9 +31,9 @@
 				<div id="addressColumn" class="wrapper main-wrapper-1">
 					<table>
 						<colgroup>
-							<col style="width: 300px;"/>
-							<col style="width: 550px;"/>
-							<col style="width: 250px;"/>
+							<col width="300"/>
+							<col width="550"/>
+							<col width="250"/>
 						</colgroup>
 						<thead>
 							<tr>
@@ -136,10 +136,10 @@
 				<div class="personhome-order-info main-wrapper-4 wrapper">
 					<table class="wrapper">
 						<colgroup>
-							<col style="width:400px;">
-							<col style="width:230px;">
-							<col style="width:230px;">
-							<col style="width:240px;">
+							<col width="400">
+							<col width="260">
+							<col width="170">
+							<col width="270">
 						</colgroup>
 						<thead>
 							<tr>
@@ -173,13 +173,13 @@
 										</div>		
 									</td>
 									<td>
-										<span class="gray move"><span>￥{$v.discount_price}</span><span><del>原价：{$v.price}</del></span></span>
+										<span class="gray move"><span>￥{$v.discount_price}</span><span><del>原价：￥{$v.price}</del></span></span>
 									</td >
 									<td>
 										<span>{$v.order_count}</span>				
 									</td>
 									<td>
-										<span class="move"><span class="red_price">￥{$v.discountPrice}</span><span class="gray"><del>原价：{$v.totalPrice}</del></span></span>
+										<span class="move"><span class="red_price">￥{$v.discountPrice}</span><span class="gray"><del>原价：￥{$v.totalPrice}</del></span></span>
 									</td>
 								</tr>	
 							</foreach>		
