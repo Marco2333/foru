@@ -97,10 +97,17 @@
 				<form id="receiver_form" action="{:U('Person/addOrReviseSave',array('campusId'=>$campusId))}" method='post'>
 					<div id="change-location" class="none">
 						<div id="change-location-info">
+						    <div class="location-info-div clearfix" >
+						    	<div class="fl none">
+						    	    <span class="locationinfo-before">rank:</span>
+						    		<input type="text" id="rank" name="rank" value="0"/>	
+						    	</div>
+						    </div>
 							<div class="location-info-div clearfix" >
 								<span class="locationinfo-before">收货人:</span>
 								<div class="fl">
-									<input type="text" id="userName" name="user-name" />
+									<input type="text" id="userName" name="user-name" required/>
+
 								</div>
 							</div>
 							<div class="location-info-div clearfix">
@@ -117,13 +124,13 @@
 							<div class="location-info-div clearfix">
 								<span class="locationinfo-before">详细地址:</span>
 								<div class="fl">
-									<input type="text" id="detailedLoc" name="detailed-location" />
+									<input type="text" id="detailedLoc" name="detailed-location" required/>
 								</div>
 							</div>
 							<div class="location-info-div clearfix">
 								<span class="locationinfo-before">手机号:</span>
 								<div class="fl">
-									<input type="text" pattern="1[0-9]{10}" id="phoneNum" name="phone-number"/>
+									<input type="text" pattern="1[0-9]{10}" id="phoneNum" name="phone-number" required/>
 								</div>
 							</div>
 

@@ -6,7 +6,8 @@ $(function(){
 });
 
 function showStar(){
-	var $grade=$("#thing_grade").text();
+	var $grade=Number($("#thing_grade").text());
+	
 	if($grade=="null" || $grade==null){
 		$grade=0;
 	}else if($grade==0){
@@ -18,7 +19,7 @@ function showStar(){
 	$($data).addClass("star-active");
 }
 
-/*从后台取得评分数据，然后运用脚本将星星点亮，星星点灯QAQ*/
+/*从后台取得评分数据，然后运用脚本将星星点亮*/
 function showRed(){
 	$("span.height-star>span.star-active").addClass("show-color");
 	$("span.height-star>span.star-active").prevAll().addClass("show-color");
@@ -51,17 +52,15 @@ function submitComment(){
 	var $food_id=$("#food_id").text();
 	var $is_remarked=$("#is_remarked").text();
 	if($is_remarked != 0){
-		$("#fix-warn").html("<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>你已经评价过了，不可以重评奥^_^。</div>").removeClass('none');
-		setTimeout(function(){
-			$("#fix-warn").addClass('none');
-		},2000);
+		$('#info').show();
+         $('#info').html("不可以重复评价QAQ");
+         setTimeout("$('#info').hide()", 2000 );
 		return;
 	}
 	if($grade == 0 && $grade ==""){
-		$("#fix-warn").html("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>请打点分吧^_^。</div>").removeClass('none');
-		setTimeout(function(){
-			$("#fix-warn").addClass('none');
-		},2000);
+		 $('#info').show();
+         $('#info').html("请打点分吧QAQ");
+         setTimeout("$('#info').hide()", 2000 );
 		return;
 	}
 	var $info={
@@ -79,16 +78,23 @@ function submitComment(){
 		url:'../Index/saveComment',
 		success:function(data){
 			if(data['value']=='success'){
-				$("#fix-warn").html("<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>成功！</strong>恭喜你评论成功，页面将在5秒后跳转。</div>").removeClass('none');
-				setTimeout(function(){
-					location.href = '../Index/index';
-				},3000);
+			   $('#info').show();
+               $('#info').html("评价成功QAQ");
+               setTimeout("$('#info').hide();location.href = '../Index/index';", 2000 );
+			}else if(data['value']=="hasComment"){
+			   $('#info').show();
+               $('#info').html("不可以重复评价QAQ");
+               setTimeout("$('#info').hide()", 2000 );
 			}else{
-				$("#fix-warn").html("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>没有评论成功QAQ。</div>").removeClass('none');
+			   $('#info').show();
+               $('#info').html("评价失败，请重新评价");
+               setTimeout("$('#info').hide()", 2000 );
 			}
 		},
 		error:function(){
-				$("#fix-warn").html("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a><strong>sorry！</strong>没有评论成功QAQ。</div>").removeClass('none');
+			   $('#info').show();
+               $('#info').html("评价失败,请重新评价");
+               setTimeout("$('#info').hide()", 2000 );
 		}
 	});
 }

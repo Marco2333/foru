@@ -181,7 +181,7 @@
 										<td>
 										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 										<?php
-											switch($page['status'])
+											switch($status)
 											{
 												case 1:
 												echo 
@@ -241,7 +241,8 @@
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript">
-		       var $campusId=$('index-header').attr("data-campusId");
+		       var $campusId=$('#index-header').attr("data-campusId");
+		       console.log($campusId);
                var cancelOrderUrl="{:U('/Home/Person/cancelOrder')}";
                var deleteOrderUrl="{:U('/Home/Person/deleteSmallOrder')}"
                var goodPaymentsUrl="{:U('/Home/Person/goodsPayment')}";

@@ -285,8 +285,16 @@ class PersonController extends Controller {
 
     public function addOrReviseSave(){
         $Person = D('Person');
-        $result = $Person->saveNewAddress();
+        $rank=I('rank');
+       // dump($rank);
+        $phoneId=$_SESSION['username'];
 
+        if($rank!="0"){
+           $result=$Person->modifyAddress($rank,$phoneId);
+        }else{
+             $result = $Person->saveNewAddress();
+        }
+       
         if ($result !== false) {
             $page = I('page');
 
@@ -490,6 +498,7 @@ class PersonController extends Controller {
           
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
+
             $amount=10;
             $charge=$Person->pay($channel,$amount,$together_id);   //调用支付
 
@@ -503,7 +512,8 @@ class PersonController extends Controller {
             }
 
             $result=M("orders")->where('together_id = %s and tag=1',$together_id)->save($data);
-            if($result){
+            //dump($result);
+            if($result==false){
                  echo $charge;    //返回charge数据给客户端
             }else{
                 echo "null";
@@ -568,15 +578,19 @@ class PersonController extends Controller {
              ->where("orders.status != 0 and phone = %s and tag = 1",$phone)
              ->count();
        }
-       else {
+       else if($status==5){
              $count = M('orders')
-             ->where("orders.status = %d and phone = %s and tag = 1",$status,$phone)
+             ->where("orders.status = %d and phone = %s and tag = 1 and is_remarked=1 ",$status-1,$phone)
+             ->count();
+       }else {
+              $count = M('orders')
+             ->where("orders.status = %d and phone = %s and tag = 1 and (is_remarked=0 or is_remarked is null) ",$status,$phone)
              ->count();
        }
        
         $module=D("FoodCategory")->getModule($campusId);
         $page = new \Think\Page($count,6);
-        $page->setConfig('header','条数据');
+        $page->setConfig('header','条订单');
         $page->setConfig('prev','<');
         $page->setConfig('next','>');
         $page->setConfig('first','<<');
@@ -591,11 +605,12 @@ class PersonController extends Controller {
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);
 
-        //dump($orderList);
+        //dump($campusId);
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
              ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
+             ->assign('status',$status)
              ->assign('module',$module)
              ->assign('orderpage',$show);
       
@@ -734,7 +749,7 @@ class PersonController extends Controller {
      
         if($orderStatus['status']==2){     //将状态置为9,申请退款
              $result['type']="refund";          
-        }else if($orderStatus['status']==1){      //将该订单置为无效订单
+        }else if($orderStatus['status']==1||$orderStatus['status']==4){      //将该订单置为无效订单
             $data['tag']=0;                    
 
             $flag=M('orders')

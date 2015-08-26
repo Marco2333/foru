@@ -25,7 +25,7 @@
 					<li class="active"><a href="#">评价订单</a></li>
 				</ul>
 			</div>
-			
+			<div id="info"></div>
 			<div class="wrapper inner-wrapper">
 				<div class="comment-banner">
 					<span>订单号：</span>
@@ -37,11 +37,11 @@
 				<div class="comment-body">
 					<div class="body-thing">
 						<div class="thing-left">
-							<img src="{$img_url}" id="thing_img"/>
+							<img src="{$food.img_url}" id="thing_img"/>
 						</div>
 						<div class="thing-right">
-							<h3>{$name}</h3>
-							<p>{$message}</p>
+							<h3>{$food.name}</h3>
+							<p>{$food.message}</p>
 							<span class="">
 								<span class="">评价：</span>
 								<span class="height-star">
@@ -51,13 +51,13 @@
 									<span class="glyphicon glyphicon-star star"></span>
 									<span class="glyphicon glyphicon-star star"></span>
 								</span>
-								<span class="height-span-1" id="thing_grade">{$grade}</span>分
+								<span class="height-span-1" id="thing_grade">{$grade|number_format=###,0}</span>分
 							</span>
 							<br />
-							<span>数量：<span>{$order_count}</span></span>
-							<span id="campus_id" style="display: none;">{$campus_id}</span><span id="thing_tag" style="display: none;">{$tag}</span>
-							<span id="food_id" style="display: none;">{$food_id}</span>
-							<span id="is_remarked" class="none">{$is_remarked}</span>
+							<span>数量：<span>{$order.order_count}</span></span>
+							<span id="campus_id" style="display: none;">{$food.campus_id}</span><span id="thing_tag" style="display: none;">{$food.tag}</span>
+							<span id="food_id" style="display: none;">{$food.food_id}</span>
+							<span id="is_remarked" class="none">{$order.is_remarked}</span>
 						</div>
 					</div>
 					<div class="hr"></div>

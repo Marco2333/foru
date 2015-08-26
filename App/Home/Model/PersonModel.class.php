@@ -505,6 +505,40 @@ class PersonModel extends ViewModel {
         return $result;
     }
 
+    
+     /**
+     * 模型函数
+     * 修改用户收货地址
+     * @access public
+     * @param null
+     * @return bool
+     *        true ：用户收获地址新增成功
+     *        false：用户收货地址新增失败
+     */
+    public function modifyAddress($rank,$phoneId){
+        if ($this->addressIsEmpty()) {        //判断前面有没有收货地址，没有则置为默认收货地址
+            $tag = 0;
+        }
+        else {
+            $tag = 1;
+        }
+
+        $campus_id = $this->getCampusID(I('select-location-2'));
+
+        $data = array(
+            'phone'      =>  I('phone-number'),
+            'name'          =>  I('user-name'),
+            'address'       =>  I('detailed-location'),
+            'campus_id'     =>  $campus_id
+        );
+            
+        dump($data);
+        $Receiver = M("receiver");
+        $result = $Receiver->where("rank = %s and phone_id =%s",$rank,$phoneId)
+                               ->save($data);
+        return $result;
+    }
+
     /**
      * 模型函数
      * 获取city表中所有城市名字和id
@@ -647,14 +681,22 @@ class PersonModel extends ViewModel {
           ->limit($limit)
           ->select();
         }
-        else {
+        else if($status==5){
           $orderList = M('orders')
           ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
-          ->where("orders.status = %d and phone = %s and orders.tag = 1",$status,$_SESSION['username'])
+          ->where("orders.status = %d and phone = %s and orders.tag = 1 and is_remarked=1",$status-1,$_SESSION['username'])
           ->field($field)
           ->order($order)
           ->limit($limit)
           ->select();  
+        }else{
+            $orderList = M('orders')
+            ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
+            ->where("orders.status = %d and phone = %s and orders.tag = 1 and (is_remarked=0 or is_remarked is null)",$status,$_SESSION['username'])
+            ->field($field)
+            ->order($order)
+            ->limit($limit)
+            ->select();  
         }
 
         for ($i = 0;$i < count($orderList);$i++) {

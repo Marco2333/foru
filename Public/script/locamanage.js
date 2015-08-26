@@ -1,18 +1,6 @@
 $(function(){
     cityChange('location1','location2');
 
-   /* $("input[type='button'][name='submit-location-info']").on('click',function(){
-        var $phoneNum=$('#phoneNum').val();
-        if(/\w{11,11}/.test($phoneNum)){
-            $form=document.getElementById('receiver_form');
-            $form.submit();
-        }else{
-            $('#info').show();
-            $('#info').html("修改收货地址失败");
-            setTimeout("$('#info').hide()", 2000 );
-        }
-    });*/
-
 	$("#person-location-info tbody .revise-button").on("click",function(){     //修改地址
         $("#change-location").show(300);
         $("#add-location").hide();
@@ -20,10 +8,10 @@ $(function(){
         var rank    = $(this).nextAll(".rank-none").val();
         reviseAddress(rank);   //修改
 
-        $("#recevier_submit_button_revise").unbind('click').on("click",function(){
+        /*$("#recevier_submit_button_revise").unbind('click').on("click",function(){
 
-            var info = saveReviseLocation(rank);
-        });
+            //var info = saveReviseLocation(rank);
+        });*/
     });
 
     $("#person-location-info tbody .delete-button").on("click",function(){  //删除地址
@@ -55,13 +43,14 @@ $(function(){
 
         document.getElementById("userName").value   ="";
         document.getElementById("detailedLoc").value="";
+        document.getElementById("rank").value="0";
         // document.getElementById("city-change").selected();
         // document.getElementById("campus-change").selected();
         document.getElementById("phoneNum").value   ="";
     });
 });
 
-function saveReviseLocation(rank){
+/*function saveReviseLocation(rank){
 
     $("#change-location").addClass("none");
 
@@ -83,14 +72,14 @@ function saveReviseLocation(rank){
             }
             else
             {
-               $('#info').show();
+              /* $('#info').show();
                $('#info').html("修改收货地址失败");
-               setTimeout("$('#info').hide()", 2000 );
-            }
+               setTimeout("$('#info').hide()", 2000 );*/
+           /* }
 
         }
     })
-}
+}*/
 
 function addAddress(){
     $("#change-location").removeClass("none");
@@ -152,7 +141,8 @@ function reviseAddress(rank){                //修改地址
                     },
                 });
                 document.getElementById("detailedLoc").value =data['address'];
-                document.getElementById("phoneNum").value    =data['phone'];             
+                document.getElementById("phoneNum").value    =data['phone'];  
+                document.getElementById('rank').value=data['rank'];           
             }
             else
             {

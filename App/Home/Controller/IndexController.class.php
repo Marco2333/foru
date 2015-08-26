@@ -322,77 +322,61 @@ class IndexController extends Controller {
         $this->display('goodslist');
     }
 public function comment(){
-        $order_id=$_GET['order_id'];
+        $order_id=I('order_id');
 		$user = $_SESSION['username'];
+        $campusId=I("campusId");
+       
 		/*查找orders表*/
-		$data1=D('Orders')->getComment($order_id);
-		$create_time=$data1['create_time'];
-		$food_id=$data1['food_id'];
-		$tag=$data1['tag'];
-		$order_count=$data1['order_count'];
-		/*获得is_remarked的值，来判断此商品是否已经评价过了*/
-		$is_remarked=$data1['is_remarked'];
+		$order=D('Orders')->getComment($order_id,$campusId);
+        
+        $food_id=$order['food_id'];
+
 		/*查找food表*/
-		$data2=D('Food')->getComment($food_id);
-		$campus_id=$data2['campus_id'];
-		$img_url=$data2['img_url'];
-		$name=$data2['name'];
-		$message=$data2['message'];
-		$grade=$data2['grade'];
+		$food=D('Food')->getComment($food_id,$campusId);   
+	    
+        $grade=M("food_comment")->where("food_id = %d and campus_id =%d",$food_id,$campusId)->avg('grade');
 		/*从数据库里获取数据，向页面传值*/
-		$this->assign("order_id",$order_id)
-			->assign('img_url',$img_url)
-			->assign('order_count',$order_count)
-			->assign('is_remarked',$is_remarked)
-			->assign('create_time',$create_time)
-			->assign('name',$name)
-			->assign('message',$message)
-			->assign('grade',$grade)
-			->assign('tag',$tag)
-			->assign('campus_id',$campus_id)
-			->assign('food_id',$food_id)
-			->assign('hiddenLocation',1)/*设置padding-top的值为0*/
+       if($grade==null)
+          $grade=0;
+
+		$this->assign("order",$order)
+			->assign('food',$food)
+            ->assign('grade',$grade)
+			->assign('hiddenLocation',1)
             ->assign('categoryHidden',1);
         $this->display('comment');
-        // $this->personInfo();
+
     }
 	public function saveComment(){
 		$db1=M('food_comment');
 		$db2=M('orders');
-		$order_id=$_POST['order_id'];
-		$phone = $_SESSION['username'];
-		$food_id=$_POST['food_id'];
-		$comment=$_POST["comment"];
-		$grade = $_POST["grade"];
-		$campus_id=$_POST['campus_id'];
-		$tag=$_POST['tag'];
-		$date=date("Y-m-d H:i",time());;
-		/*向food-comment表中添加评论*/
-		$add['food_id']=$food_id;
-		$add['campus_id']=$campus_id;
-		$add['phone']=$phone;
-		$add['date']=$date;
-		$add['comment']=$comment;
-		$add['grade']=$grade;
-		$add['tag']=$tag;
-		$add['order_id']=$order_id;
+		$add['order_id']=$_POST['order_id'];
+		$add['phone'] = $_SESSION['username'];
+		$add['food_id']=$_POST['food_id'];
+		$add['comment']=$_POST["comment"];
+		$add['grade'] = $_POST["grade"];
+		$add['campus_id']=$_POST['campus_id'];
+		$add['date']=date("Y-m-d H:i",time());
+		/*向food-comment表中添加评论*/	
+		$add['tag']=1;
+        $ifcomment=$db2->field('is_remarked')->where('order_id = %d and phone =%s',$add['order_id'],$add['phone'])->find();
+       if($ifcomment['is_remarked']){
+            $state['value']='hasComment';
+            $this->ajaxReturn($state);
+            return;
+       }
 		$data1=$db1->data($add)->add();
-//		dump($add);
+
 		/*将评论成功的商品，将其在orders表中的is_remarked变为1*/
 		$where['order_id']=$order_id;
 		$save['is_remarked']=1;
 		/*如果评论添加成功，那么orders中的is_remarked变为1，否则返回error*/
-		if($data1){
+		if($data1!=false){
 			$date2=$db2->where($where)->save($save);
+           
+            $state['value']='success';
+            $this->ajaxReturn($state);
 		}else{
-			$state['value']='error';
-			$this->ajaxReturn($state);
-		}
-		if($date2){
-			$state['value']='success';
-			$this->ajaxReturn($state);
-		}
-		else{
 			$state['value']='error';
 			$this->ajaxReturn($state);
 		}

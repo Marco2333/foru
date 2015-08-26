@@ -32,7 +32,7 @@ $(function(){
 
         $.ajax({
             type:"POST",
-            url:cancelOrderUrl,
+            url:deleteOrderUrl,
             data:{order_id:$order_id},
             success:function(result){
                 if (result['result'] != 0) {
@@ -80,7 +80,7 @@ $(function(){
         var $order_id = $(this).nextAll(".order-none").val();
         var $togetherId= $(this).attr('data-togetherId');   //togetherId
 
-       
+        console.log($togetherId);
         if(typeof($togetherId)!="undefined"){
              console.log($togetherId);
             $.ajax({
@@ -212,7 +212,7 @@ $(function(){
                         var $order_id = $(this).nextAll(".order-none").val();
                         $.ajax({
                             type:"POST",
-                            url:cancelOrderUrl,
+                            url:deleteOrderUrl,
                             data:{order_id:$order_id},
                             success:function(result){
                                 if (result['result'] != 0) {
@@ -246,7 +246,7 @@ $(function(){
 
                     $("#person-info-body .order-manage-6").unbind('click').on("click",function(){
                         var $order_id = $(this).nextAll(".order-none").val();
-                        var $href = commentUrl+"?order_id="+$order_id+"&campusId="+$.cookie('campusId');;
+                        var $href = commentUrl+"?order_id="+$order_id+"&campusId="+$campusId;
                         window.location.href = $href;
                     });
                 }
@@ -259,7 +259,7 @@ $(function(){
 
     $("#person-info-body .order-manage-6").unbind('click').on("click",function(){
         var $order_id = $(this).nextAll(".order-none").val();
-        var $href = commentUrl+"?order_id="+$order_id+"&campusId="+$.cookie('campusId');;
+        var $href = commentUrl+"?order_id="+$order_id+"&campusId="+$campusId;
         window.location.href = $href;
     });
 
