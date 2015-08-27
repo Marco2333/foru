@@ -333,7 +333,7 @@ class PersonModel extends ViewModel {
         $Orders = M('orders');
         $where  = array(
             'together_id' => $together_id,
-            'tag'         =>1
+            'tag'=>1
             );
         $field  = array(
             'together_date',
@@ -847,7 +847,7 @@ class PersonModel extends ViewModel {
             case 'alipay_wap':
             $extra = array(
                 'success_url' => 'http://foru.com:8000/index.php',
-                'cancel_url' => 'http://foru.com:8000/index.php/Home/Login/toLogin'
+                'cancel_url' => 'http://foru.com:8000/index.php'
                 );
             break;
         }
@@ -857,9 +857,9 @@ class PersonModel extends ViewModel {
         try {
             $ch = \Pingpp\Charge::create(
                 array(
-                    'subject'   => 'Your Subject',
-                    'body'      => 'Your Body',
-                    'amount'    => $amount,
+                    'subject'   => 'For优商品',
+                    'body'      => 'For优商品',
+                    'amount'    => $amount*100,
                     'order_no'  => $orderNo,
                     'currency'  => 'cny',
                     'extra'     => $extra,
@@ -873,7 +873,7 @@ class PersonModel extends ViewModel {
         } catch (\Pingpp\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
             
-           //echo $e->getHttpBody();
+           echo $e->getHttpBody();
         }
 
     }

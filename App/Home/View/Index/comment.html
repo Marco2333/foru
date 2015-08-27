@@ -29,9 +29,9 @@
 			<div class="wrapper inner-wrapper">
 				<div class="comment-banner">
 					<span>订单号：</span>
-					<span id="order_id">{$order_id}</span>
+					<span id="order_id">{$order.order_id}</span>
 					<span>订单日期：</span>
-					<span>{$create_time}</span>
+					<span>{$order.create_time}</span>
 					<span>待评论的商品如下：</span>
 				</div>
 				<div class="comment-body">
@@ -90,6 +90,9 @@
 
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript">
+               var personOrderInfoUrl="{:U('/Home/Person/orderManage',array('campusId'=>$food['campus_id'],'status'=>4))}";
+		</script>
 		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/comment_li.js"></script>
 	</body>

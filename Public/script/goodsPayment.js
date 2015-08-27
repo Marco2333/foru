@@ -19,9 +19,9 @@ $(function(){
 
         reviseAddress(phone,rank);
 
-        $("#revise_submit").unbind('click').on("click",function(){
+        /*$("#revise_submit").unbind('click').on("click",function(){
             var info = saveReviseLocation(phone,rank);
-        });
+        });*/
 	});
 
 	$(".main-wrapper-2 .but-button").bind("click",function(){
@@ -36,6 +36,7 @@ $(function(){
         // document.getElementById("city-change").selected();
         // document.getElementById("campus-change").selected();
         document.getElementById("phoneNum").value   ="";
+        document.getElementById("rank").value   ="0";
 	});
 	
 	$(".main-wrapper-1-btn-delete").on("click",function(){
@@ -54,13 +55,15 @@ $(function(){
             togetherId:$togetherId,
             orderIdstr:$orderIdstr,
             pay_way:$pay_way,
-            rank:$rank
+            rank:$rank,
+            campusId:$campusId
         };
 
          $.ajax({
             url:payAtOnceUrl,
             data:data,
             success:function(data){
+                console.log(data);
                 if(data!="null"){
                     pingpp.createPayment(data, function(result, err) {
                       console.log(result);
@@ -88,14 +91,14 @@ function reviseAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../../Home/Person/getPhoneRank",
+        url:getPhonerankUrl,
         data:info,
         success:function(data){
             var $city=$("#"+'city-change');
             $.ajax({
                 type:"post",
                 data:{'':''},
-                url:"../../Home/Person/selectCity",
+                url:selectCityUrl,
                 success:function(city){
                     $city.empty();
                     for(var i=0;i<city.length;i++){
@@ -117,7 +120,7 @@ function reviseAddress(phone,rank){
                 };
                 $.ajax({
                     type:"post",
-                    url:"../../Home/Person/selectCampus",
+                    url:selectCampusUrl,
                     data:info,
                     success:function(campus){
                         for(var i=0;i<campus.length;i++){
@@ -131,7 +134,8 @@ function reviseAddress(phone,rank){
                     },
                 });
             	document.getElementById("detailedLoc").value =data['detailedLoc'];
-                document.getElementById("phoneNum").value    =data['phone_id'];      		
+                document.getElementById("phoneNum").value    =data['phone_id'];   
+                document.getElementById("rank").value    =data['rank'];   		
             }
 
         }
@@ -182,7 +186,7 @@ function deleteAddress(phone,rank){
 
     $.ajax({
         type:"POST",
-        url:"../../Home/Person/deleteLocation",
+        url:deleteLocationUrl,
         data:info,
         success:function(data){
             console.log(data);
@@ -210,7 +214,7 @@ function cityChange(city,campus){
     $.ajax({
         type:"post",
         data:{'':''},
-        url:"../../Home/Person/selectCity",
+        url:selectCityUrl,
         success:function(data){
             $value=data[0]['city_id'];
             var $city=$("#"+city);
@@ -226,7 +230,7 @@ function cityChange(city,campus){
                 };
             $.ajax({
                 type:"post",
-                url:"../../Home/Person/selectCampus",
+                url:selectCampusUrl,
                 data:info,
                 success:function(data){
                     for(var i=0;i<data.length;i++){
@@ -246,7 +250,7 @@ function cityChange(city,campus){
         };
         $.ajax({
             type:"post",
-            url:"../../Home/Person/selectCampus",
+            url:selectCampusUrl,
             data:info,
             success:function(data){
                 for(var i=0;i<data.length;i++){

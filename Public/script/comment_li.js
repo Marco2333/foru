@@ -80,7 +80,11 @@ function submitComment(){
 			if(data['value']=='success'){
 			   $('#info').show();
                $('#info').html("评价成功QAQ");
-               setTimeout("$('#info').hide();location.href = '../Index/index';", 2000 );
+               setTimeout(function(){
+                   $('#info').hide();
+                     location.href =personOrderInfoUrl;
+               },2000);
+               //setTimeout("$('#info').hide();location.href ="+personOrderInfoUrl+";", 2000 );
 			}else if(data['value']=="hasComment"){
 			   $('#info').show();
                $('#info').html("不可以重复评价QAQ");

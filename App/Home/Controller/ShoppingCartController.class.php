@@ -61,6 +61,7 @@ class ShoppingCartController extends Controller {
 		$this->shoppingcart();
 	}
 
+    //修改购物车里面商品的数量
     public function saveOrderCount(){
         $orderCount=I('orderCount');
         $orderId=I('orderId');
@@ -76,6 +77,10 @@ class ShoppingCartController extends Controller {
         $this->ajaxReturn($message);
     }
 
+    /**
+     * 删除购物车里面的商品
+     * @return [type] [description]
+     */
     public function deleteOrders(){
         $orderId = I('orderIds');
         $smallOrders=split(',',$orderId);                 //拆分订单id,获取单笔订单id
@@ -96,6 +101,10 @@ class ShoppingCartController extends Controller {
         $this->ajaxReturn($result);
     }
 
+    /**
+     * 获取购物车里面的商品
+     * @return [type] [description]
+     */
     public function getCartGood(){
         $campusId=I('campusId');
         $phone=session('username');

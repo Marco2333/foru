@@ -339,6 +339,7 @@ public function comment(){
        if($grade==null)
           $grade=0;
 
+        //dump($order);
 		$this->assign("order",$order)
 			->assign('food',$food)
             ->assign('grade',$grade)
@@ -356,10 +357,11 @@ public function comment(){
 		$add['comment']=$_POST["comment"];
 		$add['grade'] = $_POST["grade"];
 		$add['campus_id']=$_POST['campus_id'];
-		$add['date']=date("Y-m-d H:i",time());
+		$add['date']=date("Y-m-d H:i:s",time());
 		/*向food-comment表中添加评论*/	
 		$add['tag']=1;
         $ifcomment=$db2->field('is_remarked')->where('order_id = %d and phone =%s',$add['order_id'],$add['phone'])->find();
+
        if($ifcomment['is_remarked']){
             $state['value']='hasComment';
             $this->ajaxReturn($state);
@@ -368,7 +370,8 @@ public function comment(){
 		$data1=$db1->data($add)->add();
 
 		/*将评论成功的商品，将其在orders表中的is_remarked变为1*/
-		$where['order_id']=$order_id;
+		$where['order_id']=$add['order_id'];
+        $where['phone']=$add['phone'];
 		$save['is_remarked']=1;
 		/*如果评论添加成功，那么orders中的is_remarked变为1，否则返回error*/
 		if($data1!=false){

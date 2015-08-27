@@ -38,7 +38,7 @@ class OrdersModel extends Model{
 	 * @return [type]          
 	 */
 	public function getComment($order_id,$campusId){
-		$order=$this->field('create_time,food_id,tag,order_count,is_remarked')->where("order_id =%s and campus_id=%s",$order_id,$campusId)->find();
+		$order=$this->field('order_id,create_time,food_id,tag,order_count,is_remarked')->where("order_id =%s and campus_id=%s",$order_id,$campusId)->find();
 		return $order;
 	}
 
@@ -48,13 +48,15 @@ class OrdersModel extends Model{
      * @param  [type] $campusId   [校区号]
      * @return [type]        
      */
-   public function calculatePriceByOrderIds($togetherId,$campusId){
+   public function calculatePriceByTogetherId($togetherId,$campusId){
+
        $goods=M('orders')
-              ->join('food on food.food_id=orders.food_id')
+              ->join('food on food.food_id=orders.food_id AND food.campus_id = orders.campus_id')
               ->field('is_discount,is_full_discount,food.price,discount_price,order_count')
-              ->where('together_id=%s',$togetherId)
+              ->where('together_id="'.$togetherId.'"')
               ->select();
       
+     
       $discountPrice=0.0;                   //折扣之后的总价
       $fullDiscountPrice=0.0;            //满减商品的总价
       foreach($goods as $key => $good) {

@@ -286,7 +286,7 @@ class PersonController extends Controller {
     public function addOrReviseSave(){
         $Person = D('Person');
         $rank=I('rank');
-       // dump($rank);
+
         $phoneId=$_SESSION['username'];
 
         if($rank!="0"){
@@ -297,12 +297,15 @@ class PersonController extends Controller {
        
         if ($result !== false) {
             $page = I('page');
-
+           
+            
             if ($page != '0') {
-                $this->redirect('/Home/Person/goodsPayment',array('campusId'=>session('campusId')));
+                 $togetherId=I('togetherId');
+               
+                $this->redirect('/Home/Person/goodsPayment',array('campusId'=>I('campusId'),'togetherId'=>$togetherId));
             }
             else {
-                $this->redirect('/Home/Person/locaManage',array('campusId'=>session('campusId')));
+                $this->redirect('/Home/Person/locaManage',array('campusId'=>I('campusId')));
             }
         }
        
@@ -458,21 +461,25 @@ class PersonController extends Controller {
  
                 $together_id = $Person->setTogetherID();
             }
-           
-            $address   = $Person->getAddress();
+            //dump($together_id);
+            $address   = $Person->getAddress();              //获取地址
             $orderInfo = $Person->getOrderInfo($together_id);
+            //dump($orderInfo);
             $orderIdstr = $Person->getOrderIdStr($together_id);
             $goodsInfo = $Person->getGoodsInfo($orderIdstr);
             $price     = $Person->getTotalPrice();
+            //dump($goodsInfo);
             // $cities    = $Person->getCities();
             // $campus    = $Person->getCampus($cities[0]['city_id']);
-
+            $module=D('FoodCategory')->getModule($campusId);
             $this->assign('orderIDstr',$orderIdstr)
                  ->assign('address',$address)
                  ->assign('orderInfo',$orderInfo)
                  ->assign('goodsInfo',$goodsInfo)
                  ->assign('price',$price)
+                 ->assign('campusId',$campusId)
                  ->assign("categoryHidden",1)
+                 ->assign('module',$module)
                  ->assign("campusId",$campusId)
                  ->assign("cartGood",$cartGood)
                  ->display("goodsPayment");
@@ -486,7 +493,8 @@ class PersonController extends Controller {
 
     public function payAtOnce(){
         $user = $_SESSION['username'];
-                        
+        $campusId=I('campusId');
+
         $channel=I('pay_way');                  //支付方式
         $reversetime=I('reversetime');           //预定时间
         $rank=I('rank'); 
@@ -499,7 +507,8 @@ class PersonController extends Controller {
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
 
-            $amount=10;
+            $amount=D('orders')->calculatePriceByTogetherId($together_id,$campusId);
+
             $charge=$Person->pay($channel,$amount,$together_id);   //调用支付
 
             //更改该笔订单为待付款
@@ -512,8 +521,9 @@ class PersonController extends Controller {
             }
 
             $result=M("orders")->where('together_id = %s and tag=1',$together_id)->save($data);
+
             //dump($result);
-            if($result==false){
+            if($result!==false){
                  echo $charge;    //返回charge数据给客户端
             }else{
                 echo "null";
