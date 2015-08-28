@@ -179,6 +179,9 @@ $(function(){
     $("#person-info-body .order-manage-5").unbind('click').on("click",function(){
         var $order_id = $(this).nextAll(".order-none").val();
         
+        if(!confirm("确认收货？")) {
+            return;
+        }
         $.ajax({
             type:"POST",
             url:confirmReceiveUrl,

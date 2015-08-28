@@ -1,6 +1,6 @@
 /*input{ background-color: black;}*/
 body {
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 * {
 	outline: none;
@@ -56,7 +56,7 @@ span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 
 /*pay*/
 
-.main-wrapper{font-family: "黑体";}
+.main-wrapper{font-family: "SimHei";}
 .main-wrapper-1{font-weight: bolder;}
 .main-wrapper-1 table{ border:1px solid #aaaaaa;}
 .main-wrapper-1 thead{border-bottom: 1px solid #aaaaaa;}
@@ -127,7 +127,7 @@ span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 /*comment*/
 .nav-comment{background-color: transparent;}
 #nav-breadcrumb .breadcrumb{background-color: transparent;}
-.inner-wrapper{padding-top: 14px; border: 1px solid #aaaaaa; height:auto; font-family: "黑体"; margin-bottom: 120px;}
+.inner-wrapper{padding-top: 14px; border: 1px solid #aaaaaa; height:auto; font-family: "SimHei"; margin-bottom: 120px;}
 .comment-banner{ margin-left: 25px;}
 .body-thing{vertical-align: top; margin-top: 3px;}
 .thing-left{ display: inline-block; max-width: 20%; vertical-align: 10px;}

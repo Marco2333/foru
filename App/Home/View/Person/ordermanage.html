@@ -111,19 +111,18 @@
 						       <tr class="order-info-head">
 							       	<td colspan="2">
 							       		订单编号：<span>{$page.together_id}</span>
-							       		提交时间：<span>{$page.together_date}</span>
+							       		提交时间：<span>{$page.together_date}</span>		
+							       	</td>
+							       	<td colspan="2">
 							       		<if condition="$page['status'] eq 1">
-							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+							       			<button class="order-manage-button order-manage-3 together-order-manage fr" data-togetherId="{$page['together_id']}">
 													立即付款
 										    </button>
 										<elseif condition="$page['status'] eq 2"/>
-					                            <button class="order-manage-button order-manage-4 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+					                            <button class="order-manage-button order-manage-4 together-order-manage fr" data-togetherId="{$page['together_id']}">
 													取消订单
 										        </button>
-							       		</if>   		
-							       	</td>
-							       	<td colspan="2">
-							       		
+							       		</if>   
 							       	</td>	
 						       </tr>
 						      
@@ -153,7 +152,7 @@
 									</tr>
 							</if>
 										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
-									<tr class="order-info-detailed">
+									<tr class="order-info-detailed" data-status="{$page['order_id']}">
 										<td>
 											<img class="fl" src="{$page.img_url}" alt="">
 											<div class="fl">
@@ -171,6 +170,7 @@
 													case 3:echo "配送中";break;
 													case 4:echo "待评价";break;
 													case 5:echo "已完成";break;
+													case 9:echo "退款中";
 													default:echo ""; 
 												}
 											?>
@@ -181,7 +181,9 @@
 										<td>
 										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
 										<?php
-											switch($status)
+
+
+											switch($page['status'])
 											{
 												case 1:
 												echo 
@@ -210,7 +212,7 @@
 													立即评价
 												</button>
 												<button class="order-manage-button order-manage-2">
-													删除订单
+													删除订单 
 												</button>';
 												break;
 												case 5:

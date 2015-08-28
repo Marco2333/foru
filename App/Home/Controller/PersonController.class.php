@@ -549,8 +549,6 @@ class PersonController extends Controller {
 
     public function personHomePage(){
         $campusId=I('campusId');        //获取校区id
-        //$cityId=I('cityId');           //获取城市id
-        //$this-> getCampusName($campusId,$cityId);
         if($campusId==null) {
             $campusId=1;
         }
@@ -597,7 +595,7 @@ class PersonController extends Controller {
         }
        
         $Person = D('Person');
-        
+  
        if($status == 0||$status == null) {
              $count = M('orders')
              ->where("orders.status != 0 and phone = %s and tag = 1",$phone)
@@ -612,8 +610,10 @@ class PersonController extends Controller {
              ->where("orders.status = %d and phone = %s and tag = 1 and (is_remarked=0 or is_remarked is null) ",$status,$phone)
              ->count();
        }
-       
+        
+
         $module=D("FoodCategory")->getModule($campusId);
+
         $page = new \Think\Page($count,6);
         $page->setConfig('header','条订单');
         $page->setConfig('prev','<');
@@ -626,11 +626,12 @@ class PersonController extends Controller {
         $limit = $page->firstRow.','.$page->listRows; 
 
         $orderList = $Person->getOrderList($limit,$status);
-
+        //dump(M('orders')->getLastSql());
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);
         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         //dump($campusId);
+        //dump($orderList);
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
              ->assign('campusId',$campusId)

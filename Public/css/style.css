@@ -61,7 +61,7 @@
 	margin: 0 5px;
 	color: #EF8F8F;
 	font-weight: 500;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 
 /*commonsearch*/
@@ -175,7 +175,7 @@ select#location {
 	border: none;
 }
 #location {
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 14px;
 	margin-top: 2px;
 	cursor: pointer;
@@ -196,7 +196,7 @@ select#location {
 #shopping-cart .drop-down-left a {
 	color: #fff;
 	font-weight: 500;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 12px;
 	margin-left: 4px;
 }
@@ -256,7 +256,7 @@ select#location {
 .index-shopping-cart ul img + div {
 	/*float: left;*/
 	height: 58px;
-	font-family: "黑体";
+	font-family: "SimHei";
   	font-size: 12px;
 }
 .index-shopping-cart .goods-cost {
@@ -267,13 +267,13 @@ select#location {
 }
 .index-shopping-cart li > div > span.fr {
 	margin-right: 10px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 13px;
 }
 .shopping-cart-bottom span.block {
 	text-align: right;
 	font-weight: 500;
-	font-family: "黑体";
+	font-family: "SimHei";
 	color:#666;
 	font-size: 14px;
 	margin: 2px 0;
@@ -313,7 +313,7 @@ select#location {
 	height: 36px;
 	border-radius: 3px;
 	color: #fff;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 15px;
 	text-align: center;
 	padding-top: 8px;
@@ -328,7 +328,7 @@ select#location {
   background-color: #22d0b5;
   color: #fff;
   padding: 12px 0 0 40px;
-  font-family: "黑体";
+  font-family: "SimHei";
   font-size: 16px;
   border-radius: 2px;
   font-weight: 500;
@@ -340,7 +340,7 @@ select#location {
   /*font-weight: bold;*/
   height: 40px;
   width: 100px;
-  font-family: "黑体";
+  font-family: "SimHei";
   text-align: center;
 }
 .nav>li>a:focus,
@@ -480,7 +480,7 @@ div#medium-part > div > span {
 #medium-part  dd {
 	margin: 6px;
 	font-size: 10px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	text-align: center;
 }
 /*#medium-part-1 {
@@ -566,7 +566,7 @@ div#medium-part-2 span:first-child, div#medium-part-2 span:nth-child(2) {
 	font-weight: bold;
   	font-size: 14px;
   	padding-top: 13px;
-  	font-family: "黑体";
+  	font-family: "SimHei";
   	margin-left: 6px;
 }
 .class-n-top span.fr {
@@ -592,7 +592,7 @@ div#medium-part-2 span:first-child, div#medium-part-2 span:nth-child(2) {
   	font-size: 14px;
   	color: #888;
   	margin-top: 14px;
-  	font-family: "黑体";
+  	font-family: "SimHei";
   	text-decoration: line-through;
 }
 .goods-name {
@@ -680,7 +680,7 @@ div#medium-part-2 span:first-child, div#medium-part-2 span:nth-child(2) {
   	background-color: #22d0b5;
   	padding-left: 32px;
   	/*color: #fff;*/
-  	font-family: "黑体";
+  	font-family: "SimHei";
   	font-size: 10px;
   	font-weight: 500;
   	list-style: square inside;
@@ -777,7 +777,7 @@ footer{
     margin-top:20px;
     border-top: 1px solid #eee;
     text-align: center;
-    font-family: "黑体";
+    font-family: "SimHei";
 }
 footer a:hover {
 	color: #24dfc2;
@@ -809,7 +809,7 @@ footer a:hover {
 }
 #foot-part2 li dd {
 	font-weight: bold;
-  	font-family: "黑体";
+  	font-family: "SimHei";
   	font-size: 14px;
 }
 #foot-part2 li dt li{
@@ -981,7 +981,7 @@ footer a:hover {
 }
 .error-info {
 	color: red;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 #register-info form > div.user-info-div input{
 	height:34px;
@@ -1054,7 +1054,7 @@ footer a:hover {
 }
 #register-info + div.fl a{
 	color: #24dfc2;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 #register-info #user-protocol a {
 	color: #24dfc2;
@@ -1124,7 +1124,7 @@ footer a:hover {
 	background-color: #fff;
 }
 #login-main h1 {
-	font: 22px "黑体","\5b8b\4f53";
+	font: 22px "SimHei","\5b8b\4f53";
   	margin: 2px 0 20px 0;
   	color: #24dfc2;
 }
@@ -1142,7 +1142,7 @@ footer a:hover {
 	text-align: center;
 	font-size: 18px;
 	color: #24dfc2;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 23px;
 }
 #login-main > div.fr {
@@ -1211,7 +1211,7 @@ footer a:hover {
 	float: left;
 	background-color:rgb(246,246,246);
 	padding-left: 38px; 
-	font-family: "黑体";
+	font-family: "SimHei";
 	height: 470px;
 }
 #person-info-body {
@@ -1267,7 +1267,7 @@ footer a:hover {
 	border-left: 2px solid #24dfc2;
 	width: 100%;
 	height: 30px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 14px;
 	padding: 6px 0 0 5px;
 	border-bottom: 1px solid #eee;
@@ -1286,13 +1286,13 @@ footer a:hover {
 	height: 30px;
 	font-size: 10px;
 	color: #999;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 #person-location-info table tbody tr {
 	height: 58px;
 	font-size: 10px;
 	color: #999;
-	font-family: "黑体";
+	font-family: "SimHei";
 	border: 1px solid rgba(215,215,215,.9);
 	border-top: none;
 }
@@ -1315,7 +1315,7 @@ footer a:hover {
 	border: none;
 	font-weight: 400;
 	font-size: 13px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	background-color: #EF7C5A;
 	outline: none;
 }
@@ -1335,7 +1335,7 @@ footer a:hover {
 	height: 38px;
 	text-align: right;
 	padding: 5px 6px 0 0;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 #change-location-info .location-info-div input {
 	height: 30px;
@@ -1378,7 +1378,7 @@ footer a:hover {
 	padding: 0;
 	float: left;
 	color: #555;
-	font-family: "黑体";
+	font-family: "SimHei";
 	background: #ddd;
 }
 .tab-div .button {
@@ -1404,7 +1404,7 @@ footer a:hover {
 		vertical-align: middle;
 }
 #person-basic-info .person-info-div  input[type='radio'] + label {
-	font-family: "黑体";
+	font-family: "SimHei";
 	color: #777;
 	font-size: 7px;
 	font-weight: 200;
@@ -1417,7 +1417,7 @@ footer a:hover {
 	height: 38px;
 	text-align: right;
 	padding: 4px 6px 0 0;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-weight: 200;
 	/* margin-top: 6px; */
 	font-size: 14px;
@@ -1434,7 +1434,7 @@ footer a:hover {
 	height: 32px;
 	background-color: #EF7C5A;
 	color: #fff;
-	font-family: "黑体";
+	font-family: "SimHei";
 	border: none;
 	outline: none;
 	font-size: 14px;
@@ -1447,7 +1447,7 @@ footer a:hover {
 }
 #change-image > div dd {
 	font-weight: 400;
-	font-family: "黑体";
+	font-family: "SimHei";
 	/*margin-bottom: 10px;*/
 	font-size: 13px;
 }
@@ -1468,7 +1468,7 @@ footer a:hover {
 }
 #change-image > div:last-child dt + span {
 	color: #999;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 .file {
 	text-align: center;
@@ -1509,14 +1509,14 @@ footer a:hover {
 	border: none;
 	background:#EF7C5A;
 	color: #fff;
-	font-family: "黑体";
+	font-family: "SimHei";
 	outline: none; 
 }
 #change-image + input[type='submit']:hover {
 	background:#F76F47
 }
 #person-info-body {
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 #person-info-body > span {
 	font-size: 14px;
@@ -1532,7 +1532,7 @@ footer a:hover {
 #personhome-info > div.fl {
 	margin-left: 18px;
 	color: #222;
-	font-family: "黑体";
+	font-family: "SimHei";
 	padding: 4px 0 0 1px;
 	font-size: 13px;
 }
@@ -1543,7 +1543,7 @@ footer a:hover {
 	color:#000;
 }
 #personhome-info > div.fl p {
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 14px;
 }
 .info-title > span.fr {
@@ -1615,11 +1615,16 @@ footer a:hover {
 	width: 70px;
 	height: 28px;
 	border-radius: 3px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	background: #eee;
 	outline: none;
 	border: none;
 	margin-bottom: 5px;
+	margin-right: 5px;
+}
+.together-order-manage {
+	margin-right: 35px;
+	margin-top: 3px;
 }
 .order-manage-button:hover {
 	background: #bbb;
@@ -1642,7 +1647,7 @@ footer a:hover {
 }
 .goods-list-side  li {
 	background: rgb(246,246,246);
-	font-family: "黑体";
+	font-family: "SimHei";
 	border-bottom: 1px solid rgba(246,246,246,.8);
 	width: 180px;
 	height: 40px;
@@ -1681,7 +1686,7 @@ footer a:hover {
 	/*margin-top: 8px;*/
 }
 .goods-info-item dd p {
-	font-family: "黑体";
+	font-family: "SimHei";
 	margin-top: 8px;
 }
 .goods-info-item dd p:first-child {
@@ -1758,13 +1763,13 @@ footer a:hover {
 	z-index: 2;
 }
 .img-and-detailed-body >dl:nth-child(2) dd span:last-child {
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 13px;
 	margin-left: 5px;
 	vertical-align: text-bottom;
 }
 .img-and-detailed-body > dl dt{
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 15px;
 	color: #aaa;
 	font-weight: 400;
@@ -1783,7 +1788,7 @@ footer a:hover {
 .bef-price {
 	font-size: 15px;
 	font-weight: 100;
-	font-family: "黑体";
+	font-family: "SimHei";
 	color: #888;
 	text-decoration: line-through;
 
@@ -1886,7 +1891,7 @@ input.goods-count {
 }
 .img-and-detailed-head p {
 	color: #bbb;
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 13px;
 	margin-top: 15px;
 	width: 700px;
@@ -1905,7 +1910,7 @@ input.goods-count {
 	border: none;
 	color: #fff;
 	font-size: 16px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	border-radius: 3px;
 	background-color: #FF573A;
 	margin: 5px 10px;
@@ -1942,7 +1947,7 @@ input.goods-count {
 }
 .img-and-evaluate-head li a {
 	font-size: 15px;
-	font-family: "黑体";
+	font-family: "SimHei";
 }
 .img-and-evaluate-head li a:hover {
 	text-decoration: none;
@@ -1964,7 +1969,7 @@ input.goods-count {
   	margin: 3px 0 5px 20px;
 }
 .eval-scores + span {
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 16px;
 	/* margin-top: -55px; */
 	float: left;
@@ -1985,13 +1990,13 @@ input.goods-count {
 	margin-bottom: 10px;
 }
 .eval-info-detailed-score span:last-child {
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 14px;
 	margin-left: 10px;
 	vertical-align: text-bottom;
 }
 .eval-info-detailed-mark {
-	font-family: "黑体";
+	font-family: "SimHei";
 	font-size: 14px;
 	width: 1000px;
 	word-wrap:break-word;
@@ -2016,7 +2021,7 @@ input.goods-count {
 	width: 100%; 
 	z-index: 999; 
 	border: 1px solid #aaaaaa; 
-	font-family: "黑体"; 
+	font-family: "SimHei"; 
 	display: none;
 }
 #campus { 
@@ -2139,7 +2144,7 @@ input.goods-count {
     background: #FF6347;
     top: 60px;
     left: 50%;
-    font-family: "黑体";
+    font-family: "SimHei";
     margin-left: -90px;
     font-size:14px;
     display: none;
@@ -2159,7 +2164,7 @@ input.goods-count {
 	outline: none;
 	height: 30px;
 	border-radius: 3px;
-	font-family: "黑体";
+	font-family: "SimHei";
 	margin-left: 10px;
 	width: 110px;
 }
@@ -2169,7 +2174,7 @@ input.goods-count {
 }
   
 .clearfix dd>p{
-   font-family: "黑体";
+   font-family: "SimHei";
    font-size:15px;
    color:#aaa;
 }

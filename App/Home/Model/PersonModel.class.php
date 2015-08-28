@@ -681,7 +681,11 @@ class PersonModel extends ViewModel {
           ->field($field)
           ->order($order)
           ->limit($limit)
-          ->select();  
+          ->select();
+
+          for($i=0;$i<count($orderList);$i++) {
+            $orderList[$i]['status'] = 5;
+          }  
         }else{
             $orderList = M('orders')
             ->join('food on food.food_id = orders.food_id and orders.campus_id = food.campus_id')
