@@ -17,38 +17,38 @@ body {
 .person-info-body{ margin-left: 48px;}
 
 /*process*/
-#person-info-body .person-info-body-progress{padding-left: 110px; margin-bottom: 80px; margin-top: 40px;}
-#person-info-body .person-info-body-progress dl{ position: relative; width: 180px; border-top: 8px solid gainsboro; display: inline-block; margin-left: -6px; border-radius: 3px;}
-#person-info-body .person-info-body-progress .round{ width:30px; height: 30px; border-radius: 50px; left: 65px; background-color: gainsboro; z-index: 99;}
-#person-info-body .person-info-body-progress dt{ position: absolute; top: -18px; left: 75px; font-size: 20px; z-index: 999; color: white;}
-#person-info-body .person-info-body-progress dd{ position: absolute; top:19px; left: 54px;}
-#person-info-body .person-info-body-progress dd.finish{ left: 70px;}
-#person-info-body .person-info-body-progress dd.self{left: 58px;}
-#person-info-body .person-info-body-progress dd.password{left: 48px;}
-#person-info-body .person-info-body-progress dd.phone{left: 50px;}
+.person-info-body-progress{padding-left: 110px; margin-bottom: 80px; margin-top: 40px;}
+.person-info-body-progress dl{ position: relative; width: 180px; border-top: 8px solid gainsboro; display: inline-block; margin-left: -6px; border-radius: 3px;}
+.person-info-body-progress .round{ width:30px; height: 30px; border-radius: 50px; left: 65px; background-color: gainsboro; z-index: 99;}
+.person-info-body-progress dt{ position: absolute; top: -18px; left: 75px; font-size: 20px; z-index: 999; color: white;}
+.person-info-body-progress dd{ position: absolute; top:19px; left: 54px;}
+.person-info-body-progress dd.finish{ left: 70px;}
+.person-info-body-progress dd.self{left: 58px;}
+.person-info-body-progress dd.password{left: 48px;}
+.person-info-body-progress dd.phone{left: 50px;}
 
-#person-info-body .person-info-body-progress dl.active{border-top-color:#24dfc2;}
-#person-info-body .person-info-body-progress dl.active dt.round{background-color:#24dfc2;}
-#person-info-body .person-info-body-progress dl.active dd{ color: #24dfc2;}
+.person-info-body-progress dl.active{border-top-color:#24dfc2;}
+.person-info-body-progress dl.active dt.round{background-color:#24dfc2;}
+.person-info-body-progress dl.active dd{ color: #24dfc2;}
 /*1*/
-#person-info-body .person-info-body-page-text a{color: red;}
-#person-info-body .person-info-body-header{padding-top: 15px;}
-#person-info-body .spliter{border-width:3px; border-color: #24dfc2; height: 40px; display: inline-block;}
-#person-info-body h4{display: inline-block; font-size: 27px; font-weight: bold; margin-left: 10px; margin-bottom: 3px; vertical-align: 10px;}
-#person-info-body .person-info-body-page1-imgverification{ width: 60px; height: 30px;}
+.person-info-body-page-text a{color: red;}
+.person-info-body-header{padding-top: 15px;}
+.person-info-body-header .spliter{border-width:3px; border-color: #24dfc2; height: 33px; display: inline-block;}
+h4{display: inline-block; font-size: 23px; margin-left: 10px; vertical-align: 6px;}
+.person-info-body-page1-imgverification{ width: 60px; height: 30px;}
 
 /*2*/
-#person-info-body .person-info-body-2{ margin-left: 36px;}
+.person-info-body-2{ margin-left: 36px;}
 
 /*3*/
-#person-info-body .person-info-body-3{ margin-left: 23px;}
-#person-info-body .person-info-body-page-text-long{ width:190px; vertical-align: -1px;}
+.person-info-body-3{ margin-left: 23px;}
+.person-info-body-page-text-long{ width:190px; vertical-align: -1px;}
 
 /*4*/
-#person-info-body .person-info-body-page4{margin-left: 136px;}
-#person-info-body .person-info-body-page4-container{ width:58px; height: 58px; display: inline-block; border-radius: 50px; background-color: #24dfc2;}
-#person-info-body span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
-#person-info-body .person-info-body-page4-text{font-size: 30px; vertical-align: -11px;}
+.person-info-body-page4{margin-left: 136px;}
+.person-info-body-page4-container{ width:58px; height: 58px; display: inline-block; border-radius: 50px; background-color: #24dfc2;}
+span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
+.person-info-body-page4-text{font-size: 30px; vertical-align: -11px;}
 
 /*验证码*/
 #check-image{width: 100px; height: 30px;}

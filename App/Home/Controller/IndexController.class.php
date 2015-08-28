@@ -100,7 +100,7 @@ class IndexController extends Controller {
              ->assign("cities",$city)
              ->assign("campus_name",$campus_name[0]);
     }
-
+    
     public function getCampusByCity($cityId){
          $campus=D('CampusView')->getCampusByCity($cityId);
          $data['campus']=$campus;
