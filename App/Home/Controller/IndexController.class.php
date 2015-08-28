@@ -41,6 +41,8 @@ class IndexController extends Controller {
         ->field('news_id,img_url')
         ->where('campus_id=%d',$campusId)
         ->select();               //获取主页头图
+        
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
 
         $good=M('food');
         
@@ -65,6 +67,7 @@ class IndexController extends Controller {
              ->assign("category",$classes) 
              ->assign("homeGood",$homeGood) 
              ->assign('module',$module)
+             ->assign('hotSearch',$hotSearch)
              ->assign('campusList',$campusList)
              ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
@@ -103,11 +106,22 @@ class IndexController extends Controller {
          $data['campus']=$campus;
          $this->ajaxReturn($data);
     }
+
+    /**
+     * 退出登陆
+     * @return [type] [description]
+     */
     public function logout(){
     	unset($_SESSION['username']);
     	$this->redirect("/Home/Index/index");
     }
 
+     /**
+      * 商品列表
+      * @param  string $categoryId 
+      * @param  string $search    
+      * @return [type]             
+      */
      public function goodslist($categoryId='',$search=''){
         $campusId=I('campusId');        //获取校区id
         if($campusId==null){
@@ -153,6 +167,7 @@ class IndexController extends Controller {
             $this->assign('categoryName',$categoryName['category']);     //路径中显示
         }
 
+         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         if($search!=''){
             $data['name|food_flag']=array('like',"%".$search."%");
             $this->assign('search',$search);
@@ -187,6 +202,7 @@ class IndexController extends Controller {
              ->assign('page',$show)// 赋值分页输出
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
+             ->assign('hotSearch',$hotSearch)
              ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
              ->assign('module',$module);
@@ -252,6 +268,7 @@ class IndexController extends Controller {
            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
         }
 
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         $this->assign('comments',$comments)
              ->assign('good',$good)
              ->assign('campus',$campusInfo)
@@ -259,6 +276,7 @@ class IndexController extends Controller {
              ->assign('categoryHidden',1)
              ->assign('hiddenLocation',1)
              ->assign('cartGood',$cartGood)
+             ->assign('hotSearch',$hotSearch)
              ->assign('campusId',$campusId)
              ->assign('module',$module);
 
@@ -339,11 +357,13 @@ public function comment(){
        if($grade==null)
           $grade=0;
 
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         //dump($order);
 		$this->assign("order",$order)
 			->assign('food',$food)
             ->assign('grade',$grade)
 			->assign('hiddenLocation',1)
+            ->assign('hotSearch',$hotSearch)
             ->assign('categoryHidden',1);
         $this->display('comment');
 

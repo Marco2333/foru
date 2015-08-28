@@ -47,11 +47,13 @@ class ShoppingCartController extends Controller {
         ->order('serial')
         ->select();
 
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         $this->assign('campus',$campus)
              ->assign('shoppingcart',$shoppingData)
              ->assign('categoryHidden',1)
              ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
+             ->assign('hotSearch',$hotSearch)
              ->assign('module',$module);
 
         $this->display();

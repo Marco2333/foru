@@ -67,8 +67,7 @@ class PersonController extends Controller {
 
          $cartGood=array();      
          $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
-    
-        //dump($module);
+         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         if ($user != null) {
             $Person = D('Person');
             $data   = $Person->getUserInfo();
@@ -80,6 +79,7 @@ class PersonController extends Controller {
                      ->assign("categoryHidden",1)
                      ->assign('module',$module)
                      ->assign('campusId',$campusId)
+                     ->assign('hotSearch',$hotSearch)
                      ->assign('cartGood',$cartGood);
                 $this->display("personInfo");
             }
@@ -203,7 +203,8 @@ class PersonController extends Controller {
          
         $Person = D('Person');
         $data = $Person->getAddress();
-       
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
+
         foreach ($data as $key => $address) {
             $campusAndCity=D('CampusView')->getCampusCityName($address['campus_id']);
             $data[$key]['address']=$campusAndCity['campus_name'].$address['address'];
@@ -213,6 +214,7 @@ class PersonController extends Controller {
                  ->assign("categoryHidden",1)
                  ->assign('module',$module)
                  ->assign('campusId',$campusId)
+                 ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
 
             $this->display();
@@ -221,6 +223,7 @@ class PersonController extends Controller {
             $this->assign("categoryHidden",1)
                  ->assign('module',$module)
                  ->assign('campusId',$campusId)
+                 ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
 
             $this->display();
@@ -345,12 +348,13 @@ class PersonController extends Controller {
         }
         $module=D('FoodCategory')->getModule($campusId);                 //获取首页八个某块的
       
-
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         $cartGood=array();      
         $cartGood=D('orders')->getCartGood($user,$campusId);     //获取购物车里面的商品
         if ($user != null) {
             $this->assign('module',$moudle)
                  ->assign('campusId',$campusId)
+                 ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
             $this->display("resetpword");
         }
@@ -461,17 +465,23 @@ class PersonController extends Controller {
  
                 $together_id = $Person->setTogetherID();
             }
-            //dump($together_id);
+            
             $address   = $Person->getAddress();              //获取地址
+             foreach ($address as $key => $vo) {
+                $campusAndCity=D('CampusView')->getCampusCityName($vo['campus_id']);
+                $address[$key]['address']=$campusAndCity['campus_name'].$vo['address'];
+            }
+
             $orderInfo = $Person->getOrderInfo($together_id);
-            //dump($orderInfo);
+           
             $orderIdstr = $Person->getOrderIdStr($together_id);
             $goodsInfo = $Person->getGoodsInfo($orderIdstr);
             $price     = $Person->getTotalPrice();
-            //dump($goodsInfo);
+
             // $cities    = $Person->getCities();
             // $campus    = $Person->getCampus($cities[0]['city_id']);
             $module=D('FoodCategory')->getModule($campusId);
+            $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
             $this->assign('orderIDstr',$orderIdstr)
                  ->assign('address',$address)
                  ->assign('orderInfo',$orderInfo)
@@ -481,6 +491,7 @@ class PersonController extends Controller {
                  ->assign("categoryHidden",1)
                  ->assign('module',$module)
                  ->assign("campusId",$campusId)
+                 ->assign('hotSearch',$hotSearch)
                  ->assign("cartGood",$cartGood)
                  ->display("goodsPayment");
             // $this->assign('cities',$cities);
@@ -559,7 +570,8 @@ class PersonController extends Controller {
             $phone=session('username');
            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
         }
-
+        
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         $this->assign("data",$data)
              ->assign("defaultAddress",$address[0]['address']) 
              ->assign("lastOrder",$lastOrder) 
@@ -567,6 +579,7 @@ class PersonController extends Controller {
              ->assign("categoryHidden",1)
              ->assign('campusId',$campusId)
              ->assign("cartGood",$cartGood)
+             ->assign('hotSearch',$hotSearch)
              ->assign("module",$module);
 
         $this->display("personhomepage");
@@ -614,12 +627,13 @@ class PersonController extends Controller {
 
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);
-
+        $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         //dump($campusId);
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
              ->assign('campusId',$campusId)
              ->assign('cartGood',$cartGood)
+             ->assign('hotSearch',$hotSearch)
              ->assign('status',$status)
              ->assign('module',$module)
              ->assign('orderpage',$show);

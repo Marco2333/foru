@@ -82,6 +82,9 @@ i, cite, em {
 .text-right{
 	text-align: right;
 }
+.text-light {
+	color:#aaa;
+}
 .b{
 	font-weight: bold;
 }

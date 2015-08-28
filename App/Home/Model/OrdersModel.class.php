@@ -81,7 +81,7 @@ class OrdersModel extends Model{
                 ->select();
 
          foreach ($prefer as $key => $p) {
-            if($fullDiscountPrice>$p['need_number']){
+            if($fullDiscountPrice>=$p['need_number']){
                 $fullDiscount=$p['discount_num'];            //优惠d数额
                 $discount['prefer_id']=$p['preferential_id'];
                 M('orders')->where('together_id = %s',$togetherId)

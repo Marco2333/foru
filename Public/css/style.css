@@ -832,6 +832,9 @@ footer a:hover {
 	padding-top: 10px;
 	font-size: 13px;
 }
+#foot-part4 a {
+	color: #aaa;
+}
 /*.hidden-shopping-cart {
 	display: none;
 }

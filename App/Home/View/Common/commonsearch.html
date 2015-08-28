@@ -18,12 +18,12 @@
 					
 				<button id="search">搜索</button>
 				<ul>
-					<!-- <volist name="category" id="vi" offset='1' length="6">
+					<volist name="hotSearch" id="vi">
 						<li>
-							<a href="{:U('/Home/Index/goodslist',array('categoryId'=>$vi['category_id'],'campusId'=>cookie('campusId')))}">{$vi.category}</a>
-						</li>				
-					</volist> -->
-					<li>
+						    <a href="{:U('/Home/Index/goodslist',array('search'=>$vi['search_tag'],'campusId'=>$campusId,'categoryName'=>$vi['display_name'],'searchHidden'=>1))}">{$vi.display_name}</a>
+					    </li>			
+					</volist>
+					<!-- <li>
 						<a href="{:U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>$campusId,'categoryName'=>'新鲜水果','searchHidden'=>1))}">新鲜水果</a>
 					</li>
 					<li>
@@ -37,7 +37,7 @@
 					</li>
 					<li>
 						<a href="{:U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>$campusId,'categoryName'=>'可口饮料','searchHidden'=>1))}">可口饮料</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 

@@ -168,13 +168,6 @@ class PersonModel extends ViewModel {
                             ->order($order)
                             ->select();
 
-        for ($i = 0;$i < count($address);$i++) {
-            $subAddress = explode('^',$address[$i]['address']);
-            $address[$i]['address'] = $subAddress[0].
-                                      $subAddress[1].
-                                      $subAddress[2];
-        }
-
         return $address;
     }
 
@@ -846,8 +839,8 @@ class PersonModel extends ViewModel {
         switch ($channel) {
             case 'alipay_wap':
             $extra = array(
-                'success_url' => 'http://foru.com:8000/index.php',
-                'cancel_url' => 'http://foru.com:8000/index.php'
+                'success_url' => 'http://enjoyfu.com.cn/index.php',
+                'cancel_url' => 'http://enjoyfu.com.cn/index.php'
                 );
             break;
         }
@@ -868,7 +861,6 @@ class PersonModel extends ViewModel {
                     'app'       => array('id' => 'app_ffLajDzjLe181iHa')
                     )
                 );
-           // dump($ch);
             return $ch;
         } catch (\Pingpp\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
