@@ -106,6 +106,9 @@ i, cite, em {
 .text-special{
 	color:#24dfc2;
 }
+.text-subspecial {
+	color: #ff573a;
+}
 .text-alert {
 	color: #ff0000;
 }
@@ -128,4 +131,13 @@ i, cite, em {
 .u-flyer {
 	width: 180px;
 	height: 180px;
-} 
+}
+.font-13 {
+	font-size: 13px;
+}
+.font-14 {
+	font-size: 14px;
+}
+.font-15 {
+	font-size: 15px;
+}

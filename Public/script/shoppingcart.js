@@ -5,20 +5,6 @@ $(document).ready(function(){
       $(".drop-down-layer").hide();  
     });
 
-    $(".order-info-detailed a.sub-goods").click(function(){
-      var v=$(this).next("input").val();
-      if(parseInt(v)!=0){
-        $(this).next("input").val(parseInt(v)-1);
-      }    
-      caltotalCost();
-    });
-
-    $(".order-info-detailed a.add-goods").click(function(){
-      var v=$(this).prev("input").val();
-      $(this).prev("input").val(parseInt(v)+1); 
-      caltotalCost();
-    });
-
     $("#checkall input").click(function(){
       // alert($(this).prop("checked"));
       if(document.getElementById("checkall-input").checked){
@@ -54,6 +40,12 @@ $(document).ready(function(){
     });
 
     $('a.sub-goods').on('click',function(){
+      var v=$(this).next("input").val();
+      if(parseInt(v)>1){
+        $(this).next("input").val(parseInt(v)-1);
+      }    
+      caltotalCost();
+
       var $orderCount=$(this).next("input").val();
       var $orderId=$(this).attr('data-orderId');
       var $phone=$.cookie('username');
@@ -62,12 +54,17 @@ $(document).ready(function(){
         '../../../../Home/ShoppingCart/saveOrderCount',
         {orderCount:$orderCount,orderId:$orderId,phone:$phone},
         function(data){
-         console.log(data.status);
+         
        }
        );
     });
 
     $('a.add-goods').on('click',function(){
+
+      var v=$(this).prev("input").val();
+      $(this).prev("input").val(parseInt(v)+1); 
+      caltotalCost();
+
       var $orderCount=$(this).prev("input").val();
       var $orderId=$(this).attr('data-orderId');
       var $phone=$.cookie('username');
@@ -76,7 +73,7 @@ $(document).ready(function(){
         '../../../../Home/ShoppingCart/saveOrderCount',
         {orderCount:$orderCount,orderId:$orderId,phone:$phone},
         function(data){
-         console.log(data.status);
+        
        }
        );
     });
@@ -163,24 +160,47 @@ $(document).ready(function(){
 });
 
 function caltotalCost(){
+
+    var fulldiscountList = $("#full-discount-price li");
+    var discountPrice=new Array();
+    for(var i=0;i<fulldiscountList.length;i++) {
+      discountPrice[i] = $(fulldiscountList[i]).children("span").text()+","+$(fulldiscountList[i]).children("p").text();
+    }
+
     var trList = $(".order-info-detailed");
     var totalCost = 0;
     var totalCostBef = 0;
+    var fullDiscoutCount = 0;
+
     for(var i = 0;i<trList.length;i++){
+      var isFulldiscount = $(trList[i]).attr("data-fulldiscount");
+
       if($(trList[i]).children("td").first().children("input").prop("checked")){
         var pricePer = $(trList[i]).children("td.good-price").children().first().text().substr(1);
 
         var pricePerBef = $(trList[i]).children("td.good-price").children().last().text().substr(4);
 
         var countPer = $(trList[i]).children("td").children("input.goods-count").val();
-          // alert(countPer);
-          var sumPer = parseFloat(pricePer)*parseInt(countPer);
-          var sumPerBef = parseFloat(pricePerBef)*parseInt(countPer);
-          // alert(sumPer);
+        var sumPer = parseFloat(pricePer)*parseInt(countPer);
+        var sumPerBef = parseFloat(pricePerBef)*parseInt(countPer);
+
           totalCost += sumPer;
           totalCostBef += sumPerBef;
+
+          if(isFulldiscount == 1) {
+            fullDiscoutCount += sumPer;
+          }
         }
     }
+
+    var subprice = 0;
+    for(var i=0;i<discountPrice.length;i++) {
+      if(fullDiscoutCount >= parseFloat(discountPrice[i].split(",")[0])) {
+        subprice = parseFloat(discountPrice[i].split(",")[1]);
+        break;
+      }
+    }
+    totalCost -= subprice;
     $(".pricefin").text(totalCost.toFixed(1)+"元");
     $(".orgin-price").text(totalCostBef.toFixed(1)+"元");
 }

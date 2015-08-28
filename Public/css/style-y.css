@@ -122,13 +122,6 @@ span.glyphicon:before{
 .deletegoods span.glyphicon:hover{
 	color: #FF573A;
 }
-/*img{
-	width: 70px;
-	height: 70px;
-	border-style: solid;
-	border-color: #AEAEAE;
-	border-width: 1px;
-}*/
 #checkall input {
 	vertical-align: text-bottom;
 	width: 13px;

@@ -118,9 +118,9 @@ span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 .main-wrapper-7-main{float:right;  text-align: end;}
 .main-wrapper-7 span.zhe{ font-size: 20px;}
 .main-wrapper-7 span.zhe span.price{color: red;}
-.main-wrapper-7 span.zhe span{ font-size: 19px;}
+.main-wrapper-7 span.zhe span{ font-size: 17px;}
 .main-wrapper-7 span.yuan{}
-.main-wrapper-7 input{ border: none; padding: 8px 55px; font-size: 16px; background-color: #ff573a; border-radius: 3px; color: #fff; margin-top: 20px;}
+.main-wrapper-7 input{ border: none; padding: 8px 55px; font-size: 16px; background-color: #ff573a; border-radius: 3px; color: #fff; margin-top: 10px;}
 .special-paddright{ padding-right: 10px}
 .special-paddingleft{padding-left: 10px}
 

@@ -455,7 +455,7 @@ class PersonController extends Controller {
             $together_id=I('togetherId');
             $Person      = D('Person');
             if($together_id==null){
-                 $orderIDstr = I('orderIds');
+                $orderIDstr = I('orderIds');
                 if ($orderIDstr != '') {
                     session('orderIDstr',$orderIDstr);
                 }
@@ -466,8 +466,8 @@ class PersonController extends Controller {
                 $together_id = $Person->setTogetherID();
             }
             
-            $address   = $Person->getAddress();              //获取地址
-             foreach ($address as $key => $vo) {
+            $address = $Person->getAddress();              //获取地址
+            foreach ($address as $key => $vo) {
                 $campusAndCity=D('CampusView')->getCampusCityName($vo['campus_id']);
                 $address[$key]['address']=$campusAndCity['campus_name'].$vo['address'];
             }
@@ -476,14 +476,16 @@ class PersonController extends Controller {
            
             $orderIdstr = $Person->getOrderIdStr($together_id);
             $goodsInfo = $Person->getGoodsInfo($orderIdstr);
-            $price     = $Person->getTotalPrice();
-
+            $price     = D('Orders')->calculatePriceByTogetherId($together_id,$campusId);
+            $Preferential = D('Preferential');
+            $preferential   = $Preferential->getPreferentialList($campusId);
             // $cities    = $Person->getCities();
             // $campus    = $Person->getCampus($cities[0]['city_id']);
             $module=D('FoodCategory')->getModule($campusId);
             $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
             $this->assign('orderIDstr',$orderIdstr)
                  ->assign('address',$address)
+                 ->assign('preferential',$preferential)
                  ->assign('orderInfo',$orderInfo)
                  ->assign('goodsInfo',$goodsInfo)
                  ->assign('price',$price)

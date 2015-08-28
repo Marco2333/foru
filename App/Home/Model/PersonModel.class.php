@@ -246,7 +246,8 @@ class PersonModel extends ViewModel {
                 'food.price',
                 'food.discount_price',
                 'food.is_discount',
-                'food.img_url'
+                'food.img_url',
+                'is_full_discount'
                 );
 
             $foodInfo[$i] = $Orders->join($joinFood)
@@ -295,7 +296,6 @@ class PersonModel extends ViewModel {
     public function getTotalPrice($orderIDstr = 0){
         $foodInfo = $this->getGoodsInfo($orderIDstr);
    
-        //dump($foodInfo);
         $price = array(
             'totalPrice'    => 0,
             'discountPrice' => 0

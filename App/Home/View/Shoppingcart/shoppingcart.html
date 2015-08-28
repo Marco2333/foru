@@ -29,12 +29,18 @@
 		</div>
 	</div><!--.index-header-->
     <div id="info" data-campusId="{$campusId}"></div>
+
 	<div class="wrapper">
+		<ul id="full-discount-price" class="none">
+			<foreach name="preferential" item="vo">
+				<li><span>{$vo.need_number}</span> <p>{$vo.discount_num}</p> </li>
+			</foreach>
+		</ul>
 		<div id="checkall">
 			<input id="checkall-input" type="checkbox" class="checkbox-f">
 			<label for="checkall-input">全选</label>
 		</div>
-
+	
 		<div class="wrapper">
 			<div class="sep-row"></div>
 			<table>
@@ -48,7 +54,7 @@
 			</colgroup>
 
 			<foreach name="shoppingcart" item="shopping">
-				<tr class="order-info-detailed" data-orderId="{$shopping.order_id}">
+				<tr class="order-info-detailed" data-orderId="{$shopping.order_id}" data-fulldiscount="{$shopping.is_full_discount}">
 					<td>
 						<input type="checkbox" name="isChecked" class="check-good">
 					</td>
@@ -57,7 +63,19 @@
 						<div class="fl">
 							<p class='b'>{$shopping.name}</p>
 							<p>{$shopping.message}</p>
-							<p>共{$shopping.order_count}件商品</p>
+							<if condition="$shopping.is_full_discount eq 1">
+								<div class="full-discount-wrapper">
+									<span class="full-discount">
+										减
+									</span>
+									<span>
+										<foreach name="preferential" item="vi">
+											满{$vi.need_number}减{$vi.discount_num}&nbsp;
+										</foreach>
+									</span>
+								</div>
+							</if>
+							<!-- <p>共{$shopping.order_count}件商品</p> -->
 						</div>		
 					</td>
 					<td><!-- <span>颜色分类:</span><span>黄色</span> --></td>
@@ -99,7 +117,6 @@
    
 	<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
-	<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
         var $campusId=$("#info").attr('data-campusId');
     </script>

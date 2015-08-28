@@ -18,7 +18,7 @@ class ShoppingCartController extends Controller {
             $campusId=1;
         }
    
-         $cartGood=array();
+        $cartGood=array();
         if(isset($_SESSION['username'])){
             $phone=session('username');
            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
@@ -34,10 +34,10 @@ class ShoppingCartController extends Controller {
 
         $phone=session('username');
         $shoppingData=$shoppingcart        //获取购物车信息
+        ->join('food on food.food_id=orders.food_id and food.campus_id=orders.campus_id')
         ->field('order_id,orders.campus_id,phone,order_count,
             orders.food_id as food_id,img_url,discount_price,
-            food.price,is_discount,food.message,name')
-        ->join('food on food.food_id=orders.food_id and food.campus_id=orders.campus_id')
+            food.price,is_discount,food.message,name,is_full_discount')
         ->where('orders.tag=1 and orders.status = 0 and orders.campus_id=%d and phone=%s',$campusId,$phone) 
         ->order('create_time desc')
         ->select();
@@ -47,11 +47,15 @@ class ShoppingCartController extends Controller {
         ->order('serial')
         ->select();
 
+        $Preferential = D('Preferential');
+        $preferential   = $Preferential->getPreferentialList($campusId);
+
         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         $this->assign('campus',$campus)
              ->assign('shoppingcart',$shoppingData)
              ->assign('categoryHidden',1)
              ->assign('campusId',$campusId)
+             ->assign('preferential',$preferential)
              ->assign('cartGood',$cartGood)
              ->assign('hotSearch',$hotSearch)
              ->assign('module',$module);

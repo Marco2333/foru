@@ -278,6 +278,20 @@ select#location {
 	font-size: 14px;
 	margin: 2px 0;
 }
+.full-discount-wrapper {
+	margin-top: 7px;
+	color: #aaa;
+}
+.full-discount {
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	border-radius: 4px;
+	background: #24dfc2;
+	display: inline-block;
+	text-align: center;
+	padding-top: 1px;
+}
 .shopping-cart-bottom span.block .total-cost {
 	color: #F76C3A;
 	font-size: 16px;
@@ -1205,6 +1219,9 @@ footer a:hover {
 	margin-left: 20px;
 	float: left;
 }
+#person-info-body + .msg-page {
+	float: left;
+}
 #person-info-body div.info-title span.fr:hover a{
 	color: #EF7C5A;
 	text-decoration: none;
@@ -1587,8 +1604,8 @@ footer a:hover {
 	font-size: 14px;
 }
 .order-info-detailed td > div > p:nth-child(2) {
-	font-size: 13px;
-	color: #aaa;
+	font-size: 10px;
+	color: #bbb;
 }
 .order-info-detailed td:last-child a:hover {
 	color: #EF7C5A;
@@ -2120,11 +2137,10 @@ input.goods-count {
     width: 180px;
     height: 26px;
     background: #FF6347;
-    position: absolute;
     top: 60px;
     left: 50%;
+    font-family: "黑体";
     margin-left: -90px;
-    font-weight: bold;
     font-size:14px;
     display: none;
     color: #fff;
@@ -2132,6 +2148,7 @@ input.goods-count {
     line-height: 26px;
     position: fixed;
     z-index: 99;
+    border-radius: 3px;
 }
 
 /*resetpassword*/
