@@ -32,6 +32,38 @@ class OrdersModel extends Model{
 		return $cartGood;
 	}
 
+  public function getCampusStateByTogeId($together_id) {
+      $where['together_id']=$together_id;
+      $campus_id = M('orders')->field('campus_id')
+                              ->where($where)
+                              ->find();
+
+
+      $where1['campus_id']=$campus_id['campus_id'];
+      $state = M('campus')->field('status')
+                        ->where($where1)
+                        ->find();
+      return $state['status'];
+  }
+
+  public function getCampusIdByRank($user,$rank) {
+    $campus_id = M('receiver')->field('campus_id')
+                            ->where('phone_id=%s and rank=%s',$user,$rank)
+                            ->find();
+
+    return $campus_id['campus_id'];
+  }
+
+  public function getCampusIdByTog($user,$togetherId) {
+      $where['together_id'] = $togetherId;
+      $where['phone_id'] = $user;
+      $campus_id = M('orders')->field('campus_id')
+                              ->where($where)
+                              ->find();
+
+      return $campus_id['campus_id'];
+  }
+  
 	/**
 	 * 获取评论状态
 	 * @param  [type] $order_id [订单号]

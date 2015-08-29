@@ -10,13 +10,12 @@ class IndexController extends Controller {
         if(isset($_SESSION['campusId'])){
             $campusId=$_SESSION['campusId'];
         }
-     
+
         if($campusId==null){
             $campusId=1;
         }
         $cityId=I('cityId');           //获取城市id
         $this-> getCampusName($campusId,$cityId);
-        
         
         if($cityId==null){
             $cityId=1;
@@ -33,10 +32,9 @@ class IndexController extends Controller {
                
         $campusList=M('campus')
         ->field('campus_id,campus_name')
-        ->where('status=1')
         //->cache(true)
-        ->select();       //获取校区列表
-
+        ->select(); 
+              //获取校区列表
         $newsImage=M('news')
         ->field('news_id,img_url')
         ->where('campus_id=%d',$campusId)
@@ -59,7 +57,6 @@ class IndexController extends Controller {
         
         $campus=D('CampusView')->getCampusByCity($cityId);
 
-      
         $module=D('FoodCategory')->getModule($campusId);                 //获取首页八个模块
 
         $this->assign('goodlist',$goodList)
@@ -123,6 +120,7 @@ class IndexController extends Controller {
       * @return [type]             
       */
      public function goodslist($categoryId='',$search=''){
+
         $campusId=I('campusId');        //获取校区id
         if($campusId==null){
             $campusId=1;

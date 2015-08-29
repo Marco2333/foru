@@ -23,13 +23,7 @@
 
 			<div id="campus-content">
 				<ul>
-					<foreach name="campus" item="vo">
-				    	<empty name="Think.cookie.campusId"><assign name="Think.cookie.campusId" value="1"/></empty>
-						<if condition="$vo.campus_id eq cookie('campusId')">
-							<li data-campusId="{$vo.campus_id}" class="active">{$vo.campus_name}</li>
-							<else/><li data-campusId="{$vo.campus_id}">{$vo.campus_name}</li>
-						</if>		
-					</foreach>
+					
 				</ul>
 			</div>
 		</div>

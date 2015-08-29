@@ -24,6 +24,7 @@
 			</li>
 
 			<if condition="$hiddenLocation neq 1">
+
 				<if condition="($campusId eq null) OR (cookie('campusId') eq undefined)">
 					<li>
 					  	<foreach name="campusList" item="vo">
@@ -36,6 +37,7 @@
 					   </foreach>		
 					</li>
 					<else/>
+
 					<li>
 					   <foreach name="campusList" item="vo">
 					   	   <if condition="$vo.campus_id eq $campusId">

@@ -63,19 +63,24 @@ $(function(){
             url:payAtOnceUrl,
             data:data,
             success:function(data){
-                console.log(data);
-                if(data!="null"){
+                if(data.status == 2){
                     pingpp.createPayment(data, function(result, err) {
-                      console.log(result);
-                      console.log(err);
+                    
                     });
-                }else{
+                }else if(data.status == -1){
                    $('#info').show();
-                   $('#info').html("支付失败，请重新失败");
+                   $('#info').html("支付失败，请重试");
                    setTimeout("$('#info').hide()", 2000 );
+                }else if(data.status == 1) {
+                    $('#info').show();
+                    $('#info').html("亲,收货地址超出配送范围哦");
+                    setTimeout("$('#info').hide()", 2000 );
+                }else if(data.status == 0) {
+                    $('#info').show();
+                    $('#info').html("亲，休息喽，下次再来");
+                    setTimeout("$('#info').hide()", 2000 );
                 }
-                 
-              }
+            }
         });
     });
 });

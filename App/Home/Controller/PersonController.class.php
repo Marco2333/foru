@@ -73,7 +73,6 @@ class PersonController extends Controller {
             $data   = $Person->getUserInfo();
 
             if ($data !== false) {
-                // dump($data);
                 $this->assign("data",$data)
                      ->assign("active",$active)
                      ->assign("categoryHidden",1)
@@ -275,7 +274,6 @@ class PersonController extends Controller {
     public function selectCity(){
         $Person = D('Person');
         $cities = $Person->getCities();
-        /*dump($cities);*/
         $this->ajaxReturn($cities);
     }
 
@@ -511,11 +509,19 @@ class PersonController extends Controller {
         $channel=I('pay_way');                  //支付方式
         $reversetime=I('reversetime');           //预定时间
         $rank=I('rank'); 
-                                //收货地址序列
+                          
         if ($user != null) {
-            $together_id = I('togetherId');                           //大订单号
-
-            $orderIDstr = I('orderIdstr');                     //小订单列表           
+            $together_id = I('togetherId'); 
+            $out = $this->checkLegal($together_id,$rank,$user); 
+            if($out==1) {
+              $res['status'] = 1;
+              $this->ajaxReturn($res);
+            }
+            else if($out == 0) {
+               $res['status'] = 0;
+               $this->ajaxReturn($res);
+            }
+            $orderIDstr = I('orderIdstr');               
           
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
@@ -535,16 +541,35 @@ class PersonController extends Controller {
 
             $result=M("orders")->where('together_id = %s and tag=1',$together_id)->save($data);
 
-            //dump($result);
             if($result!==false){
-                 echo $charge;    //返回charge数据给客户端
+                 $res['status'] = 2;
+                 $this->ajaxReturn($res);
             }else{
-                echo "null";
+                $res['status'] = -1;
+                $this->ajaxReturn($res);
             }                         
         }
         else {
             $this->redirect('Home/Login/index');
         }
+    }
+
+    public function checkLegal($togetherId,$rank,$phone) {
+        $status = D('Orders')->getCampusStateByTogeId($togetherId);
+
+        if($status != 1) 
+        { 
+            return 0;
+        }
+
+        $campus_id1 = D('Orders')->getCampusIdByRank($phone,$rank);
+
+        $campus_id2 = D('Orders')->getCampusIdByTog($phone,$togetherId);
+    
+        if($campus_id1 !== $campus_id2) {
+            return 1;
+        }
+        return  2;
     }
 
     public function personHomePage(){
@@ -626,12 +651,11 @@ class PersonController extends Controller {
         $limit = $page->firstRow.','.$page->listRows; 
 
         $orderList = $Person->getOrderList($limit,$status);
-        //dump(M('orders')->getLastSql());
+
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);
         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
-        //dump($campusId);
-        //dump($orderList);
+
         $this->assign("orderList",$orderList)
              ->assign("status",$status)
              ->assign('campusId',$campusId)

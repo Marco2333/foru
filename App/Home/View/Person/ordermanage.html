@@ -135,7 +135,9 @@
 										<td colspan="2">
 											订单编号：<span>{$page.together_id}</span>
 											提交时间：<span>{$page.together_date}</span>
-                       						<if condition="$page['status'] eq 1">
+										</td>
+										<td colspan="2">
+											<if condition="$page['status'] eq 1">
 							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
 													立即付款
 										    </button>
@@ -143,11 +145,7 @@
 					                            <button class="order-manage-button order-manage-4 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
 													取消订单
 										        </button>
-										    <elseif 
-							       		    </if>   
-										</td>
-										<td colspan="2">
-											
+							       		    </if>
 										</td>	
 									</tr>
 							</if>
