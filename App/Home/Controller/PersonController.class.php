@@ -508,11 +508,12 @@ class PersonController extends Controller {
         $campusId=I('campusId');
 
         $channel=I('pay_way');                  //支付方式
-        $reversetime=I('reversetime');           //预定时间
+        $reserveTime=I('reserveTime');           //预定时间
         $rank=I('rank'); 
-                          
+        $message=I('message');                  //获取备注信息                 
         if ($user != null) {
             $together_id = I('togetherId'); 
+
             $out = $this->checkLegal($together_id,$rank,$user);   //rank
             if($out==1) {
               $res['status'] = 1;
@@ -522,25 +523,36 @@ class PersonController extends Controller {
                $res['status'] = 0;
                $this->ajaxReturn($res);
             }
+
             $orderIDstr = I('orderIdstr');               
           
             $Person = D('Person');
             $price  = $Person->getTotalPrice($together_id,$orderIDstr);
+            
+            $where['together_id']=$together_id;
+            $where['tag']=1;
+            $ifHasPaid=M('orders')->where($where)->find();       
+            if($ifHasPaid['status']!=0&&$ifHasPaid['status']!=1){
+              $res['status']=3;
+              $this->ajaxReturn($res);
+              return;
+            }
 
             $amount=D('orders')->calculatePriceByTogetherId($together_id,$campusId);
-
+           
             $charge=$Person->pay($channel,$amount,$together_id);   //调用支付
              // dump($charge);
             //更改该笔订单为待付款
             $data['status']=1;
             $data['rank']=$rank;
+            $data['reserve_time']=$reserveTime;
+            $data['message']=$message;
+
             if($channel=="alipay_wap"){
                 $data['pay_way']=1;
-            }else{
-                 $data['pay_way']=2;
             }
 
-            $result=M("orders")->where('together_id = %s and tag=1',$together_id)->save($data);
+            $result=M("orders")->where($where)->save($data);
 
             if($result!==false){
                  $res['status'] = 2;

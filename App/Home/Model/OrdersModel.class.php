@@ -81,11 +81,11 @@ class OrdersModel extends Model{
      * @return [type]        
      */
    public function calculatePriceByTogetherId($togetherId,$campusId){
-
+       $where['together_id']=$togetherId;
        $goods=M('orders')
               ->join('food on food.food_id=orders.food_id AND food.campus_id = orders.campus_id')
-              ->field('is_discount,is_full_discount,food.price,discount_price,order_count')
-              ->where('together_id="'.$togetherId.'"')
+              ->field('order_id,is_discount,is_full_discount,food.price,discount_price,order_count')
+              ->where($where)
               ->select();
       
      
@@ -93,17 +93,22 @@ class OrdersModel extends Model{
       $fullDiscountPrice=0.0;            //满减商品的总价
       foreach($goods as $key => $good) {
           if($good['is_discount']==1){
-              $price=$good['order_count']*$good['discount_price'];  
+              $price=$good['order_count']*$good['discount_price']; 
+              $data['price']=$price; 
           }else{
               $price=$good['order_count']*$good['price'];
+              $data['price']=$price;
           }
 
           if($good['is_full_discount']==1){
              $fullDiscountPrice+=$price;
           }
-
+          
+          $where['order_id']=$good['order_id'];
+          M('orders')->where($where)->save($data);
           $discountPrice+=$price;
           unset($price);
+          unset($data);
       }
    
      $prefer=M('preferential')
@@ -123,7 +128,7 @@ class OrdersModel extends Model{
          }
 
          $totalPrice=number_format($discountPrice-$fullDiscount,1);
-
+         //$data['price']=$totalPrice;
          return $totalPrice;
    }
 

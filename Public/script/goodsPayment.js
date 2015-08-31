@@ -51,6 +51,9 @@ $(function(){
         var $orderIdstr=$("input[name='orderIDstr']").val();
         var $pay_way=$("input[type='radio'][name='pay-way']").val();
         var $rank=$(".main-wrapper-1-radio:checked").val();
+        var $reserveTime=$("input[name='time']:checked").val();
+        var $message=$("textarea[name='message']").val();
+
         if(typeof($rank)=="undefined"){
             $('#info').show();
             $('#info').html("请添加一个收货地址！");
@@ -62,7 +65,9 @@ $(function(){
             orderIdstr:$orderIdstr,
             pay_way:$pay_way,
             rank:$rank,
-            campusId:$campusId
+            campusId:$campusId,
+            message:$message,
+            reserveTime:$reserveTime
         };
 
          $.ajax({
@@ -70,10 +75,10 @@ $(function(){
             data:data,
             success:function(data){
                 if(data.status == 2){
-                   /* pingpp.createPayment(data.charge, function(result, err) {
+                    pingpp.createPayment(data.charge, function(result, err) {
                        console.log(result);
                        console.log(err);
-                    });*/
+                    });
                 }else if(data.status == -1){
                    $('#info').show();
                    $('#info').html("支付失败，请重试");
@@ -85,6 +90,10 @@ $(function(){
                 }else if(data.status == 0) {
                     $('#info').show();
                     $('#info').html("亲，休息喽，下次再来");
+                    setTimeout("$('#info').hide()", 2000 );
+                }else if(data.status == 3){
+                    $('#info').show();
+                    $('#info').css('width','300px').html("该笔订单已经支付过了，不要重复支付哦。");
                     setTimeout("$('#info').hide()", 2000 );
                 }
             }
