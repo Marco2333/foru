@@ -5,6 +5,20 @@ header("Content-type:text/html;charset=utf-8");
 
 class IndexController extends Controller {
 
+    //生成验证码
+    public function verify(){
+        // 行为验证码
+
+        $Verify = new \Think\Verify();
+        $Verify->fontSize = 23;
+        $Verify->length   = 4;
+        $Verify->useNoise = false;
+        $Verify->codeSet = '0123456789';
+        // $Verify->imageW = 130;
+        // $Verify->imageH = 50;
+        $Verify->entry();
+    }
+
     public function index(){
 
         if(isset($_SESSION['campusId'])){
@@ -606,4 +620,120 @@ public function comment(){
 
         $this->ajaxReturn($data);
      }
+
+     public function forgetPassword(){
+        $this->assign('categoryHidden',1);
+        $this->display();
+     }
+
+     /**
+     * 校验邮箱是否存在，并发送验证码
+     * @return [type] [description]
+     */
+    public function phone(){
+        $mail = $_POST["phone"];
+        $check  = $_POST['check'];
+        $flag   = check_verify($check);
+
+         $where['mail']=$mail;
+        $exitMail=M('users')->where($where)->find();
+        if($exitMail!=null && $flag) {
+            $message['value']='success';
+
+            $randNumber=rand(1000,9999);
+            session('changePWordNumber',$randNumber);
+            session('mailUrl',$mail);
+            $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            if($r){
+               $message['status']='success';
+               $this->ajaxReturn($message);
+            }else{
+               $message['status']='failure';
+               $this->ajaxReturn($message);
+            }
+        }
+        else if(!$flag) {
+            $state = array(
+                'value' => 'checkerror'
+              );
+            $this->ajaxReturn($state);
+        }
+        else if($exitMail!=$mail) {
+            $state = array(
+                'value' => 'phoneerror'
+              );
+            $this->ajaxReturn($state);
+        }
+        else {
+            $state = array(
+                'value' => 'error'
+                );
+            $this->ajaxReturn($state);
+        }
+        
+    }
+
+    /**
+     * 重新向邮箱发送验证码
+     */
+    public function resetMailCode(){
+        $mail=session('mailUrl');
+        $randNumber=rand(1000,9999);
+        if($mail!=null){
+             $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            if($r){
+               session('changePWordNumber',$randNumber);
+               $message['status']='success';
+               $this->ajaxReturn($message);
+            }else{
+               $message['status']='failure';
+               $this->ajaxReturn($message);
+            }
+        }
+    }
+
+    /**
+     * 校验验证码
+     * @param  [type] $postcode [验证码]
+     * @return 
+     */
+    public function checkMailPost($postcode){
+       if($postcode==session('changePWordNumber')){
+          $message['status']='success';
+          $this->ajaxReturn($message);
+       }else{
+           $message['status']='failure';
+          $this->ajaxReturn($message);
+       }
+    }
+
+
+     public function changePWord(){
+        $db = M('users');
+
+        $mail = session('mailUrl');   //获取邮箱
+        $pword=I("pword");
+
+        $where = array(
+            'mail' => $mail
+        );
+        $save  = array(
+            'password' => md5($pword)
+        );
+        $data=$db->where($where)
+                 ->save($save);
+
+        if($data>0) {
+            $state = array(
+                'value' => 'success'
+                );
+            $this->ajaxReturn($state);
+        }
+        else {
+            $state = array(
+                'value' => 'error'
+                );
+            $this->ajaxReturn($state);
+        }
+    }
 }

@@ -377,6 +377,7 @@ class PersonController extends Controller {
 
             $randNumber=rand(1000,9999);
             session('changePWordNumber',$randNumber);
+            session('mailUrl',$mail);
             $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
             if($r){
                $message['status']='success';
@@ -415,10 +416,10 @@ class PersonController extends Controller {
 
         $where = array(
             'phone' => $user
-            );
+        );
         $save  = array(
             'password' => md5($pword)
-            );
+        );
         $data=$db->where($where)
                  ->save($save);
 
