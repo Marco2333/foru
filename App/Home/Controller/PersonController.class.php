@@ -513,7 +513,7 @@ class PersonController extends Controller {
                           
         if ($user != null) {
             $together_id = I('togetherId'); 
-            $out = $this->checkLegal($together_id,$rank,$user); 
+            $out = $this->checkLegal($together_id,$rank,$user);   //rank
             if($out==1) {
               $res['status'] = 1;
               $this->ajaxReturn($res);
@@ -530,7 +530,7 @@ class PersonController extends Controller {
             $amount=D('orders')->calculatePriceByTogetherId($together_id,$campusId);
 
             $charge=$Person->pay($channel,$amount,$together_id);   //调用支付
-
+             // dump($charge);
             //更改该笔订单为待付款
             $data['status']=1;
             $data['rank']=$rank;
@@ -544,6 +544,8 @@ class PersonController extends Controller {
 
             if($result!==false){
                  $res['status'] = 2;
+                 // echo $charge;
+                 $res['charge'] = $charge.'';
                  $this->ajaxReturn($res);
             }else{
                 $res['status'] = -1;

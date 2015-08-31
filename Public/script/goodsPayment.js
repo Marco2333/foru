@@ -51,6 +51,12 @@ $(function(){
         var $orderIdstr=$("input[name='orderIDstr']").val();
         var $pay_way=$("input[type='radio'][name='pay-way']").val();
         var $rank=$(".main-wrapper-1-radio:checked").val();
+        if(typeof($rank)=="undefined"){
+            $('#info').show();
+            $('#info').html("请添加一个收货地址！");
+            setTimeout("$('#info').hide()", 2000 );
+            return;
+        }
         var data={
             togetherId:$togetherId,
             orderIdstr:$orderIdstr,
@@ -64,9 +70,10 @@ $(function(){
             data:data,
             success:function(data){
                 if(data.status == 2){
-                    pingpp.createPayment(data, function(result, err) {
-                    
-                    });
+                   /* pingpp.createPayment(data.charge, function(result, err) {
+                       console.log(result);
+                       console.log(err);
+                    });*/
                 }else if(data.status == -1){
                    $('#info').show();
                    $('#info').html("支付失败，请重试");
