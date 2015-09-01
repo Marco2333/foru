@@ -257,7 +257,7 @@ class PersonModel extends ViewModel {
         }
 
         for ($i = 0;$i < count($foodInfo);$i++) {
-            $foodInfo[$i]['totalPrice'] =+ $foodInfo[$i]['price']*$foodInfo[$i]['order_count'];
+            $foodInfo[$i]['totalPrice'] = $foodInfo[$i]['price']*$foodInfo[$i]['order_count'];
 
             if ($foodInfo[$i]['is_discount'] != 0) {
                 $foodInfo[$i]['discountPrice'] += $foodInfo[$i]['discount_price']*$foodInfo[$i]['order_count'];

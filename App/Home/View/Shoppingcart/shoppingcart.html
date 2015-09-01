@@ -75,10 +75,10 @@
 									</span>
 								</div>
 							</if>
-							<!-- <p>共{$shopping.order_count}件商品</p> -->
+							
 						</div>		
 					</td>
-					<td><!-- <span>颜色分类:</span><span>黄色</span> --></td>
+					<td></td>
 					<td class="good-price" style="padding-left:-10px">
 						<if condition="$shopping.is_discount eq 1">
 							<span>￥{$shopping.discount_price|number_format=###,1}</span><span>原价:￥{$shopping.price|number_format=###,1}</span>
@@ -122,6 +122,5 @@
     </script>
 	<script src="__PUBLIC__/script/shoppingcart.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
-	
 </body>
 </html>

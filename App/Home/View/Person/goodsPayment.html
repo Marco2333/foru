@@ -71,7 +71,7 @@
 				</div>
 				
 				<div class="wrapper main-wrapper-2-1">
-						<input type="button" value="新增收货地址" id="new_address"/>
+					<input type="button" value="新增收货地址" id="new_address"/>
 				</div>
 				
 				<div class="wrapper main-wrapper-2">
@@ -187,13 +187,25 @@
 										</div>		
 									</td>
 									<td>
-										<span class="gray move"><span class="text-subspecial">￥{$v.discount_price}</span><span><del>￥{$v.price}</del></span></span>
-									</td >
+										<span class="gray move">
+											<if condition="$v.is_discount eq 1">
+												<span class="text-subspecial">￥{$v.discount_price}</span>
+												<span><del>￥{$v.price}</del></span>
+												<else/><span class="text-subspecial">￥{$v.price}</span>
+							  				 </if>
+										</span>
+									</td>
 									<td>
 										<span>{$v.order_count}</span>		
 									</td>
 									<td>
-										<span class="move"><span class="red_price">￥{$v.discountPrice}</span><span class="gray"><del>￥{$v.totalPrice}</del></span></span>
+										<span class="move">
+											<if condition="$v.is_discount eq 1">
+												<span class="text-subspecial">￥{$v.discountPrice}</span>
+												<span><del>￥{$v.totalPrice}</del></span>
+												<else/><span class="text-subspecial">￥{$v.discountPrice}</span>
+							  				</if>
+										</span>
 									</td>
 								</tr>	
 							</foreach>		

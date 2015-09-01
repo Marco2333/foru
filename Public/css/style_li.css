@@ -102,7 +102,7 @@ span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 .main-wrapper-4 span.gray{ color: #aaa;}
 .main-wrapper-4 span.move{ margin-left: -10px;}
 .main-wrapper-4 span.move span {margin: 0 8px}
-
+.main-wrapper-4 span.move span.text-subspecial { font-size: 14px;}
 .main-wrapper-5 table{border: 1px solid #aaa; margin-top:25px;}
 .main-wrapper-5 thead{ border-bottom: 1px solid #aaa;}
 .main-wrapper-5 thead th{ padding-left: 17px; font-size: 16px; padding-top: 10px; padding-bottom: 10px;}

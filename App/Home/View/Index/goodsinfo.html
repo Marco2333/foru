@@ -66,6 +66,7 @@
 							  <if condition="$good.is_discount eq 1">
 								<span class="discount-price">￥{$good.discount_price}</span>
 								<span class="bef-price">原价:￥{$good.price}</span>
+								<else/><span class="discount-price">￥{$good.price}</span>
 							  </if>
 							</dd>
 						</dl>

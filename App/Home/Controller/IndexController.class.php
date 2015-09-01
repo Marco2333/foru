@@ -267,6 +267,7 @@ class IndexController extends Controller {
         }
 
         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
+        dump($good);
         $this->assign('comments',$comments)
              ->assign('good',$good)
              ->assign('campus',$campusInfo)

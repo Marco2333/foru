@@ -479,6 +479,7 @@ class PersonController extends Controller {
             $preferential   = $Preferential->getPreferentialList($campusId);
             // $cities    = $Person->getCities();
             // $campus    = $Person->getCampus($cities[0]['city_id']);
+            dump($goodsInfo);
             $module=D('FoodCategory')->getModule($campusId);
             $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
             $this->assign('orderIDstr',$orderIdstr)
