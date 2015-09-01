@@ -72,7 +72,13 @@
 						近期订单
 						<span class="fr"><a href="{:U('Person/ordermanage',array('campusId'=>$campusId,'status'=>0))}">查看所有订单</a></span>
 				</div>
-				<div class="personhome-order-info">
+				<div class="personhome-order-info
+					<?php 
+						if(count($lastOrder)==0 || (count($lastOrder)==1&&$lastOrder[0]['discountPrice']==0)) {
+							echo 'none';
+						}
+					?>
+				 ">
 					<table>
 						<colgroup>
 							<col width="450">
@@ -98,7 +104,9 @@
 									
 								</td>	
 							</tr>
-							<foreach name="lastOrder" item="v" method="post">
+
+							
+							<foreach name="lastOrder" item="v">
 								<tr class="order-info-detailed">
 									<td>
 										<img class="fl" src="{$v.img_url}" alt="">

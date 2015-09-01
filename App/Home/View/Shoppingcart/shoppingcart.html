@@ -29,8 +29,28 @@
 		</div>
 	</div><!--.index-header-->
     <div id="info" data-campusId="{$campusId}"></div>
-
-	<div class="wrapper">
+	
+   <div id="shoppingcart-empty" class="empty-out wrapper
+		<?php 
+			if(count($shoppingcart)!=0) {
+				echo "none";
+			}
+		 ?>
+   ">
+		<dl>
+			<dt>
+				<img src="__PUBLIC__/img/icon/outnone.png" alt="">
+			</dt>
+			<dd>购物车中没有商品哦</dd>
+		</dl>
+   </div>
+	<div class="wrapper 
+		<?php 
+			if(count($shoppingcart)==0) {
+				echo "none";
+			}
+		 ?>
+	">
 		<ul id="full-discount-price" class="none">
 			<foreach name="preferential" item="vo">
 				<li><span>{$vo.need_number}</span> <p>{$vo.discount_num}</p> </li>
@@ -45,13 +65,13 @@
 			<div class="sep-row"></div>
 			<table>
 				<colgroup>
-				<col width="20">
-				<col width="400">
-				<col width="100">
-				<col width="260">
-				<col width="215">
-				<col width="110">
-			</colgroup>
+					<col width="20">
+					<col width="400">
+					<col width="100">
+					<col width="260">
+					<col width="215">
+					<col width="110">
+				</colgroup>
 
 			<foreach name="shoppingcart" item="shopping">
 				<tr class="order-info-detailed" data-orderId="{$shopping.order_id}" data-fulldiscount="{$shopping.is_full_discount}">
@@ -96,7 +116,7 @@
 				</tr>
 			</foreach>
 		</table>
-	</div><!-- /good1-->	
+	</div>
 
 	<div>
 		<a class="deletegoods">

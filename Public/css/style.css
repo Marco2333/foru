@@ -766,6 +766,9 @@ div#medium-part-2 span:first-child, div#medium-part-2 span:nth-child(2) {
 	padding: 3px 0 0 0;
 	font-weight:600;
 }
+#shoppingcart-empty {
+	margin-bottom: 200px;
+}
 .shopping-cart{
 	width:320px;
 	height:35px;

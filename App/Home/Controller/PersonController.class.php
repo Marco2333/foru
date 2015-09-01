@@ -595,7 +595,7 @@ class PersonController extends Controller {
         $Person      = D('Person');
         $data        = $Person->getUserInfo();
         $address     = $Person->getAddress(1);
-        $lastOrder   = $Person->getOrders(0);
+        $lastOrder   = $Person->getOrders();
         $together_id = $lastOrder[0]['together_id'];
         $orderInfo   = $Person->getOrderInfo($together_id);
 
@@ -604,10 +604,10 @@ class PersonController extends Controller {
         ->order('serial')
         ->select();
 
-         $cartGood=array();
+        $cartGood=array();
         if(isset($_SESSION['username'])){
             $phone=session('username');
-           $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
+            $cartGood=D('orders')->getCartGood($phone,$campusId);     //获取购物车里面的商品
         }
         
         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
