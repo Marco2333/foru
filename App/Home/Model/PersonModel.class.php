@@ -843,8 +843,8 @@ class PersonModel extends ViewModel {
         switch ($channel) {
             case 'alipay_wap':
             $extra = array(
-                'success_url' => 'http://enjoyfu.com.cn/index.php',
-                'cancel_url' => 'http://enjoyfu.com.cn/index.php'
+                'success_url' => 'http://www.enjoyfu.com.cn/index.php',
+                'cancel_url' => 'http://www.enjoyfu.com.cn/index.php'
                 );
             break;
         }

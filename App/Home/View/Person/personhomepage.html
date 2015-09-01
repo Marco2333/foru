@@ -49,7 +49,7 @@
 			<div id="person-info-body">
 				<span>尊敬的</span><span>{$data['nickname']}</span>，<span>您好！欢迎来到For优</span>
 				<div id="personhome-info" class="clearfix">
-					<img class="fl" src="{$data['img_url']}" alt="">
+					<img class="fl" src="{$data['img_url']|default='/Public/img/user-img.png'}" alt="">
 					<div class="fl">
 						<span>{$data['nickname']}</span><p>
 						性别:&nbsp;<span>
