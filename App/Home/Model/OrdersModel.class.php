@@ -128,7 +128,6 @@ class OrdersModel extends Model{
          }
 
          $totalPrice=number_format($discountPrice-$fullDiscount,1);
-         //$data['price']=$totalPrice;
          return $totalPrice;
    }
 
