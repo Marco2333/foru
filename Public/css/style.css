@@ -788,7 +788,6 @@ div#medium-part-2 span:first-child, div#medium-part-2 span:nth-child(2) {
 footer{
 	background-color: rgb(244,244,244);
     width: 100%;
-    padding-top: 23px;
     margin: 0 auto;
     margin-top:20px;
     border-top: 1px solid #eee;
@@ -818,10 +817,10 @@ footer a:hover {
 	font-weight: 300;
 	color: #888;
 }
-
 #foot-part2 {
 	padding: 0 65px;
-	margin-top: 30px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 #foot-part2 li dd {
 	font-weight: bold;
@@ -840,7 +839,7 @@ footer a:hover {
 #foot-part2  ul  li {
 	margin-top: 6px;
 }
-#foot-part2  ul  li li {
+#foot-part2  ul  li {
 	color:#888;
 }
 #foot-part3 {
@@ -856,10 +855,10 @@ footer a:hover {
 }
 #foot-part4 {
 	background-color: #fff;
-	height: 30px;
+	height: 20px;
 	width: 100%;
 	text-align: center;
-	padding-top: 10px;
+	padding-top: 6px;
 	font-size: 13px;
 }
 #foot-part4 a {
@@ -1228,7 +1227,7 @@ footer a:hover {
 	background-color:rgb(246,246,246);
 	padding-left: 38px; 
 	font-family: "SimHei";
-	height: 470px;
+	height: 470px; 
 }
 #person-info-body {
 	width: 900px;
@@ -1243,8 +1242,6 @@ footer a:hover {
 	text-decoration: none;
 }
 #person-nav-side span {
-	/* margin-left: -26px; */
-  	/* font-weight: bold; */
   	font-size: 15px;
   	margin: 10px 0;
   	margin-top: 18px;
@@ -2197,3 +2194,75 @@ input.goods-count {
    color:#aaa;
 }
 
+#document-nav-side {
+	width: 180px;
+	float: left;
+	background-color:rgb(246,246,246);
+	padding-left: 38px; 
+	font-family: "SimHei";
+}
+#document-nav-side span {
+  	font-size: 14px;
+  	margin: 10px 0;
+  	margin-top: 18px;
+ 	display: inline-block;
+  	margin-left: -15px;
+}
+#document-nav-side li {
+	font-size: 8px;
+	margin-bottom: 5px;
+	list-style: square;
+	font-size: 13px;
+}
+#document-nav-side li a {
+	cursor: context-menu;
+	vertical-align: -2px;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+#document-nav-side li.active,
+#document-nav-side li.active a {
+	color: #F25E5E;
+}
+#document-nav-side li:hover,
+#document-nav-side li:hover a {
+	color: #F25E5E;
+}
+#document-nav-side li a:hover {
+	text-decoration: none;
+}
+#document-content {
+	margin-left: 20px;
+	width: 900px;
+	padding-top: 5px;
+	float: left;
+	font-family: 12px/150% Arial,Verdana,"\5b8b\4f53";
+	line-height: 30px;
+	padding-left: 30px;
+}
+#document-content h1 {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 18px;
+	font-family: "SimHei";
+}
+#document-content section {
+	font-size: 13px;
+	color: #666;
+}
+#document-content img {
+	margin-bottom: 25px;
+	max-width: 100%;
+	width: 620px;
+	height: auto;
+}
+#pay-style img {
+	width: 90px;
+	margin-top: 20px;
+}
+#pay-style td {
+	border: 1px solid #888;
+	line-height: 22px;
+	padding: 0 8px;
+}

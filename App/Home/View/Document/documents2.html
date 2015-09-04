@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		
+		<title>For优 我的订单</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" data-campusId="{$campusId}">
+			<include file='App/Home/View/Common/commonsearch.html'/>
+			<include file='App/Home/View/Common/commonnav1.html'/>
+
+            <div id="info"></div>
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
+					<li class="active">
+						<a href="__SELF__">
+							<?php
+								switch($flag)
+								{
+									case 1:echo "常用服务";break;
+									case 2:echo "购买说明";break;
+									case 3:echo "付款说明";break;
+									case 4:echo "关于配送";break;
+									case 5:echo "售后服务";break;
+									case 6:echo "关于我们";break;
+									default:echo ""; 
+								}
+							?>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wrapper clearfix" >
+			<div id="document-nav-side">
+				<ul>
+					<span>常用服务</span>
+					<li><a href="{:U('Document/documents1',array('status'=>1,'flag'=>1))}">常见问题咨询</a></li>
+					<li><a href="{:U('Document/documents1',array('status'=>2,'flag'=>1))}">平台使用说明</a></li>
+				</ul>
+				<ul>
+					<span>购买说明</span>			
+					<li
+						<?php 
+							if($status == 1) {
+								echo "class='active'";
+							}
+						 ?>
+					><a href="{:U('Document/documents2',array('status'=>1,'flag'=>2))}">如何购买</a></li>
+					<!-- <li><a>会员制度</a></li>
+					<li><a>积分优惠券介绍</a></li> -->
+					<li
+						<?php 
+							if($status == 4) {
+								echo "class='active'";
+							}
+						 ?>
+					><a href="{:U('Document/documents2',array('status'=>4,'flag'=>2))}">订单状态说明</a></li>
+				</ul>
+
+				<ul>
+					<span>付款说明</span>			
+					<!-- <li><a>货到付款</a></li> -->
+					<li><a href="{:U('Document/documents3',array('status'=>1,'flag'=>3))}">在线支付</a></li>
+					<!-- <li><a>服务说明</a></li> -->
+					<li><a href="{:U('Document/documents3',array('status'=>2,'flag'=>3))}">退款服务</a></li>
+				</ul>
+
+				<ul>
+					<span>关于配送</span>
+					<li><a href="{:U('Document/documents4',array('status'=>1,'flag'=>4))}">使用说明</a></li>
+					<li><a href="{:U('Document/documents4',array('status'=>2,'flag'=>4))}">时间选择</a></li>
+					<!-- <li><a>确认收货</a></li> -->
+					<!-- <li><a>价格保护</a></li> -->
+				</ul>	
+						
+				<ul>
+					<span>售后服务</span>
+					<li><a href="{:U('Document/documents5',array('status'=>1,'flag'=>5))}">申请售后</a></li>
+					<!-- <li><a>售后服务政策</a></li>
+					<li><a>服务时效承诺</a></li> -->
+				</ul>
+
+				<ul>
+					<span>关于我们</span>
+					<li><a href="{:U('Document/documents6',array('status'=>1,'flag'=>6))}">商家合作</a></li>
+					<li><a href="{:U('Document/documents6',array('status'=>2,'flag'=>6))}">联系客服</a></li>
+					<li><a href="{:U('Document/documents6',array('status'=>3,'flag'=>6))}">加入我们</a></li>
+					<li><a href="{:U('Document/documents6',array('status'=>4,'flag'=>6))}">公司介绍</a></li>
+				</ul>
+			</div>
+			<div id="document-content">
+				
+				<div
+					<?php 
+						if($status != 1) {
+							echo "class='none'";
+						}
+					 ?>
+				>
+					<h1>如何购买</h1>
+					<section>
+						<img src="__PUBLIC__/img/document/buy.png" alt="">
+					</section>
+
+				</div>
+
+				<div
+					<?php 
+						if($status != 4) {
+							echo "class='none'";
+						}
+					 ?>
+				>
+					<h1>订单状态说明</h1>
+					<section>
+						待付款：下单后未付款或付款失败时订单为待付款状态。<br>
+						待确认：用户付款成功后，我们尚未安排派送员时订单为待确认状态，此状态下用户可以选择退款。<br>
+						待收货：我们已安排派送员，商品送达用户前订单为待收货状态。<br>
+						待评价：用户收到商品后尚未评价，订单为待评价状态。<br>
+						已完成：用户评价完一份订单中所有商品后，订单为已完成状态。<br>
+					</section>
+
+				</div>
+				
+			</div>
+		
+	
+		</div>
+
+		<include file='App/Home/View/Common/commontail.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		
+		
+	</body>
+</html>

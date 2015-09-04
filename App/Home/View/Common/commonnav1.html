@@ -1,0 +1,22 @@
+<div class="w bground-special">
+	<div id="nav-bar" class="wrapper nav-wrapper">
+		<ul class="nav nav-pills">
+			<li>
+				<a href="{:U('/Home/Index')}">首页</a>
+			</li>
+			<li>
+				<a href="{:U('/Home/index/goodslist',array('categoryId'=>$module[4]['category_id'],'campusId'=>$module[4]['campus_id']))}">小优推荐</a>
+			</li>
+			<li>
+				<a href="{:U('/Home/index/goodslist',array('categoryId'=>$module[5]['category_id'],'campusId'=>$module[5]['campus_id']))}">最新体验</a>
+			</li>
+			<li>
+				<a href="{:U('/Home/index/goodslist',array('categoryId'=>$module[6]['category_id'],'campusId'=>$module[6]['campus_id']))}">特惠秒杀</a>
+			</li>
+			<li>
+				<a href="{:U('Person/personhomepage',array('campusId'=>$campusId))}">个人中心</a>
+			</li>
+			<li></li>
+		</ul>
+	</div>
+</div>

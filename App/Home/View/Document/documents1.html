@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		
+		<title>For优 我的订单</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" data-campusId="{$campusId}">
+			<include file='App/Home/View/Common/commonsearch.html'/>
+			<include file='App/Home/View/Common/commonnav1.html'/>
+
+            <div id="info"></div>
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
+					<li class="active">
+						<a href="__SELF__">
+							<?php
+								switch($flag)
+								{
+									case 1:echo "常用服务";break;
+									case 2:echo "购买说明";break;
+									case 3:echo "付款说明";break;
+									case 4:echo "关于配送";break;
+									case 5:echo "售后服务";break;
+									case 6:echo "关于我们";break;
+									default:echo ""; 
+								}
+							?>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wrapper clearfix" >
+			<div id="document-nav-side">
+				<ul>
+					<span>常用服务</span>
+					<li
+					 <?php 
+						if($status == 1) {
+							echo "class='active'";
+						}
+					 ?>
+					 ><a href="{:U('Document/documents1',array('status'=>1,'flag'=>1))}">常见问题咨询</a></li>
+					<li  
+					<?php 
+						if($status == 2) {
+							echo "class='active'";
+						}
+					 ?>
+					><a href="{:U('Document/documents1',array('status'=>2,'flag'=>1))}">平台使用说明</a></li>
+				</ul>
+				<ul>
+					<span>购买说明</span>			
+					<li><a href="{:U('Document/documents2',array('status'=>1,'flag'=>2))}">如何购买</a></li>
+					<!-- <li><a>会员制度</a></li>
+					<li><a>积分优惠券介绍</a></li> -->
+					<li><a href="{:U('Document/documents2',array('status'=>4,'flag'=>2))}">订单状态说明</a></li>
+				</ul>
+
+				<ul>
+					<span>付款说明</span>			
+					<!-- <li><a>货到付款</a></li> -->
+					<li><a href="{:U('Document/documents3',array('status'=>1,'flag'=>3))}">在线支付</a></li>
+					<!-- <li><a>服务说明</a></li> -->
+					<li><a href="{:U('Document/documents3',array('status'=>2,'flag'=>3))}">退款服务</a></li>
+				</ul>
+
+				<ul>
+					<span>关于配送</span>
+					<li><a href="{:U('Document/documents4',array('status'=>1,'flag'=>4))}">使用说明</a></li>
+					<li><a href="{:U('Document/documents4',array('status'=>2,'flag'=>4))}">时间选择</a></li>
+					<!-- <li><a>确认收货</a></li> -->
+					<!-- <li><a>价格保护</a></li> -->
+				</ul>	
+						
+				<ul>
+					<span>售后服务</span>
+					<li><a href="{:U('Document/documents5',array('status'=>1,'flag'=>5))}">申请售后</a></li>
+					<!-- <li><a>售后服务政策</a></li>
+					<li><a>服务时效承诺</a></li> -->
+				</ul>
+
+				<ul>
+					<span>关于我们</span>
+					<li><a href="{:U('Document/documents6',array('status'=>1,'flag'=>6))}">商家合作</a></li>
+					<li><a href="{:U('Document/documents6',array('status'=>2,'flag'=>6))}">联系客服</a></li>
+					<li><a href="{:U('Document/documents6',array('status'=>3,'flag'=>6))}">加入我们</a></li>
+					<li><a href="{:U('Document/documents6',array('status'=>4,'flag'=>6))}">公司介绍</a></li>
+				</ul>
+			</div>
+			<div id="document-content">
+				<div 
+					<?php 
+						if($status == 2) {
+							echo "class='none'";
+						}
+					 ?>
+				>
+					<h1>常见问题咨询</h1>
+					<section>
+						常见问题
+						账户及购物类<br>
+						1、如何增强账户安全系数？<br>
+						1）账户密码应设置为字母、数字、符号的搭配组合，密码位数不要过短；<br>
+						2）验证常用邮箱；<br>
+						3）建议定期更换账户登录密码。<br>
+						2、如何验证手机和邮箱？<br>
+						注册for优账户后，我们将向您的邮箱发送验证邮件，进入关联邮箱进行验证即可；<br>
+						3、验证邮箱的好处有哪些？<br>
+						1）验证后可用邮箱+密码直接登录；<br>
+						2）忘记密码时也可通过接收验证邮件找回密码。<br>
+						4、密码设置的技巧有哪些？<br>
+						1）账户密码设置应字母、数字、符号搭配；<br>
+						3）密码不要设置为日常常用到的信息，例如身份证号或生日等。<br>
+						<p></p>
+						支付及退款类<br>
+						1、在线付款的方式有哪些？<br>
+						您可以选择以下方式在线付款：<br>
+						1）支付宝钱包；<br>
+						2）微信支付。<br>
+						2、如何选择货到付款？<br>
+						您在填写核对订单信息时，在支付及配送方式中，选择支付方式中的“货到付款”。<br>
+						3、如何修改我的支付方式？<br>
+						您在填写核对订单信息时已选择的支付方式在确认提交订单后是不支持修改的，您可以取消该订单然后重新下单。<br>
+						5、如何查询我是否支付成功了？<br>
+						您可以通过以下方式验证在线支付是否成功：<br>
+						1）当您完成网上在线支付过程后，系统应提示支付成功。<br>
+						2）如出现信用卡超额透支、存折余额不足、意外断线等情况支付失败，请您登录for优“我的订单”，找到未支付成功的订单，重新完成支付；<br>
+						3）一般情况下，您的每笔在线支付的订单，支付成功后，银行页面都会有显示“支付成功”的提示，如果您未及时看到支付结果，您也可以通过银行网站查询交易明细，或者致电银行的客服。同时，在我的for优的“我的订单”中，此笔订单的状态是“支付完成”。<br>
+						6、如果重复支付了，怎么办？<br>
+						您可以先和您支付时所用的银行卡的银行客服人员联系确认是否重复支付了订单，或者联系for优客服进一步查询和确认。<br>
+						7、哪些原因会造成支付不成功？<br>
+						1）所持银行卡尚未开通网上支付功能；<br>
+						2）所持银行卡内余额不足；<br>
+						3）超过银行卡支持的支付限额；<br>
+						4）输入证件号不符；<br>
+						5）银行卡预留手机号码不符；<br>
+						6）输入银行卡卡号或密码不符；<br>
+						7）所持银行卡已挂失、作废、过期；<br>
+						8）网络中断等原因。<br>
+						8、下单后未付款，订单将保留多长时间？<br>
+						在线支付订单超时说明：<br>
+						在线支付付款等待期限为24小时。请您在订购成功后24小时内完成支付，否则系统将自动取消订单；<br>
+						9、付款时网上银行网页已过期无法支付怎么办？<br>
+						您可以登录for优“我的订单”，找到未支付成功的订单，重新完成支付。<br>
+						<p></p>
+						配送类<br>
+						1、for优产品的配送范围？ <br>
+						所有开通服务的学校教学区域及学生宿舍区，详情请点击服务开通范围。<br>
+						2、配送费如何收取？ <br>
+						根据商品品类及配送地址的不同，配送费也是不同的，详情请点击配送费用。<br>
+						3、签收时发现商品包装破损，应该如何处理？ <br>
+						如包装破损，您可直接向快递员说明情况，或直接拒收。<br>
+						4、签收时有哪些注意事项？ <br>
+						1）付款及签收完毕后，请在配送人员在场的情况下，参照顾客签收单对商品数量、品牌、外观和发票等依次进行核对验收；<br>
+						2）若发现异常（如商品缺失、损坏、渗漏、无发票等），请务必让配送人员在顾客签收单上签字确认，并立即联系for优客服人员进行反馈和登记，客服人员会根据您的实际情况做相应处理。For优客服热线：88888888。<br>
+						3）如您在配送人员离开后再提出包裹外包装或封带异常，以及商品的品牌、数量或外观等存在异常而要求退换货，此时因无法确认责任，将无法为您做进一步处理，请您谅解。<br>
+						4）货到付款的商品送达时，请您当面与配送员核对商品与款项，确保货、款两清；若您在配送员离开后发现款项有误，将无法为您核实处理，请您谅解。<br>
+						5）如配送人员以公司没有规定或着急送货为借口，不配合您进行验货和签字确认，请及时联系for优客服进行投诉，客服人员将会在第一时间为您处理。 <br>
+						6）为了保护您的权益，建议您尽量不要委托他人签收；如由他人代为签收商品而没有在配送人员在场的情况下验货，则视为您所订购商品的包装无任何问题。<br>
+						7、商品到货后，我能否签收部分商品？ <br>
+						很抱歉，我司目前不支持商品部分拒收。<br>
+						<p></p>
+						（以上，红色为还有待进一步根据我们的情况进行修改的内容，蓝色为可设置超链接进一步解释的内容。因目前经营内容不符合退换货性质，退换货内容暂无。）<br>
+					</section>
+				</div>
+
+				<div
+					<?php 
+						if($status == 1) {
+							echo "class='none'";
+						}
+					 ?>
+				>
+					<h1>平台使用说明</h1>
+					<section>
+						1.买家注册<br>
+						如何注册For优平台账户？<br>
+						1.1打开网址，点击页面左上角“注册”<br>
+
+						<img style="width:386px" src="__PUBLIC__/img/document/use1.jpg" alt=""><br>
+						1.2进入注册页面<br>
+						<img src="__PUBLIC__/img/document/use2.jpg" alt=""><br>
+
+						1.3填写基本注册信息，包括用户昵称，密码，手机号码，验证邮箱并勾选“我已阅读并同意《ForU用户注册协议》”，点击立即注册即可<br>
+						<img src="__PUBLIC__/img/document/use3.jpg" alt=""><br>
+
+						1.4前往邮箱进行验证<br>
+						<img style="width:520px;height:auto" src="__PUBLIC__/img/document/use4.jpg" alt=""><br>
+						<img src="__PUBLIC__/img/document/use5.jpg" alt=""><br>
+						1.5验证成功后会出现验证成功的提示并跳转登录页面<br>
+						<img style="width:560px;height:auto" src="__PUBLIC__/img/document/use6.jpg" alt=""><br>
+						<img src="__PUBLIC__/img/document/use7.jpg" alt=""><br>
+						2.商品浏览<br>
+						2.1分类目录检索<br>
+						在页面的左侧和中间横向以及热点图下方均提供了简要的商品分类方式，如小优推荐、最新体验、特惠秒杀、早餐上门、家政服务等，且横向目录包括了个人中心。您只要点击进入相应的分类目录就能浏览查看商品详情。<br>
+						<img src="__PUBLIC__/img/document/use8.jpg" alt=""><br>
+
+						2.2在商品展示中选择商品<br>
+						分类目录往下拉会有以楼层划分的直接的商品展示，大家可以在自己需求的楼层直接点击图片购买商品<br>
+						<img src="__PUBLIC__/img/document/use9.jpg" alt=""><br>
+
+						3、关键字搜索<br>
+						您可以利用页面顶端的搜索功能，输入您想要的物品的名称，，快速搜索商品。<br>
+						<img  src="__PUBLIC__/img/document/use10.jpg" alt="">
+					</section>
+
+				</div>
+				
+			</div>
+		
+	
+		</div>
+
+		<include file='App/Home/View/Common/commontail.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		
+		
+	</body>
+</html>
