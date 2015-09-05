@@ -849,7 +849,7 @@ class PersonModel extends ViewModel {
             break;
         }
 
-        \Pingpp\Pingpp::setApiKey('sk_test_HC4CmLin9iPOTOGOW1iHqLOG');
+        \Pingpp\Pingpp::setApiKey('sk_live_vBNcIdIOKPBJEU9YOq3C02PU');
 
         try {
             $ch = \Pingpp\Charge::create(
@@ -862,7 +862,7 @@ class PersonModel extends ViewModel {
                     'extra'     => $extra,
                     'channel'   => $channel,
                     'client_ip' => $_SERVER['REMOTE_ADDR'],
-                    'app'       => array('id' => 'app_ffLajDzjLe181iHa')
+                    'app'       => array('id' => 'app_La1y14yrPa10SeHS')
                     )
                 );
             return $ch;
