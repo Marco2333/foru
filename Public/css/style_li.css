@@ -13,7 +13,7 @@ body {
 .person-info-body-page-text{ font-size: 9px; vertical-align: 9px;}
 .person-info-body-page-input{ width: 280px; height:34px; vertical-align: 10px; border-radius: 5px; border:1px solid gainsboro; font-size: 13px; padding-left: 8px;}
 .person-info-body-page-submit{ letter-spacing: 15px; font-weight: bold;}
-.glyphicon{ font-size: 18px; vertical-align: 5px;}
+.glyphicon{ font-size: 16px; vertical-align: 5px;}
 .person-info-body{ margin-left: 48px;}
 
 /*process*/
@@ -133,10 +133,10 @@ span.glyphicon-ok:before{ font-size:46px; color: white; vertical-align: -28px;}
 .thing-left{ display: inline-block; max-width: 20%; vertical-align: 10px;}
 .thing-left img{ width: 200px; height: 200px;padding: 20px;}
 .thing-right{ display: inline-block; max-width: 78%;}
-.thing-right h3{ font-size: 19px;}
+.thing-right h3{ font-size: 18px;}
 .thing-right p{ max-width: 100%; color: #aaaaaa; padding:5px 0;}
 .thing-right span{ font-size: 13px;}
-.thing-right .star{ font-size: 19px;}
+.thing-right .star{ font-size: 17px;}
 .height-star{vertical-align: -9px;}
 .body-icon{ margin-left: 25px; margin-top: 20px;}
 .body-icon .text{ font-size: 17px;}
