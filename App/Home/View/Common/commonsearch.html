@@ -23,28 +23,13 @@
 						    <a href="{:U('/Home/Index/goodslist',array('search'=>$vi['search_tag'],'campusId'=>$campusId,'categoryName'=>$vi['display_name'],'searchHidden'=>1))}">{$vi.display_name}</a>
 					    </li>			
 					</volist>
-					<!-- <li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>$campusId,'categoryName'=>'新鲜水果','searchHidden'=>1))}">新鲜水果</a>
-					</li>
-					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'牛奶','campusId'=>$campusId,'categoryName'=>'新鲜牛奶','searchHidden'=>1))}">新鲜牛奶</a>
-					</li>
-					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'面包','campusId'=>$campusId,'categoryName'=>'美味面包','searchHidden'=>1))}">美味面包</a>
-					</li>
-					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'休闲','campusId'=>$campusId,'categoryName'=>'休闲零食','searchHidden'=>1))}">休闲零食</a>
-					</li>
-					<li>
-						<a href="{:U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>$campusId,'categoryName'=>'可口饮料','searchHidden'=>1))}">可口饮料</a>
-					</li> -->
 				</ul>
 			</div>
 
 			<div id="shopping-cart" class="drop-down" >
 				<div class="drop-down-left">
 					<img src="__PUBLIC__/img/icon/shopping-cart.png" alt="">	
-					<a target="_blank" href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}">购物车 &gt;&gt;</a>
+					<a target="_blank" href="{:U('/Home/shopping_cart/shoppingcart',array('campusId'=>$campusId))}">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
 				   <empty name="cartGood">
@@ -57,10 +42,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
+				    				<a href="{:U('/Home/Shopping_Cart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/Shopping_Cart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>
@@ -83,7 +68,7 @@
 					    						  </if>	
 					    						</span>
 					    						<span class="fr">
-					    							<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+					    							<a data-href="{:U('/Home/Shopping_Cart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
 					    						</span>
 					    					</div>
 					    				</li>
@@ -92,10 +77,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="{:U('ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
+				    				<a href="{:U('Shopping_Cart/shoppingCart',array('campusId'=>$campusId))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/Shopping_Cart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>

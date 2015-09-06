@@ -1,63 +1,4 @@
 <footer>
-<!-- 	<div id="foot-part1" class="clearfix wrapper">
-		<ul>
-			<li>
-				<dl>
-					<dd><img src="__PUBLIC__/img/footer/footer1.png" alt=""></dd>
-					<dt>
-						<div>正品保障</div>
-						<div>全场正品，行货保障</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="__PUBLIC__/img/footer/footer2.png" alt=""></dd>
-					<dt>
-						<div>新手指南</div>
-						<div>快速登录，无需注册</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="__PUBLIC__/img/footer/footer3.png" alt=""></dd>
-					<dt>
-						<div>货到付款</div>
-						<div>货到付款，安心便捷</div>
-					</dt>
-				
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="__PUBLIC__/img/footer/footer4.png" alt=""></dd>
-					<dt>
-						<div>维修保障</div>
-						<div>服务保证，全国联保</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="__PUBLIC__/img/footer/footer5.png" alt=""></dd>
-					<dt>
-						<div>无忧退货</div>
-						<div>无忧退货，7日尊享</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="__PUBLIC__/img/footer/footer6.png" alt=""></dd>
-					<dt>
-						<div>会员权益</div>
-						<div>会员升级，尊贵特权</div>
-					</dt>
-				</dl>
-			</li>
-		</ul>
-	</div> -->
 	<div id="foot-part2" class="clearfix wrapper">
 		<ul>
 			<li>
@@ -65,8 +6,8 @@
 					<dd>常用服务</dd>
 					<dt>
 						<ul>
-							<li><a href="{:U('Document/documents1',array('status'=>1,'flag'=>1))}">常见问题咨询</a></li>
-							<li><a href="{:U('Document/documents1',array('status'=>2,'flag'=>1))}">平台使用说明</a></li>
+							<li><a href="{:U('Document/documents1',array('status'=>1,'flag'=>1,'campusId'=>$campusId))}">常见问题咨询</a></li>
+							<li><a href="{:U('Document/documents1',array('status'=>2,'flag'=>1,'campusId'=>$campusId))}">平台使用说明</a></li>
 						</ul>
 					</dt>
 				</dl>
@@ -76,10 +17,10 @@
 					<dd>购买说明</dd>
 					<dt>
 						<ul>
-							<li><a href="{:U('Document/documents2',array('status'=>1,'flag'=>2))}">如何购买</a></li>
+							<li><a href="{:U('Document/documents2',array('status'=>1,'flag'=>2,'campusId'=>$campusId))}">如何购买</a></li>
 							<!-- <li><a>会员制度</a></li>
 							<li><a>积分优惠券介绍</a></li> -->
-							<li><a href="{:U('Document/documents2',array('status'=>4,'flag'=>2))}">订单状态说明</a></li>
+							<li><a href="{:U('Document/documents2',array('status'=>4,'flag'=>2,'campusId'=>$campusId))}">订单状态说明</a></li>
 						</ul>
 					</dt>
 				</dl>
@@ -90,9 +31,9 @@
 					<dt>
 						<ul>
 							<!-- <li><a>货到付款</a></li> -->
-							<li><a href="{:U('Document/documents3',array('status'=>1,'flag'=>3))}">在线支付</a></li>
+							<li><a href="{:U('Document/documents3',array('status'=>1,'flag'=>3,'campusId'=>$campusId))}">在线支付</a></li>
 							<!-- <li><a>服务说明</a></li> -->
-							<li><a href="{:U('Document/documents3',array('status'=>2,'flag'=>3))}">退款服务</a></li>
+							<li><a href="{:U('Document/documents3',array('status'=>2,'flag'=>3,'campusId'=>$campusId))}">退款服务</a></li>
 						</ul>
 					</dt>
 				</dl>
@@ -102,8 +43,8 @@
 					<dd>关于配送</dd>
 					<dt>
 						<ul>
-							<li><a href="{:U('Document/documents4',array('status'=>1,'flag'=>4))}">使用说明</a></li>
-							<li><a href="{:U('Document/documents4',array('status'=>2,'flag'=>4))}">时间选择</a></li>
+							<li><a href="{:U('Document/documents4',array('status'=>1,'flag'=>4,'campusId'=>$campusId))}">使用说明</a></li>
+							<li><a href="{:U('Document/documents4',array('status'=>2,'flag'=>4,'campusId'=>$campusId))}">时间选择</a></li>
 						</ul>
 					</dt>
 				</dl>
@@ -113,7 +54,7 @@
 					<dd>售后服务</dd>
 					<dt>
 						<ul>
-							<li><a href="{:U('Document/documents5',array('status'=>1,'flag'=>5))}">申请售后</a></li>
+							<li><a href="{:U('Document/documents5',array('status'=>1,'flag'=>5,'campusId'=>$campusId))}">申请售后</a></li>
 						</ul>
 					</dt>
 				</dl>
@@ -123,10 +64,10 @@
 					<dd>关于我们</dd>
 					<dt>
 						<ul>
-							<li><a href="{:U('Document/documents6',array('status'=>1,'flag'=>6))}">商家合作</a></li>
-							<li><a href="{:U('Document/documents6',array('status'=>2,'flag'=>6))}">联系客服</a></li>
-							<li><a href="{:U('Document/documents6',array('status'=>3,'flag'=>6))}">加入我们</a></li>
-							<li><a href="{:U('Document/documents6',array('status'=>4,'flag'=>6))}">公司介绍</a></li>
+							<li><a href="{:U('Document/documents6',array('status'=>1,'flag'=>6,'campusId'=>$campusId))}">商家合作</a></li>
+							<li><a href="{:U('Document/documents6',array('status'=>2,'flag'=>6,'campusId'=>$campusId))}">联系客服</a></li>
+							<li><a href="{:U('Document/documents6',array('status'=>3,'flag'=>6,'campusId'=>$campusId))}">加入我们</a></li>
+							<li><a href="{:U('Document/documents6',array('status'=>4,'flag'=>6,'campusId'=>$campusId))}">公司介绍</a></li>
 						</ul>
 					</dt>
 				</dl>

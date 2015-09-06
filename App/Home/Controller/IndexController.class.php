@@ -410,6 +410,7 @@ public function comment(){
 		if($data1!=false){
 			$date2=$db2->where($where)->save($save);
            
+            //dump($db2->getLastSql());
             $state['value']='success';
             $this->ajaxReturn($state);
 		}else{

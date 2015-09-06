@@ -665,7 +665,7 @@ class PersonController extends Controller {
         $limit = $page->firstRow.','.$page->listRows; 
 
         $orderList = $Person->getOrderList($limit,$status);
-
+        //dump($orderList);
         $cartGood=array();
         $cartGood=D('orders')->getCartGood($phone,$campusId);
         $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签

@@ -658,8 +658,8 @@ class PersonModel extends ViewModel {
             'food.price',
             'food.discount_price',
             'food.is_discount',
-            'food.img_url'
-
+            'food.img_url',
+            'orders.is_remarked'
             );
         $order  = array(
             'together_date desc'
@@ -673,6 +673,11 @@ class PersonModel extends ViewModel {
           ->order($order)
           ->limit($limit)
           ->select();
+          for($i=0;$i<count($orderList);$i++) {
+            if($orderList[$i]['is_remarked']==1){
+                $orderList[$i]['status'] = 5;
+            }
+          }
         }
         else if($status==5){
           $orderList = M('orders')

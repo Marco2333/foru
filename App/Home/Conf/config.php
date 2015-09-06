@@ -8,14 +8,13 @@ return array(
     'DB_PWD'  =>  'changyu15',
     'DB_PORT'  =>  '3306',
     'SHOW_PAGE_TRACE' => true,  //开启调试模式
-    //'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
+    'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误
 
     'view_filter' => array('Behavior\TokenBuild'),    //开启表单令牌功能，防止表单的重复提交
 
      'THINK_EMAIL' => array(
-
 
         //qq邮箱验证通过
       /* 'SMTP_HOST'   => 'smtp.exmail.qq.com', //SMTP服务器
