@@ -49,7 +49,7 @@ $(function(){
     $("#submitPay").on("click",function(){
         var $togetherId=$('input[name="together-id"').val();
         var $orderIdstr=$("input[name='orderIDstr']").val();
-        var $pay_way=$("input[type='radio'][name='pay-way']").val();
+        var $pay_way=$("input[type='radio'][name='pay-way']:checked").val();
         var $rank=$(".main-wrapper-1-radio:checked").val();
         var $reserveTime=$("input[name='time']:checked").val();
         var $message=$("textarea[name='message']").val();
@@ -79,6 +79,7 @@ $(function(){
                        console.log(result);
                        console.log(err);
                     });
+                    console.log(data.charge);
                 }else if(data.status == -1){
                    $('#info').show();
                    $('#info').html("支付失败，请重试");
