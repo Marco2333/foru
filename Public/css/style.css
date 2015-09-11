@@ -1619,6 +1619,9 @@ footer a:hover {
 .order-info-detailed td > div > p:nth-child(2) {
 	font-size: 10px;
 	color: #bbb;
+	word-wrap: break-word;
+    overflow: hidden;
+    max-height: 70px;
 }
 .order-info-detailed td:last-child a:hover {
 	color: #EF7C5A;
@@ -1711,6 +1714,9 @@ footer a:hover {
 .goods-info-item dd p:nth-child(2) {
 	font-size: 11px;
 	color: #aaa;
+	word-wrap: break-word;
+    overflow: hidden;
+    max-height: 50px;
 }
 
 .goods-info-item dd p:last-child {
@@ -1910,6 +1916,9 @@ input.goods-count {
 	font-size: 13px;
 	margin-top: 15px;
 	width: 700px;
+	word-wrap:break-word;
+	max-height: 50px;
+	overflow: hidden;
 }
 .send-location {
 	width: 170px;
