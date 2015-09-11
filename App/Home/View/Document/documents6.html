@@ -43,36 +43,36 @@
 			<div id="document-nav-side">
 					<ul>
 					<span>常用服务</span>
-					<li><a href="{:U('Document/documents1',array('status'=>1,'flag'=>1,campusId=$campusId))}">常见问题咨询</a></li>
-					<li><a href="{:U('Document/documents1',array('status'=>2,'flag'=>1,campusId=$campusId))}">平台使用说明</a></li>
+					<li><a href="{:U('Document/documents1',array('status'=>1,'flag'=>1,campusId=>$campusId))}">常见问题咨询</a></li>
+					<li><a href="{:U('Document/documents1',array('status'=>2,'flag'=>1,campusId=>$campusId))}">平台使用说明</a></li>
 				</ul>
 				<ul>
 					<span>购买说明</span>			
-					<li><a href="{:U('Document/documents2',array('status'=>1,'flag'=>2,campusId=$campusId))}">如何购买</a></li>
+					<li><a href="{:U('Document/documents2',array('status'=>1,'flag'=>2,campusId=>$campusId))}">如何购买</a></li>
 					<!-- <li><a>会员制度</a></li>
 					<li><a>积分优惠券介绍</a></li> -->
-					<li><a href="{:U('Document/documents2',array('status'=>4,'flag'=>2,campusId=$campusId))}">订单状态说明</a></li>
+					<li><a href="{:U('Document/documents2',array('status'=>4,'flag'=>2,campusId=>$campusId))}">订单状态说明</a></li>
 				</ul>
 
 				<ul>
 					<span>付款说明</span>			
 					<!-- <li><a>货到付款</a></li> -->
-					<li><a href="{:U('Document/documents3',array('status'=>1,'flag'=>3,campusId=$campusId))}">在线支付</a></li>
+					<li><a href="{:U('Document/documents3',array('status'=>1,'flag'=>3,campusId=>$campusId))}">在线支付</a></li>
 					<!-- <li><a>服务说明</a></li> -->
-					<li><a href="{:U('Document/documents3',array('status'=>2,'flag'=>3,campusId=$campusId))}">退款服务</a></li>
+					<li><a href="{:U('Document/documents3',array('status'=>2,'flag'=>3,campusId=>$campusId))}">退款服务</a></li>
 				</ul>
 
 				<ul>
 					<span>关于配送</span>
-					<li><a href="{:U('Document/documents4',array('status'=>1,'flag'=>4,campusId=$campusId))}">使用说明</a></li>
-					<li><a href="{:U('Document/documents4',array('status'=>2,'flag'=>4,campusId=$campusId))}">时间选择</a></li>
+					<li><a href="{:U('Document/documents4',array('status'=>1,'flag'=>4,campusId=>$campusId))}">使用说明</a></li>
+					<li><a href="{:U('Document/documents4',array('status'=>2,'flag'=>4,campusId=>$campusId))}">时间选择</a></li>
 					<!-- <li><a>确认收货</a></li> -->
 					<!-- <li><a>价格保护</a></li> -->
 				</ul>	
 						
 				<ul>
 					<span>售后服务</span>
-					<li><a href="{:U('Document/documents5',array('status'=>1,'flag'=>5,campusId=$campusId))}">申请售后</a></li>
+					<li><a href="{:U('Document/documents5',array('status'=>1,'flag'=>5,campusId=>$campusId))}">申请售后</a></li>
 					<!-- <li><a>售后服务政策</a></li>
 					<li><a>服务时效承诺</a></li> -->
 				</ul>
@@ -85,28 +85,28 @@
 								echo "class='active'";
 							}
 						 ?>
-					><a href="{:U('Document/documents6',array('status'=>1,'flag'=>6,campusId=$campusId))}">商家合作</a></li>
+					><a href="{:U('Document/documents6',array('status'=>1,'flag'=>6,campusId=>$campusId))}">商家合作</a></li>
 					<li
 						<?php 
 							if($status == 2) {
 								echo "class='active'";
 							}
 						 ?>
-					><a href="{:U('Document/documents6',array('status'=>2,'flag'=>6,campusId=$campusId))}">联系客服</a></li>
+					><a href="{:U('Document/documents6',array('status'=>2,'flag'=>6,campusId=>$campusId))}">联系客服</a></li>
 					<li
 						<?php 
 							if($status == 3) {
 								echo "class='active'";
 							}
 						 ?>
-					><a href="{:U('Document/documents6',array('status'=>3,'flag'=>6,campusId=$campusId))}">加入我们</a></li>
+					><a href="{:U('Document/documents6',array('status'=>3,'flag'=>6,campusId=>$campusId))}">加入我们</a></li>
 					<li
 						<?php 
 							if($status == 4) {
 								echo "class='active'";
 							}
 						 ?>
-					><a href="{:U('Document/documents6',array('status'=>4,'flag'=>6,campusId=$campusId))}">公司介绍</a></li>
+					><a href="{:U('Document/documents6',array('status'=>4,'flag'=>6,campusId=>$campusId))}">公司介绍</a></li>
 				</ul>
 			</div>
 			<div id="document-content">
