@@ -873,7 +873,7 @@ class PersonModel extends ViewModel {
             return $ch;
         } catch (\Pingpp\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
-            
+            echo $e;
            echo $e->getHttpBody();
         }
 

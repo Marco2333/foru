@@ -69,30 +69,35 @@ $(function(){
             message:$message,
             reserveTime:$reserveTime
         };
-
+        $(".mask").removeClass("none");
          $.ajax({
             url:payAtOnceUrl,
             data:data,
             success:function(data){
                 if(data.status == 2){
+                    
                     pingpp.createPayment(data.charge, function(result, err) {
-                       console.log(result);
-                       console.log(err);
+                       // console.log(result);
+                       // console.log(err);
                     });
                     console.log(data.charge);
                 }else if(data.status == -1){
+                   $(".mask").addClass("none");
                    $('#info').show();
                    $('#info').html("支付失败，请重试");
                    setTimeout("$('#info').hide()", 2000 );
                 }else if(data.status == 1) {
+                    $(".mask").addClass("none");
                     $('#info').show();
                     $('#info').html("亲,收货地址超出配送范围哦");
                     setTimeout("$('#info').hide()", 2000 );
                 }else if(data.status == 0) {
+                    $(".mask").addClass("none");
                     $('#info').show();
                     $('#info').html("亲，休息喽，下次再来");
                     setTimeout("$('#info').hide()", 2000 );
                 }else if(data.status == 3){
+                    $(".mask").addClass("none");
                     $('#info').show();
                     $('#info').css('width','300px').html("该笔订单已经支付过了，不要重复支付哦。");
                     setTimeout("$('#info').hide()", 2000 );

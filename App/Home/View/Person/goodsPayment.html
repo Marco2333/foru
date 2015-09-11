@@ -277,14 +277,15 @@
 				
 				<div class="wrapper main-wrapper-7 ">
 					<div class="main-wrapper-7-main">
-						<span class="zhe"><span>合计：</span><span class="price">￥</span><span class="price">{$price}</span><span class="price">元</span><br /></span>
+						<span class="zhe"><span>合计：</span><span class="price">￥{$price}</span><br /></span>
 						<input id="submitPay" type="button" value="立即支付"/>
 					</div>
 				</div>
 			</form>
 		</div>
-			<!--li-->
-		
+		<div class="mask none">
+			<div class="loder center"></div>
+		</div>
 		<include file='App/Home/View/Common/commontail.html'/>
 		<include file='App/Home/View/Common/commonlocation.html'/>
 
