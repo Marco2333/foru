@@ -7,11 +7,15 @@ return array(
     'DB_USER' =>  'changyu2015',
     'DB_PWD'  =>  'changyu15',
     'DB_PORT'  =>  '3306',
-    'SHOW_PAGE_TRACE' => true,  //开启调试模式
+    'DEFAULT_FILTER'  =>  'htmlspecialchars',
+    //'SHOW_PAGE_TRACE' => true,  //开启调试模式
     'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误
-
+    
+     'TMPL_EXCEPTION_FILE' => 'Public:error', // 定义公共错误模板
+     'TMPL_ACTION_ERROR' => 'Public:error', // 默认错误跳转对应的模板文件
+   
     'view_filter' => array('Behavior\TokenBuild'),    //开启表单令牌功能，防止表单的重复提交
 
      'THINK_EMAIL' => array(

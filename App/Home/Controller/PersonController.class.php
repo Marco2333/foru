@@ -23,7 +23,7 @@ class PersonController extends Controller {
     }
 
     public function index(){
-        $this->personInfo();
+        $this->personinfo();
     }
 
     public function getCampusName($campusId, $cityId){
@@ -44,7 +44,7 @@ class PersonController extends Controller {
       $city=D('CampusView')->getAllCity();   //获取所有的城市 
       $campus=D('CampusView')->getCampusByCity($cityId);
 
-      $this->assign('campus',$campus)
+      $this->assigI('campus',$campus)
            ->assign('city',$cityId)
            ->assign("cities",$city)
            ->assign("campus_name",$campus_name[0]);
@@ -80,13 +80,13 @@ class PersonController extends Controller {
                      ->assign('campusId',$campusId)
                      ->assign('hotSearch',$hotSearch)
                      ->assign('cartGood',$cartGood);
-                $this->display("personInfo");
+                $this->display("personinfo");
             }
             else {
                 $this->assign("active",$active)
                      ->assign("categoryHidden",1)
                      ->assign('module',$module);
-                $this->display("personInfo");
+                $this->display("personinfo");
             }
         }
         else {
@@ -94,13 +94,15 @@ class PersonController extends Controller {
         }
     }
 
-    public function savePersonInfo($nickname,
-                                   $usersex,
-                                   $academy,
-                                   $qq,
-                                   $weixin      ){
+    public function savePersoninfo(){
 
+        $nickname=I('nickname');
+        $usersex=I('usersex');
+        $weixin=I('weixin');
+        $qq=I('qq');
+        $academy=I('academy');
         $user = $_SESSION['username'];
+        //dump($nickname);
 
         $data = array(
             'nickname'  =>  $nickname,
@@ -140,12 +142,14 @@ class PersonController extends Controller {
         if ($user != null) {
             $upload             = new \Think\Upload();
             $upload->maxSize    = 4194304;
-            $upload->exts       = array('jpg','gif','jpeg','bmp');
+            $upload->exts       = array('jpg','gif','jpeg','bmp','png');
             $upload->rootPath   = './forImg/';
             $upload->savePath   = '/headimg/';
             
+           // dump($upload->getError());
             $info = $upload->uploadOne($_FILES['img']);
-
+            
+            //dump($info);
             if ($info) {
                 $data['img_url'] = C('IpUrl')."forImg"
                                   .$info['savepath']
@@ -166,9 +170,9 @@ class PersonController extends Controller {
                 }
                 $result = $Users->where($where)
                                 ->save($data);
-
+                
                 if ($result !== false) {
-                    $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)          
+                    $this->redirect('/Home/Person/personinfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)          
                 }
                 else {
                     // 数据库操作失败
@@ -177,7 +181,7 @@ class PersonController extends Controller {
             else {
                 // $this->error($upload->getError());
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
-                $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)
+                $this->redirect('/Home/Person/personinfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)
             }
         }
         else {
@@ -367,7 +371,7 @@ class PersonController extends Controller {
      */
     public function phone(){
         $user  = $_SESSION['username'];
-        $mail = $_POST["phone"];
+        $mail =I("phone");
 		$check  = $_POST['check'];
         $flag   = check_verify($check);
 
@@ -507,6 +511,7 @@ class PersonController extends Controller {
         $campusId=I('campusId');
 
         $channel=I('pay_way');                  //支付方式
+        //dump($channel);
         $reserveTime=I('reserveTime');           //预定时间
         $rank=I('rank'); 
         $message=I('message');                  //获取备注信息                 
@@ -679,7 +684,7 @@ class PersonController extends Controller {
              ->assign('module',$module)
              ->assign('orderpage',$show);
       
-        $this->display("orderManage");
+        $this->display("ordermanage");
     }
 
     /**
