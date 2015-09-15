@@ -20,7 +20,7 @@ class HotSearchModel extends Model{
      * @return [type]           [description]
      */
 	public function getHotSearchName($campusId,$limit){
-         $hotSearch=$this->scope("hotsearch",array('where'=>array('campus_id'=>$campusId,'is_display'=>1)))->limit($limit)->select();
+         $hotSearch=$this->scope("hotsearch",array('where'=>array('campus_id'=>$campusId,'is_display'=>1)))->cache(true)->limit($limit)->select();
 
          return $hotSearch;
 	}

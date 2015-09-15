@@ -46,11 +46,12 @@ class IndexController extends Controller {
                
         $campusList=M('campus')
         ->field('campus_id,campus_name')
-        //->cache(true)
+        ->cache(true)
         ->select(); 
               //获取校区列表
         $newsImage=M('news')
         ->field('news_id,img_url')
+        ->cache(true)
         ->where('campus_id=%d',$campusId)
         ->select();               //获取主页头图
         
@@ -62,6 +63,7 @@ class IndexController extends Controller {
         foreach ($homeGood as $key => $cate) {
             $goods=$good->where('category_id=%d and campus_id= %d and tag=1 and status=1',$cate['category_id'],$cate['campus_id'])
             ->limit(5)
+            ->cache(true)
             ->select();
 
             $goodList[$key]=$goods;

@@ -3,7 +3,7 @@ $(document).ready(function(){
   $(".drop-down-left,.drop-down-layer").hover(function(){
       $(".drop-down-layer").show();
       $.post(
-          '/index.php/Home/ShoppingCart/getCartGood',
+          '/index.php/Home/Shoppingcart/getCartGood',
           {campusId:$campusId},
           function(json){
                $('.index-shopping-cart ul').empty();
@@ -34,7 +34,7 @@ $(document).ready(function(){
                   
                    var orderId=$(this).parent().parent().parent().attr('id');
                    $.post(
-                      '/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
+                      '/index.php/Home/Shoppingcart/deleteOrders',{orderIds:orderId},
                       function(data){
                         if(data.status=='success') {
                             $(this).parent().parent().parent().remove();
@@ -50,7 +50,7 @@ $(document).ready(function(){
        var orderId=$(this).parent().parent().parent().attr('id');
        console.log(orderId);
        $.post(
-          '/index.php/Home/ShoppingCart/deleteOrders',{orderIds:orderId},
+          '/index.php/Home/Shoppingcart/deleteOrders',{orderIds:orderId},
           function(data){
              if(data.status=='success') {
                  $(this).parent().parent().parent().remove();
