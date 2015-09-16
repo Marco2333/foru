@@ -86,7 +86,7 @@ class PersonController extends Controller {
                 $this->assign("active",$active)
                      ->assign("categoryHidden",1)
                      ->assign('module',$module);
-                $this->display("personInfo");
+                $this->display("personinfo");
             }
         }
         else {
@@ -216,7 +216,7 @@ class PersonController extends Controller {
                  ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
 
-            $this->display();
+            $this->display('locamanage');
         }
         else {
             $this->assign("categoryHidden",1)
@@ -225,7 +225,7 @@ class PersonController extends Controller {
                  ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
 
-            $this->display();
+            $this->display('locamanage');
         }
    
 
@@ -679,7 +679,7 @@ class PersonController extends Controller {
              ->assign('module',$module)
              ->assign('orderpage',$show);
       
-        $this->display("orderManage");
+        $this->display("ordermanage");
     }
 
     /**
