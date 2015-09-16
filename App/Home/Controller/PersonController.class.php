@@ -80,7 +80,7 @@ class PersonController extends Controller {
                      ->assign('campusId',$campusId)
                      ->assign('hotSearch',$hotSearch)
                      ->assign('cartGood',$cartGood);
-                $this->display("personInfo");
+                $this->display("personinfo");
             }
             else {
                 $this->assign("active",$active)
@@ -168,7 +168,7 @@ class PersonController extends Controller {
                                 ->save($data);
 
                 if ($result !== false) {
-                    $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)          
+                    $this->redirect('/Home/Person/personinfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)          
                 }
                 else {
                     // 数据库操作失败
@@ -177,7 +177,7 @@ class PersonController extends Controller {
             else {
                 // $this->error($upload->getError());
                 // $info = $upload->uploadOne($_FILES['img'])操作失败
-                $this->redirect('/Home/Person/personInfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)
+                $this->redirect('/Home/Person/personinfo',array('campusId'=>session('campusId'),'active'=>1));//,array('active'=>1)
             }
         }
         else {
@@ -368,7 +368,7 @@ class PersonController extends Controller {
     public function phone(){
         $user  = $_SESSION['username'];
         $mail = $_POST["phone"];
-		$check  = $_POST['check'];
+    $check  = $_POST['check'];
         $flag   = check_verify($check);
 
         $exitMail=M('users')->where('phone = %s',$user)->getField('mail');
@@ -388,13 +388,13 @@ class PersonController extends Controller {
             }
         }
         else if(!$flag) {
-        	$state = array(
+          $state = array(
                 'value' => 'checkerror'
               );
             $this->ajaxReturn($state);
         }
         else if($exitMail!=$mail) {
-        	$state = array(
+          $state = array(
                 'value' => 'phoneerror'
               );
             $this->ajaxReturn($state);
