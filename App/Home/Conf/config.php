@@ -1,11 +1,11 @@
 <?php
 return array(
     'DB_TYPE' =>  'mysql',
-    'DB_HOST' =>  '120.26.213.172',
+    'DB_HOST' =>  '127.0.0.1',
     //'DB_HOST' =>  '127.0.0.1',
-    'DB_NAME' =>  'foryou',
-    'DB_USER' =>  'changyu2015',
-    'DB_PWD'  =>  'changyu15',
+    'DB_NAME' =>  'foru',
+    'DB_USER' =>  'root',
+    'DB_PWD'  =>  '',
     'DB_PORT'  =>  '3306',
     'SHOW_PAGE_TRACE' => true,  //开启调试模式
     'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感

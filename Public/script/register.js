@@ -72,7 +72,7 @@ $(document).ready(function(){
 			$("#button-register").css("background-color","#ddd");
 			$("#button-register").attr("disabled", true);
 		}
-	})
+	});
 	$("#register-info input[name='phone']").blur(function(){
 		checkUserExist();
 	});

@@ -448,8 +448,7 @@ public function comment(){
         $where = array(
             'phone'       => $_SESSION['username'],
             'status'      => 0,
-            'order_count' => array('gt',0),
-            '_logic'      => 'and'
+            'order_count' => array('gt',0)
             );
         $field = array(
             'order_id',

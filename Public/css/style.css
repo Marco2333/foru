@@ -2275,3 +2275,9 @@ input.goods-count {
 	line-height: 22px;
 	padding: 0 8px;
 }
+#protocol-body {
+	width: 600px;
+	margin: 0 auto;
+	font-family: "fangsong";
+	margin-bottom: 40px;
+}
