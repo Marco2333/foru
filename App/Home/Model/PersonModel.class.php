@@ -846,10 +846,10 @@ class PersonModel extends ViewModel {
 //$extra 在使用某些渠道的时候，需要填入相应的参数，其它渠道则是 array() .具体见以下代码或者官网中的文档。其他渠道时可以传空值也可以不传。
         $extra = array();
         switch ($channel) {
-            case 'alipay_wap':
+            case 'alipay_pc_direct':
             $extra = array(
                 'success_url' => 'http://www.enjoyfu.com.cn/index.php',
-                'cancel_url' => 'http://www.enjoyfu.com.cn/index.php'
+               // 'cancel_url' => 'http://www.enjoyfu.com.cn/index.php'
                 );
             break;
         }
@@ -874,7 +874,7 @@ class PersonModel extends ViewModel {
         } catch (\Pingpp\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
             echo $e;
-           echo $e->getHttpBody();
+            echo $e->getHttpBody();
         }
 
     }

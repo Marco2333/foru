@@ -75,12 +75,11 @@ $(function(){
             data:data,
             success:function(data){
                 if(data.status == 2){
-                    
-                    pingpp.createPayment(data.charge, function(result, err) {
-                       // console.log(result);
-                       // console.log(err);
+                    pingppPc.createPayment(data.charge, function(result, err) {
+                        console.log(result);
+                        console.log(err);
                     });
-                    console.log(data.charge);
+                    //console.log(data.charge);
                 }else if(data.status == -1){
                    $(".mask").addClass("none");
                    $('#info').show();

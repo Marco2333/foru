@@ -46,11 +46,12 @@ class IndexController extends Controller {
                
         $campusList=M('campus')
         ->field('campus_id,campus_name')
-        //->cache(true)
+        ->cache(true)
         ->select(); 
               //获取校区列表
         $newsImage=M('news')
         ->field('news_id,img_url')
+        ->cache(true)
         ->where('campus_id=%d',$campusId)
         ->select();               //获取主页头图
         
@@ -60,8 +61,9 @@ class IndexController extends Controller {
         
         $homeGood=D('FoodCategory')->getClasses($campusId,8);
         foreach ($homeGood as $key => $cate) {
-            $goods=$good->where('category_id=%d and campus_id= %d',$cate['category_id'],$cate['campus_id'])
+            $goods=$good->where('category_id=%d and campus_id= %d and tag=1 and status=1',$cate['category_id'],$cate['campus_id'])
             ->limit(5)
+            ->cache(true)
             ->select();
 
             $goodList[$key]=$goods;
@@ -133,8 +135,11 @@ class IndexController extends Controller {
       * @param  string $search    
       * @return [type]             
       */
-     public function goodslist($categoryId='',$search=''){
+     public function goodslist(){
 
+        $categoryId=I('categoryId','');
+        $search=I('search','');
+        //dump($search."aaaa");
         $campusId=I('campusId');        //获取校区id
         if($campusId==null){
             $campusId=1;
@@ -182,6 +187,8 @@ class IndexController extends Controller {
          $hotSearch=D('HotSearch')->getHotSearchName($campusId,6);  //热销标签
         if($search!=''){
             $data['name|food_flag']=array('like',"%".$search."%");
+            $data['tag']=1;
+            $data['status']=1;
             $this->assign('search',$search);
             $searchHidden=I('searchHidden');
             if($searchHidden==1){
@@ -384,16 +391,16 @@ public function comment(){
 	public function saveComment(){
 		$db1=M('food_comment');
 		$db2=M('orders');
-		$add['order_id']=$_POST['order_id'];
-		$add['phone'] = $_SESSION['username'];
-		$add['food_id']=$_POST['food_id'];
-		$add['comment']=$_POST["comment"];
-		$add['grade'] = $_POST["grade"];
-		$add['campus_id']=$_POST['campus_id'];
+		$add['order_id']=I('order_id');
+		$add['phone'] = session('username');
+		$add['food_id']=I('food_id');
+		$add['comment']=I("comment");
+		$add['grade'] = I("grade");
+		$add['campus_id']=I('campus_id');
 		$add['date']=date("Y-m-d H:i:s",time());
 		/*向food-comment表中添加评论*/	
 		$add['tag']=1;
-        $ifcomment=$db2->field('is_remarked')->where('order_id = %d and phone =%s',$add['order_id'],$add['phone'])->find();
+        $ifcomment=$db2->field('is_remarked')->where('order_id = %d and phone ="%s"',$add['order_id'],$add['phone'])->find();
 
        if($ifcomment['is_remarked']){
             $state['value']='hasComment';

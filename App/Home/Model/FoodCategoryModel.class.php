@@ -12,6 +12,7 @@ class FoodCategoryModel extends Model{
 	public function getModule($campusId){
 		$module=$this                 //获取首页八个某块的
 		->where('campus_id=%d and serial is not null and serial !=0',$campusId)
+		->cache(true)
 		->order('serial')
 		->select();
 		return $module;
@@ -25,6 +26,7 @@ class FoodCategoryModel extends Model{
 	public function getAllClasses($campusId){
         $classes=$this
         ->where('campus_id=%d and tag=1 and is_open = 1',$campusId)
+        ->cache(true)
         ->select();   
        
         return $classes;
@@ -39,6 +41,7 @@ class FoodCategoryModel extends Model{
         $classes=$this
         ->where('campus_id=%d and tag=1 and is_open = 1',$campusId)
         ->limit($num)
+        ->cache(true)
         ->select();   
        
         return $classes;
@@ -52,6 +55,7 @@ class FoodCategoryModel extends Model{
 	public function getHomeClasses($campusId){
         $classes=$this
          ->where('campus_id=%d and tag=1 and is_open = 1',$campusId)
+         ->cache(true)
         ->limit(8)
         ->select();          //获取分类   
 
@@ -60,6 +64,7 @@ class FoodCategoryModel extends Model{
         	$emptyClass=$this
         	->where('campus_id = %d and tag =1 and is_open=0 and serial is not null',$campusId)
         	->limit($restNumber)
+        	->cache(true)
         	->select();
 
           

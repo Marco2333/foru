@@ -51,7 +51,7 @@ $(document).ready(function(){
       var $phone=$.cookie('username');
 
       $.post(
-        '../../../../Home/ShoppingCart/saveOrderCount',
+        '../../../../Home/Shoppingcart/saveOrderCount',
         {orderCount:$orderCount,orderId:$orderId,phone:$phone},
         function(data){
          
@@ -70,7 +70,7 @@ $(document).ready(function(){
       var $phone=$.cookie('username');
 
       $.post(
-        '../../../../Home/ShoppingCart/saveOrderCount',
+        '../../../../Home/Shoppingcart/saveOrderCount',
         {orderCount:$orderCount,orderId:$orderId,phone:$phone},
         function(data){
         
@@ -105,7 +105,7 @@ $(document).ready(function(){
       var orderId=$(this).parent().parent().attr('data-orderId');
       console.log(datarow);
      
-      $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderId},function(json){
+      $.post('../../../../Home/Shoppingcart/deleteOrders',{orderIds:orderId},function(json){
         if(json.status=="success"){
           $(datarow).remove();
           caltotalCost();
@@ -136,7 +136,7 @@ $(document).ready(function(){
       });
      
       if (confirm('是否删除？')) {
-       $.post('../../../../Home/ShoppingCart/deleteOrders',{orderIds:orderIds},function(json){
+       $.post('../../../../Home/Shoppingcart/deleteOrders',{orderIds:orderIds},function(json){
         if(json.status=="success"){
           var trList = $(".order-info-detailed");
           for(var i = 0;i<trList.length;i++){

@@ -60,7 +60,7 @@ class ShoppingCartController extends Controller {
              ->assign('hotSearch',$hotSearch)
              ->assign('module',$module);
 
-        $this->display("shoppingcart");
+        $this->display();
 	}
 
 	public function index(){

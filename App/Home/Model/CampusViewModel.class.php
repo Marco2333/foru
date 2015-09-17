@@ -12,12 +12,12 @@ class CampusViewModel extends ViewModel {
 	);
 
 	public function getAllCity(){
-		$city=M('city')->select();
+		$city=M('city')->cache(true)->select();
 		return $city;
 	}
 
 	public function getCampusByCity($cityId){
-       $campus=M('campus')->field('campus_id,campus_name')->where('city_id=%d',$cityId)->select();
+       $campus=M('campus')->field('campus_id,campus_name')->cache(true)->where('city_id=%d',$cityId)->select();
        return $campus;
 	}
 
