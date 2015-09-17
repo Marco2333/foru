@@ -29,7 +29,7 @@
 			<div id="shopping-cart" class="drop-down" >
 				<div class="drop-down-left">
 					<img src="__PUBLIC__/img/icon/shopping-cart.png" alt="">	
-					<a target="_blank" href="{:U('/Home/shopping_cart/shoppingcart',array('campusId'=>$campusId))}">购物车 &gt;&gt;</a>
+					<a target="_blank" href="{:U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId))}">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
 				   <empty name="cartGood">
@@ -42,10 +42,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="{:U('/Home/Shopping_Cart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
+				    				<a href="{:U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('/Home/Shopping_Cart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>
@@ -68,7 +68,7 @@
 					    						  </if>	
 					    						</span>
 					    						<span class="fr">
-					    							<a data-href="{:U('/Home/Shopping_Cart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+					    							<a data-href="{:U('/Home/Shoppingcart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
 					    						</span>
 					    					</div>
 					    				</li>
@@ -77,10 +77,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="{:U('Shopping_Cart/shoppingCart',array('campusId'=>$campusId))}" class="fl">
+				    				<a href="{:U('Shoppingcart/shoppingCart',array('campusId'=>$campusId))}" class="fl">
 				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
 				    				</a>
-				    				<a href="{:U('/Home/Shopping_Cart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="{:U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>
