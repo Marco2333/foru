@@ -1,8 +1,4 @@
 $(function(){
-
-   if(screen.width < 700) {
-    	window.location.href = "../../../../fuwebapp/index.php";
-   }
    $('#slide-wrapper').carousel();
     
    $.get(

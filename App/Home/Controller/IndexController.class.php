@@ -624,7 +624,7 @@ public function comment(){
 
      public function forgetPassword(){
         $this->assign('categoryHidden',1);
-        $this->display();
+        $this->display('forgetpassword');
      }
 
      /**

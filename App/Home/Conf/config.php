@@ -7,7 +7,7 @@ return array(
     'DB_USER' =>  'root',
     'DB_PWD'  =>  '',
     'DB_PORT'  =>  '3306',
-    'SHOW_PAGE_TRACE' => true,  //开启调试模式
+    //'SHOW_PAGE_TRACE' => true,  //开启调试模式
     'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误
