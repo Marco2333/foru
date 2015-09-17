@@ -1,11 +1,11 @@
 <?php
 return array(
     'DB_TYPE' =>  'mysql',
-    'DB_HOST' =>  '120.26.213.172',
+    'DB_HOST' =>  '127.0.0.1',
     //'DB_HOST' =>  '127.0.0.1',
-    'DB_NAME' =>  'foryou',
-    'DB_USER' =>  'changyu2015',
-    'DB_PWD'  =>  'changyu15',
+    'DB_NAME' =>  'foru',
+    'DB_USER' =>  'root',
+    'DB_PWD'  =>  '',
     'DB_PORT'  =>  '3306',
     'DEFAULT_FILTER'  =>  'htmlspecialchars',
     'DATA_CACHE_TIME'=>60,        //设置缓存时间为60s

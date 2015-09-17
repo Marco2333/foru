@@ -220,7 +220,7 @@ class PersonController extends Controller {
                  ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
 
-            $this->display();
+            $this->display('locamanage');
         }
         else {
             $this->assign("categoryHidden",1)
@@ -229,7 +229,7 @@ class PersonController extends Controller {
                  ->assign('hotSearch',$hotSearch)
                  ->assign('cartGood',$cartGood);
 
-            $this->display();
+            $this->display('locamanage');
         }
    
 
@@ -371,8 +371,10 @@ class PersonController extends Controller {
      */
     public function phone(){
         $user  = $_SESSION['username'];
+
         $mail =I("phone");
-		$check  = $_POST['check'];
+	    	$check  = $_POST['check'];
+
         $flag   = check_verify($check);
 
         $exitMail=M('users')->where('phone = %s',$user)->getField('mail');
@@ -392,13 +394,13 @@ class PersonController extends Controller {
             }
         }
         else if(!$flag) {
-        	$state = array(
+          $state = array(
                 'value' => 'checkerror'
               );
             $this->ajaxReturn($state);
         }
         else if($exitMail!=$mail) {
-        	$state = array(
+          $state = array(
                 'value' => 'phoneerror'
               );
             $this->ajaxReturn($state);
