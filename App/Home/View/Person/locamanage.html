@@ -94,8 +94,9 @@
 						</button>
 					<!-- </form> -->
 				</div>
-				<form id="receiver_form" action="{:U('Person/addOrReviseSave',array('campusId'=>$campusId))}" method='post'>
+				<form id="receiver_form" action="{:U('Person/addOrReviseSave')}" method='post'>
 					<div id="change-location" class="none">
+						<input type="text" value='{$campusId}' name='campusId' class="none">
 						<div id="change-location-info">
 						    <div class="location-info-div clearfix" >
 						    	<div class="fl none">

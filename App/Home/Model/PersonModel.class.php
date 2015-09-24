@@ -524,8 +524,7 @@ class PersonModel extends ViewModel {
             'address'       =>  I('detailed-location'),
             'campus_id'     =>  $campus_id
         );
-            
-        dump($data);
+
         $Receiver = M("receiver");
         $result = $Receiver->where("rank = %s and phone_id =%s",$rank,$phoneId)
                                ->save($data);

@@ -1,13 +1,12 @@
 <?php
 return array(
     'DB_TYPE' =>  'mysql',
-    'DB_HOST' =>  '127.0.0.1',
-    //'DB_HOST' =>  '127.0.0.1',
+    'DB_PORT'  =>  '3306',
+     'DB_HOST' =>  '127.0.0.1',
     'DB_NAME' =>  'foru',
     'DB_USER' =>  'root',
     'DB_PWD'  =>  '',
-    'DB_PORT'  =>  '3306',
-    //'SHOW_PAGE_TRACE' => true,  //开启调试模式
+   // 'SHOW_PAGE_TRACE' => true,  //开启调试模式
     'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误
@@ -37,3 +36,4 @@ return array(
       
     ), 
 );
+

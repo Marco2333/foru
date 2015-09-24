@@ -289,9 +289,9 @@ class PersonController extends Controller {
     }
 
     public function addOrReviseSave(){
+     
         $Person = D('Person');
         $rank=I('rank');
-
         $phoneId=$_SESSION['username'];
 
         if($rank!="0"){
@@ -310,7 +310,7 @@ class PersonController extends Controller {
                 $this->redirect('/Home/Person/goodsPayment',array('campusId'=>I('campusId'),'togetherId'=>$togetherId));
             }
             else {
-                $this->redirect('/Home/Person/locaManage',array('campusId'=>I('campusId')));
+                $this->redirect('/Home/Person/locamanage',array('campusId'=>I('campusId')));
             }
         }
        
