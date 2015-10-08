@@ -241,6 +241,12 @@ class IndexController extends Controller {
 
         $good=M('food')->where($data)->find();     //获取商品详情
         $img=split(',',$good['info']);
+        foreach ($img as $key => $v) {
+           if($v==""){
+               array_splice($img, $key,1);
+           }
+        }
+       
         array_unshift($img, $good['img_url']);
         $good['img']=$img;                        //食品详情图片
 
