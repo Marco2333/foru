@@ -538,7 +538,7 @@ class PersonController extends Controller {
             $where['together_id']=$together_id;
             $where['tag']=1;
             $ifHasPaid=M('orders')->where($where)->find();       
-            if($ifHasPaid['status']!=0&&$ifHasPaid['status']!=1){
+            if($ifHasPaid['status']!=0&&$ifHasPaid['status']!=1&&$ifHasPaid['status']!=7){   //判断商品是否支付过
               $res['status']=3;
               $this->ajaxReturn($res);
               return;

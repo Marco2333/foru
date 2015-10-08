@@ -5,7 +5,7 @@ header("Content-type:text/html;charset=utf-8");
 
 class PayController extends Controller {
 
-	public function pay(){
+	/*public function pay(){
 		require_once(dirname(__FILE__) . '/../init.php');
 		$input_data = json_decode(file_get_contents('php://input'), true);
 		if (empty($input_data['channel']) || empty($input_data['amount'])) {
@@ -91,7 +91,7 @@ class PayController extends Controller {
 		} catch (\Pingpp\Error\Base $e) {
 			header('Status: ' . $e->getHttpStatus());
 			echo($e->getHttpBody());
-		}
+		}*/
 
 	}
 }

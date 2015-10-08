@@ -137,11 +137,7 @@ $(document).ready(function(){
                        success:function(data){
                            if (data['result'] != 0)
                            {
-                               window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['ordersId']+"&campusId="+$.cookie('campusId');
-                           }
-                           else
-                           {
-                               alert("网络不给力啊！");
+                               window.location.href="../../../../../../Home/Person/goodsPayment?orderIds="+data['ordersId']+"&campusId="+$campusId;
                            }
                        }
                    })

@@ -62,7 +62,7 @@ class PersonModel extends ViewModel {
     public function setTogetherID(){
         $user = $_SESSION['username'];
 
-        $together_id = $user.Time().'000';
+        $together_id = $user.Time().rand(100,999);
         $time = date("Y-m-d H:m:s",time());
 
         $orderIDstr = I('orderIds');
@@ -230,7 +230,7 @@ class PersonModel extends ViewModel {
 
         for ($i = 0;$i < count($orderID);$i++) {
             $Orders   = M('orders');
-            $joinFood = 'food On orders.food_id = food.food_id';
+            $joinFood = 'food On orders.food_id = food.food_id and orders.campus_id=food.campus_id';
             $where    = array(
                 'order_id'    => $orderID[$i],
                 '_logic'      => 'and'  
@@ -848,7 +848,6 @@ class PersonModel extends ViewModel {
             case 'alipay_pc_direct':
             $extra = array(
                 'success_url' => 'http://www.enjoyfu.com.cn/index.php',
-               // 'cancel_url' => 'http://www.enjoyfu.com.cn/index.php'
                 );
             break;
         }

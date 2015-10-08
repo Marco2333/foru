@@ -29,7 +29,7 @@ class ShoppingCartController extends Controller {
         $campus=M('campus')
         ->field('campus_id,campus_name')
         ->where('status=1')
-        ->cache(true)
+        ->cache(true，60)
         ->select();       //获取校区列表
 
         $phone=session('username');

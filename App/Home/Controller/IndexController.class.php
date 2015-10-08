@@ -552,7 +552,7 @@ public function comment(){
             'order_id'    => $order_id,
             'campus_id'   => $campusId,
             'create_time' => date("Y-m-d H:m:s",Time()),
-            'status'      => 0,
+            'status'      => 7,
             'order_count' => $count,
             'is_remarked' => 0,
             'food_id'     => $foodId,
