@@ -41,10 +41,12 @@ function login() {
 			   $('#info').show();
                $('#info').html("验证码错误");
                setTimeout("$('#info').hide()", 2000 );
+               $('#securityCode').attr("src",securityCodeUrl+'?id='+Math.random());
 			}else {
 			   $('#info').show();
                $('#info').html("用户名或者密码错误");
                setTimeout("$('#info').hide()", 2000 );
+               $('#securityCode').attr("src",securityCodeUrl+'?id='+Math.random());
 			}
 		}
 	    

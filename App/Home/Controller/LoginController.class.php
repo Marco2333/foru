@@ -77,11 +77,18 @@ class LoginController extends Controller {
             }else{
                 $data['password']=I("password");   //在验证时已经加密
                 $data['create_time']=date('Y-m-d',I('register_time'));
+
+                //校验是否已经注册过
+                $result=M("users")->where("mail = '%s'",$data['mail'])->find();
+              
+                if($result!=null){
+                    $this->error("该用户已经注册,请不要重复注册，快前往登陆吧",U('/Home/Login/index'),3);
+                }
                 $status=M("users")->data($data)->add();
                 
                 if($status==false){
-                    // $this->ajaxReturn($User->getError());
-                    $this->error("注册失败！");
+                    $this->ajaxReturn($User->getError());
+                   $this->error("注册失败！");
                 }
                 else{
                     $this->success("恭喜您，注册成功了哦！正在为你转向登陆页面",U('/Home/Login/index'),3);

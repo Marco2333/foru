@@ -196,7 +196,7 @@ class IndexController extends Controller {
             } 
         }
 
-        $count = M('food')->where($data)->count();// 查询满足要求的总记录数
+        $count = M('food')->where($data)->count();// 查询满足要求的总记录数       
          //分页
         $page = new \Think\Page($count,12);
         $page->setConfig('header','件商品');
@@ -649,11 +649,10 @@ public function comment(){
         $check  = $_POST['check'];
         $flag   = check_verify($check);
 
-         $where['mail']=$mail;
+        $where['mail']=$mail;
         $exitMail=M('users')->where($where)->find();
         if($exitMail!=null && $flag) {
             $message['value']='success';
-
             $randNumber=rand(1000,9999);
             session('changePWordNumber',$randNumber);
             session('mailUrl',$mail);
@@ -737,17 +736,17 @@ public function comment(){
         $data=$db->where($where)
                  ->save($save);
 
-        if($data>0) {
+        // if($data>0) {                     //免去判断与原密码相同的判断，新密码可以与原密码相同
             $state = array(
                 'value' => 'success'
                 );
             $this->ajaxReturn($state);
-        }
-        else {
-            $state = array(
-                'value' => 'error'
-                );
-            $this->ajaxReturn($state);
-        }
+        // }
+        // else {
+        //     $state = array(
+        //         'value' => 'error'
+        //         );
+        //     $this->ajaxReturn($state);
+        // }
     }
 }

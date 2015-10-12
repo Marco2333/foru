@@ -430,6 +430,7 @@ class PersonController extends Controller {
                  ->save($save);
 
         if($data>0) {
+            session('username',null);
             $state = array(
                 'value' => 'success'
                 );

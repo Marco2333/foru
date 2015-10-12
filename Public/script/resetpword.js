@@ -16,6 +16,7 @@ $(function(){
 			return;
 		}
 
+		$("#body-form-1-button").val("处理中...");
 		$.ajax({
 			type:"post",
 			data:{
@@ -31,18 +32,22 @@ $(function(){
 						 $(".person-info-body-page1").addClass("none");
 						 $(".person-info-body-page2").removeClass("none");
 					}else{
+						$("#body-form-1-button").val("提交");
 						$('#info').show();
 						        $('#info').html("邮件发送失败，请重新提交");
 						        setTimeout("$('#info').hide()", 2000 );
 					}
 				}else if(data['value']=='phoneerror'){
+					$("#body-form-1-button").val("提交");
 					$("#form-1-span-1").text("邮箱输入错误")
 					.addClass("text-alert")
 					.removeClass("text-ok");	
 				}else if(data['value']=='checkerror'){
+					$("#body-form-1-button").val("提交");
 					$('#info').show();
 			        $('#info').html("验证码输入错误");
 			        setTimeout("$('#info').hide()", 2000 );
+			        $('#securityCode').attr("src",securityCodeUrl+'?id='+Math.random());
 				}
 				else {
 					$('#info').show();
@@ -68,7 +73,7 @@ $(function(){
 			if(parseInt(num)-1<10) {
 				$("#resent-secword").text("0"+parseInt(num)-1+"秒后重新发送");
 			}
-			else if (parseInt(num)-1 > 10) {
+			else if (parseInt(num)-1 >= 10) {
 				$("#resent-secword").text(parseInt(num)-1+"秒后重新发送");
 			}
 			if(parseInt(num)==0) {
@@ -147,6 +152,9 @@ $(function(){
 						$("#dl-4").addClass('active');
 						$(".person-info-body-page3").addClass("none");
 						$(".person-info-body-page4").removeClass("none");
+						setTimeout(function(){
+							window.location.href=loginUrl;
+						},3000);
 					}else {
 						$('#info').show();
 						$('#info').css("width","400px").html("修改密码失败，请重试！(不能输入和上次相同的密码)");

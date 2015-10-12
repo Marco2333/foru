@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $(".img-and-detailed-body a.sub-goods").click(function(){
         var v=$(this).next("input").val();
-        if(parseInt(v)!=0){
+        if(parseInt(v)>1){
             $(this).next("input").val(parseInt(v)-1);
         }    
     });

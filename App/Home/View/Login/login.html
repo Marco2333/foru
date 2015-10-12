@@ -54,7 +54,7 @@
 					</div>
 					<div id="security-code">
 						<input type="text" name="verify" placeholder="验证码"/>
-						<span id="security-code-img"><img src=" __URL__/verify/id/'+Math.random()" onclick="this.src='__URL__/verify/id/'+Math.random()"/> </span><!-- <span><a >看不清，换一张</a> </span> -->
+						<span id="security-code-img"><img id="securityCode" src="__URL__/verify/id/'+Math.random()" onclick="this.src='__URL__/verify/id/'+Math.random()"/> </span><!-- <span><a >看不清，换一张</a> </span> -->
 					</div>
 					<div id="remember-password-div">
 						<input id="ck_rmbUser" class="fl" type="checkbox" name="remember-password" />
@@ -72,6 +72,7 @@
 	    <script type="text/javascript">
              var toLoginUrl="{:U('/Home/Login/toLogin')}";
              var  toIndexUrl="{:U('/Home/Index/index')}";
+             var  securityCodeUrl="{:U('/Home/Index/verify')}";
 	    </script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>

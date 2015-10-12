@@ -20,10 +20,14 @@ $(document).ready(function(){
 				minlength:11,
 				required:true
 			},
-			"security-code": {
-				required:true
+			// "security-code": {
+			// 	required:true
+			// },
+			user_protocol:{
+				required:true,
 			},
-			mail: {
+			mail:{
+				required:true,
 				email:true
 			}
 		},
@@ -46,10 +50,14 @@ $(document).ready(function(){
 				minlength:"请输入11位中国大陆手机号",
 				required:"手机号不能为空"
 			},
-			"security-code": {
-				required:""
+			// "security-code": {
+			// 	required:""
+			// },
+			user_protocol:{
+				required:"请同意协议",
 			},
 			mail:{
+				required:"邮箱不能为空",
 				email:"请输入规范的邮箱号"
 			}
 		},

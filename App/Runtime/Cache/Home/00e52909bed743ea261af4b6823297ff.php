@@ -1,13 +1,45 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 	<head>
+		 <script type="text/javascript">
+		 	//   var browser={
+		 	//     versions:function(){ 
+	 	 //           var u = navigator.userAgent, app = navigator.appVersion; 
+
+	 	 //           var info = {
+	 	 //           		trident: u.indexOf('Trident') > -1, //IE内核
+	 	 //                presto: u.indexOf('Presto') > -1, //opera内核
+	 	 //                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+	 	 //                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+	 	 //                mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
+	 	 //                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+	 	 //                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+	 	 //                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+	 	 //                iPad: u.indexOf('iPad') > -1, //是否iPad
+	 	 //                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+	 	 //           };
+	 	 //           return info;
+	 	 //         }(),
+	 	 //         language:(navigator.browserLanguage || navigator.language).toLowerCase()
+		 	// } 
+
+		 	// console.log(browser.versions);
+		 	// if(browser.versions.android || browser.versions.iPhone||screen.width < 700) {
+		 	// 		window.location.href = "../../../../fuwebapp/index.php";
+		 	// }
+		 	if(screen.width < 500) {
+		 			window.location.href = "../../../../fuwebapp/index.php";
+		 	}
+        </script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/Public/css/commonstyle.css" rel="stylesheet" />
 		<link href="/Public/css/style.css" rel="stylesheet"/>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<script type="text/javascript" src="/Public/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="/Public/script/plugins/jquery.cookie.js"></script>
 		<script src="/Public/bootstrap/js/bootstrap.min.js"></script>
+
 		<title>For优 首页</title>
 		<style>
 			body {
@@ -57,28 +89,13 @@
 					<?php if(is_array($hotSearch)): $i = 0; $__LIST__ = $hotSearch;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vi): $mod = ($i % 2 );++$i;?><li>
 						    <a href="<?php echo U('/Home/Index/goodslist',array('search'=>$vi['search_tag'],'campusId'=>$campusId,'categoryName'=>$vi['display_name'],'searchHidden'=>1));?>"><?php echo ($vi["display_name"]); ?></a>
 					    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-					<!-- <li>
-						<a href="<?php echo U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>$campusId,'categoryName'=>'新鲜水果','searchHidden'=>1));?>">新鲜水果</a>
-					</li>
-					<li>
-						<a href="<?php echo U('/Home/Index/goodslist',array('search'=>'牛奶','campusId'=>$campusId,'categoryName'=>'新鲜牛奶','searchHidden'=>1));?>">新鲜牛奶</a>
-					</li>
-					<li>
-						<a href="<?php echo U('/Home/Index/goodslist',array('search'=>'面包','campusId'=>$campusId,'categoryName'=>'美味面包','searchHidden'=>1));?>">美味面包</a>
-					</li>
-					<li>
-						<a href="<?php echo U('/Home/Index/goodslist',array('search'=>'休闲','campusId'=>$campusId,'categoryName'=>'休闲零食','searchHidden'=>1));?>">休闲零食</a>
-					</li>
-					<li>
-						<a href="<?php echo U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>$campusId,'categoryName'=>'可口饮料','searchHidden'=>1));?>">可口饮料</a>
-					</li> -->
 				</ul>
 			</div>
 
 			<div id="shopping-cart" class="drop-down" >
 				<div class="drop-down-left">
-					<img src="/Public/img/icon/shopping-cart.png" alt="">	
-					<a target="_blank" href="<?php echo U('ShoppingCart/shoppingcart',array('campusId'=>$campusId));?>">购物车 &gt;&gt;</a>
+					<img src="/Public/img/icon/shopping-cart.png" alt="">
+					<a target="_blank" href="<?php echo U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId));?>">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
 				   <?php if(empty($cartGood)): ?><div class="no-goods">
@@ -90,10 +107,10 @@
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="<?php echo U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId));?>" class="fl">
+				    				<a href="<?php echo U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId));?>" class="fl">
 				    					查看全部<span class="goods-count"><?php echo (count($cartGood)); ?></span>件商品
 				    				</a>
-				    				<a href="<?php echo U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId));?>" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="<?php echo U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId));?>" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
 				    	</div>
@@ -112,22 +129,20 @@
                                                   <?php else: ?>￥<?php echo (number_format($vo["price"],1)); ?>×<?php echo ($vo["order_count"]); endif; ?>	
 					    						</span>
 					    						<span class="fr">
-					    							<a data-href="<?php echo U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']));?>">删除</a>
+					    							<a data-href="<?php echo U('/Home/Shoppingcart/deleteOrders',array('orderIds'=>$vo['order_id']));?>">删除</a>
 					    						</span>
 					    					</div>
 					    				</li><?php endif; endforeach; endif; ?>
 				    		</ul>
 				    		<div class="shopping-cart-bottom">
 				    			<span class="block clearfix">
-				    				<a href="<?php echo U('ShoppingCart/shoppingcart',array('campusId'=>$campusId));?>" class="fl">
+				    				<a href="<?php echo U('Shoppingcart/shoppingCart',array('campusId'=>$campusId));?>" class="fl">
 				    					查看全部<span class="goods-count"><?php echo (count($cartGood)); ?></span>件商品
 				    				</a>
-				    				<a href="<?php echo U('ShoppingCart/shoppingcart',array('campusId'=>$campusId));?>" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    				<a href="<?php echo U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId));?>" id="go-shopping-cart" class="fr">去购物车结算</a>
 				    			</span>
 				    		</div>
-				    	</div><?php endif; ?>
-					
-				
+				    	</div><?php endif; ?>				
 				</div>
 			</div>
 		<!-- 	<div id="qr-code" class="fr" >
@@ -167,6 +182,7 @@
 					   	   		</span><?php endif; endforeach; endif; ?>		
 					</li>
 					<?php else: ?>
+
 					<li>
 					   <?php if(is_array($campusList)): foreach($campusList as $key=>$vo): if($vo["campus_id"] == $campusId): ?><img src="/Public/img/icon/location.png" alt="">
 					   	   		<span id="location" >
@@ -302,65 +318,6 @@
 			</div>		
 			
 		<footer>
-	<div id="foot-part1" class="clearfix wrapper">
-		<ul>
-			<li>
-				<dl>
-					<dd><img src="/Public/img/footer/footer1.png" alt=""></dd>
-					<dt>
-						<div>正品保障</div>
-						<div>全场正品，行货保障</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="/Public/img/footer/footer2.png" alt=""></dd>
-					<dt>
-						<div>新手指南</div>
-						<div>快速登录，无需注册</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="/Public/img/footer/footer3.png" alt=""></dd>
-					<dt>
-						<div>货到付款</div>
-						<div>货到付款，安心便捷</div>
-					</dt>
-				
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="/Public/img/footer/footer4.png" alt=""></dd>
-					<dt>
-						<div>维修保障</div>
-						<div>服务保证，全国联保</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="/Public/img/footer/footer5.png" alt=""></dd>
-					<dt>
-						<div>无忧退货</div>
-						<div>无忧退货，7日尊享</div>
-					</dt>
-				</dl>
-			</li>
-			<li>
-				<dl>
-					<dd><img src="/Public/img/footer/footer6.png" alt=""></dd>
-					<dt>
-						<div>会员权益</div>
-						<div>会员升级，尊贵特权</div>
-					</dt>
-				</dl>
-			</li>
-		</ul>
-	</div>
 	<div id="foot-part2" class="clearfix wrapper">
 		<ul>
 			<li>
@@ -368,86 +325,78 @@
 					<dd>常用服务</dd>
 					<dt>
 						<ul>
-							<li><a>问题咨询</a></li>
-							<li><a>催办订单</a></li>
-							<li><a>报修退换货</a></li>
-							<li><a>上门安装</a></li>
+							<li><a href="<?php echo U('Document/documents1',array('status'=>1,'flag'=>1,'campusId'=>$campusId));?>">常见问题咨询</a></li>
+							<li><a href="<?php echo U('Document/documents1',array('status'=>2,'flag'=>1,'campusId'=>$campusId));?>">平台使用说明</a></li>
 						</ul>
 					</dt>
 				</dl>
 			</li>
 			<li>
 				<dl>
-					<dd>购物</dd>
+					<dd>购买说明</dd>
 					<dt>
 						<ul>
-							<li><a>怎样购物</a></li>
-							<li><a>积分优惠券介绍</a></li>
-							<li><a>订单状态说明</a></li>
-							<li><a>易迅礼品卡介绍</a></li>
+							<li><a href="<?php echo U('Document/documents2',array('status'=>1,'flag'=>2,'campusId'=>$campusId));?>">如何购买</a></li>
+							<!-- <li><a>会员制度</a></li>
+							<li><a>积分优惠券介绍</a></li> -->
+							<li><a href="<?php echo U('Document/documents2',array('status'=>4,'flag'=>2,'campusId'=>$campusId));?>">订单状态说明</a></li>
 						</ul>
 					</dt>
 				</dl>
 			</li>
 			<li>
 				<dl>
-					<dd>付款</dd>
+					<dd>付款说明</dd>
 					<dt>
 						<ul>
-							<li><a>货到付款</a></li>
-							<li><a>在线支付</a></li>
-							<li><a>其他支付方式</a></li>
-							<li><a>发票说明</a></li>
+							<!-- <li><a>货到付款</a></li> -->
+							<li><a href="<?php echo U('Document/documents3',array('status'=>1,'flag'=>3,'campusId'=>$campusId));?>">在线支付</a></li>
+							<!-- <li><a>服务说明</a></li> -->
+							<li><a href="<?php echo U('Document/documents3',array('status'=>2,'flag'=>3,'campusId'=>$campusId));?>">退款服务</a></li>
 						</ul>
 					</dt>
 				</dl>
 			</li>
 			<li>
 				<dl>
-					<dd>配送</dd>
+					<dd>关于配送</dd>
 					<dt>
 						<ul>
-							<li><a>配送服务说明</a></li>
-							<li><a>价格保护</a></li>
+							<li><a href="<?php echo U('Document/documents4',array('status'=>1,'flag'=>4,'campusId'=>$campusId));?>">使用说明</a></li>
+							<li><a href="<?php echo U('Document/documents4',array('status'=>2,'flag'=>4,'campusId'=>$campusId));?>">时间选择</a></li>
 						</ul>
 					</dt>
 				</dl>
 			</li>
 			<li>
 				<dl>
-					<dd>售后</dd>
+					<dd>售后服务</dd>
 					<dt>
 						<ul>
-							<li><a>售后服务政策</a></li>
-							<li><a>退换货服务流程</a></li>
-							<li><a>优质售后服务</a></li>
-							<li><a>特色服务指南</a></li>
-							<li><a>服务时效承诺</a></li>
+							<li><a href="<?php echo U('Document/documents5',array('status'=>1,'flag'=>5,'campusId'=>$campusId));?>">申请售后</a></li>
 						</ul>
 					</dt>
 				</dl>
 			</li>
 			<li>
 				<dl>
-					<dd>商家合作</dd>
+					<dd>关于我们</dd>
 					<dt>
 						<ul>
-							<li><a>企业采购</a></li>
+							<li><a href="<?php echo U('Document/documents6',array('status'=>1,'flag'=>6,'campusId'=>$campusId));?>">商家合作</a></li>
+							<li><a href="<?php echo U('Document/documents6',array('status'=>2,'flag'=>6,'campusId'=>$campusId));?>">联系客服</a></li>
+							<li><a href="<?php echo U('Document/documents6',array('status'=>3,'flag'=>6,'campusId'=>$campusId));?>">加入我们</a></li>
+							<li><a href="<?php echo U('Document/documents6',array('status'=>4,'flag'=>6,'campusId'=>$campusId));?>">公司介绍</a></li>
 						</ul>
 					</dt>
 				</dl>
 			</li>
 		</ul>
 	</div>
-	<!-- <div id="foot-part3" class="clearfix wrapper">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div> -->
+	
 	<div id="foot-part4" class="clearfix text-light">
 		<span>©2015苏州英爵伟信息科技服务有限公司</span>
-		<a href="http://www.miitbeian.gov.cn">京ICP证030173号</a>
+		<a href="http://www.miitbeian.gov.cn">苏ICP备15042109号</a>
 	</div>
 </footer>
 		<div id="campus-background">
@@ -471,9 +420,7 @@
 
 			<div id="campus-content">
 				<ul>
-					<?php if(is_array($campus)): foreach($campus as $key=>$vo): if(empty($_COOKIE['campusId'])): $_COOKIE['campusId'] = '1'; endif; ?>
-						<?php if($vo["campus_id"] == cookie('campusId')): ?><li data-campusId="<?php echo ($vo["campus_id"]); ?>" class="active"><?php echo ($vo["campus_name"]); ?></li>
-							<?php else: ?><li data-campusId="<?php echo ($vo["campus_id"]); ?>"><?php echo ($vo["campus_name"]); ?></li><?php endif; endforeach; endif; ?>
+					
 				</ul>
 			</div>
 		</div>
