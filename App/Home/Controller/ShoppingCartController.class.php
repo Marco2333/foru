@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 header("Content-type:text/html;charset=utf-8");
 
-class ShoppingCartController extends Controller {
+class ShoppingcartController extends Controller {
 
     public function _initialize() {
         $this->hiddenLocation=1;

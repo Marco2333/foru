@@ -18,7 +18,17 @@ $(document).ready(function(){
 				digits:true,
 				maxlength:11,
 				minlength:11,
-				required:true
+				required:true,
+				remote:{                                          //验证用户名是否存在
+	               type:"POST",
+	               url:"../Login/checkUserIsExist",             //servlet
+	               data:{
+	                 phone:function(){
+	                 	return $("#register-info input[name='phone']").val();
+	                 }
+	               } 
+	             
+	            }
 			},
 			// "security-code": {
 			// 	required:true
@@ -28,7 +38,17 @@ $(document).ready(function(){
 			},
 			mail:{
 				required:true,
-				email:true
+				email:true,
+				remote:{                                          //验证用户名是否存在
+	               type:"POST",
+	               url:"../Login/checkMailIsExist",             //servlet
+	               data:{
+	                 mail:function(){
+	                 	return $("#register-info input[name='mail']").val();
+	                 }
+	               } 
+	             
+	            }
 			}
 		},
 		messages:{
@@ -48,7 +68,8 @@ $(document).ready(function(){
 				digits:"请输入11位中国大陆手机号",
 				maxlength:"请输入11位中国大陆手机号",
 				minlength:"请输入11位中国大陆手机号",
-				required:"手机号不能为空"
+				required:"手机号不能为空",
+				remote:"该手机号已经被注册"
 			},
 			// "security-code": {
 			// 	required:""
@@ -58,7 +79,8 @@ $(document).ready(function(){
 			},
 			mail:{
 				required:"邮箱不能为空",
-				email:"请输入规范的邮箱号"
+				email:"请输入规范的邮箱号",
+				remote:"该邮箱已经被注册"
 			}
 		},
 		errorPlacement:function(error, element) {
@@ -81,13 +103,17 @@ $(document).ready(function(){
 			$("#button-register").attr("disabled", true);
 		}
 	});
-	$("#register-info input[name='phone']").blur(function(){
-		checkUserExist();
-	});
+	// $("#register-info input[name='phone']").blur(function(){
+	// 	checkUserExist();
+	// });
 
-	$("#register-info input[name='mail']").blur(function(){
-		checkMailExist();
-	})
+	// $("#register-info input[name='mail']").blur(function(){
+	// 	checkMailExist();
+	// });
+
+	// $("#button-register").click(function(){
+	// 	checkMailExist();
+	// });
 })
 
 function checkUserExist(){

@@ -206,8 +206,7 @@ $(document).ready(function(){
 
     $("#campus-close").bind("click",function(){
         var campus_id = $("#campus-content li.active").attr("data-campusId");
-        console.log(campus_id);
-        console.log($.cookie("campusId"));
+
         if($.cookie("campusId") != campus_id){
             $.cookie("campusId", campus_id,{ expires: 14});
 
@@ -226,7 +225,8 @@ $(document).ready(function(){
     });
 
     $('#campus-search').bind('input propertychange', function() {
-
+        $('#campus-content ul').empty();
+        
         var searchValue = $("#campus-search").val();
         var re=/[^\u4e00-\u9fa5]/;
         if(re.test(searchValue)){
