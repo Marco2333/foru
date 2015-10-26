@@ -48,7 +48,7 @@
 						</div>
 						<span class="userinfo-behind">请再次输入密码 </span>
 					</div>
-					<div class="user-info-div">
+					<div id="phone-user-info" class="user-info-div">
 						<span class="userinfo-before">手机号码:</span>
 						<div class="fl">
 							<input type="text" name="phone" />
@@ -63,13 +63,13 @@
 						<span id="security-code-img"> </span>
 						<button>获取短信验证码</button>
 					</div> -->
-					<div class="user-info-div">
-						<span class="userinfo-before">验证邮箱:</span>
+					<div id="confirmcode" class="user-info-div">
+						<span class="userinfo-before">短信验证:</span>
 						<div class="fl">
-							<input type="text" name="mail" />
-							<span class="glyphicon glyphicon-envelope userinfo-logo"> </span>
+							<input style="font-size: 12px; width:156px" type="text" name="confirmcode" placeholder="请输入收到的验证码"/>
 						</div>
-						<span class="userinfo-behind" name="mail_message"> 请输入您的常用邮箱</span>
+						<input type="button" id="resent-secword" value="发送验证码" class="bground-special fl"></button>
+						<span class="userinfo-behind" name="message"></span>
 					</div>
 					<div id="user-protocol">
 						<span class="userinfo-before"> </span>
@@ -90,7 +90,5 @@
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.validate.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/script/register.js"></script>
-		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
-
 	</body>
 </html>

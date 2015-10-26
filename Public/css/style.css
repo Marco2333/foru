@@ -958,6 +958,9 @@ footer a:hover {
 	height: 36px;
 	float: left;
 }
+#register-info .user-info-div input[name='confirmcode'] {
+	font-family: "华文细黑";
+}
 #register-info .userinfo-before {
 	display: inline-block;
 	width: 80px;
@@ -1001,10 +1004,11 @@ footer a:hover {
 
 }
 .error-info {
-	color: red;
+	color: red!important;
 	font-family: "SimHei";
 }
-#register-info form > div.user-info-div input{
+#register-info .user-info-div input[type='text'],
+#register-info .user-info-div input[type='password']{
 	height:34px;
 	width:250px;	
 	float: left;
