@@ -91,9 +91,11 @@ $(document).ready(function(){
 			$('#confirmcode .userinfo-behind').text('该手机号已被注册').addClass('error-info');
 			return;
 		}
-
 		$('#confirmcode .userinfo-behind').text('').removeClass('error-info');
 
+        $.post($getPhoneSecurityUrl,{phone:val},function(){
+        	alert("发送成功");
+        });
 		$(this).val("5秒后重新发送").addClass("sub-number")
 			.attr("disabled",true);
 		var a = setInterval(function(){
