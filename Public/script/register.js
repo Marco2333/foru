@@ -76,6 +76,8 @@ $(document).ready(function(){
 	});
 
 	$("#resent-secword").click(function(){
+
+		var $this = $(this);
 		var val = $("#phone-user-info input").val().trim();
 		if(val.length == 0) {
 			$('#confirmcode .userinfo-behind').text('手机号不能为空').addClass('error-info');
@@ -92,27 +94,42 @@ $(document).ready(function(){
 			return;
 		}
 
-		$('#confirmcode .userinfo-behind').text('').removeClass('error-info');
+		$.ajax({
+			type:'POST',
+			url:'../Login/toRegisterCheck',
+			data:{
+				verify: $('#security-code input').val()
+			},
+			success:function(data) {
+				if(data.status == 0) {
+					$('#confirmcode .userinfo-behind').text('验证码错误').addClass('error-info');
+				}
+				else {
 
-		$(this).val("59秒后重新发送").addClass("sub-number")
-			.attr("disabled",true);
-		var a = setInterval(function(){
-			var num = $("#resent-secword").val().substr(0,2);
+					$('#confirmcode .userinfo-behind').text('').removeClass('error-info');
 
-			if(parseInt(num)-1<10) {
-				$("#resent-secword").val("0"+parseInt(num)-1+"秒后重新发送");
+					$this.val("59秒后重新发送").addClass("sub-number")
+						.attr("disabled",true);
+					var a = setInterval(function(){
+						var num = $("#resent-secword").val().substr(0,2);
+
+						if(parseInt(num)-1<10) {
+							$("#resent-secword").val("0"+parseInt(num)-1+"秒后重新发送");
+						}
+						else if (parseInt(num)-1 >= 10) {
+							$("#resent-secword").val(parseInt(num)-1+"秒后重新发送");
+						}
+						if(parseInt(num)==0) {
+							clearInterval(a);
+							$("#resent-secword").val("重新获取验证码")
+							.removeClass("sub-number").attr("disabled",false);
+						}
+						
+						
+					},1000);
+				}
 			}
-			else if (parseInt(num)-1 >= 10) {
-				$("#resent-secword").val(parseInt(num)-1+"秒后重新发送");
-			}
-			if(parseInt(num)==0) {
-				clearInterval(a);
-				$("#resent-secword").val("重新获取验证码")
-				.removeClass("sub-number").attr("disabled",false);
-			}
-			
-			
-		},1000);
+		});	
 	});
 
 
@@ -142,7 +159,6 @@ $(document).ready(function(){
 
 function checkUserExist(){
 	var phone = $("#register-info input[name='phone']").val();
-	alert("s");
 	$.ajax({
 		type:"POST",
 		url: "../Login/checkUserExist",
@@ -152,7 +168,7 @@ function checkUserExist(){
 		success: function(data){
 			var json = eval(data);
 			if(json.status==0){	
-				alert(json.status);
+	
 				return true;
 			}
 			else {

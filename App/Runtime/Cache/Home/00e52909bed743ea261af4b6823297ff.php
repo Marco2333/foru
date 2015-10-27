@@ -32,13 +32,13 @@
 		 	}
         </script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/Public/css/commonstyle.css" rel="stylesheet" />
-		<link href="/Public/css/style.css" rel="stylesheet"/>
+		<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
+		<link href="/foru/Public/css/style.css" rel="stylesheet"/>
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-		<script type="text/javascript" src="/Public/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="/Public/script/plugins/jquery.cookie.js"></script>
-		<script src="/Public/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/plugins/jquery.cookie.js"></script>
+		<script src="/foru/Public/bootstrap/js/bootstrap.min.js"></script>
 
 		<title>For优 首页</title>
 		<style>
@@ -72,7 +72,7 @@
 	<div id="header-botton-wrapper">
 		<div id="log-wrapper" class="fl">
 			<div id="header-logo" class="fl">
-				<a href="<?php echo U('/Home/Index/index',array('campusId'=>$campusId));?>"><img src="/Public/img/logo.png" class="fl"></a>
+				<a href="<?php echo U('/Home/Index/index',array('campusId'=>$campusId));?>"><img src="/foru/Public/img/logo.png" class="fl"></a>
 				<span class="text-special fl"><p>For优<br><span class="bold inline-block">为你更好的生活</span></span>
 			</div>
 			<div id="header-search" class="fl">
@@ -94,7 +94,7 @@
 
 			<div id="shopping-cart" class="drop-down" >
 				<div class="drop-down-left">
-					<img src="/Public/img/icon/shopping-cart.png" alt="">
+					<img src="/foru/Public/img/icon/shopping-cart.png" alt="">
 					<a target="_blank" href="<?php echo U('/Home/Shoppingcart/shoppingcart',array('campusId'=>$campusId));?>">购物车 &gt;&gt;</a>
 				</div>
 				<div class="drop-down-layer ">
@@ -146,7 +146,7 @@
 				</div>
 			</div>
 		<!-- 	<div id="qr-code" class="fr" >
-				<img src="/Public/img/qrcode.png" alt="二维码">
+				<img src="/foru/Public/img/qrcode.png" alt="二维码">
 			</div> -->
 		</div>
 	</div>
@@ -176,7 +176,7 @@
 			</li>
 
 			<?php if($hiddenLocation != 1): if(($campusId == null) OR (cookie('campusId') == undefined)): ?><li>
-					  	<?php if(is_array($campusList)): foreach($campusList as $key=>$vo): if($vo["campus_id"] == 1): ?><img src="/Public/img/icon/location.png" alt="">
+					  	<?php if(is_array($campusList)): foreach($campusList as $key=>$vo): if($vo["campus_id"] == 1): ?><img src="/foru/Public/img/icon/location.png" alt="">
 					   	   		<span id="location" >
 					   	   		  	<?php echo ($vo["campus_name"]); ?>
 					   	   		</span><?php endif; endforeach; endif; ?>		
@@ -184,7 +184,7 @@
 					<?php else: ?>
 
 					<li>
-					   <?php if(is_array($campusList)): foreach($campusList as $key=>$vo): if($vo["campus_id"] == $campusId): ?><img src="/Public/img/icon/location.png" alt="">
+					   <?php if(is_array($campusList)): foreach($campusList as $key=>$vo): if($vo["campus_id"] == $campusId): ?><img src="/foru/Public/img/icon/location.png" alt="">
 					   	   		<span id="location" >
 					   	   		  	<?php echo ($vo["campus_name"]); ?>
 					   	   		</span><?php endif; endforeach; endif; ?>
@@ -235,49 +235,49 @@
 				<div id="medium-part" class="clearfix">
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[4]['category_id'],'campusId'=>$module[4]['campus_id']));?>"><img src="/Public/img/medium1.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[4]['category_id'],'campusId'=>$module[4]['campus_id']));?>"><img src="/foru/Public/img/medium1.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[4]['category_id'],'campusId'=>$module[4]['campus_id']));?>">小优推荐</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[5]['category_id'],'campusId'=>$module[5]['campus_id']));?>"><img src="/Public/img/medium2.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[5]['category_id'],'campusId'=>$module[5]['campus_id']));?>"><img src="/foru/Public/img/medium2.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[5]['category_id'],'campusId'=>$module[5]['campus_id']));?>">最新体验</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[6]['category_id'],'campusId'=>$module[6]['campus_id']));?>"><img src="/Public/img/medium3.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[6]['category_id'],'campusId'=>$module[6]['campus_id']));?>"><img src="/foru/Public/img/medium3.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[6]['category_id'],'campusId'=>$module[6]['campus_id']));?>">特惠秒杀</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[0]['category_id'],'campusId'=>$module[0]['campus_id']));?>"><img src="/Public/img/medium4.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[0]['category_id'],'campusId'=>$module[0]['campus_id']));?>"><img src="/foru/Public/img/medium4.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[0]['category_id'],'campusId'=>$module[0]['campus_id']));?>">早餐上门</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[1]['category_id'],'campusId'=>$module[1]['campus_id']));?>"><img src="/Public/img/medium5.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[1]['category_id'],'campusId'=>$module[1]['campus_id']));?>"><img src="/foru/Public/img/medium5.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[1]['category_id'],'campusId'=>$module[1]['campus_id']));?>">家政服务</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[2]['category_id'],'campusId'=>$module[2]['campus_id']));?>"><img src="/Public/img/medium6.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[2]['category_id'],'campusId'=>$module[2]['campus_id']));?>"><img src="/foru/Public/img/medium6.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[2]['category_id'],'campusId'=>$module[2]['campus_id']));?>">水果上门</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[3]['category_id'],'campusId'=>$module[3]['campus_id']));?>"><img src="/Public/img/medium7.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[3]['category_id'],'campusId'=>$module[3]['campus_id']));?>"><img src="/foru/Public/img/medium7.png" alt=""></a></dt>
 							<dd><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[3]['category_id'],'campusId'=>$module[3]['campus_id']));?>">快递代取</a></dd>
 						</dl>
 					</div>
 					<div>
 						<dl>
-							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[7]['category_id'],'campusId'=>$module[7]['campus_id']));?>"><img src="/Public/img/medium8.png" alt=""></a></dt>
+							<dt><a href="<?php echo U('/Home/index/goodslist',array('categoryId'=>$module[7]['category_id'],'campusId'=>$module[7]['campus_id']));?>"><img src="/foru/Public/img/medium8.png" alt=""></a></dt>
 							<dd>更多</dd>
 						</dl>
 					</div>
@@ -430,8 +430,8 @@
         <script type="text/javascript">
             var $campusId=$("#index-body").attr('data-campusId');
         </script>
-		<script type="text/javascript" src="/Public/script/index.js"></script>
-		<script type="text/javascript" src="/Public/script/common.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/index.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/common.js"></script>
 		
 	</body>
 </html>

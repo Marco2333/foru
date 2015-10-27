@@ -4,9 +4,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>注册|For优</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/Public/css/commonstyle.css" rel="stylesheet" />
-		<link href="/Public/css/style.css" rel="stylesheet"/>	
+		<link href="/foru/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/foru/Public/css/commonstyle.css" rel="stylesheet" />
+		<link href="/foru/Public/css/style.css" rel="stylesheet"/>	
 
 		<style>
 			body {
@@ -34,12 +34,12 @@
 </div>
 
 		<div id="register-logo" class="wrapper clearfix">
-			<img src="/Public/img/logo.png"/>
+			<img src="/foru/Public/img/logo.png"/>
 			<span>欢迎注册</span>
 		</div>
 		<div id="register-main">
 			<div id="register-info" class="fl">
-				<form id="demoForm" action="/index.php/Home/Login/toRegister" method="post">
+				<form id="demoForm" action="/foru/index.php/Home/Login/toRegister" method="post">
 					<div class="user-info-div">
 						<span class="userinfo-before">用户昵称:</span>
 						<div class="fl">
@@ -64,7 +64,7 @@
 						</div>
 						<span class="userinfo-behind">请再次输入密码 </span>
 					</div>
-					<div class="user-info-div">
+					<div id="phone-user-info" class="user-info-div">
 						<span class="userinfo-before">手机号码:</span>
 						<div class="fl">
 							<input type="text" name="phone" />
@@ -72,20 +72,26 @@
 						</div>
 						<span class="userinfo-behind" name="message"> 请输入中国大陆手机号，可用于登陆和找回密码</span>
 					</div>
-					<!-- <div id="security-code">
+				<!-- 	<div id="security-code">
 						<span class="userinfo-before">邮箱验证:</span>
 						<input type="text" name="security-code" />
 						<span class="userinfo-behind"> </span>
 						<span id="security-code-img"> </span>
 						<button>获取短信验证码</button>
 					</div> -->
-					<div class="user-info-div">
-						<span class="userinfo-before">验证邮箱:</span>
+					<div id="security-code">
+						<span class="userinfo-before"></span>
+						<input type="text" name="verify" placeholder="验证码"/>
+						<span id="security-code-img"><img id="securityCode" src="/foru/index.php/Home/Login/verify/id/'+Math.random()" onclick="this.src='/foru/index.php/Home/Login/verify/id/'+Math.random()"/> </span>
+						<span class="userinfo-behind" name="message"></span>
+					</div>
+					<div id="confirmcode" class="user-info-div">
+						<span class="userinfo-before">短信验证:</span>
 						<div class="fl">
-							<input type="text" name="mail" />
-							<span class="glyphicon glyphicon-envelope userinfo-logo"> </span>
+							<input style="font-size: 12px; width:156px" type="text" name="confirmcode" placeholder="请输入收到的验证码"/>
 						</div>
-						<span class="userinfo-behind" name="mail_message"> 请输入您的常用邮箱</span>
+						<input type="button" id="resent-secword" value="获取短信验证码" class="bground-special fl"></button>
+						<span class="userinfo-behind" name="message"></span>
 					</div>
 					<div id="user-protocol">
 						<span class="userinfo-before"> </span>
@@ -103,10 +109,8 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="/Public/script/plugins/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="/Public/script/plugins/jquery.validate.js"></script>
-		<script type="text/javascript" src="/Public/script/register.js"></script>
-		<script src="/Public/bootstrap/js/bootstrap.min.js"></script>
-
+		<script type="text/javascript" src="/foru/Public/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/plugins/jquery.validate.js"></script>
+		<script type="text/javascript" src="/foru/Public/script/register.js"></script>
 	</body>
 </html>

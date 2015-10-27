@@ -56,19 +56,25 @@
 						</div>
 						<span class="userinfo-behind" name="message"> 请输入中国大陆手机号，可用于登陆和找回密码</span>
 					</div>
-					<!-- <div id="security-code">
+				<!-- 	<div id="security-code">
 						<span class="userinfo-before">邮箱验证:</span>
 						<input type="text" name="security-code" />
 						<span class="userinfo-behind"> </span>
 						<span id="security-code-img"> </span>
 						<button>获取短信验证码</button>
 					</div> -->
+					<div id="security-code">
+						<span class="userinfo-before"></span>
+						<input type="text" name="verify" placeholder="验证码"/>
+						<span id="security-code-img"><img id="securityCode" src="__URL__/verify/id/'+Math.random()" onclick="this.src='__URL__/verify/id/'+Math.random()"/> </span>
+						<span class="userinfo-behind" name="message"></span>
+					</div>
 					<div id="confirmcode" class="user-info-div">
 						<span class="userinfo-before">短信验证:</span>
 						<div class="fl">
 							<input style="font-size: 12px; width:156px" type="text" name="confirmcode" placeholder="请输入收到的验证码"/>
 						</div>
-						<input type="button" id="resent-secword" value="发送验证码" class="bground-special fl"></button>
+						<input type="button" id="resent-secword" value="获取短信验证码" class="bground-special fl"></button>
 						<span class="userinfo-behind" name="message"></span>
 					</div>
 					<div id="user-protocol">
