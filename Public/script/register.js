@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 		$('#confirmcode .userinfo-behind').text('').removeClass('error-info');
 
-		$(this).val("5秒后重新发送").addClass("sub-number")
+		$(this).val("59秒后重新发送").addClass("sub-number")
 			.attr("disabled",true);
 		var a = setInterval(function(){
 			var num = $("#resent-secword").val().substr(0,2);
