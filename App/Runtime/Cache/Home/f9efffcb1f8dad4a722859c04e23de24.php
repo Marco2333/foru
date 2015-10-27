@@ -7,7 +7,9 @@
 		<link href="/Public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/Public/css/commonstyle.css" rel="stylesheet" />
 		<link href="/Public/css/style.css" rel="stylesheet"/>
-
+		
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		
 		<style>
 			body {
 				background-color: rgba(250,250,250,.9);
@@ -15,6 +17,7 @@
 		</style>
 	</head>
 	<body>
+	
 	    <div id="info"></div>
 		<div class="wrapper">
 			<div id="login-top">
@@ -37,7 +40,7 @@
 					<h1>For优会员</h1>
 					<div class="user-info-div">
 						<div class="fl">
-							<input id="username" class="user-info" type="text" name="username" placeholder="请输入手机号"/>
+							<input id="username" class="user-info" type="text" name="username" placeholder="请输入手机号或者邮箱"/>
 							<span class="glyphicon glyphicon-user userinfo-logo"> </span>
 						</div>
 						<span class="userinfo-behind"> </span>
@@ -51,12 +54,12 @@
 					</div>
 					<div id="security-code">
 						<input type="text" name="verify" placeholder="验证码"/>
-						<span id="security-code-img"><img src=" /index.php/Home/Login/verify/id/'+Math.random()" onclick="this.src='/index.php/Home/Login/verify/id/'+Math.random()"/> </span><!-- <span><a >看不清，换一张</a> </span> -->
+						<span id="security-code-img"><img id="securityCode" src="/index.php/Home/Login/verify/id/'+Math.random()" onclick="this.src='/index.php/Home/Login/verify/id/'+Math.random()"/> </span><!-- <span><a >看不清，换一张</a> </span> -->
 					</div>
 					<div id="remember-password-div">
 						<input id="ck_rmbUser" class="fl" type="checkbox" name="remember-password" />
 						<span class="fl">记住密码</span>
-						<span id="forget-password" class="fr"><a>忘记密码</a><span class="spliter"> </span><a href="<?php echo U('Login/register');?>">立即注册</a> </span>
+						<span id="forget-password" class="fr"><a href="<?php echo U('Home/Index/forgetpassword');?>">忘记密码</a><span class="spliter"> </span><a href="<?php echo U('Login/register');?>">立即注册</a> </span>
 					</div>
 					<div class="fl">
 						<button id="button-login" onclick="login();">
@@ -69,6 +72,7 @@
 	    <script type="text/javascript">
              var toLoginUrl="<?php echo U('/Home/Login/toLogin');?>";
              var  toIndexUrl="<?php echo U('/Home/Index/index');?>";
+             var  securityCodeUrl="<?php echo U('/Home/Index/verify');?>";
 	    </script>
 		<script type="text/javascript" src="/Public/script/plugins/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="/Public/script/plugins/jquery.cookie.js"></script>

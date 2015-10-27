@@ -8,7 +8,7 @@ return array(
     'DB_USER' =>  'changyu2015',
     'DB_PWD'  =>  'changyu15',
    // 'SHOW_PAGE_TRACE' => true,  //开启调试模式
-    //'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
+    'URL_CASE_INSENSITIVE' =>true,   //关闭大小写敏感
     'LOG_RECORD' => true, // 开启日志记录
     'LOG_LEVEL'  =>'EMERG,ALERT,CRIT,ERR', // 只记录EMERG ALERT CRIT ERR 错误
     'DATA_CACHE_TIME'=>'600',              //数据缓存时间设置为60s
