@@ -18,18 +18,25 @@ $(document).ready(function(){
 				digits:true,
 				maxlength:11,
 				minlength:11,
-				required:true
+				required:true,
+				remote:{                                          //验证用户名是否存在
+	               type:"POST",
+	               url:"../Login/checkUserIsExist",             //servlet
+	               data:{
+	                 phone:function(){
+	                 	return $("#register-info input[name='phone']").val();
+	                 }
+	               } 
+	             
+	            }
 			},
 			// "security-code": {
 			// 	required:true
 			// },
 			user_protocol:{
 				required:true,
-			},
-			mail:{
-				required:true,
-				email:true
 			}
+
 		},
 		messages:{
 			nickname:{
@@ -48,17 +55,14 @@ $(document).ready(function(){
 				digits:"请输入11位中国大陆手机号",
 				maxlength:"请输入11位中国大陆手机号",
 				minlength:"请输入11位中国大陆手机号",
-				required:"手机号不能为空"
+				required:"手机号不能为空",
+				remote:"该手机号已经被注册"
 			},
 			// "security-code": {
 			// 	required:""
 			// },
 			user_protocol:{
 				required:"请同意协议",
-			},
-			mail:{
-				required:"邮箱不能为空",
-				email:"请输入规范的邮箱号"
 			}
 		},
 		errorPlacement:function(error, element) {
@@ -69,7 +73,49 @@ $(document).ready(function(){
 	        error.appendTo(element.parent().next(".userinfo-behind"));
     	},
     	errorClass:"error-info"
-	})
+	});
+
+	$("#resent-secword").click(function(){
+		var val = $("#phone-user-info input").val().trim();
+		if(val.length == 0) {
+			$('#confirmcode .userinfo-behind').text('手机号不能为空').addClass('error-info');
+			return;
+		}
+
+		if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(val))) {
+			$('#confirmcode .userinfo-behind').text('请输入规范的手机号').addClass('error-info');
+			return;
+		}
+
+		if($("#phone-user-info label").text()=="该手机号已经被注册") {
+			$('#confirmcode .userinfo-behind').text('该手机号已被注册').addClass('error-info');
+			return;
+		}
+
+		$('#confirmcode .userinfo-behind').text('').removeClass('error-info');
+
+		$(this).val("5秒后重新发送").addClass("sub-number")
+			.attr("disabled",true);
+		var a = setInterval(function(){
+			var num = $("#resent-secword").val().substr(0,2);
+
+			if(parseInt(num)-1<10) {
+				$("#resent-secword").val("0"+parseInt(num)-1+"秒后重新发送");
+			}
+			else if (parseInt(num)-1 >= 10) {
+				$("#resent-secword").val(parseInt(num)-1+"秒后重新发送");
+			}
+			if(parseInt(num)==0) {
+				clearInterval(a);
+				$("#resent-secword").val("重新获取验证码")
+				.removeClass("sub-number").attr("disabled",false);
+			}
+			
+			
+		},1000);
+	});
+
+
 	$("#user-protocol-input").click(function() { 
 		// promptMessage();
 		if(document.getElementById("user-protocol-input").checked){
@@ -81,17 +127,22 @@ $(document).ready(function(){
 			$("#button-register").attr("disabled", true);
 		}
 	});
-	$("#register-info input[name='phone']").blur(function(){
-		checkUserExist();
-	});
+	// $("#register-info input[name='phone']").blur(function(){
+	// 	checkUserExist();
+	// });
 
-	$("#register-info input[name='mail']").blur(function(){
-		checkMailExist();
-	})
+	// $("#register-info input[name='mail']").blur(function(){
+	// 	checkMailExist();
+	// });
+
+	// $("#button-register").click(function(){
+	// 	checkMailExist();
+	// });
 })
 
 function checkUserExist(){
 	var phone = $("#register-info input[name='phone']").val();
+	alert("s");
 	$.ajax({
 		type:"POST",
 		url: "../Login/checkUserExist",
@@ -101,8 +152,11 @@ function checkUserExist(){
 		success: function(data){
 			var json = eval(data);
 			if(json.status==0){	
-				$(".userinfo-behind[name='message']").html("<label class='error-info'>该手机号已经被注册</label>");
-				 $("#register-info input[name='phone']").val("");
+				alert(json.status);
+				return true;
+			}
+			else {
+				return false;
 			}
 		}
 	});

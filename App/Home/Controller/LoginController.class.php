@@ -135,4 +135,29 @@ class LoginController extends Controller {
              $this->ajaxReturn($result);
         }
     }
+
+    public function checkMailIsExist(){
+        $mail = I('mail');
+        $map['mail'] = $mail;
+        $user = M('users')->where($map)->find();
+        if(!isset($user)&&empty($user)){
+            $result['status']=1;
+            $this->ajaxReturn(true);
+        }
+        else {
+             $this->ajaxReturn(false);
+        } 
+    }
+
+    public function checkUserIsExist(){
+        $phone = I('phone');
+        $map['phone'] = $phone;
+        $user = M('users')->where($map)->find();
+        if(!isset($user)&&empty($user)){
+            $this->ajaxReturn(true);
+        }
+        else {
+            $this->ajaxReturn(false);
+        }
+    }
 }
