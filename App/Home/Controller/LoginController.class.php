@@ -207,10 +207,11 @@ class LoginController extends Controller {
     }
 
     public function getPhoneSecurity(){
+        $phone=I("phone");
         require_once(dirname(__FILE__) . '/../Model/SendSMS.php');
         $securitycode=rand(1000,9999);
         session("phone_security",$securitycode);
-        sendTemplateSMS("18896554880",array($securitycode,'10'),"1");//手机号码，替换内容数组，模板ID
+        dump(sendTemplateSMS($phone,array($securitycode,'10'),"1"));//手机号码，替换内容数组，模板ID
     }
 
     // public function checkPhoneSecurity(){
