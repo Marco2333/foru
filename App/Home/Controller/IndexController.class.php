@@ -649,14 +649,18 @@ public function comment(){
         $check  = $_POST['check'];
         $flag   = check_verify($check);
 
-        $where['mail']=$mail;
+        $where['phone']=$mail;
         $exitMail=M('users')->where($where)->find();
         if($exitMail!=null && $flag) {
             $message['value']='success';
-            $randNumber=rand(1000,9999);
-            session('changePWordNumber',$randNumber);
-            session('mailUrl',$mail);
-            $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            // $randNumber=rand(1000,9999);
+            // session('changePWordNumber',$randNumber);
+            session('phoneUrl',$mail);
+            // $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            require_once(dirname(__FILE__) . '/../Model/SendSMS.php');
+            $securitycode=rand(1000,9999);
+            session("phone_security",$securitycode);
+            $r=sendTemplateSMS($mail,array($securitycode,'10'),"1");//手机号码，替换内容数组，模板ID
             if($r){
                $message['status']='success';
                $this->ajaxReturn($message);
@@ -687,13 +691,18 @@ public function comment(){
     }
 
     /**
-     * 重新向邮箱发送验证码
+     * 重新向shouji发送验证码
      */
     public function resetMailCode(){
-        $mail=session('mailUrl');
+        $phone=session('phoneUrl');
         $randNumber=rand(1000,9999);
-        if($mail!=null){
-             $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+        if($phone!=null){
+            // $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            require_once(dirname(__FILE__) . '/../Model/SendSMS.php');
+            $securitycode=rand(1000,9999);
+            session("phone_security",$securitycode);
+            $r=sendTemplateSMS($phone,array($securitycode,'10'),"1");//手机号码，替换内容数组，模板ID
+
             if($r){
                session('changePWordNumber',$randNumber);
                $message['status']='success';
@@ -711,7 +720,7 @@ public function comment(){
      * @return 
      */
     public function checkMailPost($postcode){
-       if($postcode==session('changePWordNumber')){
+       if($postcode==session('phone_security')){
           $message['status']='success';
           $this->ajaxReturn($message);
        }else{

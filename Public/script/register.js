@@ -112,13 +112,16 @@ $(document).ready(function(){
 				verify: $('#security-code input').val()
 			},
 			success:function(data) {
+				console.log(data);
 				if(data.status == 0) {
 					$('#confirmcode .userinfo-behind').text('验证码错误').addClass('error-info');
+					$('#securityCode').attr("src",$getPictureSecutiryUrl);
 				}
 				else {
 
 					$('#confirmcode .userinfo-behind').text('').removeClass('error-info');
-                     $.post($getPhoneSecurityUrl,{phone:val},function(data){
+                     
+                     $.post($getPhoneSecurityUrl,{phone:val},function(data){     //发送短信验证码
          	         });
 
 					$this.val("59秒后重新发送").addClass("sub-number")

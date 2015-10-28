@@ -366,25 +366,30 @@ class PersonController extends Controller {
      }
     
     /**
-     * 校验邮箱是否正确
+     * 校验手机号是否正确
      * @return [type] [description]
      */
     public function phone(){
         $user  = $_SESSION['username'];
 
-        $mail =I("phone");
+        $phone =I("phone");
 	    	$check  = $_POST['check'];
 
         $flag   = check_verify($check);
 
-        $exitMail=M('users')->where('phone = %s',$user)->getField('mail');
-        if($exitMail==$mail && $flag) {
+        $exitPhone=M('users')->where('phone = %s',$user)->getField('phone');
+        if($exitPhone==$phone && $flag) {
             $message['value']='success';
 
-            $randNumber=rand(1000,9999);
-            session('changePWordNumber',$randNumber);
-            session('mailUrl',$mail);
-            $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            // $randNumber=rand(1000,9999);
+            // session('changePWordNumber',$randNumber);
+             session('phoneUrl',$phone);
+            //$r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为'.$randNumber.',不要告诉别人哦！');
+            require_once(dirname(__FILE__) . '/../Model/SendSMS.php');
+            $securitycode=rand(1000,9999);
+            session("phone_security",$securitycode);
+            $r=sendTemplateSMS($phone,array($securitycode,'10'),"1");//手机号码，替换内容数组，模板ID
+
             if($r){
                $message['status']='success';
                $this->ajaxReturn($message);
@@ -748,8 +753,13 @@ class PersonController extends Controller {
      */
     public function sendMailForcCheck($mail){
        $randNumber=rand(1000,9999);
-       session('changePWordNumber',$randNumber);
-       $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为<strong>'.$randNumber.'</strong>,不要告诉别人哦！');
+       // session('changePWordNumber',$randNumber);
+       // $r=think_send_mail($mail,'','For优更改密码','For优更改密码的验证码为<strong>'.$randNumber.'</strong>,不要告诉别人哦！');
+        require_once(dirname(__FILE__) . '/../Model/SendSMS.php');
+        $securitycode=rand(1000,9999);
+        session("phone_security",$securitycode);
+        $r=sendTemplateSMS($mail,array($securitycode,'10'),"1");//手机号码，替换内容数组，模板ID
+
        if($r){
           $message['status']='success';
           $this->ajaxReturn($message);
@@ -765,7 +775,7 @@ class PersonController extends Controller {
      * @return 
      */
     public function checkMailPost($postcode){
-       if($postcode==session('changePWordNumber')){
+       if($postcode==session('phone_security')){
           $message['status']='success';
           $this->ajaxReturn($message);
        }else{

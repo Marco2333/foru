@@ -29,8 +29,6 @@ class LoginController extends Controller {
     }
 
     public function toRegisterCheck() {
-
-
          $verify = I('param.verify','');
 
          // dump( $verify);
@@ -78,15 +76,34 @@ class LoginController extends Controller {
     }
 
        public function toRegister(){
-        $User = M("customer"); // 实例化User对象
-        // $verify = I('param.verify','');  //获取验证码
-        $status=I('status');
-        $data["nickname"] = I("nickname");
-        $data["password"] = I("password",'','md5');
-        $data["phone"] = I("phone");
-        $data["type"] = 2;
-        $data["create_time"] = time();
-        $data["mail"]=I("mail");
+            $User = M("users"); // 实例化User对象
+            $verify = I('confirmcode','');  //获取验证码
+            //dump(session("phone_security"));   
+            if($verify==session('phone_security')){
+                $data["nickname"] = I("nickname");
+                $data["password"] = I("password",'','md5');
+                $data["phone"] = I("phone");
+                $data["type"] = 2;
+                $data["create_time"] = time();
+                //校验是否已经注册过
+                $result=M("users")->where("phone = '%s'",$data['phone'])->find();
+              
+                if($result!=null){
+                    $this->error("该用户已经注册,请不要重复注册，快前往登陆吧",U('/Home/Login/index'),3);
+                }
+                $status=M("users")->data($data)->add();
+                
+                if($status==false){
+                   // $this->ajaxReturn($User->getError());
+                   $this->error("注册失败！");
+                }
+                else{
+                    $this->success("恭喜您，注册成功了哦！正在为你转向登陆页面",U('/Home/Login/index'),3);
+                }  
+            }else{
+                 $this->error("短信验证码错误！");
+            }
+          
        }
     // public function toRegister()
     // {
@@ -196,12 +213,12 @@ class LoginController extends Controller {
         sendTemplateSMS("18896554880",array($securitycode,'10'),"1");//手机号码，替换内容数组，模板ID
     }
 
-    public function checkPhoneSecurity(){
-        $securitycode=I("phone_security");
-        if($securitycode===session("phone_security")){
-            $this->ajaxReturn(true);
-        }else{
-            $this->ajaxReturn(false);
-        }
-    }
+    // public function checkPhoneSecurity(){
+    //     $securitycode=I("phone_security");
+    //     if($securitycode===session("phone_security")){
+    //         $this->ajaxReturn(true);
+    //     }else{
+    //         $this->ajaxReturn(false);
+    //     }
+    // }
 }

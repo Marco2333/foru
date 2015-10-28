@@ -60,7 +60,7 @@
 						<dl class="active" id="dl-1">
 							<dt class="text">1</dt>
 							<dt class="round"></dt>
-							<dd class="phone">填写注册邮箱</dd>
+							<dd class="phone">填写注册短信</dd>
 						</dl>
 						<dl  id="dl-2">
 							<dt class="text">2</dt>
@@ -83,10 +83,10 @@
 					<div class="person-info-body-page1">
 						<div class="person-info-body">
 							<!--1-->
-							<span class="glyphicon glyphicon-envelope text-special span-inline-block person-info-body-page-margin"></span>
-							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin" >邮&nbsp;&nbsp;箱:</span>
+							<span class="glyphicon glyphicon-phone text-special span-inline-block person-info-body-page-margin"></span>
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin" >手机号:</span>
 							<input type="text" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="phone" form="person-info-body-form-1" id="person-info-body-form-phone"/>
-							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin" id="form-1-span-1">请输入注册时使用的邮箱</span>
+							<span class="span-inline-block person-info-body-page-text person-info-body-page-margin" id="form-1-span-1">请输入注册时使用的手机号</span>
 							<p><br /></p>
 							<!--2-->
 							<div class="person-info-body-page-eletop">
@@ -110,9 +110,9 @@
 						<div class="person-info-body person-info-body-2">
 							<!--1-->
 							<span class="glyphicon glyphicon-comment text-special span-inline-block person-info-body-page-margin"></span>
-							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">邮箱验证:</span>
-							<input type="text" placeholder="请输入收到的邮箱验证码" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="mailcode" form="person-info-body-form-2" id="person-info-body-form-message"/>
-							<!-- <span class="span-inline-block person-info-body-page-text person-info-body-page-margin">请输入收到的邮箱验证码</span> -->
+							<span class="person-info-body-page-text span-inline-block person-info-body-page-margin">短信验证:</span>
+							<input type="text" placeholder="请输入收到的短信验证码" class="person-info-body-page-input span-inline-block person-info-body-page-margin" name="mailcode" form="person-info-body-form-2" id="person-info-body-form-message"/>
+							<!-- <span class="span-inline-block person-info-body-page-text person-info-body-page-margin">请输入收到的短信验证码</span> -->
 							<button id="resent-secword" class="bground-special">重新发送验证码</button>
 							<p><br /></p>
 						</div>
@@ -167,6 +167,7 @@
               var securityCodeUrl="{:U('/Home/Index/verify')}";
               var loginUrl="{:U('/Home/Login/index')}";
               var $campusId=$("#index-header").attr("data-campusId");
+              var $resentPhoneUrl="{:U('/Home/Index/resetMailCode')}";
 	    </script>
 		<script src="__PUBLIC__/script/resetpword.js" type="text/javascript" charset="utf-8"></script>
 		<script src="__PUBLIC__/script/common.js" type="text/javascript" charset="utf-8"></script>

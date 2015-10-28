@@ -4,7 +4,7 @@ $(function(){
 		var $phone=$("#person-info-body-form-phone").val();
 		var $check=$("#check-image-input").val();
 		if($phone.trim()==""){
-			$("#form-1-span-1").text("邮箱不能为空")
+			$("#form-1-span-1").text("手机号不能为空")
 			.addClass("text-alert")
 			.removeClass("text-ok");
 			return;
@@ -26,20 +26,20 @@ $(function(){
 			url:checkpwordUrl,
 			success:function(data){
 				if(data['value']=='success'){
-					if(data['status']='success'){
+					if(data['status']=='success'){
 						 $("#dl-1").removeClass('active');
 						 $("#dl-2").addClass('active');
 						 $(".person-info-body-page1").addClass("none");
 						 $(".person-info-body-page2").removeClass("none");
 					}else{
-						$("#body-form-1-button").val("提交");
 						$('#info').show();
-						        $('#info').html("邮件发送失败，请重新提交");
-						        setTimeout("$('#info').hide()", 2000 );
+						$('#info').css("width","260px").html("当天短信条数超过限制,请不要重复发送");
+                        setTimeout("$('#info').hide()", 2000 );
+                        $("#body-form-1-button").val("提交");
 					}
 				}else if(data['value']=='phoneerror'){
 					$("#body-form-1-button").val("提交");
-					$("#form-1-span-1").text("邮箱输入错误")
+					$("#form-1-span-1").text("手机号输入错误")
 					.addClass("text-alert")
 					.removeClass("text-ok");	
 				}else if(data['value']=='checkerror'){
@@ -65,6 +65,12 @@ $(function(){
 	
 
 	$("#resent-secword").click(function(){
+		$.get(
+	    	$resentPhoneUrl,        //发送验证码
+	    	function(data){
+
+	    	}
+	    )
 		$(this).text("59秒后重新发送").addClass("sub-number")
 			.attr("disabled",true);
 		var a = setInterval(function(){
@@ -76,7 +82,7 @@ $(function(){
 			else if (parseInt(num)-1 >= 10) {
 				$("#resent-secword").text(parseInt(num)-1+"秒后重新发送");
 			}
-			if(parseInt(num)==0) {
+			if(parseInt(num)==1) {
 				clearInterval(a);
 				$("#resent-secword").text("重新获取验证码")
 				.removeClass("sub-number").attr("disabled",false);
@@ -91,17 +97,17 @@ $(function(){
 	$("#person-info-body-form-phone").blur(function(){
 		var $phone=$("#person-info-body-form-phone").val();
 		if($phone.trim()==""){
-			$("#form-1-span-1").text("邮箱不能为空")
+			$("#form-1-span-1").text("手机号不能为空")
 			.addClass("text-alert")
 			.removeClass("text-ok");
 			return;
 		}
-		if(/\w*@\w*\.\w+/.test($phone)){
+		if(/^1[0-9]{10}$/.test($phone)){
 			$("#form-1-span-1").removeClass("text-alert")
 			.text("√").addClass("text-ok");		
 		}
 		else {
-			$("#form-1-span-1").text("请输入规范的邮箱格式")
+			$("#form-1-span-1").text("请输入规范的手机格式")
 			.addClass("text-alert")
 			.removeClass("text-ok");
 		}
@@ -121,7 +127,7 @@ $(function(){
                 	$(".person-info-body-page3").removeClass("none");	
                 }else{
                     $('#info').show();
-			        $('#info').html("邮件验证码输入错误");
+			        $('#info').html("短信验证码输入错误");
 			        setTimeout("$('#info').hide()", 2000 );
                 }
             }

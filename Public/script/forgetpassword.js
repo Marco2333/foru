@@ -4,7 +4,7 @@ $(function(){
 		var $phone=$("#person-info-body-form-phone").val();
 		var $check=$("#check-image-input").val();
 		if($phone.trim()==""){
-			$("#form-1-span-1").text("邮箱不能为空")
+			$("#form-1-span-1").text("手机号不能为空")
 			.addClass("text-alert")
 			.removeClass("text-ok");
 			return;
@@ -26,7 +26,7 @@ $(function(){
 			url:checkpwordUrl,         //发送邮件
 			success:function(data){
 				if(data['value']=='success'){
-					if(data['status']='success'){
+					if(data['status']=='success'){
           				 $("#body-form-1-button").val("验证码发送...");
 						 $("#dl-1").removeClass('active');
 						 $("#dl-2").addClass('active');
@@ -34,12 +34,13 @@ $(function(){
 						 $(".person-info-body-page2").removeClass("none");
 					}else{
 						$('#info').show();
-				        $('#info').html("邮件发送失败，请重新提交");
+				        $('#info').html("短信发送失败，请重新提交");
 				        setTimeout("$('#info').hide()", 2000 );
+				        $("#body-form-1-button").val("提交");
 					}
 				}else if(data['value']=='phoneerror'){
 					$("#body-form-1-button").val("提交");
-					$("#form-1-span-1").text("该邮箱尚未注册")
+					$("#form-1-span-1").text("该手机号尚未注册")
 					.addClass("text-alert")
 					.removeClass("text-ok");	
 				}else if(data['value']=='checkerror'){
@@ -69,7 +70,6 @@ $(function(){
 		 $.get(
 	    	resentMailUrl,        //发送验证码
 	    	function(data){
-
 	    	}
 	    )
 		$(this).text("59秒后重新发送").addClass("sub-number")
@@ -99,17 +99,17 @@ $(function(){
 	$("#person-info-body-form-phone").blur(function(){
 		var $phone=$("#person-info-body-form-phone").val();
 		if($phone.trim()==""){
-			$("#form-1-span-1").text("邮箱不能为空")
+			$("#form-1-span-1").text("手机号不能为空")
 			.addClass("text-alert")
 			.removeClass("text-ok");
 			return;
 		}
-		if(/\w*@\w*\.\w+/.test($phone)){
+		if(/^1[0-9]{10}$/.test($phone)){
 			$("#form-1-span-1").removeClass("text-alert")
 			.text("√").addClass("text-ok");		
 		}
 		else {
-			$("#form-1-span-1").text("请输入规范的邮箱格式")
+			$("#form-1-span-1").text("请输入规范的手机号格式")
 			.addClass("text-alert")
 			.removeClass("text-ok");
 		}
@@ -129,7 +129,7 @@ $(function(){
                 	$(".person-info-body-page3").removeClass("none");	
                 }else{
                     $('#info').show();
-			        $('#info').html("邮件验证码输入错误");
+			        $('#info').html("短信验证码输入错误");
 			        setTimeout("$('#info').hide()", 2000 );
                 }
             }
